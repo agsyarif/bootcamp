@@ -273,8 +273,12 @@ class   LandingController extends Controller
         if ($checkout->payment_status == 'paid') {
             $this->addToAksesCourse($checkout->id);
         }
+
         $active = 'home';
-        return view('midtrans.success', compact('courses', 'exam', 'checkout', 'active'));
+        return view('midtrans.success', compact('checkout', 'active'));
+
+        // $courses = course::where('id', $checkout->course_id)->first();
+        // return view('midtrans.success', compact('courses', 'exam', 'checkout', 'active'));
     }
 
     // tambah data ke akses courses jika pyment status paid
