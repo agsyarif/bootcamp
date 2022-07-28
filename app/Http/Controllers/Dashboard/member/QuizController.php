@@ -36,7 +36,7 @@ class QuizController extends Controller
         foreach ($exam as $key => $value) {
             $examId[] = $value->id;
         }
-        $id = $examId;
+        // $id = $examId;
         // return $id;
         $question = question::whereIn('exam_id', $examId)->get();
 
@@ -45,7 +45,7 @@ class QuizController extends Controller
 
         // return $id;
         // return $question;
-        return view('pages.Dashboard.member.quiz.start', compact('MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question', 'id'));
+        return view('pages.Dashboard.member.quiz.start', compact('MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question', 'examId'));
     }
 
     public function result($score, $examId)

@@ -93,7 +93,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @livewire('quiz', [$id])
+                                @livewire('quiz', [$examId])
                                 {{-- @livewire('counter', [$id]) --}}
                             </div>
                         </div>
