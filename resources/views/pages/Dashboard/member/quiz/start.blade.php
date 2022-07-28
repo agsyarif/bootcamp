@@ -29,6 +29,43 @@
                                         <i class="bi bi-chevron-down"></i>
                                     </a>
                                     <ul class="submenu collapse">
+                                        {{-- @foreach ($material as $m)
+                                            @if ($m->course_lesson_id == $item->id)
+                                                @if ($m->id == 1)
+                                                    <li>
+
+                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
+                                                            href="{{ route('member.course.show', [$item->course_id]) }}">
+                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
+                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
+                                                        </a>
+
+                                                    </li>
+                                                @else
+                                                    <li>
+
+                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
+                                                            href="{{ route('member.course.materi', [$m->id]) }}">
+                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
+                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
+                                                        </a>
+
+                                                    </li>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                        @foreach ($exam as $ex)
+                                            @if ($exam->course_lesson_id == $item->id)
+                                                <li>
+                                                    <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
+                                                        href="{{ route('member.course.quiz', [$exam->id]) }}">
+                                                        <i class="fa-solid fa-clipboard-question mx-2"></i>
+                                                        {{ $exam->title }}
+                                                        <i class="bi bi-check2-circle ml-auto text-primary "></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @endforeach --}}
                                         @foreach ($material as $key => $m)
                                             @if ($m->course_lesson_id == $item->id)
                                                 @if ($m->id == 1)
@@ -93,7 +130,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                @livewire('quiz', [$examId])
+                                @if ($question->count() == null)
+                                    <span class="text-center px-3 py-3">Soal Kosong</span>
+                                @else
+                                    <span>{{ $question }}</span>
+                                    @livewire('quiz', [$id])
+                                @endif
                                 {{-- @livewire('counter', [$id]) --}}
                             </div>
                         </div>
@@ -101,7 +143,7 @@
                     <div class="d-flex justify-content-between p-4">
                         <div class="">
                             <h5 class="white" style="color: darkgrey">{{ $MateriActive[0]->title }}</h5>
-                            <p class="white" style="color: darkgrey">Materi Bab : {{ $ChapterActive[0]->title }}
+                            <p class="white" style="color: darkgrey">Materi Bab : {{ $ChapterActive->title }}
                             </p>
                         </div>
                         <span class="d-flex">

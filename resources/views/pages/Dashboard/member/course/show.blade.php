@@ -57,7 +57,7 @@
                                             @if ($e->course_lesson_id == $item->id)
                                                 <li>
                                                     <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                        href="{{ route('member.course.quiz', [$e->id]) }}">
+                                                        href="{{ route('member.course.quiz', [$e->course_lesson_id]) }}">
                                                         <i class="bi bi-play-circle px-2"></i> {{ $exam[0]->title }}
                                                         <i class="bi bi-check2-circle ml-auto text-primary "></i>
                                                     </a>
@@ -79,8 +79,8 @@
 
                     <div class="mb-4">
                         <video id="preview" style="border-radius: 20px" class="w-full ml-3 h-auto rounded-fill" controls>
-                            <source id="video"
-                                src="{{ asset('images/video/courses/' . $MateriActive[0]->video_url) }}" type="video/mp4">
+                            <source id="video" src="{{ asset('images/video/courses/' . $MateriActive[0]->video_url) }}"
+                                type="video/mp4">
                         </video>
                     </div>
                     <div class="d-flex justify-content-between p-4">
