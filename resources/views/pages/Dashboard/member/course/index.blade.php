@@ -74,7 +74,7 @@
 
                                                     @if ($course->image != null)
                                                         <img class="object-cover w-50 h-30 rounded"
-                                                            src="{{ asset('/assets/images/courses/' . $course->image) }}"
+                                                            src="{{ asset('images/course/thumbnail/' . $course->image) }}"
                                                             alt="" loading="lazy" />
                                                     @else
                                                         <img class="object-cover w-50 h-30 rounded"

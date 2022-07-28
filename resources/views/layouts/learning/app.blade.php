@@ -3,7 +3,7 @@
 
 <head>
 
-    @include('includes.dashboard.meta')
+    @include('includes.Dashboard.meta')
 
     <title>@yield('title') | UWHcamp</title>
 
