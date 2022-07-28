@@ -19,6 +19,6 @@ class checkout_course extends Model
 
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(course::class);
     }
 }
