@@ -275,7 +275,7 @@ class   LandingController extends Controller
         }
 
         $active = 'home';
-        return view('midtrans.success', compact('checkout', 'active'));
+        return view('midtrans.success_paid', compact('checkout', 'active'));
 
         // $courses = course::where('id', $checkout->course_id)->first();
         // return view('midtrans.success', compact('courses', 'exam', 'checkout', 'active'));

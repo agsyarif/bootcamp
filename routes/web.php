@@ -57,8 +57,8 @@ Route::get('explore', [LandingController::class, 'explore'])->name('explore.land
 Route::resource('/', LandingController::class);
 
 // midtrans route
-Route::get('payment/success', [LandingController::class, 'midtransCallback']);
 Route::post('payment/success', [LandingController::class, 'midtransCallback']);
+Route::get('payment/success', [LandingController::class, 'midtransCallback']);
 
 // Route::post('checkout', [CheckoutController::class, 'proccess'])->name('checkout');
 // Route::post('success', [CheckoutController::class, 'callback'])->name('midtrans.callback');
