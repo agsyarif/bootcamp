@@ -234,6 +234,8 @@ class   LandingController extends Controller
 
 
         $notif = $request->method() == 'POST' ? new \Midtrans\Notification() : Midtrans\Transaction::status($request->checkout_id);
+
+        return $request;
         // $notif = new Notification();
 
         $transaction = $notif->transaction_status;
