@@ -232,10 +232,10 @@ class   LandingController extends Controller
     public function midtransCallback(Request $request)
     {
 
+        return $request;
 
         $notif = $request->method() == 'POST' ? new \Midtrans\Notification() : Midtrans\Transaction::status($request->checkout_id);
 
-        return $request;
         // $notif = new Notification();
 
         $transaction = $notif->transaction_status;
