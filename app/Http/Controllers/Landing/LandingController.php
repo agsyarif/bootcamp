@@ -232,18 +232,19 @@ class   LandingController extends Controller
     public function midtransCallback(Request $request)
     {
 
-        return $request;
-
-        $notif = $request->method() == 'POST' ? new \Midtrans\Notification() : Midtrans\Transaction::status($request->checkout_id);
+        $notif = $request->all();
+        // $notif = $request->method() == 'POST' ? new \Midtrans\Notification() : Midtrans\Transaction::status($request->checkout_id);
 
         // $notif = new Notification();
+        $transaction = $notif['transaction_status'];
+        $orderId = $notif['order_id'];
+        $fraud = $notif['status_code'];
+        // $transaction = $notif->transaction_status;
+        // $fraud = $notif->fraud_status;
 
-        $transaction = $notif->transaction_status;
-        $fraud = $notif->fraud_status;
+        // return $notif;
 
-        return $notif;
-
-        $checkout_id = explode('-', $notif->order_id)[0];
+        $checkout_id = explode('-', $notif['order_id'])[0];
         $checkout = checkout_course::where('id', $checkout_id)->first();
 
         if ($transaction == 'capture') {
