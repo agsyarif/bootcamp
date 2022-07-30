@@ -66,13 +66,11 @@
         {{ $questions->links() }}
 
     </div>
-    <div class="card-footer">
+    <div class="card-footer d-flex flex-column">
         @if ($questions->currentPage() == $questions->lastPage())
-            <button wire:click="submitAnswer"
-                class="btn btn-primary btn-md d-flex justify-content-right">Submit</button>
+            <button wire:click="submitAnswer" class="btn btn-primary btn-md">Submit</button>
         @else
-            <button wire:click="submitAnswer" class="btn btn-primary btn-md d-flex justify-content-left"
-                disabled>Submit</button>
+            <button wire:click="submitAnswer" class="btn btn-primary btn-md right" disabled>Submit</button>
         @endif
     </div>
     {{-- </div> --}}

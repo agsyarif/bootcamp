@@ -13,7 +13,8 @@ class Quiz extends Component
 
     public $exam_id;
     public $question_id;
-    // protected $paginationTheme = 'tailwind';
+    // protected $paginationTheme
+    protected $paginationTheme = 'bootstrap';
     public $selectedAnswer = [];
     public $jawaban = [];
     public $score;

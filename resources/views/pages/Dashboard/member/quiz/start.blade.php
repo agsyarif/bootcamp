@@ -8,110 +8,8 @@
         <div class="container-fluid bg-dark">
             <div class="container-fluid row col-sm-12 p-4">
 
-                <aside class="col-sm-3 p-3 nav-bg" style="border-radius: 20px;">
-                    <div class="d-flex justify-content-between" style="align-items: center;">
-                        <img src="https://class.buildwithangga.com/images/ic_burger-opened.svg" alt="">
-                        <a href="{{ route('member.dashboard.index') }}"
-                            style="color: darkgray; text-decoration: none; margin-right:20px;">Dashboard</a>
-                    </div>
-                    <div class="flex mb-4">
-                        {{-- <h5 class="mt-3 d-inline-block">Dark Mode</h5>
-                        <input type="checkbox" class="" name="" id=""> --}}
-                    </div>
 
-                    <nav class="sidebar py-2 mb-4 nav-bg">
-                        <ul class="nav flex-column" id="nav_accordion">
-                            @foreach ($chapter as $key => $item)
-                                <li class="nav-item has-submenu rounded-pill mb-2">
-                                    <a class="nav-link white hover rounded-pill d-flex justify-content-between"
-                                        href="#">
-                                        <span>{{ $item->title }}</span>
-                                        <i class="bi bi-chevron-down"></i>
-                                    </a>
-                                    <ul class="submenu collapse">
-                                        {{-- @foreach ($material as $m)
-                                            @if ($m->course_lesson_id == $item->id)
-                                                @if ($m->id == 1)
-                                                    <li>
-
-                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.show', [$item->course_id]) }}">
-                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                        </a>
-
-                                                    </li>
-                                                @else
-                                                    <li>
-
-                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.materi', [$m->id]) }}">
-                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                        </a>
-
-                                                    </li>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                        @foreach ($exam as $ex)
-                                            @if ($exam->course_lesson_id == $item->id)
-                                                <li>
-                                                    <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                        href="{{ route('member.course.quiz', [$exam->id]) }}">
-                                                        <i class="fa-solid fa-clipboard-question mx-2"></i>
-                                                        {{ $exam->title }}
-                                                        <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-                                        @endforeach --}}
-                                        {{-- @foreach ($material as $key => $m)
-                                            @if ($m->course_lesson_id == $item->id)
-                                                @if ($m->id == 1)
-                                                    <li>
-
-                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.show', [$item->course_id]) }}">
-                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                        </a>
-
-                                                    </li>
-                                                @else
-                                                    <li>
-
-                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.materi', [$m->id]) }}">
-                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                        </a>
-
-                                                    </li>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                        @foreach ($exam as $key => $e)
-                                            @if ($e->course_lesson_id == $item->id)
-                                                <li>
-                                                    <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                        href="{{ route('member.course.quiz', [$e->id]) }}">
-                                                        <i class="fa-solid fa-clipboard-question mx-2"></i>
-                                                        {{ $exam[0]->title }}
-                                                        <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-                                        @endforeach --}}
-                                    </ul>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </nav>
-
-
-                </aside>
-                <div class="col-sm-9">
+                <div class="col-sm-12">
 
                     <div class="section-body">
                         <div class="mb-4">
@@ -133,7 +31,7 @@
                                 @if ($question->count() == null)
                                     <span class="text-center px-3 py-3">Soal Kosong</span>
                                 @else
-                                    <span>{{ $question }}</span>
+                                    {{-- <span>{{ $question }}</span> --}}
                                     @livewire('quiz', [$id])
                                 @endif
                                 {{-- @livewire('counter', [$id]) --}}
