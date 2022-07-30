@@ -66,7 +66,7 @@
                                                 </li>
                                             @endif
                                         @endforeach --}}
-                                        @foreach ($material as $key => $m)
+                                        {{-- @foreach ($material as $key => $m)
                                             @if ($m->course_lesson_id == $item->id)
                                                 @if ($m->id == 1)
                                                     <li>
@@ -102,7 +102,7 @@
                                                     </a>
                                                 </li>
                                             @endif
-                                        @endforeach
+                                        @endforeach --}}
                                     </ul>
                                 </li>
                             @endforeach

@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </a> --}}
-                                    <a href="{{ route('member.course.show', [$course->id]) }}" class="">
+                                    <a href="{{ route('member.course.materi', [$course->id]) }}" class="">
                                         <div
                                             class="flex flex-col justify-center px-4 py-4 mb-4 bg-white hover:bg-gray-300 rounded-xl">
                                             <div>

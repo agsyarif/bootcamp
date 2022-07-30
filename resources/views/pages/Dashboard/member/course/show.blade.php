@@ -29,27 +29,15 @@
                                     <ul class="submenu collapse">
                                         @foreach ($material as $key => $m)
                                             @if ($m->course_lesson_id == $item->id)
-                                                @if ($m->id == 1)
-                                                    <li>
+                                                <li>
 
-                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.show', [$item->course_id]) }}">
-                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                        </a>
+                                                    <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
+                                                        href="{{ route('member.course.materi', [$m->id]) }}">
+                                                        <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
+                                                        <i class="bi bi-check2-circle ml-auto text-primary "></i>
+                                                    </a>
 
-                                                    </li>
-                                                @else
-                                                    <li>
-
-                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.materi', [$m->id]) }}">
-                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                        </a>
-
-                                                    </li>
-                                                @endif
+                                                </li>
                                             @endif
                                         @endforeach
                                         {{-- @if ($exam->count() > 0) --}}
@@ -58,7 +46,7 @@
                                                 <li>
                                                     <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
                                                         href="{{ route('member.course.quiz', [$e->course_lesson_id]) }}">
-                                                        <i class="bi bi-play-circle px-2"></i> {{ $exam[0]->title }}
+                                                        <i class="bi bi-play-circle px-2"></i> {{ $e->title }}
                                                         <i class="bi bi-check2-circle ml-auto text-primary "></i>
                                                     </a>
                                                 </li>

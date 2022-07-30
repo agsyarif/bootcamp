@@ -15,25 +15,25 @@ class QuizController extends Controller
     public function start($id)
     {
 
+        // untuk tampilan yang active
         $ChapterActive = CourseLesson::findOrFail($id);
         $MateriActive = CourseMaterial::where('course_lesson_id', '=', $ChapterActive->id)->get();
-        $exam = exam::where('course_lesson_id', '=', $ChapterActive->id)->get();
-
         $CourseActive = course::where('id', '=', $ChapterActive->course_id)->get();
-
-        $chapter = CourseLesson::where('course_id', '=', $CourseActive[0]->id)->get();
-
-        $chapterId = [];
-        foreach ($chapter as $key => $value) {
-            $chapterId[] = $value->id;
-        }
-
+        $exam = exam::where('course_lesson_id', '=', $ChapterActive->id)->get();
         $examId = [];
         foreach ($exam as $key => $value) {
             $examId[] = $value->id;
         }
-        $id = $examId;
         $question = question::whereIn('exam_id', $examId)->get();
+
+
+        // untuk Semua
+        $chapter = CourseLesson::where('course_id', '=', $CourseActive[0]->id)->get();
+        $chapterId = [];
+        foreach ($chapter as $key => $value) {
+            $chapterId[] = $value->id;
+        }
+        $id = $examId;
         $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
         $active = 'course';
 

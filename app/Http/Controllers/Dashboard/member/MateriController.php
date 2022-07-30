@@ -13,6 +13,8 @@ use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Contracts\Session\Session;
 
+use function PHPUnit\Framework\returnSelf;
+
 class MateriController extends Controller
 {
     /**
@@ -36,7 +38,7 @@ class MateriController extends Controller
         }
         $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
         $active = 'course';
-        $exam = exam::where('course_lesson_id', '=', $ChapterActive[0]->id)->get();
+        $exam = exam::whereIn('course_lesson_id', $chapterId)->get();
         $question = question::where('exam_id', '=', $exam[0]->id)->get();
         $data = [
             'MateriActive' => $MateriActive,

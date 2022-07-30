@@ -71,17 +71,9 @@ class CourseController extends Controller
      */
     public function show($id)
     {
+        // umum -> untuk menu sidebar
         $courses = course::find($id);
         $chapter = CourseLesson::where('course_id', '=', $id)->get();
-
-        // $exam = exam::where('course_lesson_id', '=', $id)->get();
-        // $exam = exam::
-        // $question = question::where('exam_id', '=', $exam[0]->id)->get();
-        // return $question;
-        // $exam = exam::where('id', 1)->get();
-
-
-        // return $question->count();
 
         $chapterId = [];
         foreach ($chapter as $key => $value) {
