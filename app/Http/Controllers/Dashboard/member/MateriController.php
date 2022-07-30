@@ -26,9 +26,10 @@ class MateriController extends Controller
     {
 
         // data khusus atau data aktif sekarang//
-        $MateriActive = CourseMaterial::where('id', '=', $id)->get();
-        $ChapterActive = CourseLesson::where('id', '=', $MateriActive[0]->course_lesson_id)->get();
-        $CourseActive = course::where('id', '=', $ChapterActive[0]->course_id)->get();
+        // $MateriActive = CourseMaterial::where('id', '=', $id)->get();
+        $MateriActive = CourseMaterial::findOrFail($id);
+        $ChapterActive = CourseLesson::where('id', $MateriActive->course_lesson_id)->get();
+        $CourseActive = course::where('id', $ChapterActive[0]->course_id)->get();
 
         // semua data //
         $chapter = CourseLesson::where('course_id', '=', $CourseActive[0]->id)->get();

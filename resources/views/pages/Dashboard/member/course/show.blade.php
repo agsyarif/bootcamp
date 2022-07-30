@@ -67,13 +67,13 @@
 
                     <div class="mb-4">
                         <video id="preview" style="border-radius: 20px" class="w-full ml-3 h-auto rounded-fill" controls>
-                            <source id="video" src="{{ asset('images/video/courses/' . $MateriActive[0]->video_url) }}"
+                            <source id="video" src="{{ asset('images/video/courses/' . $MateriActive->video_url) }}"
                                 type="video/mp4">
                         </video>
                     </div>
                     <div class="d-flex justify-content-between p-4">
                         <div class="">
-                            <h5 class="white" style="color: darkgrey">{{ $MateriActive[0]->title }}</h5>
+                            <h5 class="white" style="color: darkgrey">{{ $MateriActive->title }}</h5>
                             <p class="white" style="color: darkgrey">Materi Bab : {{ $ChapterActive[0]->title }}
                             </p>
                         </div>
@@ -82,7 +82,7 @@
                                 Preview Video
                             </a> --}}
                             <a class="white hover p-2 nav-bg rounded-pill" style="height: 40px"
-                                href="{{ route('member.course.materi', [$MateriActive[0]->id + 1]) }}">
+                                href="{{ route('member.course.materi', [$MateriActive->id + 1]) }}">
                                 Next Video
                             </a>
                         </span>
