@@ -25,7 +25,6 @@ class CourseController extends Controller
     {
         $akses = Auth::user()->user_role_id;
         $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
-        // return $aksesCourse;
         $id_course = [];
         foreach ($aksesCourse as $key => $value) {
             $id_course[] = $value->course_id;
@@ -87,7 +86,7 @@ class CourseController extends Controller
         $question = question::whereIn('exam_id', $examId)->get();
         $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
         $active = 'course';
-        $MateriActive[] = $material[0];
+        $MateriActive = $material[0];
         $ChapterActive[] = $chapter[0];
 
         // return redirect()->route('member.course.materi', [$id, $activeId]);

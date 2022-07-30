@@ -26,18 +26,30 @@
                                         <span>{{ $item->title }}</span>
                                         <i class="bi bi-chevron-down"></i>
                                     </a>
-                                    <ul class="submenu collapse">
+                                    <ul class="submenu collapse" id="{{ $item->id }}">
                                         @foreach ($material as $key => $m)
                                             @if ($m->course_lesson_id == $item->id)
-                                                <li>
+                                                @if ($m->id == 1)
+                                                    <li>
 
-                                                    <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                        href="{{ route('member.course.materi', [$m->id]) }}">
-                                                        <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                        <i class="bi bi-check2-circle ml-auto text-primary "></i>
-                                                    </a>
+                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
+                                                            href="{{ route('member.course.show', [$m->id]) }}">
+                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
+                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
+                                                        </a>
 
-                                                </li>
+                                                    </li>
+                                                @else
+                                                    <li>
+
+                                                        <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
+                                                            href="{{ route('member.course.materi', [$m->id]) }}">
+                                                            <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
+                                                            <i class="bi bi-check2-circle ml-auto text-primary "></i>
+                                                        </a>
+
+                                                    </li>
+                                                @endif
                                             @endif
                                         @endforeach
                                         {{-- @if ($exam->count() > 0) --}}
@@ -46,7 +58,8 @@
                                                 <li>
                                                     <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
                                                         href="{{ route('member.course.quiz', [$e->course_lesson_id]) }}">
-                                                        <i class="bi bi-play-circle px-2"></i> {{ $e->title }}
+                                                        <i class="fa-solid fa-clipboard-question mx-2 px-2"></i>
+                                                        {{ $e->title }}
                                                         <i class="bi bi-check2-circle ml-auto text-primary "></i>
                                                     </a>
                                                 </li>
@@ -73,6 +86,7 @@
                     </div>
                     <div class="d-flex justify-content-between p-4">
                         <div class="">
+                            <input type="text" id="MateriActive" value="{{ $ChapterActive[0]->id }}" hidden>
                             <h5 class="white" style="color: darkgrey">{{ $MateriActive->title }}</h5>
                             <p class="white" style="color: darkgrey">Materi Bab : {{ $ChapterActive[0]->title }}
                             </p>
@@ -104,31 +118,9 @@
             // return video.src = url;
         };
 
-        // function learning() {
-        //     var id = $(this).data('id');
-        //     video.src = id;
-        //     video.load();
-        //     video.play();
-        // }
-
-        // function learning() {
-        //     var video = document.getElementById('preview');
-        // var url = $(this).data('id');
-        // console.log(url);
-        // video.src = url;
-        // video.play();
-
-        // var id = $(this).data('id');
-        // console.log(id);
-        // var preview = document.getElementById('preview');
-        // preview.src = {{ asset('assets/video/courses/') }} ' + ' / ' + id + '.mp4 ';
-        // }
-
-        // function learning() {
-        //     var id = $(this).data('id');
-        //     console.log(id);
-        //     var preview = document.getElementById('preview');
-        //     preview.src = {{ asset('assets/video/courses/') }} ' + ' / ' + id + '.mp4 ';
-        // }
+        let idMateriActive = document.getElementById('MateriActive');
+        let idCourseActive = document.getElementById(idMateriActive.value);
+        idCourseActive.classList.add('show');
+        console.log(idMateriActive.value);
     </script>
 @endpush
