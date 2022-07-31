@@ -41,7 +41,6 @@ class QuizController extends Controller
             $chapterId[] = $value->id;
         }
         $id = $examId;
-        return $id;
         $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
         $active = 'course';
 

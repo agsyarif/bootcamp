@@ -18,10 +18,13 @@ class Quiz extends Component
     public $selectedAnswer = [];
     public $jawaban = [];
     public $score;
+    public $quessssss;
 
     public function mount($id)
     {
         $this->exam_id = $id;
+
+        $this->quessssss = question::where("exam_id", $this->exam_id)->get();
     }
 
     public function answers($questionId, $option)
