@@ -83,7 +83,13 @@ class CourseController extends Controller
         foreach ($exam as $key => $value) {
             $examId[] = $value->id;
         }
-        $question = question::whereIn('exam_id', $examId)->get();
+        if ($examId != null) {
+            $question = question::whereIn('exam_id', $examId)->get();
+        } else {
+            $question = null;
+        }
+
+        // $question = question::whereIn('exam_id', $examId)->get();
         $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
         $active = 'course';
         $MateriActive = $material[0];
