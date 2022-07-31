@@ -27,7 +27,6 @@ class QuizController extends Controller
 
         if ($examId != null) {
             $question = question::whereIn('exam_id', $examId)->get();
-            return $question;
         } else {
             $question = null;
         }
