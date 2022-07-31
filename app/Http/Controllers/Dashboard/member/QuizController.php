@@ -24,6 +24,8 @@ class QuizController extends Controller
         foreach ($exam as $key => $value) {
             $examId[] = $value->id;
         }
+
+        return $examId;
         if ($examId != null) {
             $question = question::whereIn('exam_id', $examId)->get();
         } else {
