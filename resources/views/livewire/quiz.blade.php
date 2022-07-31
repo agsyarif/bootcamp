@@ -14,7 +14,7 @@
     @foreach ($questions as $question)
         <div class="card-body">
             <div style="color: darkgrey">
-                <b>Soal No. {{ $question->id }}</b>
+                <b>Soal No. {{ $loop->iteration }}</b>
                 <p>{{ $question->title }}</p>
                 <i>Pilih salah satu jawaban dibawah ini:</i>
                 <br>
