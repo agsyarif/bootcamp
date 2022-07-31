@@ -80,6 +80,7 @@ class CourseController extends Controller
         }
         $exam = exam::whereIn('course_lesson_id', $chapterId)->get();
 
+        $examId = [];
         foreach ($exam as $key => $value) {
             $examId[] = $value->id;
         }
