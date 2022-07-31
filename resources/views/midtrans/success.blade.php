@@ -40,7 +40,7 @@
                                         class="px-4 text-green-500 hover:text-gray-800 bg-green-100 border border-transparent rounded-lg shadow-sm">
                                         My Dashboard
                                     </a>
-                                    <a href="{{ $url }}"
+                                    <a target="_blank" href="{{ $url }}"
                                         class="px-4 text-green-500 hover:text-gray-800 bg-green-100 border border-transparent rounded-lg shadow-sm">Bayar
                                         Sekarang</a>
                                 </div>
