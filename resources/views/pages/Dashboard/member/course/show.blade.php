@@ -80,7 +80,7 @@
 
                     <div class="mb-4">
                         <video id="preview" style="border-radius: 20px" class="w-full ml-3 h-auto rounded-fill" controls>
-                            <source id="video" src="{{ asset('images/video/courses/' . $MateriActive->video_url) }}"
+                            <source id="video" src="{{ asset('images/course/video/' . $MateriActive->video_url) }}"
                                 type="video/mp4">
                         </video>
                     </div>
