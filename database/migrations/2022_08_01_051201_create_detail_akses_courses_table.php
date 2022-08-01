@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('detail_akses_courses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('akses_course_id')->constrained()->nullable();
+            $table->foreignId('course_material_id')->constrained()->nullable();
             $table->timestamps();
         });
     }

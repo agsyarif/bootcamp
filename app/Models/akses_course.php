@@ -21,4 +21,9 @@ class akses_course extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function detail_akses_course()
+    {
+        return $this->hasMany(detail_akses_course::class);
+    }
 }

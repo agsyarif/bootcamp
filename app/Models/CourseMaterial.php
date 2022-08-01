@@ -20,4 +20,9 @@ class CourseMaterial extends Model
     {
         return $this->belongsTo(CourseLesson::class);
     }
+
+    public function DetailAksesCourse()
+    {
+        return $this->hasMany(DetailAksesCourse::class);
+    }
 }
