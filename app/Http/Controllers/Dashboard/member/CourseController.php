@@ -8,6 +8,7 @@ use App\Models\checkout_course;
 use App\Models\course;
 use App\Models\CourseLesson;
 use App\Models\CourseMaterial;
+use App\Models\detailAksesCourse;
 use App\Models\exam;
 use App\Models\question;
 use Illuminate\Http\Request;
@@ -96,8 +97,13 @@ class CourseController extends Controller
         $MateriActive = $material[0];
         $ChapterActive[] = $chapter[0];
 
+        // checklist warna biru?
+        $aksesCourse = akses_course::where('course_id', '=', $id)->where('user_id', '=', Auth::user()->id)->get();
+        $detailAkses = detailAksesCourse::where('akses_course_id', '=', $aksesCourse[0]->id)->get();
+        // return $detailAkses;
+
         // return redirect()->route('member.course.materi', [$id, $activeId]);
-        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question'));
+        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses'));
         // return redirect()->route('member.course.materi', [$MateriActive[0]->id]);
     }
 

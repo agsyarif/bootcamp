@@ -35,7 +35,7 @@
                                                         <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
                                                             href="{{ route('member.course.show', [$m->id]) }}">
                                                             <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto"></i>
+                                                            @livewire('checklist', [$m->id])
                                                         </a>
 
                                                     </li>
@@ -45,7 +45,7 @@
                                                         <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
                                                             href="{{ route('member.course.materi', [$m->id]) }}">
                                                             <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
-                                                            <i class="bi bi-check2-circle ml-auto"></i>
+                                                            @livewire('checklist', [$m->id])
                                                         </a>
 
                                                     </li>

@@ -1,10 +1,11 @@
 <div>
 
+
     @if ($disabled == true)
-        <button wire:click="selesai()" disabled class="white hover p-2 nav-bg rounded-pill"
+        <button wire:click="selesai()" class="text-white hover p-2 nav-bg rounded-pill"
             style="height: 40px">Selesai</button>
     @else
-        <button wire:click="nextMateri()" class="white hover p-2 nav-bg rounded-pill" style="height: 40px">Next
+        <button wire:click="nextMateri()" class="text-white hover p-2 nav-bg rounded-pill" style="height: 40px">Next
             Materi</button>
     @endif
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\akses_course;
 use App\Models\course;
 use App\Models\CourseCategory;
+use App\Models\detailAksesCourse;
 use App\Models\question;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,28 +16,38 @@ class Counter extends Component
     use WithPagination;
 
     // mmebuat livewire chart untuk progress belajar user
-    public $category = [];
-    public $user_id = '';
-    public $progress = [];
+    // public $category = [];
+    // public $user_id = '';
+    // public $progress = [];
 
     // public $progress_id = [];
+    public $materi_id;
+    public $checklist;
 
     public function mount($id)
     {
-        $this->user_id = $id;
-        $course = akses_course::where('user_id', $id)->get();
-        $course_id = [];
-        foreach ($course as $key => $value) {
-            $course_id = $value->course_id;
+        $this->materi_id = $id;
+
+        $check = detailAksesCourse::where('course_material_id', '=', $id)->get();
+        if (count($check) > 0) {
+            $this->checklist = 1;
+        } else {
+            $this->checklist = 0;
         }
-        $cc = course::findOrFail($course_id);
-        $category = CourseCategory::findOrFail($cc->course_category_id);
-        $this->category = $category->name;
+        // $this->user_id = $id;
+        // $course = akses_course::where('user_id', $id)->get();
+        // $course_id = [];
+        // foreach ($course as $key => $value) {
+        //     $course_id = $value->course_id;
+        // }
+        // $cc = course::findOrFail($course_id);
+        // $category = CourseCategory::findOrFail($cc->course_category_id);
+        // $this->category = $category->name;
     }
 
     public function progress()
     {
-        $user_id = $this->user_id;
+        // $user_id = $this->user_id;
         // $ca = akses_course::where('user_id', $user_id)->get();
         // $course_id = [];
         // foreach ($ca as $key => $value) {
@@ -118,7 +129,7 @@ class Counter extends Component
     {
         return view('livewire.counter', [
             // soal use pagination
-            'category' => $this->category,
+            // 'category' => $this->category,
             // 'questions' => question::paginate(1),
             // 'answers' => $this->answers,
         ]);

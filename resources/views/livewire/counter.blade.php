@@ -105,13 +105,20 @@
     </div> --}}
 
     {{-- chart --}}
-    <div id="chart"></div>
+    {{-- <div id="chart"></div>
 
     <div>
         {{ $user_id }}
         {{ $category }}
-    </div>
+    </div> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
     {{-- chart --}}
 
+    {{-- checklist --}}
+    @if ($checklist == 1)
+        <i class="bi bi-check2-circle ml-auto text-primary"></i>
+    @else
+        <i class="bi bi-check2-circle ml-auto"></i>
+    @endif
+    {{-- checklist --}}
 </div>
