@@ -95,10 +95,11 @@
                             {{-- <a class="white hover p-2 bg-secondary rounded-pill" href="#">
                                 Preview Video
                             </a> --}}
-                            <a class="white hover p-2 nav-bg rounded-pill" style="height: 40px"
+                            {{-- <a class="white hover p-2 nav-bg rounded-pill" style="height: 40px"
                                 href="{{ route('member.course.materi', [$MateriActive->id + 1]) }}">
                                 Next Video
-                            </a>
+                            </a> --}}
+                            @livewire('next', [$MateriActive->id])
                         </span>
                     </div>
                 </div>
