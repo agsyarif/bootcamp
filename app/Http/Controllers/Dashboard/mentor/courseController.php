@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Expr\New_;
 use App\Models\CourseCategory;
 use App\Http\Controllers\Controller;
+use App\Models\CourseLesson;
+use App\Models\CourseMaterial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Validator;
@@ -214,8 +216,10 @@ class courseController extends Controller
     public function destroy($id)
     {
         $course = course::find($id);
+        $chapter = CourseLesson::where('course_id', $id)->get();
         Storage::delete('images/course/thumbnail/' . $course->image);
         // File::delete(public_path('assets/images/courses/' . $course->image));
+        $chapter->delete();
         $course->delete();
         toast()->success('Delete has been succes');
         return redirect()->route('mentor.course.index');
