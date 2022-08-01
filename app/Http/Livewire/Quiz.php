@@ -24,9 +24,6 @@ class Quiz extends Component
     public function mount($id)
     {
         $this->exam_id = $id;
-
-        $this->exammm = exam::findOrFail($this->exam_id);
-        $this->quessssss = question::where("exam_id", $this->exam_id)->get();
     }
 
     public function answers($questionId, $option)
@@ -74,7 +71,8 @@ class Quiz extends Component
     {
         return view('livewire.quiz', [
             // soal use pagination
-            'questions' => question::paginate(1),
+            'questions' => question::where('exam_id', $this->exam_id)->paginate(1),
+            // 'questions' => question::paginate(1),
             'exam' => exam::findOrFail($this->exam_id)
             // 'answers' => $this->answers,
         ]);
