@@ -19,11 +19,13 @@ class Quiz extends Component
     public $jawaban = [];
     public $score;
     public $quessssss;
+    public $exammm;
 
     public function mount($id)
     {
         $this->exam_id = $id;
 
+        $this->exammm = exam::findOrFail($this->exam_id);
         $this->quessssss = question::where("exam_id", $this->exam_id)->get();
     }
 

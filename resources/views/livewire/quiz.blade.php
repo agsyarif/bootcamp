@@ -67,6 +67,9 @@
 
     </div>
     <div class="d-flex justify-content-center text-white white">
+        {{ $exammm }}
+    </div>
+    <div class="d-flex justify-content-center text-white white">
         {{ $quessssss }}
     </div>
     <div class="card-footer d-flex flex-column">
