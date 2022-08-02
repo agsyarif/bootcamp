@@ -24,9 +24,13 @@ class ExamController extends Controller
         $exam = exam::all();
         $question = question::all();
         // ambil data course yang course_lesson nya sama dengan exam->course_lesson_id
-        foreach ($exam as $key => $value) {
-            $course_id = CourseLesson::where('id', $value->course_lesson_id)->pluck('course_id');
-            $exam[$key]->course = course::where('id', $course_id)->pluck('name');
+        if ($course->count() > 0) {
+            foreach ($exam as $key => $value) {
+                $course_id = CourseLesson::where('id', $value->course_lesson_id)->pluck('course_id');
+                $exam[$key]->course = course::where('id', $course_id)->pluck('name');
+            }
+        } else {
+            $exam->course = '-';
         }
 
         // return $exam->;

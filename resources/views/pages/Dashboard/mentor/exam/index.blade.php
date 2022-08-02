@@ -48,70 +48,77 @@
                             </thead>
 
                             <tbody class="bg-white">
-                                @forelse($exam as $key => $exam)
-                                    <tr class="text-gray-700 border-b">
+                                @if ($exam->count() != 0)
+                                    @forelse($exam as $key => $exam)
+                                        <tr class="text-gray-700 border-b">
 
-                                        <td class="text-center py-5">
-                                            {{ $key + 1 }}
-                                        </td>
+                                            <td class="text-center py-5">
+                                                {{ $key + 1 }}
+                                            </td>
 
-                                        <td class="px-1 py-5 text-md">
-                                            @foreach ($exam->course as $item)
-                                                {{ $item }}
-                                            @endforeach
-                                            {{-- {{ $exam->course }} --}}
-                                        </td>
+                                            <td class="px-1 py-5 text-md">
+                                                @if ($exam->course != null)
+                                                    @foreach ($exam->course as $item)
+                                                        {{ $item }}
+                                                    @endforeach
+                                                @endif
+                                                {{-- {{ $exam->course }} --}}
+                                            </td>
 
-                                        <td class="px-1 py-5 text-md">
-                                            <a href="{{ route('mentor.exam.show', $exam->id) }}">
-                                                {{ $exam->title }}
-                                            </a>
-                                        </td>
+                                            <td class="px-1 py-5 text-md">
+                                                <a href="{{ route('mentor.exam.show', $exam->id) }}">
+                                                    {{ $exam->title }}
+                                                </a>
+                                            </td>
 
-                                        <td class="px-11 py-5 text md">
-                                            {{ $exam->courseLesson->title }}
-                                        </td>
+                                            <td class="px-11 py-5 text md">
+                                                @if ($exam->course_lesson != null)
+                                                    {{ $exam->courseLesson->title }}
+                                                @endif
+                                            </td>
 
-                                        <td class="px-1 py-5 text-md">
-                                            {{ $exam->duration }}
-                                        </td>
+                                            <td class="px-1 py-5 text-md">
+                                                {{ $exam->duration }}
+                                            </td>
 
-                                        <td class="px-1 py-5 text-md">
-                                            {{ $question->where('exam_id', $exam->id)->count() }}
-                                        </td>
+                                            <td class="px-1 py-5 text-md">
+                                                {{ $question->where('exam_id', $exam->id)->count() }}
+                                            </td>
 
-                                        <td class="px-1 text-sm text-center">
+                                            <td class="px-1 text-sm text-center">
 
-                                            <a href="{{ route('mentor.exam.edit', $exam->id) }}"
-                                                class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
-                                                <i class="fas fa-edit fa-lg"></i>
-                                            </a>
+                                                <a href="{{ route('mentor.exam.edit', $exam->id) }}"
+                                                    class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                    <i class="fas fa-edit fa-lg"></i>
+                                                </a>
 
-                                            <form class="inline" action="{{ route('mentor.exam.destroy', $exam->id) }}"
-                                                method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="ml-4 py-2 mt-2 text-red-700 bg-green-700 hover:text-gray-800"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    hapus
-                                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                                <form class="inline" action="{{ route('mentor.exam.destroy', $exam->id) }}"
+                                                    method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button
+                                                        class="ml-4 py-2 mt-2 text-red-700 bg-green-700 hover:text-gray-800"
+                                                        onclick="return confirm('Are you sure?')">
+                                                        hapus
+                                                        <i class="fas fa-trash-alt fa-lg"></i>
 
-                                                </button>
-                                            </form>
-                                        </td>
-                                        {{-- <td class="font-bold text-center">
-                                            <a href="{{ route('mentor.exam.edit', $exam->id) }}"
-                                                class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                                                Edit
-                                            </a>
-                                            <a href="{{ route('mentor.exam.delete', $exam->id) }}"
-                                                class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                                                Delete
-                                            </a>
-                                        </td> --}}
-                                    </tr>
-                                @empty
-                                @endforelse
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            {{-- <td class="font-bold text-center">
+                                        <a href="{{ route('mentor.exam.edit', $exam->id) }}"
+                                            class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
+                                            Edit
+                                        </a>
+                                        <a href="{{ route('mentor.exam.delete', $exam->id) }}"
+                                            class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
+                                            Delete
+                                        </a>
+                                    </td> --}}
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                @endif
                             </tbody>
                         </table>
 
