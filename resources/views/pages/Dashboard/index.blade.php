@@ -198,7 +198,7 @@
                                     New Course
                                 </h2>
                                 <p class="text-sm text-gray-400">
-                                    {{ $newCourse->count() }} total new courses / month
+                                    {{ $course->count() }} total new courses / month
                                 </p>
                             </div>
                             <div class="self-end hover:translate-x-2 transition transform">
