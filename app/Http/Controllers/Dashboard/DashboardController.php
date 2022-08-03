@@ -49,16 +49,10 @@ class DashboardController extends Controller
 
             $courses = course::all()->count();
             $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
-            // $id_course = [];
-            // foreach ($transaksi as $key => $value) {
-            //     $id_course[] = $value->course_id;
-            // }
+            // mengambil data dari table course berdasarkan 1 bulan terakhir
+            $newCourse = course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
 
-            // $course = course::whereIn('id', $id_course)->get();
-            // return $course;
-            // membuat segmen untuk mengetahui berasal dari halaman mana yang diakses
-
-            return view('pages.Dashboard.index', compact('transaksi', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active'));
+            return view('pages.Dashboard.index', compact('transaksi', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'newCourse'));
         } else if (Auth::user()->user_roles->name == 'Mentor') {
 
             $courses = course::all()->count();

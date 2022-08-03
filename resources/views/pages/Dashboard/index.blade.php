@@ -117,10 +117,10 @@
                                     {{ $transaksi->count() ?? '' }} Chekcout Log All
                                 </p>
                             </div>
-                            <div class="self-center hover:translate-x-2 transition transform">
+                            <div class="self-end hover:translate-x-2 transition transform">
                                 <a href="{{ route('admin.transaction.index') }}"
                                     class="text-sm text-gray-400 hover:text-gray-800">
-                                    view All
+                                    View All
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -191,15 +191,23 @@
                 <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
 
                     <div class="p-4 bg-white rounded-xl">
-                        <div>
 
-                            <h2 class="mb-1 text-xl font-semibold">
-                                New Course
-                            </h2>
-                            <p class="text-sm text-gray-400">
-                                10 total new courses / month
-                            </p>
-
+                        <div class="flex justify-between">
+                            <div>
+                                <h2 class="mb-1 text-xl font-semibold">
+                                    New Course
+                                </h2>
+                                <p class="text-sm text-gray-400">
+                                    {{ $newCourse->count() }} total new courses / month
+                                </p>
+                            </div>
+                            <div class="self-end hover:translate-x-2 transition transform">
+                                <a href="{{ route('admin.transaction.index') }}"
+                                    class="text-sm text-gray-400 hover:text-gray-800">
+                                    View All
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <table class="w-full" aria-label="Table">
@@ -213,6 +221,33 @@
                                     <th class="py-4" scope="">Aksi</th>
                                 </tr>
                             </thead>
+
+                            <tbody>
+                                @if ($newCourse == null)
+                                    <tr>
+                                        <td colspan="3" class="text-center">
+                                            <p class="text-gray-500">
+                                                No Data
+                                            </p>
+                                        </td>
+                                    </tr>
+                                @else
+                                    @foreach ($newCourse as $item)
+                                        <tr>
+                                            <td class="py-4">{{ $loop->iteration }}</td>
+                                            <td class="py-4">{{ $item->user->name ?? '' }}</td>
+                                            <td class="py-4">{{ $item->name ?? '' }}</td>
+                                            <td class="py-4">{{ $item->status ?? '' }}</td>
+                                            <td class="py-4 flex">
+                                                <a href="#"
+                                                    class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
 
                         </table>
                     </div>
