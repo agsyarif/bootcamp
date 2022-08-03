@@ -53,7 +53,8 @@
                 <main class="p-4 lg:col-span-7 md:col-span-12 md:pt-0">
                     <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
 
-                        <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                        <div
+                            class="hover:rotate-1 transition-all flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                             <div>
                                 <div>
                                     <img src="{{ asset('/assets/images/services-completed-icon.svg') }}" alt=""
@@ -70,7 +71,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                        <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                             <div>
                                 <div>
                                     <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
@@ -85,7 +86,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                        <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                             <div>
 
                                 <div>
@@ -106,14 +107,23 @@
 
                     <div class="p-6 mt-8 bg-white rounded-xl">
 
-                        <div>
-                            <h2 class="mb-1 text-xl font-semibold">
-                                Checkout Log
-                            </h2>
+                        <div class="flex justify-between">
+                            <div>
+                                <h2 class="mb-1 text-xl font-semibold">
+                                    Checkout Log
+                                </h2>
 
-                            {{-- <p class="text-sm text-gray-400">
-                                {{ $progress ?? '' }} View All
-                            </p> --}}
+                                <p class="text-sm text-gray-400">
+                                    {{ $transaksi->count() ?? '' }} Chekcout Log All
+                                </p>
+                            </div>
+                            <div class="self-center hover:translate-x-2 transition transform">
+                                <a href="{{ route('admin.transaction.index') }}"
+                                    class="text-sm text-gray-400 hover:text-gray-800">
+                                    view All
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <table class="w-full mt-4" aria-label="Table">

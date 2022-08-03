@@ -73,7 +73,6 @@ Route::group(
     function () {
 
         Route::resource('dashboard', DashboardController::class);
-        // Route::resource('mentor', MentorController::class);
         Route::resource('member-management', MemberController::class);
         Route::resource('mentor-management', DashboardMentorController::class);
         Route::resource('transaction', TransactionController::class);

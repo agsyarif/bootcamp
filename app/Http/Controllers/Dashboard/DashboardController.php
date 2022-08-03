@@ -56,6 +56,7 @@ class DashboardController extends Controller
 
             // $course = course::whereIn('id', $id_course)->get();
             // return $course;
+            // membuat segmen untuk mengetahui berasal dari halaman mana yang diakses
 
             return view('pages.Dashboard.index', compact('transaksi', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active'));
         } else if (Auth::user()->user_roles->name == 'Mentor') {
@@ -144,6 +145,6 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return request()->segments();
     }
 }

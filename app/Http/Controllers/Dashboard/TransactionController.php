@@ -18,6 +18,9 @@ class TransactionController extends Controller
         // ambil data dari tabel checkout_course urutkan berdasarkan tanggal terbaru
         $transactions = checkout_course::orderBy('created_at', 'desc')->get();
         $active = 'transaction';
+        // segment untuk mengetahui berasal dari halaman mana yang diakses
+
+
         return view('pages.Dashboard.admin.transaction.index', compact('transactions', 'active'));
     }
 
@@ -98,7 +101,11 @@ class TransactionController extends Controller
     {
         $transaction = checkout_course::find($id);
         $transaction->delete();
-        toast()->success('Delete has been succes');
-        return redirect()->route('admin.transaction.index');
+        // jika asal dari halaman dashboard maka redirect ke halaman dashboard
+        if (request()->segment(2) == 'dashboard') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('admin.transaction.index');
+        }
     }
 }
