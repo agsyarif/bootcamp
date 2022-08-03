@@ -150,8 +150,7 @@
                                             <td class="py-4">{{ $item->course->price ?? '' }}</td>
                                             <td class="py-4">{{ $item->payment_status ?? '' }}</td>
                                             <td class="py-4">
-                                                <a href="{{ route('transaksi.show', $item->id) }}"
-                                                    class="text-indigo-600 hover:text-indigo-800">
+                                                <a href="#" class="text-indigo-600 hover:text-indigo-800">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <a href="#cancel" target="_blank">
