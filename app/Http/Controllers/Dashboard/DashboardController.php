@@ -48,8 +48,16 @@ class DashboardController extends Controller
         if (Auth::user()->user_roles->name == 'Admin') {
 
             $courses = course::all()->count();
+            $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->get();
+            // $id_course = [];
+            // foreach ($transaksi as $key => $value) {
+            //     $id_course[] = $value->course_id;
+            // }
 
-            return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active'));
+            // $course = course::whereIn('id', $id_course)->get();
+            // return $course;
+
+            return view('pages.Dashboard.index', compact('transaksi', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active'));
         } else if (Auth::user()->user_roles->name == 'Mentor') {
 
             $courses = course::all()->count();
