@@ -223,7 +223,7 @@
                             </thead>
 
                             <tbody>
-                                @if ($newCourse == null)
+                                @if ($course == null)
                                     <tr>
                                         <td colspan="3" class="text-center">
                                             <p class="text-gray-500">
@@ -232,7 +232,7 @@
                                         </td>
                                     </tr>
                                 @else
-                                    @foreach ($newCourse as $item)
+                                    @foreach ($course as $item)
                                         <tr>
                                             <td class="py-4">{{ $loop->iteration }}</td>
                                             <td class="py-4">{{ $item->user->name ?? '' }}</td>
