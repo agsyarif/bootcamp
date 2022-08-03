@@ -57,7 +57,7 @@ class DashboardController extends Controller
 
             $courses = course::all()->count();
             $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
-
+            $course = course::all();
             return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'exam', 'transaksi'));
         } else if (Auth::user()->user_role_id == '3') {
             // ambil data yang dimiliki user
