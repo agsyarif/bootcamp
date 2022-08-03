@@ -72,7 +72,7 @@
                                     <div class="details-heading">
                                         <h1 class="text-2xl font-semibold">{{ $mentor->name ?? '' }}</h1>
                                         <div class="my-3">
-                                            @include('components.dashboard.rating')
+                                            @include('components.Dashboard.rating')
                                         </div>
                                     </div>
 
@@ -83,8 +83,8 @@
                                                 class="rounded-lg cursor-pointer w-100" data-lity>
                                         @else
                                             <img class="rounded-lg cursor-pointer w-100"
-                                                src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}" alt=""
-                                                loading="lazy" />
+                                                src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}"
+                                                alt="" loading="lazy" />
                                         @endif
 
                                     </div>

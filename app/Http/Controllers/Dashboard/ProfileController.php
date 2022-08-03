@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        // return auth()->user();
+        // return auth()->user()->profile_photo_path;
         return view('pages.Dashboard.admin.profile.index', [
             'user' => auth()->user(),
         ]);

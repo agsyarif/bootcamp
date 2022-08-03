@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
 
     <div class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
-        style="background-image: url('https://source.unsplash.com/1L71sPT5XKc')">
+        style=" background: linear-gradient(to bottom left, rgb(235, 235, 238), rgb(228, 228, 230));">
+        {{-- style="background-image: url('https://images.unsplash.com/photo-1543927515-8fe95ce8e02a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80')" --}}
         <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
             <!--Main Col-->
             <div id="profile"
