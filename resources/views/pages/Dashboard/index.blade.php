@@ -217,7 +217,7 @@
                                     <th class="py-4" scope="">No</th>
                                     <th class="py-4" scope="">Mentor</th>
                                     <th class="py-4" scope="">Course</th>
-                                    <th class="py-4" scope="">Status</th>
+                                    <th class="py-4" scope="">Publish</th>
                                     <th class="py-4" scope="">Aksi</th>
                                 </tr>
                             </thead>
@@ -237,7 +237,7 @@
                                             <td class="py-4">{{ $loop->iteration }}</td>
                                             <td class="py-4">{{ $item->user->name ?? '' }}</td>
                                             <td class="py-4">{{ $item->name ?? '' }}</td>
-                                            <td class="py-4">{{ $item->status ?? '' }}</td>
+                                            <td class="py-4">{{ $item->is_published ?? '' }}</td>
                                             <td class="py-4 flex">
                                                 <a href="#"
                                                     class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
