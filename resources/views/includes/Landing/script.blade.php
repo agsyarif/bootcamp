@@ -15,5 +15,8 @@
         $("#registerModal").on('click', function(e) {
             toggleModal('registerModal');
         });
+        $("#detailTransaksi").on('click', function(e) {
+            toggleModal('detailTransaksi');
+        });
     });
 </script>

@@ -121,10 +121,10 @@
                             <thead>
                                 <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                     <th class="py-4" scope="">No</th>
-                                    <th class="py-4" scope="">Mentor</th>
+                                    {{-- <th class="py-4" scope="">Mentor</th> --}}
                                     <th class="py-4" scope="">Course</th>
                                     <th class="py-4" scope="">Member</th>
-                                    <th class="py-4" scope="">Price</th>
+                                    {{-- <th class="py-4" scope="">Price</th> --}}
                                     <th class="py-4" scope="">Status</th>
                                     <th class="py-4" scope="">Aksi</th>
                                 </tr>
@@ -144,21 +144,27 @@
                                     @foreach ($transaksi as $item)
                                         <tr>
                                             <td class="py-4">{{ $loop->iteration }}</td>
-                                            <td class="py-4">{{ $item->course->user->name ?? '' }}</td>
+                                            {{-- <td class="py-4">{{ $item->course->user->name ?? '' }}</td> --}}
                                             <td class="py-4">{{ $item->course->name ?? '' }}</td>
                                             <td class="py-4">{{ $item->user->name ?? '' }}</td>
-                                            <td class="py-4">{{ $item->course->price ?? '' }}</td>
+                                            {{-- <td class="py-4">{{ $item->course->price ?? '' }}</td> --}}
                                             <td class="py-4">{{ $item->payment_status ?? '' }}</td>
-                                            <td class="py-4">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-800">
-                                                    <i class="fas fa-eye"></i>
+                                            <td class="py-4 flex">
+                                                <a href="{{ route('admin.transaction.show', $item->id) }}"
+                                                    class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                    <i class="fa-regular fa-eye"></i>
                                                 </a>
-                                                <a href="#cancel" target="_blank">
-                                                    <button class="text-gray-400 font-bold px-1 rounded">
-                                                        {{-- <i class="fas fa-trash-check"></i> --}}
-                                                        <i class="fas fa-light fa-trash"></i>
+                                                <form action="{{ route('admin.transaction.destroy', $item->id) }}"
+                                                    method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
+                                                        onclick="return confirm('Are you sure?')">
+                                                        {{-- <img src="{{ asset('assets/images/trash.png') }}" alt="" --}}
+                                                        {{-- class="w-6 h-6"> --}}
+                                                        <i class="fa-regular fa-trash-can"></i>
                                                     </button>
-                                                </a>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -285,5 +291,6 @@
             </div>
         </section>
     </main>
+
 
 @endsection

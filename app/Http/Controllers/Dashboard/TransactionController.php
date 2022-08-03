@@ -15,7 +15,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = checkout_course::all();
+        // ambil data dari tabel checkout_course urutkan berdasarkan tanggal terbaru
+        $transactions = checkout_course::orderBy('created_at', 'desc')->get();
         $active = 'transaction';
         return view('pages.Dashboard.admin.transaction.index', compact('transactions', 'active'));
     }
@@ -49,7 +50,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        return 'show';
     }
 
     /**

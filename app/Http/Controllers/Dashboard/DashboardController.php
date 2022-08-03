@@ -48,7 +48,7 @@ class DashboardController extends Controller
         if (Auth::user()->user_roles->name == 'Admin') {
 
             $courses = course::all()->count();
-            $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->get();
+            $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
             // $id_course = [];
             // foreach ($transaksi as $key => $value) {
             //     $id_course[] = $value->course_id;
@@ -74,7 +74,7 @@ class DashboardController extends Controller
             $course = course::whereIn('id', $id_course)->get();
             $courses = $course->count();
 
-            $transaksi = checkout_course::where('user_id', '=', Auth::user()->id)->get();
+            $transaksi = checkout_course::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
             return view('pages.Dashboard.member.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'transaksi', 'active'));
         }

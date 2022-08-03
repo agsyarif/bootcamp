@@ -36,6 +36,7 @@
         @include('components.Modal.login')
         @include('components.Modal.register')
         @include('components.Modal.register-success')
+        @include('components.Modal.detail-transaksi')
     </div>
 </body>
 

@@ -33,6 +33,7 @@
                                         <th class="py-4" scope="">Code</th>
                                         <th class="py-4" scope="">User</th>
                                         <th class="py-4" scope="">Course</th>
+                                        <th class="py-4" scope="">Mentor</th>
                                         <th class="py-4" scope="">Price</th>
                                         <th class="py-4" scope="">Status</th>
                                         <th class="py-4" scope="">Action</th>
@@ -58,6 +59,10 @@
 
                                             <td class="px-1 py-5 text-sm">
                                                 {{ $men->course->name ?? '-' }}
+                                            </td>
+
+                                            <td class="px-1 py-5 text-sm">
+                                                {{ $men->course->user->name ?? '-' }}
                                             </td>
 
                                             <td class="px-1 py-5 text-sm">
