@@ -90,25 +90,32 @@ class ProfileController extends Controller
         $profile_awal = $awal->profile_photo_path;
         File::delete('assets/images/profile/' . $profile_awal);
 
-        $image = $request->file('photo')->getClientOriginalName();
+        if ($request->file('photo') != null) {
+            $file = $request->file('photo');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('assets/images/profile/', $fileName);
+        } else {
+            $fileName = $profile_awal;
+        }
+        // $image = $request->file('photo')->getClientOriginalName();
 
-        $request->file('photo')->move(public_path('assets/images/profile'), $image);
+        // $request->file('photo')->move(public_path('assets/images/profile'), $image);
         // return $ini = $path_profile;
-        $data = [
-            'name' => $request->name,
-            'profile_photo_path' => $image,
-            'email' => $request->email,
-            'password' => $request->password,
-            'contact_number' => $request->contact_number,
-        ];
-        // return $data;
+        // $data = [
+        //     'name' => $request->name,
+        //     'profile_photo_path' => $fileName,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        //     'contact_number' => $request->contact_number,
+        // ];
+        // // return $data;
 
         $user = auth()->user();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->contact_number = $request->contact_number;
-        $user->profile_photo_path = $image;
+        $user->profile_photo_path = $fileName;
         $user->save();
 
         toast()->success('Berhasil mengubah data profile', 'Berhasil');
