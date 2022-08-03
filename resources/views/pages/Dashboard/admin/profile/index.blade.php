@@ -153,7 +153,7 @@
                         <img src="{{ $user->profile_photo_path }}" alt="Photo Profile"
                             class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
                     @else
-                        <img src="{{ asset('assets/images/profile/' . $user->profile_photo_path) }}" alt="Photo Profile"
+                        <img src="{{ asset('images/profile/' . $user->profile_photo_path) }}" alt="Photo Profile"
                             class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
                     @endif
                 @else

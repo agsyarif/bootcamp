@@ -102,7 +102,7 @@
                                 <img src="{{ Auth::user()->profile_photo_path }}" alt="Photo Profile"
                                     class="inline ml-3 h-12 w-12 rounded-full">
                             @else
-                                <img src="{{ asset('assets/images/profile/' . Auth::user()->profile_photo_path) }}"
+                                <img src="{{ asset('images/profile/' . Auth::user()->profile_photo_path) }}"
                                     alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
                             @endif
                         @else

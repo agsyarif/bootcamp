@@ -23,8 +23,8 @@
                     <img src="{{ Auth::user()->profile_photo_path }}" alt="Photo Profile"
                         class="inline ml-3 h-12 w-12 rounded-full">
                 @else
-                    <img src="{{ asset('assets/images/profile/' . Auth::user()->profile_photo_path) }}"
-                        alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
+                    <img src="{{ asset('images/profile/' . Auth::user()->profile_photo_path) }}" alt="Photo Profile"
+                        class="inline ml-3 h-12 w-12 rounded-full">
                 @endif
             @else
                 <img src="https://source.unsplash.com/MP0IUfwrn0A" class="inline ml-3 h-12 w-12 rounded-full" />

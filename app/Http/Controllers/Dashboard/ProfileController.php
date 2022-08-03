@@ -88,12 +88,12 @@ class ProfileController extends Controller
 
         $awal = User::where('id', $id)->first();
         $profile_awal = $awal->profile_photo_path;
-        File::delete('assets/images/profile/' . $profile_awal);
+        File::delete('profile/' . $profile_awal);
 
         if ($request->file('photo') != null) {
             $file = $request->file('photo');
             $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('assets/images/profile/', $fileName);
+            $file->storeAs('profile/', $fileName);
         } else {
             $fileName = $profile_awal;
         }
@@ -137,7 +137,7 @@ class ProfileController extends Controller
         $user = auth()->user();
         $user->profile_photo_path = null;
         $user->save();
-        File::delete('assets/images/profile/' . $photoName);
+        File::delete('profile/' . $photoName);
 
         // if ($user->profile_photo_path == null) {
         //     alert('berhasil');
