@@ -97,13 +97,25 @@
 
                         Halo, {{ Auth::user()->name }}
 
-                        @if (auth()->user()->first()->profile_photo_path != null)
+                        @if (Auth::user()->profile_photo_path != null)
+                            @if (Auth::user()->profile_photo_path[0] == 'h')
+                                <img src="{{ Auth::user()->profile_photo_path }}" alt="Photo Profile"
+                                    class="inline ml-3 h-12 w-12 rounded-full">
+                            @else
+                                <img src="{{ asset('assets/images/profile/' . Auth::user()->profile_photo_path) }}"
+                                    alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
+                            @endif
+                        @else
+                            <img src="https://source.unsplash.com/MP0IUfwrn0A" class="inline ml-3 h-12 w-12 rounded-full" />
+                        @endif
+
+                        {{-- @if (auth()->user()->first()->profile_photo_path != null)
                             <img src="{{ asset('assets/images/profile/' . auth()->user()->profile_photo_path) }}"
                                 alt="" class="inline ml-3 h-12 w-12 rounded-full">
                         @else
                             <img class="inline ml-3 h-12 w-12 rounded-full"
                                 src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
-                        @endif
+                        @endif --}}
 
                         <svg fill="currentColor" viewBox="0 0 20 20" :class="{ 'rotate-180': open, 'rotate-0': !open }"
                             class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">

@@ -25,12 +25,26 @@
                         <button
                             class="flex flex-row items-center w-full px-4 py-2 mt-2 text-left bg-white rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4">
 
-                            @if (auth()->user()->first()->profile_photo_path != null)
+                            {{-- @if (auth()->user()->first()->profile_photo_path != null)
                                 <img src="{{ asset(auth()->user()->profile_photo_path) }}" alt=""
                                     class="inline ml-3 h-12 w-12 rounded-full">
                             @else
                                 <img class="inline ml-3 h-12 w-12 rounded-full"
                                     src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+                            @endif --}}
+
+                            @if (Auth::user()->profile_photo_path != null)
+
+                                @if (Auth::user()->profile_photo_path[0] == 'h')
+                                    <img src="{{ Auth::user()->profile_photo_path }}" alt="Photo Profile"
+                                        class="inline ml-3 h-12 w-12 rounded-full">
+                                @else
+                                    <img src="{{ asset('assets/images/profile/' . Auth::user()->profile_photo_path) }}"
+                                        alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
+                                @endif
+                            @else
+                                <img src="https://source.unsplash.com/MP0IUfwrn0A"
+                                    class="inline ml-3 h-12 w-12 rounded-full" />
                             @endif
 
                             Halo, {{ Auth::user()->name }}

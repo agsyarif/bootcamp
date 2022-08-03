@@ -24,12 +24,24 @@ class UserController extends Controller
     {
 
         $callback = Socialite::driver('google')->stateless()->user();
+        // $callback = Socialite::driver('google')->stateless()->user();
+        // return $callback->getId();
+        // return $callback->getName();
+        // return $callback->getEmail();
+        // return $callback->getAvatar();
+        // return $callback->getNickname();
+        // return $callback->getAccessToken();
+        // return $callback->getRefreshToken();
+        // return $callback->getExpiresIn();
+        // return $callback->getToken();
+        // return $callback->getScopes();
+        // return $callback->getRaw();
         $data = [
             'name' => $callback->getName(),
             'email' => $callback->getEmail(),
             'profile_photo_path' => $callback->getAvatar(),
             'email_verified_at' => date('Y-m-d H:i:s', time()),
-            'password' => $callback->getName()."1234",
+            'password' => $callback->getName() . "1234",
         ];
         // return $data;
 
@@ -42,7 +54,16 @@ class UserController extends Controller
 
         // kalau nggk ada maka .. dan ini bisa di anggap sebagi register
         if (!$user) {
-            $user = User::create($data);
+            // $user = User::create($data);
+
+            // kalau nggk ada maka .. dan ini bisa di anggap sebagi register
+            $user = User::create([
+                'name' => $callback->getName(),
+                'email' => $callback->getEmail(),
+                'profile_photo_path' => $callback->getAvatar(),
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
+                'password' => $callback->getName() . "1234",
+            ]);
 
             // // add to detail users
             //     $detail_user = new DetailUSer;

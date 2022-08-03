@@ -25,15 +25,29 @@
                         <button
                             class="flex flex-row items-center w-full px-4 py-2 mt-2 text-left bg-white rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4">
 
-                            @if (auth()->user()->first()->profile_photo_path != null)
+                            {{-- @if (auth()->user()->first()->profile_photo_path != null)
                                 <img src="{{ asset('assets/images/profile/' . Auth::user()->profile_photo_path) }}" alt=""
                                     class="inline ml-3 h-12 w-12 rounded-full">
                             @else
                                 <img class="inline ml-3 h-12 w-12 rounded-full"
                                     src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
-                            @endif
+                            @endif --}}
 
-                            Halo, {{ Auth::user()->name }}
+                            {{-- @if (Auth::user()->profile_photo_path != null)
+
+                                @if (Auth::user()->profile_photo_path[0] == 'h')
+                                    <img src="{{ Auth::user()->profile_photo_path }}" alt="Photo Profile"
+                                        class="inline ml-3 h-12 w-12 rounded-full">
+                                @else
+                                    <img src="{{ asset('assets/images/profile/' . Auth::user()->profile_photo_path) }}"
+                                        alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
+                                @endif
+                            @else
+                                <img src="https://source.unsplash.com/MP0IUfwrn0A"
+                                    class="inline ml-3 h-12 w-12 rounded-full" />
+                            @endif --}}
+
+                            {{-- Halo, {{ Auth::user()->name }} --}}
 
                         </button>
 
@@ -249,7 +263,8 @@
 
                                 </div>
 
-                                <img class="w-16 h-12" src="{{ asset('/assets/images/visa-icon.svg') }}" alt="" />
+                                <img class="w-16 h-12" src="{{ asset('/assets/images/visa-icon.svg') }}"
+                                    alt="" />
 
                             </div>
 
@@ -315,7 +330,8 @@
                                                     src="{{ asset('/assets/images/avatar/9.jpg') }}" alt=""
                                                     loading="lazy" />
 
-                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                <div class="absolute inset-0 rounded-full shadow-inner"
+                                                    aria-hidden="true">
                                                 </div>
 
                                             </div>
@@ -342,7 +358,8 @@
                                                     src="{{ asset('/assets/images/avatar/1.jpg') }}" alt=""
                                                     loading="lazy" />
 
-                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                <div class="absolute inset-0 rounded-full shadow-inner"
+                                                    aria-hidden="true">
                                                 </div>
                                             </div>
 
@@ -368,7 +385,8 @@
                                                     src="{{ asset('/assets/images/avatar/7.jpg') }}" alt=""
                                                     loading="lazy" />
 
-                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                <div class="absolute inset-0 rounded-full shadow-inner"
+                                                    aria-hidden="true">
                                                 </div>
                                             </div>
 
@@ -394,7 +412,8 @@
                                                     src="{{ asset('/assets/images/avatar/6.jpg') }}" alt=""
                                                     loading="lazy" />
 
-                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                <div class="absolute inset-0 rounded-full shadow-inner"
+                                                    aria-hidden="true">
                                                 </div>
 
                                             </div>
@@ -421,7 +440,8 @@
                                                     src="{{ asset('/assets/images/avatar/8.jpg') }}" alt=""
                                                     loading="lazy" />
 
-                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                <div class="absolute inset-0 rounded-full shadow-inner"
+                                                    aria-hidden="true">
                                                 </div>
 
                                             </div>

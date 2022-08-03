@@ -61,8 +61,8 @@
 
                     <div class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
                         <a class="link" href="#" data-tippy-content="@facebook_handle">
-                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
                                 <title>Facebook</title>
 
@@ -72,8 +72,8 @@
                         </a>
 
                         <a class="link" href="#" data-tippy-content="@twitter_handle">
-                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
                                 <title>Twitter</title>
 
@@ -83,8 +83,8 @@
                         </a>
 
                         <a class="link" href="#" data-tippy-content="@github_handle">
-                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
                                 <title>GitHub</title>
 
@@ -94,8 +94,8 @@
                         </a>
 
                         <a class="link" href="#" data-tippy-content="@unsplash_handle">
-                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
                                 <title>Unsplash</title>
 
@@ -104,8 +104,8 @@
                         </a>
 
                         <a class="link" href="#" data-tippy-content="@dribble_handle">
-                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
                                 <title>Dribbble</title>
 
@@ -115,8 +115,8 @@
                         </a>
 
                         <a class="link" href="#" data-tippy-content="@instagram_handle">
-                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 fill-current text-gray-600 hover:text-green-700" role="img"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
                                 <title>Instagram</title>
 
@@ -142,11 +142,20 @@
             <!--Img Col-->
             <div class="w-full lg:w-2/5">
 
+                {{-- @if (Auth::user()->profile_photo_path != null)
+                    <img src="{{ $user->profile_photo_path }}" alt="Photo Profile"
+                        class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+                @endif --}}
 
+                @if ($user->profile_photo_url != null)
 
-                @if (auth()->user()->first()->profile_photo_path != null)
-                    {{-- <img src="{{ asset(auth()->user()->first()->profile_photo_path) }}" alt="Photo Profile" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"> --}}
-                    <img src="{{ asset('assets/images/profile/' . $user->profile_photo_path) }}" alt="profile photo">
+                    @if ($user->profile_photo_url[0] == 'h')
+                        <img src="{{ $user->profile_photo_path }}" alt="Photo Profile"
+                            class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+                    @else
+                        <img src="{{ asset('assets/images/profile/' . $user->profile_photo_path) }}" alt="Photo Profile"
+                            class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+                    @endif
                 @else
                     <img src="https://source.unsplash.com/MP0IUfwrn0A"
                         class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" />
