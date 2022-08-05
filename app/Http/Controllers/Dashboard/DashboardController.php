@@ -55,10 +55,15 @@ class DashboardController extends Controller
             return view('pages.Dashboard.index', compact('transaksi', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'course'));
         } else if (Auth::user()->user_roles->name == 'Mentor') {
 
-            $courses = course::all()->count();
-            $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
-            $course = course::all();
-            return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'exam', 'transaksi'));
+            $cc = course::where('user_id', '=', Auth::user()->id)->get();
+            $id_cc = [];
+            foreach ($cc as $key => $value) {
+                $id_cc[] = $value->id;
+            }
+            $aksesCourse = akses_course::whereIn('course_id', $id_cc)->get();
+            $courses = course::where('user_id', '=', Auth::user()->id)->get()->count();
+
+            return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'exam', 'aksesCourse'));
         } else if (Auth::user()->user_role_id == '3') {
             // ambil data yang dimiliki user
             $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
@@ -140,5 +145,13 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         return request()->segments();
+        $transaction = checkout_course::find($id);
+        $transaction->delete();
+        // jika asal dari halaman dashboard maka redirect ke halaman dashboard
+        if (request()->segment(2) == 'dashboard') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('admin.transaction.index');
+        }
     }
 }

@@ -52,4 +52,9 @@ class course extends Model
     {
         return $this->hasMany(exam::class);
     }
+
+    public function akses_course()
+    {
+        return $this->hasMany(akses_course::class);
+    }
 }
