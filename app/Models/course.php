@@ -57,4 +57,9 @@ class course extends Model
     {
         return $this->hasMany(akses_course::class);
     }
+
+    public function comment()
+    {
+        return $this->hasMany(comment::class);
+    }
 }

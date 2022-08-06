@@ -77,4 +77,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(checkout_course::class);
     }
+
+    public function akses()
+    {
+        return $this->hasMany(akses_course::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(comment::class);
+    }
 }
