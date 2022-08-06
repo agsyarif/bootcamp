@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\course;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use PhpParser\Node\Stmt\Return_;
 
 class CourseController extends Controller
 {
@@ -14,7 +16,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        // mengambil semua data course dari course model
+        $course = course::all();
+        return $course;
     }
 
     /**
@@ -46,7 +50,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = course::findOrFail($id);
+        return view('pages.Dashboard.admin.course.show', compact('course'));
     }
 
     /**

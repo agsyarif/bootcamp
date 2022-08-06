@@ -53,7 +53,8 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        return 'show';
+        $checkout = checkout_course::find($id);
+        return view('pages.Dashboard.admin.transaction.show', compact('checkout'));
     }
 
     /**

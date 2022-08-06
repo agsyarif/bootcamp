@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\API\MidtransController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Dashboard\CourseController as DashboardCourseController;
 use App\Http\Controllers\Landing\LandingController;
 use App\Http\Controllers\Dashboard\MemberController;
 use App\Http\Controllers\Dashboard\ProfileController;
@@ -76,6 +77,7 @@ Route::group(
         Route::resource('member-management', MemberController::class);
         Route::resource('mentor-management', DashboardMentorController::class);
         Route::resource('transaction', TransactionController::class);
+        Route::resource('course', DashboardCourseController::class);
         Route::resource('webinar', WebinarController::class);
         Route::resource('profile', ProfileController::class);
         // Route::resource('user', UserController::class);

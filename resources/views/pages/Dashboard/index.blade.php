@@ -275,13 +275,13 @@
                                         {{ $course->count() }} total new courses / month
                                     </p>
                                 </div>
-                                <div class="self-end hover:translate-x-2 transition transform">
+                                {{-- <div class="self-end hover:translate-x-2 transition transform">
                                     <a href="{{ route('admin.transaction.index') }}"
                                         class="text-sm text-gray-400 hover:text-gray-800">
                                         View All
                                         <i class="fas fa-arrow-right"></i>
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <table class="w-full" aria-label="Table">
@@ -325,7 +325,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="py-4 flex">
-                                                    <a href="#"
+                                                    <a href="{{ route('admin.course.show', [$item->id]) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
@@ -337,87 +337,61 @@
 
                             </table>
                         </div>
+
+                        <div class="p-6 mt-6 bg-white rounded-xl">
+                            <div>
+
+                                <h2 class="mb-1 text-xl font-semibold">
+                                    Top Reviews
+                                </h2>
+                                <p class="text-sm text-gray-400">
+                                    0 Total Reviews
+                                </p>
+
+                            </div>
+
+                            <table class="w-full" aria-label="Table">
+
+                                <thead>
+                                    <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
+                                        <th class="py-4" scope=""></th>
+                                        <th class="py-4" scope=""></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="bg-white">
+                                    <tr class="text-gray-700">
+                                        <td class="w-1/2 px-1 py-2">
+                                            <div class="flex items-center text-sm">
+                                                <div class="relative w-10 h-10 mr-3 rounded-full md:block">
+                                                    <img class="object-cover w-full h-full rounded-full"
+                                                        src="{{ asset('/assets/images/avatar/9.jpg') }}" alt=""
+                                                        loading="lazy" />
+
+                                                    <div class="absolute inset-0 rounded-full shadow-inner"
+                                                        aria-hidden="true">
+                                                    </div>
+
+                                                </div>
+
+                                                <div>
+                                                    <p class="font-medium text-black">Sarah Nikmatunnaja</p>
+                                                    <p class="text-sm text-gray-400">17 Januari 2022</p>
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
+                                            @include('components.Dashboard.rating')
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     @endcan
 
-                    <div class="p-6 bg-white rounded-xl">
-                        <div>
-
-                            <h2 class="mb-1 text-xl font-semibold">
-                                Top Reviews
-                            </h2>
-                            <p class="text-sm text-gray-400">
-                                1148 Total Reviews
-                            </p>
-
-                        </div>
-
-                        <table class="w-full" aria-label="Table">
-
-                            <thead>
-                                <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                    <th class="py-4" scope=""></th>
-                                    <th class="py-4" scope=""></th>
-                                </tr>
-                            </thead>
-
-                            <tbody class="bg-white">
-                                <tr class="text-gray-700">
-                                    <td class="w-1/2 px-1 py-2">
-                                        <div class="flex items-center text-sm">
-                                            <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                                <img class="object-cover w-full h-full rounded-full"
-                                                    src="{{ asset('/assets/images/avatar/9.jpg') }}" alt=""
-                                                    loading="lazy" />
-
-                                                <div class="absolute inset-0 rounded-full shadow-inner"
-                                                    aria-hidden="true">
-                                                </div>
-
-                                            </div>
-
-                                            <div>
-                                                <p class="font-medium text-black">Sarah Nikmatunnaja</p>
-                                                <p class="text-sm text-gray-400">17 Januari 2022</p>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-                                    <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                        @include('components.Dashboard.rating')
-                                    </td>
-                                </tr>
-
-                                <tr class="text-gray-700">
-                                    <td class="w-1/2 px-1 py-2">
-                                        <div class="flex items-center text-sm">
-                                            <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-
-                                                <img class="object-cover w-full h-full rounded-full"
-                                                    src="{{ asset('/assets/images/avatar/1.jpg') }}" alt=""
-                                                    loading="lazy" />
-
-                                                <div class="absolute inset-0 rounded-full shadow-inner"
-                                                    aria-hidden="true">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <p class="font-medium text-black">Saiful Anam</p>
-                                                <p class="text-sm text-gray-400">15 Januari 2022</p>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-                                    <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                        @include('components.Dashboard.rating')
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
                 </aside>
 
             </div>
