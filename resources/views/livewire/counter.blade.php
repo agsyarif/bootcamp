@@ -120,6 +120,18 @@
 
                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
 
+                        @if (Auth::user()->profile_photo_path != null)
+                            @if (Auth::user()->profile_photo_path[0] == 'h')
+                                <img src="{{ Auth::user()->profile_photo_path }}" alt="Photo Profile"
+                                    class="inline ml-3 h-12 w-12 rounded-full">
+                            @else
+                                <img src="{{ asset('images/profile/' . Auth::user()->profile_photo_path) }}"
+                                    alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
+                            @endif
+                        @else
+                            <img src="https://source.unsplash.com/MP0IUfwrn0A"
+                                class="inline ml-3 h-12 w-12 rounded-full" />
+                        @endif
 
                         {{-- cek jika comment->user->profile_photo_url != null maka tampilkan profile --}}
                         @if ($comment->user->profile_photo_url != null)
@@ -127,7 +139,7 @@
                                 <img src="{{ $comment->user->profile_photo_url }}" alt="Photo Profile"
                                     class="absolute object-cover w-full h-full rounded-full">
                             @else
-                                <img src="{{ asset('images/profile/' . $comment->user->profile_photo_url) }}"
+                                <img src="{{ asset('assets/images/profile/' . $comment->user->profile_photo_url) }}"
                                     alt="Photo Profile" class="absolute object-cover w-full h-full rounded-full">
                             @endif
                         @else
