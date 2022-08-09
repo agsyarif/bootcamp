@@ -119,8 +119,21 @@
                 <div class="flex items-center text-sm">
 
                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                        <img class="object-cover w-full h-full rounded-full" src="{{ asset('assets/images/logo.png') }}"
-                            alt="" loading="lazy" />
+
+
+                        {{-- cek jika comment->user->profile_photo_url != null maka tampilkan profile --}}
+                        @if ($comment->user->profile_photo_url != null)
+                            @if ($comment->user->profile_photo_url[0] == 'h')
+                                <img src="{{ $comment->user->profile_photo_url }}" alt="Photo Profile"
+                                    class="absolute object-cover w-full h-full rounded-full">
+                            @else
+                                <img src="{{ asset('images/profile/' . $comment->user->profile_photo_url) }}"
+                                    alt="Photo Profile" class="absolute object-cover w-full h-full rounded-full">
+                            @endif
+                        @else
+                            <img class="absolute object-cover w-full h-full rounded-full"
+                                src="{{ asset('assets/images/logo.png') }}" alt="" loading="lazy" />
+                        @endif
 
                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                         </div>
