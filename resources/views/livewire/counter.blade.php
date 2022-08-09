@@ -1,5 +1,5 @@
 <div>
-    <section class="w-full px-8 pt-4 pb-10 xl:px-8">
+    {{-- <section class="w-full px-8 pt-4 pb-10 xl:px-8">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col items-center md:flex-row">
 
@@ -110,16 +110,54 @@
 
             </div>
         </div>
-    </section>
-    {{-- <section class="relative block pt-20 pb-24 overflow-hidden text-left bg-white">
-        <div class="w-full px-20 mx-auto text-left md:px-10 max-w-7xl xl:px-16">
-            <div class="box-border flex flex-col flex-wrap justify-center -mx-4 text-indigo-900">
-                <div class="relative w-full mb-12 leading-6 text-left xl:flex-grow-0 xl:flex-shrink-0">
-                    <h2 class="box-border mx-0 mt-0 font-sans text-4xl font-bold text-center text-indigo-900">
-                        Ratings
-                    </h2>
+    </section> --}}
+
+    @forelse ($comments as $comment)
+        <tr class="text-gray-700">
+
+            <td class="w-64 px-1 py-2">
+                <div class="flex items-center text-sm">
+
+                    <div class="relative w-10 h-10 mr-3 rounded-full md:block">
+                        <img class="object-cover w-full h-full rounded-full" src="{{ asset('assets/images/logo.png') }}"
+                            alt="" loading="lazy" />
+
+                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <p class="font-medium text-black">{{ '@' . $comment->user->name }}</p>
+                        {{-- menampilkan tanggal dengan format indonesia --}}
+                        <p class="text-sm text-gray-500">
+                            {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</p>
+                    </div>
+
                 </div>
-            </div>
+            </td>
+
+            <td class="px-1 py-5 text-xs flex text-right item-end">
+                @for ($i = 0; $i < 5; $i++)
+                    <svg class="cursor-pointer block w-6 h-6 @if ($i < $comment->rating) text-yellow-400 @else text-gray-500 @endif"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path
+                            d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                @endfor
+            </td>
+        </tr>
+        {{-- <tr>
+            <td colspan="2" style="padding-left: 10%; text-align: center;">
+                <p>{{ $comment->comment }}</p>
+            </td>
+        </tr> --}}
+    @empty
+    @endforelse
+
+    {{-- <section class="relative block pt-20 pb-24 overflow-hidden text-left bg-white">
+
+        <div class="w-full px-20 mx-auto text-left md:px-10 max-w-7xl xl:px-16">
             <div
                 class="box-border flex grid flex-wrap justify-center gap-10 -mx-4 text-center text-indigo-900 lg:gap-16 lg:justify-start lg:text-left">
                 @forelse ($comments as $comment)
@@ -160,6 +198,7 @@
                 @endforelse
 
             </div>
+
     </section> --}}
 
 </div>

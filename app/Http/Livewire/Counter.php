@@ -31,7 +31,8 @@ class Counter extends Component
     public function render()
     {
 
-        $comments = comment::where('course_id', $this->currentId)->where('status', 1)->with('user')->get();
+        // $comments = comment::where('course_id', $this->currentId)->where('status', 1)->with('user')->get();
+        $comments = comment::all();
 
         return view('livewire.counter', [
             'comments' => $comments,

@@ -52,7 +52,6 @@ class Comment extends Component
         }
     }
 
-
     public function delete($id)
     {
 

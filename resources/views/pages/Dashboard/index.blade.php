@@ -374,33 +374,7 @@
                                 </thead>
 
                                 <tbody class="bg-white">
-                                    <tr class="text-gray-700">
-                                        <td class="w-1/2 px-1 py-2">
-                                            <div class="flex items-center text-sm">
-                                                <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                                    <img class="object-cover w-full h-full rounded-full"
-                                                        src="{{ asset('/assets/images/avatar/9.jpg') }}" alt=""
-                                                        loading="lazy" />
-
-                                                    <div class="absolute inset-0 rounded-full shadow-inner"
-                                                        aria-hidden="true">
-                                                    </div>
-
-                                                </div>
-
-                                                <div>
-                                                    <p class="font-medium text-black">Sarah Nikmatunnaja</p>
-                                                    <p class="text-sm text-gray-400">17 Januari 2022</p>
-                                                </div>
-
-                                            </div>
-                                        </td>
-
-                                        <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                            @include('components.Dashboard.rating')
-                                        </td>
-                                    </tr>
-
+                                    @livewire('counter', [$course[0]->id])
                                 </tbody>
                             </table>
                         </div>

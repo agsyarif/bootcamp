@@ -25,7 +25,7 @@
                                             <label for="star1">
                                                 <input hidden wire:model="rating" type="radio" id="star1"
                                                     name="rating" value="1" />
-                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 1) text-indigo-500 @else text-grey @endif "
+                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 1) text-yellow-400 @else text-gray-600 @endif "
                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20">
                                                     <path
@@ -35,7 +35,7 @@
                                             <label for="star2">
                                                 <input hidden wire:model="rating" type="radio" id="star2"
                                                     name="rating" value="2" />
-                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 2) text-indigo-500 @else text-grey @endif "
+                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 2) text-yellow-400 @else text-gray-600 @endif "
                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20">
                                                     <path
@@ -45,7 +45,7 @@
                                             <label for="star3">
                                                 <input hidden wire:model="rating" type="radio" id="star3"
                                                     name="rating" value="3" />
-                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 3) text-indigo-500 @else text-grey @endif "
+                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 3) text-yellow-400 @else text-gray-600 @endif "
                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20">
                                                     <path
@@ -55,7 +55,7 @@
                                             <label for="star4">
                                                 <input hidden wire:model="rating" type="radio" id="star4"
                                                     name="rating" value="4" />
-                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 4) text-indigo-500 @else text-grey @endif "
+                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 4) text-yellow-400 @else text-gray-600 @endif "
                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20">
                                                     <path
@@ -65,7 +65,7 @@
                                             <label for="star5">
                                                 <input hidden wire:model="rating" type="radio" id="star5"
                                                     name="rating" value="5" />
-                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 5) text-indigo-500 @else text-grey @endif "
+                                                <svg class="cursor-pointer block w-8 h-8 @if ($rating >= 5) text-yellow-400 @else text-gray-600 @endif "
                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20">
                                                     <path
