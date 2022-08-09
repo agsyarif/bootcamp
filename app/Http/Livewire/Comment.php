@@ -2,16 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\akses_course;
-use App\Models\comment;
+use App\Models\comment as ModelsComment;
 use App\Models\course;
 use App\Models\CourseCategory;
-use App\Models\detailAksesCourse;
-use App\Models\question;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Counter extends Component
+class Comment extends Component
 {
 
     use WithPagination;
@@ -31,9 +28,9 @@ class Counter extends Component
     public function render()
     {
 
-        $comments = comment::where('course_id', $this->currentId)->where('status', 1)->with('user')->get();
+        $comments = ModelsComment::where('course_id', $this->currentId)->where('status', 1)->with('user')->get();
 
-        return view('livewire.counter', [
+        return view('livewire.comment', [
             'comments' => $comments,
         ]);
     }
@@ -43,20 +40,23 @@ class Counter extends Component
         $this->course = course::findOrFail($id);
 
         if (auth()->user()) {
-            $rating = comment::where('user_id', auth()->user()->id)->where('course_id', $id)->first();;
+            $rating = ModelsComment::where('user_id', auth()->user()->id)->where('course_id', $id)->orderBy('created_at', 'desc')->first();
+
+            // $rating = ModelsComment::where('user_id', auth()->user()->id)->where('course_id', $id)->first();;
             if (!empty($rating)) {
                 $this->rating = $rating->rating;
                 $this->comment = $rating->comment;
                 $this->currentId = $rating->id;
             }
-            return view('livewire.counter');
+            return view('livewire.comment');
         }
     }
 
 
     public function delete($id)
     {
-        $rating = comment::where('id', $id)->first();
+
+        $rating = ModelsComment::where('id', $id)->first();
         if ($rating && ($rating->user_id == auth()->user()->id)) {
             $rating->delete();
         }
@@ -70,7 +70,9 @@ class Counter extends Component
 
     public function rate()
     {
-        $rating = comment::where('user_id', auth()->user()->id)->where('course_id', $this->currentId)->first();
+        // $rating = ModelsComment::where('user_id', auth()->user()->id)->where('course_id', $this->currentId)->first();
+        // ambil data terakhir yang ditambahkan
+        $rating = ModelsComment::where('user_id', auth()->user()->id)->where('course_id', $this->currentId)->orderBy('created_at', 'desc')->first();
         $this->validate();
         if (!empty($rating)) {
             $rating->user_id = auth()->user()->id;
@@ -85,7 +87,7 @@ class Counter extends Component
             }
             session()->flash('message', 'Success!');
         } else {
-            $rating = new comment;
+            $rating = new ModelsComment;
             $rating->user_id = auth()->user()->id;
             $rating->course_id = $this->course->id;
             $rating->rating = $this->rating;

@@ -329,6 +329,11 @@
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
+                                                    <a href="{{ route('admin.comment.show', [$item->id]) }}"
+                                                        class="text-sm text-gray-400 hover:text-gray-800">
+                                                        Comment
+                                                        <i class="fas fa-arrow-right"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -339,15 +344,24 @@
                         </div>
 
                         <div class="p-6 mt-6 bg-white rounded-xl">
-                            <div>
+                            <div class="flex justify-between">
+                                <div>
 
-                                <h2 class="mb-1 text-xl font-semibold">
-                                    Top Reviews
-                                </h2>
-                                <p class="text-sm text-gray-400">
-                                    0 Total Reviews
-                                </p>
+                                    <h2 class="mb-1 text-xl font-semibold">
+                                        Top Reviews
+                                    </h2>
+                                    <p class="text-sm text-gray-400">
+                                        0 Total Reviews
+                                    </p>
 
+                                </div>
+                                <div class="self-end hover:translate-x-2 transition transform">
+                                    <a href="{{ route('admin.comment.create') }}"
+                                        class="text-sm text-gray-400 hover:text-gray-800">
+                                        Comment
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
 
                             <table class="w-full" aria-label="Table">
