@@ -159,7 +159,17 @@
                                                 <td class="py-4">{{ $item->course->name ?? '' }}</td>
                                                 <td class="py-4">{{ $item->user->name ?? '' }}</td>
                                                 {{-- <td class="py-4">{{ $item->course->price ?? '' }}</td> --}}
-                                                <td class="py-4">{{ $item->payment_status ?? '' }}</td>
+                                                <td class="px-1 py-5 text-sm">
+                                                    @if ($item->payment_status == 'pending')
+                                                        <span class="text-red-400">
+                                                            {{ $item->payment_status ?? '-' }}
+                                                        </span>
+                                                    @elseif($item->payment_status == 'paid')
+                                                        <span class="text-green-400">
+                                                            {{ $item->payment_status ?? '-' }}
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td class="py-4 flex">
                                                     <a href="{{ route('admin.transaction.show', $item->id) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
@@ -344,39 +354,7 @@
                         </div>
 
                         <div class="p-6 mt-6 bg-white rounded-xl">
-                            <div class="flex justify-between">
-                                <div>
-
-                                    <h2 class="mb-1 text-xl font-semibold">
-                                        Top Reviews
-                                    </h2>
-                                    <p class="text-sm text-gray-400">
-                                        0 Total Reviews
-                                    </p>
-
-                                </div>
-                                <div class="self-end hover:translate-x-2 transition transform">
-                                    <a href="{{ route('admin.comment.create') }}"
-                                        class="text-sm text-gray-400 hover:text-gray-800">
-                                        Comment
-                                        <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <table class="w-full" aria-label="Table">
-
-                                <thead>
-                                    <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                        <th class="py-4" scope=""></th>
-                                        <th class="py-4" scope=""></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody class="bg-white">
-                                    @livewire('counter', [$course[0]->id])
-                                </tbody>
-                            </table>
+                            @livewire('counter', [$course[0]->id])
                         </div>
                     @endcan
 
