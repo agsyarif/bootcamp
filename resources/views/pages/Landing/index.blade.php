@@ -37,10 +37,9 @@
                 </div>
                 <!-- Right Column -->
                 <div class="w-full lg:w-1/2 text-center lg:justify-start justify-center flex pr-0">
-                    {{-- <img class="bottom-0 lg:block lg:right-24 md:right-16 sm:right-8 right-8 w-75" --}}
-                    {{-- src="{{ asset('images/hero.png') }}" alt="" /> --}}
-                    {{-- <img src="{{ asset('images/background.png') }}" alt=""> --}}
                     <img src="{{ asset('images/her.png') }}" alt="">
+                    {{-- pada webhosting --}}
+                    <img src="{{ asset('images/assets/images/her.png') }}" alt="">
                 </div>
             </div>
 
