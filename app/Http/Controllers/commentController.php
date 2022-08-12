@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers;
 
-use App\Models\course;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\akses_course;
-use Illuminate\Support\Facades\Auth;
 
 class commentController extends Controller
 {
@@ -17,7 +13,7 @@ class commentController extends Controller
      */
     public function index()
     {
-        return "index";
+        //
     }
 
     /**
@@ -27,9 +23,7 @@ class commentController extends Controller
      */
     public function create()
     {
-        $course = course::all();
-        // return $course;
-        return view('pages.Dashboard.comment.create', compact('course'));
+        //
     }
 
     /**
@@ -51,24 +45,6 @@ class commentController extends Controller
      */
     public function show($id)
     {
-        $course = course::findOrFail($id);
-        // return $course;
-        return view('pages.Dashboard.comment.create', compact('course'));
-
-        if (Auth::user()->user_role->name == 'member') {
-            $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
-            $id_course = [];
-            foreach ($aksesCourse as $key => $value) {
-                $id_course[] = $value->course_id;
-            }
-            $course = course::whereIn('id', $id_course)->get();
-            $courses = $course->count();
-            $course = course::findOrFail($id);
-            // $course
-            return view('pages.Dashboard.comment.create', compact('course', 'courses'));
-        } else {
-            return redirect()->route('member.dashboard.index');
-        }
     }
 
     /**

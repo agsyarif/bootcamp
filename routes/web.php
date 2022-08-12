@@ -112,6 +112,7 @@ Route::group(
         Route::resource('course', MemberCourseController::class);
         Route::get('materi/{id}/', [MateriController::class, 'tampil'])->name(name: 'course.materi');
         Route::resource('progress', ProgressController::class);
+        Route::resource('comment', commentController::class);
         // quiz
 
         Route::get('quiz/{id}/', [QuizController::class, 'start'])->name('course.quiz');

@@ -1,19 +1,19 @@
 <div>
-    <section class="w-full px-8 pt-4 pb-10 xl:px-8">
+    <section class="w-full px-8 pt-4 pb-10 xl:px-8 bg-dark">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col items-center md:flex-row">
 
-                <div class="w-full mt-16 md:mt-0">
+                <div class="w-1/2 mx-auto mt-16 md:mt-0">
                     <div
-                        class="relative z-10 h-auto p-4 py-10 overflow-hidden bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7">
+                        class="relative z-10 h-auto p-4 py-10 overflow-hidden border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 nav-bg">
                         @auth
                             <div class="w-full space-y-5">
-                                <p class="font-medium text-blue-500 uppercase">
+                                <p class="font-medium text-gray-400 uppercase">
                                     Rate this product
                                 </p>
                             </div>
                             @if (session()->has('message'))
-                                <p class="text-xl text-gray-600 md:pr-16">
+                                <p class="text-xl text-gray-400 md:pr-16">
                                     {{ session('message') }}
                                 </p>
                             @endif
@@ -73,26 +73,32 @@
                                                 </svg>
                                             </label>
                                         </div>
-                                        <div class="my-5">
+                                        <div class="my-4">
                                             @error('comment')
                                                 <p class="mt-1 text-red-500">{{ $message }}</p>
                                             @enderror
                                             <textarea wire:model.lazy="comment" name="description"
-                                                class="block w-full px-4 py-3 border border-2 rounded-lg focus:border-blue-500 focus:outline-none"
+                                                class="block bg-dark w-full px-4 py-3 text-gray-400 rounded-lg focus:border-blue-500 focus:outline-none"
                                                 placeholder="Comment.."></textarea>
                                         </div>
                                     </div>
-                                    <div class="block">
-                                        <button type="submit"
-                                            class="w-full px-3 py-4 font-medium text-white bg-green-600 rounded-lg">Rate</button>
-                                        @auth
-                                            @if ($currentId)
-                                                <button type="submit"
-                                                    class="w-full px-3 py-4 mt-4 font-medium text-white bg-red-400 rounded-lg"
-                                                    wire:click.prevent="delete({{ $currentId }})"
-                                                    class="text-sm cursor-pointer">Delete</button>
-                                            @endif
-                                        @endauth
+                                    <div class="flex">
+                                        <div class="mx-auto w-1/2"></div>
+                                        <div class="mb-4 mx-auto">
+                                            <button type="submit"
+                                                class="px-5 py-2 font-medium text-white bg-green-600 rounded-lg">
+                                                Rate
+                                            </button>
+                                            @auth
+                                                @if ($currentId)
+                                                    <button type="submit"
+                                                        class="px-5 py-2 font-medium text-white bg-red-400 rounded-lg"
+                                                        wire:click.prevent="delete({{ $currentId }})"
+                                                        class="text-sm cursor-pointer">Delete</button>
+                                                @endif
+                                            @endauth
+
+                                        </div>
                                     </div>
                                 </form>
                             @endif

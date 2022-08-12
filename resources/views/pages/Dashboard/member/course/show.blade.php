@@ -74,9 +74,16 @@
                                     </ul>
                                 </li>
                             @endforeach
+
+                            <li class="nav-item has-submenu rounded-pill mb-2">
+                                <a href="{{ route('member.comment.show', [$courses->id]) }}"
+                                    class="nav-link white hover rounded-pill d-flex justify-content-between">
+                                    Comment
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
-
 
                 </aside>
 

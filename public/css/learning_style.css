@@ -16,7 +16,8 @@ html {
     padding-right: 1rem;
 }
 
-#lesson .nav-bg {
+#lesson .nav-bg,
+.nav-bg {
     background-color: rgb(48, 50, 58);
 }
 

@@ -99,6 +99,6 @@ class Comment extends Component
             }
             $this->hideForm = true;
         }
-        return redirect()->route('admin.dashboard.index');
+        return redirect()->route('mentor.dashboard.index');
     }
 }
