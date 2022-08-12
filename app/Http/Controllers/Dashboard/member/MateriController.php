@@ -27,9 +27,11 @@ class MateriController extends Controller
 
         // data khusus atau data aktif sekarang//
         // $MateriActive = CourseMaterial::where('id', '=', $id)->get();
+        // $courses = course::findOrFail($id);
         $MateriActive = CourseMaterial::findOrFail($id);
         $ChapterActive = CourseLesson::where('id', $MateriActive->course_lesson_id)->get();
         $CourseActive = course::where('id', $ChapterActive[0]->course_id)->get();
+        $courses = $CourseActive[0];
 
         // semua data //
         $chapter = CourseLesson::where('course_id', '=', $CourseActive[0]->id)->get();
@@ -52,6 +54,6 @@ class MateriController extends Controller
             'question' => $question,
         ];
         // return dd($data);
-        return view('pages.Dashboard.member.course.show', compact('MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question'));
+        return view('pages.Dashboard.member.course.show', compact('courses', 'MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question'));
     }
 }
