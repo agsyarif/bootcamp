@@ -75,12 +75,12 @@
 
                 <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
                     <button onclick="toggleModal('loginModal')"
-                        class="text-serv-login-text hover:bg-gray-300 hover:text-gray-900 items-center border-0 block lg:inline-block lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
+                        class="text-serv-login1-text hover:text-serv-login1-text hover:bg-gray600 mx-5 hover:text-gray-900 items-center border-0 block lg:inline-block lg:py-3 lg:px-10 focus:outline-none rounded font-medium text-base mt-6 lg:mt-0">
                         Log In
                     </button>
 
                     <button onclick="toggleModal('registerModal')"
-                        class="lg:bg-serv-services-bg hover:bg-gray-300 text-serv-login-text items-center border-0 block lg:inline-block  lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
+                        class="lg:bg-serv-services-bg hover:bg-gray600 text-serv-login-text items-center border-0 block lg:inline-block  lg:py-3 lg:px-10 focus:outline-none rounded font-medium text-base mt-6 lg:mt-0">
                         Sign Up
                     </button>
 

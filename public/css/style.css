@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 
 /*! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com */
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
@@ -1290,6 +1291,10 @@ select {
     max-width: 28rem;
 }
 
+.max-w-lg {
+    max-width: 32rem;
+}
+
 .flex-1 {
     flex: 1 1 0%;
 }
@@ -1610,7 +1615,7 @@ select {
 
 .bg-serv-button {
     --tw-bg-opacity: 1;
-    background-color: rgba(34, 176, 125, var(--tw-bg-opacity));
+    background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
 }
 
 .bg-serv-bg-explore {
@@ -1655,6 +1660,13 @@ select {
 .bg-green-600 {
     --tw-bg-opacity: 1;
     background-color: rgba(5, 150, 105, var(--tw-bg-opacity));
+}
+
+.bg-green900 {
+    /* --tw-bg-opacity: 1; */
+    /* background-color: rgba(0, 128, 0, var(--tw-bg-opacity)); */
+    --tw-bg-opacity: 1;
+    background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
 }
 
 .bg-serv-upload-bg {
@@ -1991,6 +2003,11 @@ select {
     color: rgba(156, 163, 175, var(--tw-text-opacity));
 }
 
+.text-gray400 {
+    --tw-text-opacity: 1;
+    color: rgba(53, 53, 53, var(--tw-text-opacity));
+}
+
 .text-white {
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, var(--tw-text-opacity));
@@ -2078,7 +2095,17 @@ select {
 
 .text-serv-login-text {
     --tw-text-opacity: 1;
-    color: rgba(92, 92, 105, var(--tw-text-opacity));
+    color: rgba(233, 236, 239, var(--tw-text-opacity));
+}
+
+.text-serv-login1-text {
+    --tw-text-opacity: 1;
+    color: rgba(40, 75, 99, var(--tw-text-opacity));
+}
+
+.hover\:text-serv-login1-text:hover {
+    --tw-text-opacity: 1;
+    color: rgba(233, 236, 239, var(--tw-text-opacity));
 }
 
 .antialiased {
@@ -2241,7 +2268,7 @@ select {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quicksand", sans-serif;
 }
 
 .hide-scroll-bar {
@@ -2306,6 +2333,11 @@ body {
 .hover\:bg-gray-300:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray600:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
 }
 
 .hover\:bg-serv-email-text:hover {
@@ -2773,7 +2805,7 @@ body {
 
     .lg\:bg-serv-services-bg {
         --tw-bg-opacity: 1;
-        background-color: rgba(244, 244, 250, var(--tw-bg-opacity));
+        background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
     }
 
     .lg\:px-24 {
