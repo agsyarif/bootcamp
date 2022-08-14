@@ -1,8 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap);
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap);
 
-/*! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com */
-/*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 /*
 Document
 ========
@@ -1663,8 +1661,6 @@ select {
 }
 
 .bg-green900 {
-    /* --tw-bg-opacity: 1; */
-    /* background-color: rgba(0, 128, 0, var(--tw-bg-opacity)); */
     --tw-bg-opacity: 1;
     background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
 }
