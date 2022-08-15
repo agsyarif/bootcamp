@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\checkout_course;
+use App\Models\course;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -52,6 +54,15 @@ class Search extends Component
                 $data = checkout_course::orderBy('created_at', 'desc')->get();
             }
             return view('livewire.admin.transaksi', compact('data'));
+        } else if ($this->segment == 'course') {
+            if ($this->search !== null) {
+                $mentor = Auth::user()->id;
+                $data = course::where('user_id', $mentor)->where('name', 'like', '%' . $this->search . '%')->orWhere('user_id', $mentor)->where('price', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
+            } else {
+                $data = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+            }
+
+            return view('livewire.mentor.course', compact('data'));
         } else {
             $data = checkout_course::orderBy('created_at', 'desc')->get();
             return view('livewire.admin.transaksi', compact('data'));
