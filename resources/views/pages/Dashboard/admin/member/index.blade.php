@@ -31,7 +31,10 @@
         </div>
 
         <section class="container px-6 mx-auto mt-5">
-            <div class="grid gap-5 md:grid-cols-12">
+
+            @livewire('admin.search', ['segment' => 'member-management'])
+
+            {{-- <div class="grid gap-5 md:grid-cols-12">
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-6 py-2 mt-2 bg-white rounded-xl">
                         <table class="w-full" aria-label="Table">
@@ -70,10 +73,6 @@
 
                                                 <div>
 
-                                                    {{-- <a href="{{ route('admin.member.show', $men->id) }}"
-                                                        class="font-medium text-black">
-                                                        {{ $men->name ?? '' }}
-                                                    </a> --}}
                                                     <a href="#" class="font-medium text-black">
                                                         {{ $men->name ?? '' }}
                                                     </a>
@@ -94,7 +93,6 @@
 
                                         <td class="px-1 py-5 text-sm text-green-500 text-md">
                                             @if ($men->is_active == 1)
-                                                {{-- {{ $men->status ?? '' }} --}}
                                                 <p class="text-grey-800">Active</p>
                                             @else
                                                 <p class="text-red-500">Non Active
@@ -104,27 +102,20 @@
 
 
                                         <td class="py-5 text-sm flex">
-                                            {{-- {{ route('admin.member.show', $men['id']) }} --}}
                                             <a href="{{ route('admin.member-management.show', $men['id']) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
-                                            {{-- {{ route('admin.member.edit', $men['id']) }} --}}
                                             <a href="{{ route('admin.member-management.edit', $men['id']) }}"
                                                 class="px-2 py-2 mt-2 text-green-500 hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
-                                                {{-- <img src="{{ asset('assets/images/edit.png') }}" alt="" --}}
-                                                {{-- class="w-6 h-6"> --}}
                                             </a>
-                                            {{-- {{ route('admin.member.destroy', $men->id) }} --}}
                                             <form action="{{ route('admin.member-management.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
                                                     onclick="return confirm('Are you sure?')">
-                                                    {{-- <img src="{{ asset('assets/images/trash.png') }}" alt="" --}}
-                                                    {{-- class="w-6 h-6"> --}}
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
@@ -138,7 +129,7 @@
                         </table>
                     </div>
                 </main>
-            </div>
+            </div> --}}
         </section>
     </main>
 

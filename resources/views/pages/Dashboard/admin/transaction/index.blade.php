@@ -22,7 +22,10 @@
             </div>
 
             <section class="container px-6 mx-auto mt-5">
-                <div class="grid gap-5 md:grid-cols-12">
+
+                @livewire('admin.search', ['segment' => 'transaksi'])
+
+                {{-- <div class="grid gap-5 md:grid-cols-12">
                     <main class="col-span-12 p-4 md:pt-0">
                         <div class="px-6 py-2 mt-2 bg-white rounded-xl">
                             <table class="w-full" aria-label="Table">
@@ -109,7 +112,7 @@
                             </table>
                         </div>
                     </main>
-                </div>
+                </div> --}}
             </section>
 
     </main>

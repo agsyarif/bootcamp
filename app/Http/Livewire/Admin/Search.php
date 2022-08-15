@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\checkout_course;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -26,16 +27,6 @@ class Search extends Component
         $this->segment = $segment;
     }
 
-    public function aksi($aksi)
-    {
-        $this->action = $aksi;
-        // if ($aksi == 'terbaru') {
-        //     $this->action = "where('created_at', 'desc')";
-        // } elseif ($aksi == 'active') {
-        //     $this->action = "where('status', '1')";
-        // }
-    }
-
     public function render()
     {
 
@@ -46,14 +37,26 @@ class Search extends Component
             } else {
                 $data = User::where('user_role_id', 2)->orderBy('updated_at', 'desc')->get();
             }
-
             return view('livewire.admin.search', compact('data'));
-            // $this->results = User::where('user_role_id', 2)->orderBy('updated_at', 'desc')->paginate(10);
+        } else if ($this->segment == 'member-management') {
+            if ($this->search !== null) {
+                $data = User::where('user_role_id', 3)->where('name', 'like', '%' . $this->search . '%')->orWhere('user_role_id', 3)->Where('email', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
+            } else {
+                $data = User::where('user_role_id', 3)->orderBy('updated_at', 'desc')->get();
+            }
+            return view('livewire.admin.member', compact('data'));
+        } else  if ($this->segment == 'transaksi') {
+            if ($this->search !== null) {
+                $data = checkout_course::where('payment_status', 'like', '%' . $this->search . '%')->orWhere('midtrans_booking_code', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->get();
+            } else {
+                $data = checkout_course::orderBy('created_at', 'desc')->get();
+            }
+            return view('livewire.admin.transaksi', compact('data'));
+        } else {
+            $data = checkout_course::orderBy('created_at', 'desc')->get();
+            return view('livewire.admin.transaksi', compact('data'));
         }
 
         return view('livewire.admin.search');
-        // return view('livewire.admin.search', [
-        //     'kembali' => $this->results,
-        // ]);
     }
 }
