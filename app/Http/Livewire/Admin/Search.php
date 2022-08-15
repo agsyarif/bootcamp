@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\checkout_course;
 use App\Models\course;
+use App\Models\CourseLesson;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -63,9 +64,6 @@ class Search extends Component
             }
 
             return view('livewire.mentor.course', compact('data'));
-        } else {
-            $data = checkout_course::orderBy('created_at', 'desc')->get();
-            return view('livewire.admin.transaksi', compact('data'));
         }
 
         return view('livewire.admin.search');

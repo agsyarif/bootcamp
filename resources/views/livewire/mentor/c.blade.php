@@ -22,8 +22,7 @@
                             </div>
                             <input type="text" wire:model.debounce.300ms="search" id="table-search-users"
                                 class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for members">
-                            {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
+                                placeholder="Search for mentors">
                         </div>
                     </div>
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -33,17 +32,20 @@
                                     No
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Nama
+                                    Judul Bab
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    No Telp.
+                                    Materi
+                                </th>
+                                {{-- <th scope="col" class="py-3 px-6">
+                                    Harga
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Skill
+                                    Update
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Status
-                                </th>
+                                    Publish
+                                </th> --}}
                                 <th scope="col" class="py-3 px-6">
                                     Aksi
                                 </th>
@@ -59,60 +61,60 @@
                                 </td>
                             </tr>
                             <div wire:loading.remove wire:target="search">
+
+                                {{-- chapter --}}
                                 @forelse ($data as $key => $men)
+                                    {{ $men }}
+                                @empty
+                                @endforelse
+                                {{-- materi --}}
+                                @forelse ($dataMateri as $key => $men)
+                                    {{ $men }}
+
+                                @empty
+                                @endforelse
+
+
+                                {{-- @forelse ($data as $key => $men)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                         <td class="py-4 px-6">
                                             {{ $loop->iteration }}
                                         </td>
-                                        <th scope="row"
-                                            class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
-
-                                            @if ($men->profile_photo_path != null)
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="{{ url($men->profile_photo_path) }}" alt="thumbnail"
-                                                    loading="lazy" />
+                                        <td class="py-4 px-6">
+                                            {{ $men->name ?? '-' }}
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            {{ $men->course_category->name ?? '-' }}
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            {{ 'Rp ' . number_format($men->price ?? '') }}
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            {{ \Carbon\Carbon::parse($men->created_at)->diffForHumans() }}
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            @if ($men->is_published == 1)
+                                                <p class="text-green-800">
+                                                    <i class="fas fa-check"></i>
+                                                </p>
                                             @else
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}"
-                                                    alt="" loading="lazy" />
+                                                <p class="text-red-500">
+                                                    <i class="fas fa-xmark"></i>
+                                                <p>
                                             @endif
-
-                                            <div class="ml-3 pl-3">
-                                                <div class="text-base font-semibold">{{ $men->name ?? '-' }}</div>
-                                                <div class="font-normal text-gray-500">{{ $men->email ?? '-' }}</div>
-                                            </div>
-                                        </th>
-                                        <td class="py-4 px-6">
-                                            {{ $men->contact_number ?? '-' }}
-                                        </td>
-                                        <td class="py-4 px-6">
-                                            {{ $men->skill_id ?? '-' }}
-                                        </td>
-                                        <td class="py-4 px-6">
-                                            <div class="flex items-center">
-                                                @if ($men->is_active == 1)
-                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-                                                    <span class="text-grey-800">Active</span>
-                                                @else
-                                                    <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
-
-                                                    <span class="text-red-500">Non Active
-                                                    </span>
-                                                @endif
-                                            </div>
                                         </td>
                                         <td class="py-4 px-6 flex">
-                                            <a href="{{ route('admin.member-management.show', $men['id']) }}"
-                                                class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
-                                                <i class="fa-regular fa-eye"></i>
+                                            <a href="{{ route('mentor.materi.show', $men['id']) }}"
+                                                class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                <i class="fa fa-plus"></i>
                                             </a>
-                                            <a href="{{ route('admin.member-management.edit', $men['id']) }}"
-                                                class="px-2 py-2 mt-2 text-green-500 hover:text-gray-800">
+                                            <a href="{{ route('mentor.course.edit', $men['id']) }}"
+                                                class="py-2 mx-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
-                                            <form action="{{ route('admin.member-management.destroy', $men->id) }}"
+                                            <form action="{{ route('mentor.course.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf
@@ -124,7 +126,8 @@
                                         </td>
                                     </tr>
                                 @empty
-                                @endforelse
+                                @endforelse --}}
+
                             </div>
                         </tbody>
                     </table>

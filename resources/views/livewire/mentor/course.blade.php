@@ -22,7 +22,7 @@
                             </div>
                             <input type="text" wire:model.debounce.300ms="search" id="table-search-users"
                                 class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for mentors">
+                                placeholder="Search for course">
                         </div>
                     </div>
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -93,6 +93,11 @@
                                             @endif
                                         </td>
                                         <td class="py-4 px-6 flex">
+
+                                            <a href="{{ route('mentor.materi.show', $men['id']) }}"
+                                                class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
                                             <a href="{{ route('mentor.course.edit', $men['id']) }}"
                                                 class="py-2 mx-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
