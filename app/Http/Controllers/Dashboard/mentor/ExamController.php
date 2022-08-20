@@ -112,7 +112,7 @@ class ExamController extends Controller
         // }
         // return $chapterTitle;
         // return $chapter;
-        return view('pages.Dashboard.mentor.question.index', compact('exam', 'examAll', 'question', 'courses', 'type', 'chapter',));
+        return view('pages.Dashboard.mentor.question.index', compact('exam', 'examAll', 'question', 'courses', 'type', 'chapter', 'id'));
     }
 
     /**

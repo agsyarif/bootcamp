@@ -1,4 +1,8 @@
-<div class="">
+<div>
+    @forelse ($data as $key => $men)
+        {{ $men->course_lesson_id }}
+    @empty
+    @endforelse
 
     <div class="grid gap-5 md:grid-cols-12">
         <main class="col-span-12 p-4 md:pt-0">
@@ -32,22 +36,19 @@
                                     No
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Code
+                                    Judul Ujian
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    User
+                                    Kursus
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Kelas
+                                    Bab
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Mentor
+                                    Durasi
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Harga
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Status
+                                    Total Soal
                                 </th>
                                 <th scope="col" class="py-3 px-6">
                                     Aksi
@@ -72,59 +73,37 @@
                                             {{ $loop->iteration }}
                                         </td>
                                         <td class="py-4 px-6">
-                                            {{ $men->midtrans_booking_code ?? '-' }}
+                                            {{ $men->title ?? '-' }}
                                         </td>
-                                        <th scope="row"
-                                            class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
-
-                                            @if ($men->user->profile_photo_path != null)
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="{{ url($men->user->profile_photo_path) }}" alt="thumbnail"
-                                                    loading="lazy" />
-                                            @else
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}"
-                                                    alt="" loading="lazy" />
+                                        <td class="py-4 px-6">
+                                            @if ($men->course != null)
+                                                @foreach ($men->course as $item)
+                                                    {{ $item }}
+                                                @endforeach
                                             @endif
+                                        </td>
 
-                                            <div class="ml-2">
-                                                <div class="text-base font-semibold">{{ $men->user->name ?? '-' }}</div>
-                                                <div class="font-normal text-gray-500">{{ $men->user->email ?? '-' }}
-                                                </div>
-                                            </div>
-                                        </th>
                                         <td class="py-4 px-6">
-                                            {{ $men->course->name ?? '-' }}
+                                            {{ $men->courseLesson->title ?? '-' }}
                                         </td>
                                         <td class="py-4 px-6">
-                                            {{ $men->course->user->name ?? '-' }}
-                                        </td>
-                                        <td class="py-4 px-6">
-                                            {{ $men->course->price ?? '-' }}
+                                            {{ $men->duration ?? '-' }}
                                         </td>
                                         <td class="py-4 px-6">
                                             <div class="flex items-center">
-                                                @if ($men->payment_status == 'pending')
-                                                    <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
-                                                    <span class="text-red-400">
-                                                        {{ $men->payment_status ?? '-' }}
-                                                    </span>
-                                                @elseif($men->payment_status == 'paid')
-                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-
-                                                    <span class="text-green-400">
-                                                        {{ $men->payment_status ?? '-' }}
-                                                    </span>
-                                                @endif
+                                                {{ $question->where('exam_id', $men->id)->count() }}
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 flex gap-2">
-                                            <a href="{{ route('admin.transaction.edit', $men['id']) }}"
+                                            <a href="{{ route('mentor.exam.show', $men->id) }}"
+                                                class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('mentor.exam.edit', $men->id) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
-                                            <form action="{{ route('admin.transaction.destroy', $men->id) }}"
-                                                method="post">
+                                            <form action="{{ route('mentor.exam.destroy', $men->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
@@ -144,5 +123,4 @@
             </div>
         </main>
     </div>
-
 </div>

@@ -1632,8 +1632,8 @@ select {
 }
 
 .bg-serv-green-badge {
-    --tw-bg-opacity: 1;
-    background-color: rgba(221, 255, 243, var(--tw-bg-opacity));
+    --tw-bg-opacity: 0.5;
+    background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
 }
 
 .bg-serv-email {

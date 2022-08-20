@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Mentor;
 use Livewire\Component;
 use App\Models\CourseLesson;
 use App\Models\CourseMaterial;
+use App\Models\exam;
 use Livewire\WithPagination;
 
 class SearchChapter extends Component

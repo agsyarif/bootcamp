@@ -69,19 +69,23 @@
                                                 </td>
                                                 <td class="py-4 px-6">
                                                     {{ $materi->where('course_lesson_id', $item->id)->count() }}
-                                                    <button class="accordion-button" type="button"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target="#collapse{{ $item->id }}"
-                                                        aria-expanded="false"
-                                                        aria-controls="collapse{{ $item->id }}">
-                                                        <i class="fas fa-chevron-down"></i>
-                                                    </button>
+                                                    <a href="{{ route('mentor.create-materi.show', [$item->id]) }}"
+                                                        class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                        <i class="fa fa-plus"></i>
+                                                    </a>
                                                 </td>
                                                 <td class="py-4 px-6">
                                                     <div class="text-sm">
 
+                                                        <button class="accordion-button" type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#collapse{{ $item->id }}"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapse{{ $item->id }}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
                                                         <a href="{{ route('mentor.chapter.edit', $item->id) }}"
-                                                            class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800">
                                                             <i class="fas fa-edit fa-lg"></i>
                                                         </a>
 
@@ -90,8 +94,7 @@
                                                             method="post">
                                                             @method('delete')
                                                             @csrf
-                                                            <button
-                                                                class="ml-4 py-2 mt-2 text-red-500 hover:text-gray-800"
+                                                            <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
                                                                 onclick="return confirm('Are you sure?')">
                                                                 <i class="fas fa-trash-alt fa-lg"></i>
 

@@ -15,6 +15,8 @@ class QuestionController extends Controller
     public function show($id)
     {
 
+
+
         // $exam = exam::where('id', $id)->get();
         $exam = exam::findOrFail($id);
         $examAll = exam::all();
@@ -22,7 +24,7 @@ class QuestionController extends Controller
         $chapter = CourseLesson::where('course_id', '=', $exam->course_id)->get();
         // return $chapter;
         $type = type::all();
-        return view('pages.Dashboard.mentor.question.create', compact('exam', 'type', 'courses', 'examAll', 'chapter'));
+        return view('pages.Dashboard.mentor.question.create', compact('exam', 'type', 'courses', 'examAll', 'chapter', 'id'));
         // $examAll = exam::all();
         // $question = question::where('exam_id', $id)->get();
         // $courses = course::all();
