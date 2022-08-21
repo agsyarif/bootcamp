@@ -148,7 +148,18 @@ class   LandingController extends Controller
         }
         $material = CourseMaterial::whereIn('course_lesson_id', $idChapter)->get();
 
-        return view('pages.Landing.course_detail', ["active" => "explore"], compact('courses', 'chapter', 'material'));
+        $comment = comment::where('course_id', $courses->id)->avg('rating');
+        $rating = number_format($comment, 2);
+        $bintang = number_format($comment, 0);
+        $ratings = comment::where('course_id', $courses->id)->get();
+
+        // foreach ($courses as $course) {
+        //     $rating[$course->id] = comment::where('course_id', $course->id)->avg('rating');
+        //     $ratings[$course->id] = number_format($rating[$course->id], 2);
+        //     $bintang[$course->id] = number_format($rating[$course->id], 0);
+        // }
+
+        return view('pages.Landing.course_detail', ["active" => "explore"], compact('courses', 'chapter', 'material', 'rating', 'ratings', 'bintang'));
     }
 
     public function booking($id)
