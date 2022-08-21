@@ -38,17 +38,9 @@
 
                     <div class="grid grid-cols lg:grid-cols-3 md:grid-cols-2 gap-4">
 
-                        {{-- @forelse ($services as $service)
-                            @include('components.landing.service-explorer')
-
-                        @empty --}}
-                        {{-- Empty --}}
-                        {{-- @endforelse --}}
                         {{-- ~~~~~~~~~~~~~~ Course view ~~~~~~~~~~~~~~~~~~~~~~~~~~~ --}}
                         @forelse ($courses as $key => $course)
-                            {{-- <p>{{ $course->user->user_role->role }}</p> --}}
                             @include('components.Landing.course')
-
 
                         @empty
                         @endforelse

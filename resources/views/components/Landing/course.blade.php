@@ -4,8 +4,8 @@
 
             <!--Author's profile photo-->
             @if ($course->user->profile_photo_path != null)
-                <img src="{{ url(Storage::url($course->user->profile_photo_path)) }}" alt="photo freelancer"
-                    loading="lazy" class="w-14 h-14 object-cover rounded-full mr-1">
+                <img src="{{ url(Storage::url($course->user->profile_photo_path)) }}" alt="photo freelancer" loading="lazy"
+                    class="w-14 h-14 object-cover rounded-full mr-1">
             @else
                 <img class="w-14 h-14 object-cover object-center rounded-full mr-1"
                     src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="random user" />
@@ -36,8 +36,21 @@
             {{ $course->note ?? '' }}
         </p>
         <!--Description-->
-        <div class="max-w-full">
-            @include('components.Landing.rating')
+        <div class="max-w-full flex">
+            @forelse ($bintang as $key => $r)
+
+                @for ($i = 0; $i < 5; $i++)
+                    <svg class="cursor-pointer block w-6 h-6 @if ($i < $r) text-yellow-400 @else text-gray-500 @endif"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path
+                            d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                @endfor
+                <span class="ml-4">{{ $ratings[$course->id] }}</span>
+
+            @empty
+            @endforelse
+            {{-- @include('components.Landing.rating') --}}
         </div>
 
         <div class="text-center mt-5 flex justify-between w-full">

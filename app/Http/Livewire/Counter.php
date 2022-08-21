@@ -30,6 +30,8 @@ class Counter extends Component
 
     public function render()
     {
+        // ambil rata - rata rating dari semuanya
+        $rating = comment::where('course_id', $this->currentId)->avg('rating');
 
         $comments = comment::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->where('status', 1)->orderBy('created_at', 'desc')->get();
 

@@ -17,6 +17,7 @@ use App\Models\CourseMaterial;
 use Hamcrest\Core\HasToString;
 use App\Models\checkout_course;
 use App\Http\Controllers\Controller;
+use App\Models\comment;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use phpDocumentor\Reflection\Types\This;
@@ -123,8 +124,18 @@ class   LandingController extends Controller
     {
         $course_category = CourseCategory::latest()->get();
         $courses = course::where('is_published', 1)->latest()->paginate(10);
-        // return $courses;
-        return view('pages.Landing.explore', ["active" => "explore"], compact('courses', 'course_category'));
+
+        // ambil rata - rata rating dari semua rating yang sama course_id nya
+        $ratings = [];
+        $bintang = [];
+        foreach ($courses as $course) {
+            $rating[$course->id] = comment::where('course_id', $course->id)->avg('rating');
+            // ambil 2 angka dibelakang koma
+            $ratings[$course->id] = number_format($rating[$course->id], 2);
+            $bintang[$course->id] = number_format($rating[$course->id], 0);
+        }
+
+        return view('pages.Landing.explore', ["active" => "explore"], compact('courses', 'course_category', 'ratings', 'bintang'));
     }
 
     public function detail($slug)
