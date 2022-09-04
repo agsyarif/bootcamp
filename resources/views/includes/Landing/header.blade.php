@@ -2,73 +2,69 @@
     <div class="navbar-1-1" style="font-family: 'quicksand', sans-serif">
         <div class=" mx-auto flex flex-wrap flex-row items-center justify-between">
 
-            <a href="{{ route('index') }}" class="flex items-center">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" class="ml-3">
-            </a>
+            <div class="flex w-2/4 justify-beetween">
+                <a href="{{ route('index') }}" class="flex items-center">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" class="ml-3">
+                </a>
 
-            <label for="menu-toggle" class="cursor-pointer lg:hidden block">
-                <svg class="w-6 h-6" fill="none" stroke="#092A33" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </label>
+                <div class="hidden lg:flex lg:items-center lg:w-auto w-full lg:ml-auto lg:mr-auto flex-wrap items-center text-base justify-center"
+                    id="menu">
+                    <nav
+                        class="lg:space-x-12 space-x-0 lg:flex items-center justify-between text-base pt-8 lg:pt-0 lg:space-y-0 space-y-6">
 
-            <input class="hidden" type="checkbox" id="menu-toggle" />
+                        <a href="{{ route('index') }}"
+                            class="block hover:text-gray-900 {{ request()->is('/') ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Home</a>
 
-            <div class="hidden lg:flex lg:items-center lg:w-auto w-full lg:ml-auto lg:mr-auto flex-wrap items-center text-base justify-center"
-                id="menu">
-                <nav
-                    class="lg:space-x-12 space-x-0 lg:flex items-center justify-between text-base pt-8 lg:pt-0 lg:space-y-0 space-y-6">
+                        <a href="{{ route('explore.landing') }}"
+                            class="block hover:text-gray-900 {{ $active === 'explore' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Bootcamp</a>
 
-                    <a href="{{ route('index') }}"
-                        class="block hover:text-gray-900 {{ request()->is('/') ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Home</a>
+                        {{-- <a href="{{ route('profesional.landing') }}"
+                            class="block hover:text-gray-900 {{ $active === 'profesional' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Professional
+                            Development</a>
 
-                    <a href="{{ route('explore.landing') }}"
-                        class="block hover:text-gray-900 {{ $active === 'explore' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Bootcamp</a>
+                        <a href="{{ route('corporate.landing') }}"
+                            class="block nav-link text-serv-text hover:text-gray-900">Corporate</a> --}}
 
-                    <a href="{{ route('profesional.landing') }}"
-                        class="block hover:text-gray-900 {{ $active === 'profesional' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Professional
-                        Development</a>
+                        <a href="{{ route('create') }}"
+                            class="block hover:text-gray-900 {{ $active === 'profesional' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">About</a>
+                        @auth
 
-                    <a href="{{ route('corporate.landing') }}"
-                        class="block nav-link text-serv-text hover:text-gray-900">Corporate</a>
+                            <hr class="block lg:hidden">
 
-                    <a href="{{ route('create') }}"
-                        class="block hover:text-gray-900 {{ $active === 'profesional' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">About</a>
-                    @auth
+                            @can('admin')
+                                <a href="{{ route('admin.dashboard.index') }}"
+                                    class="block lg:hidden nav-link text-serv-text">My
+                                    Dashboard</a>
+                            @endcan
 
-                        <hr class="block lg:hidden">
+                            @can('mentor')
+                                <a href="{{ route('mentor.dashboard.index') }}"
+                                    class="block lg:hidden nav-link text-serv-text">My
+                                    Dashboard</a>
+                            @endcan
 
-                        @can('admin')
-                            <a href="{{ route('admin.dashboard.index') }}" class="block lg:hidden nav-link text-serv-text">My
-                                Dashboard</a>
-                        @endcan
-
-                        @can('mentor')
-                            <a href="{{ route('mentor.dashboard.index') }}" class="block lg:hidden nav-link text-serv-text">My
-                                Dashboard</a>
-                        @endcan
-
-                        @can('member')
-                            <a href="{{ route('member.dashboard.index') }}" class="block lg:hidden nav-link text-serv-text">My
-                                Dashboard</a>
-                        @endcan
+                            @can('member')
+                                <a href="{{ route('member.dashboard.index') }}"
+                                    class="block lg:hidden nav-link text-serv-text">My
+                                    Dashboard</a>
+                            @endcan
 
 
 
-                        <a href="{{ route('logout') }}" class="block lg:hidden nav-link text-serv-text"
-                            onclick="evnt.preventDefault(); document.getElementById('logout-form').submit();">Logout
+                            <a href="{{ route('logout') }}" class="block lg:hidden nav-link text-serv-text"
+                                onclick="evnt.preventDefault(); document.getElementById('logout-form').submit();">Logout
 
-                            <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                                <form action="{{ route('logout') }}" id="logout-form" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
 
-                        </a>
+                            </a>
 
-                    @endauth
+                        @endauth
 
-                </nav>
+                    </nav>
+                </div>
             </div>
 
             @guest

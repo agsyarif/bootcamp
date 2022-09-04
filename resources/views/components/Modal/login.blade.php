@@ -74,9 +74,9 @@
                 <div class="px-6 pb-6 rounded-b-xl mx-10">
 
                     <input type="hidden" name="auth" value="true">
-                    <button
-                        class="bg-serv-button hover:bg-gray-300 text-white text-lg py-3 px-12 my-2 rounded-lg w-full"
-                        type="submit">
+                    <button type="submit"
+                        class="bg-serv-button text-serv-login1-text hover:text-serv-login1-text hover:bg-gray600 text-white text-lg py-3 px-12 my-2 rounded-lg w-full"
+                        style="background-color: rgba(40, 75, 99, 100);">
                         Log in
                     </button>
 

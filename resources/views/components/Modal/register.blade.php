@@ -92,7 +92,8 @@
                             <label class="inline-flex items-center mt-3">
                                 <input type="checkbox"
                                     class="form-checkbox h-5 w-5 text-serv-button rounded border-serv-text"><span
-                                    class="ml-2 text-gray-400">I agree to the <a href="#" class="text-serv-button">Terms
+                                    class="ml-2 text-gray-400">I agree to the <a href="#"
+                                        class="text-serv-button">Terms
                                         & Conditions</a></span>
                             </label>
                         </div>
@@ -104,7 +105,7 @@
                 <div class="px-6 rounded-b-xl mx-10">
                     <input type="hidden" name="auth" value="true">
                     <button
-                        class="block text-center bg-serv-button hover:bg-gray-300 text-white text-lg py-2 px-12 rounded-lg w-full">
+                        class="block text-center bg-serv-button text-white text-lg py-2 px-12 rounded-lg w-full hover:text-serv-login1-text hover:bg-gray600">
                         Sign up
                     </button>
 

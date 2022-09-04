@@ -207,9 +207,18 @@
 
                                     <div class="items-center col-span-12 p-2 lg:col-span-6">
                                         <div class="ml-24 -mt-10 lg:my-6 lg:text-right">
-                                            {{-- @include('components.Landing.rating') --}}
-                                            {{ $bintang }}
-                                            {{ $rating }}
+
+                                            <div class="flex">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    <svg class="cursor-pointer block w-5 h-5 @if ($i < $bintang) text-yellow-400 @else text-gray-500 @endif"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                                    </svg>
+                                                @endfor
+                                                <span class="ml-4 lb-3">{{ $rating }}</span>
+                                            </div>
 
                                             {{-- @forelse ($bintang as $key => $r)
 
@@ -260,11 +269,10 @@
                             </div>
 
                             <div x-show.transition.duration.500ms="tab === 'reviews'">
-                                <h2 class="mb-4 text-xl font-semibold"><span class="text-serv-button">210</span> Happy
+                                <h2 class="mb-4 text-xl font-semibold"><span
+                                        class="text-serv-button">{{ $ratings->count() }}</span> Happy
                                     Clients</h2>
                                 @forelse ($ratings as $keyy => $rating)
-                                    {{-- {{ $rating->comment }} --}}
-
                                     @include('components.Landing.review')
                                 @empty
                                 @endforelse
