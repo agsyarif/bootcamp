@@ -66,7 +66,7 @@ class Search extends Component
             }
 
             return view('livewire.mentor.course', compact('data'));
-        } elseif ($this->segment == 'exam') {
+        } else if ($this->segment == 'exam') {
             if ($this->search !== null) {
 
                 $mentor = Auth::user()->id;
@@ -99,6 +99,15 @@ class Search extends Component
                 $data = $exam;
             }
             return view('livewire.mentor.search-exam', compact('data', 'question'));
+        } else if ($this->segment == 'kelasAdmin') {
+            // $data = course::all();
+            if ($this->search !== null) {
+                $data = course::where('name', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->orWhere('price', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->orWhere('created_at', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->get();
+            } else {
+                $data = course::orderBy('created_at', 'desc')->get();
+            }
+
+            return view('livewire.admin.course', compact('data'));
         }
 
         return view('livewire.admin.search');

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use phpDocumentor\Reflection\Types\This;
 
-class   LandingController extends Controller
+class LandingController extends Controller
 {
 
     public function __construct()

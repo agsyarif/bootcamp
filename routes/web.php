@@ -32,6 +32,7 @@ use App\Http\Controllers\Dashboard\member\CourseController as MemberCourseContro
 use App\Http\Controllers\Dashboard\member\MemberController as MemberMemberController;
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
+use Illuminate\Support\Facades\Auth;
 
 // frontend
 
@@ -57,6 +58,7 @@ Route::get('explore', [LandingController::class, 'explore'])->name('explore.land
 // Route::get('midtrans/unfinish', MidtransController::class, 'unfinish');
 // Route::get('midtrans/error', MidtransController::class, 'error');
 Route::resource('/', LandingController::class);
+
 
 // midtrans route
 Route::post('payment/success', [LandingController::class, 'midtransCallback']);

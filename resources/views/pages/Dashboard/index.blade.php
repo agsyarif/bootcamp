@@ -339,11 +339,11 @@
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.comment.show', [$item->id]) }}"
+                                                    {{-- <a href="{{ route('admin.comment.show', [$item->id]) }}"
                                                         class="text-sm text-gray-400 hover:text-gray-800">
                                                         Comment
                                                         <i class="fas fa-arrow-right"></i>
-                                                    </a>
+                                                    </a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

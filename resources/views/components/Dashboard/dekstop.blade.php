@@ -137,12 +137,8 @@
                 </li>
 
                 {{-- role --}}
-                <li class="relative px-6 py-3">
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
-                    @if (request()->is('admin/role') ||
-                        request()->is('admin/role/*') ||
-                        request()->is('admin/*/role') ||
-                        request()->is('admin/*/role/*'))
+                {{-- <li class="relative px-6 py-3">
+                    @if (request()->is('admin/role') || request()->is('admin/role/*') || request()->is('admin/*/role') || request()->is('admin/*/role/*'))
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
@@ -150,20 +146,15 @@
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="#">
                         <i class="fa fa-bars fa-lg"></i>
-                        <!-- Active Icons -->
 
                         <span class="ml-3">Role Management</span>
 
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- menu --}}
-                <li class="relative px-6 py-3">
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
-                    @if (request()->is('admin/menu') ||
-                        request()->is('admin/menu/*') ||
-                        request()->is('admin/*/menu') ||
-                        request()->is('admin/*/menu/*'))
+                {{-- <li class="relative px-6 py-3">
+                    @if (request()->is('admin/menu') || request()->is('admin/menu/*') || request()->is('admin/*/menu') || request()->is('admin/*/menu/*'))
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
@@ -171,12 +162,11 @@
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="#">
                         <i class="fa fa-ellipsis fa-lg"></i>
-                        <!-- Active Icons -->
 
                         <span class="ml-3">Menu Management</span>
 
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- profil --}}
                 <li class="relative px-6 py-3">
@@ -331,13 +321,9 @@
                 </li>
 
                 {{-- Activity Log --}}
-                <li class="relative px-6 py-3">
+                {{-- <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
-                    @if (request()->is('admin/activity') ||
-                        request()->is('admin/activity/*') ||
-                        request()->is('admin/*/activity') ||
-                        request()->is('admin/*/activity/*'))
+                    @if (request()->is('admin/activity') || request()->is('admin/activity/*') || request()->is('admin/*/activity') || request()->is('admin/*/activity/*'))
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
@@ -347,7 +333,7 @@
                         <i class="fas fa-chalkboard-teacher fa-lg"></i>
                         <span class="ml-4">Log Activity</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- log out --}}
                 <li class="relative px-6 py-3 flex">

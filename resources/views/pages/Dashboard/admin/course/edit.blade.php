@@ -9,7 +9,7 @@
                 <div class="col-span-12">
 
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        Edit Member {{ $member->name }}
+                        Edit Kelas
                     </h2>
 
                     <p class="text-sm text-gray-400">
@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('admin.member-management.index') }}" class="text-gray-400">My Member</a>
+                    <a href="{{ route('admin.member-management.index') }}" class="text-gray-400">My Chart</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="flex items-center">
-                    <a href="#" class="font-medium">Edit Your Member</a>
+                    <a href="#" class="font-medium">Edit Kelas</a>
                 </li>
 
             </ol>
@@ -45,17 +45,17 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                        <form action="{{ route('admin.member-management.update', [$member->id]) }}" method="POST">
-                            @csrf
-                            {{-- @csrf_field --}}
+                        {{-- <form action="{{ route('admin.member-management.update', [$data->id]) }}" method="POST">
+                                @csrf --}}
+                        {{-- @csrf_field --}}
 
-                            {{-- @method('PUT') --}}
-                            {{ method_field('PUT') }}
+                        {{-- @method('PUT') --}}
+                        {{ method_field('PUT') }}
+                        <p>mebuat halaman kelas pada role admin</p>
+                        <div class="">
+                            <div class="px-4 py-5 sm:p-6">
 
-                            <div class="">
-                                <div class="px-4 py-5 sm:p-6">
-
-                                    <div class="grid grid-cols-6 gap-6">
+                                {{-- <div class="grid grid-cols-6 gap-6">
 
                                         <div class="col-span-6 -mb-6">
 
@@ -123,7 +123,6 @@
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
 
-                                                {{-- <option>Member Status</option> --}}
                                                 <option value=1 {{ $member->is_active == 1 ? 'selected' : '' }}>
                                                     Active
                                                 </option>
@@ -141,25 +140,25 @@
 
                                         </div>
 
-                                    </div>
-                                </div>
-
-                                <div class="px-4 py-3 text-right sm:px-6">
-
-                                    <a href="{{ route('admin.member-management.index') }}" type="button"
-                                        class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
-                                        onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
-                                        Cancel
-                                    </a>
-
-                                    <button type="submit"
-                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                        onclick="return confirm('Are you sure want to submit this data ?')">
-                                        Update Member
-                                    </button>
-
-                                </div>
+                                    </div> --}}
                             </div>
+
+                            <div class="px-4 py-3 text-right sm:px-6">
+
+                                <a href="{{ route('admin.member-management.index') }}" type="button"
+                                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                                    onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
+                                    Cancel
+                                </a>
+
+                                <button type="submit"
+                                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                    onclick="return confirm('Are you sure want to submit this data ?')">
+                                    Update Member
+                                </button>
+
+                            </div>
+                        </div>
                         </form>
 
                     </div>

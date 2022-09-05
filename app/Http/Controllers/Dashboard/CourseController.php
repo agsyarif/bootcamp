@@ -18,7 +18,8 @@ class CourseController extends Controller
     {
         // mengambil semua data course dari course model
         $course = course::all();
-        return $course;
+        // return $course;
+        return view('pages.Dashboard.admin.course.index', compact('course'));
     }
 
     /**
@@ -62,7 +63,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = course::where('id', $id)->get();
+        return view('pages.Dashboard.admin.course.edit', compact(['data']));
     }
 
     /**

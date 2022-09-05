@@ -1,10 +1,8 @@
-<div>
+<div class="">
 
     <div class="grid gap-5 md:grid-cols-12">
         <main class="col-span-12 p-4 md:pt-0">
             <div class="px-6 py-2 mt-2 bg-white rounded-lg">
-
-
                 <div class="overflow-x-auto pt-6 pb-6 relative shadow-md sm:rounded-lg">
                     <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
                         <div>
@@ -32,19 +30,22 @@
                                     No
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Judul Ujian
+                                    Kelas
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Kursus
+                                    Mentor
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Bab
+                                    kategori
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Durasi
+                                    Harga
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Total Soal
+                                    Status
+                                </th>
+                                <th scope="col" class="py-3 px-6">
+                                    Tanggal upload
                                 </th>
                                 <th scope="col" class="py-3 px-6">
                                     Aksi
@@ -69,47 +70,78 @@
                                             {{ $loop->iteration }}
                                         </td>
                                         <td class="py-4 px-6">
-                                            {{ $men->title ?? '-' }}
+                                            {{ $men->name ?? '-' }}
                                         </td>
-                                        <td class="py-4 px-6">
-                                            @if ($men->course != null)
-                                                @foreach ($men->course as $item)
-                                                    {{ $item }}
-                                                @endforeach
-                                            @endif
-                                        </td>
+                                        <th scope="row"
+                                            class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
 
+                                            @if ($men->user->profile_photo_path != null)
+                                                <img class="w-10 h-10 rounded-full"
+                                                    src="{{ url($men->user->profile_photo_path) }}" alt="thumbnail"
+                                                    loading="lazy" />
+                                            @else
+                                                <img class="w-10 h-10 rounded-full"
+                                                    src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}"
+                                                    alt="" loading="lazy" />
+                                            @endif
+
+                                            <div class="ml-2">
+                                                <div class="text-base font-semibold">{{ $men->user->name ?? '-' }}</div>
+                                                <div class="font-normal text-gray-500">{{ $men->user->email ?? '-' }}
+                                                </div>
+                                            </div>
+                                        </th>
                                         <td class="py-4 px-6">
-                                            {{ $men->courseLesson->title ?? '-' }}
+                                            {{ $men->course_caregory->name ?? '-' }}
                                         </td>
                                         <td class="py-4 px-6">
-                                            {{ $men->duration ?? '-' }}
+                                            {{ $men->price ?? '-' }}
                                         </td>
                                         <td class="py-4 px-6">
                                             <div class="flex items-center">
-                                                {{ $question->where('exam_id', $men->id)->count() }}
+                                                @if ($men->is_published == 0)
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
+                                                    <span class="text-red-400">
+                                                        Non Active
+                                                    </span>
+                                                @elseif ($men->is_published == 1)
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+
+                                                    <span class="text-green-400">
+                                                        Active
+                                                    </span>
+                                                @endif
                                             </div>
                                         </td>
-                                        <td class="py-4 px-6 flex gap-2">
-                                            <a href="{{ route('mentor.exam.show', $men->id) }}"
-                                                class="py-2 mt-2 text-green-500 hover:text-gray-800">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('mentor.exam.edit', $men->id) }}"
-                                                class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
-                                                <i class="fa-regular fa-pen-to-square"></i>
-                                            </a>
-                                            <form action="{{ route('mentor.exam.destroy', $men->id) }}" method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    <i class="fa-regular fa-trash-can"></i>
-                                                </button>
-                                            </form>
+                                        <td class="py-4 px-6">
+                                            {{ \Carbon\Carbon::parse($men->created_at)->diffForHumans() }}
+                                        </td>
+                                        <td class="pb-3 px-6">
+                                            <div class="flex items-center gap-2">
+                                                <a href="{{ route('admin.course.edit', $men['id']) }}"
+                                                    class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+                                                <form action="{{ route('admin.course.destroy', $men->id) }}"
+                                                    method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
+                                                        onclick="return confirm('Are you sure?')">
+                                                        <i class="fa-regular fa-trash-can"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center pt-4">
+                                            <p class="text-gray-500">
+                                                Data Tidak Ditemukan
+                                            </p>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </div>
                         </tbody>
@@ -119,4 +151,5 @@
             </div>
         </main>
     </div>
+
 </div>

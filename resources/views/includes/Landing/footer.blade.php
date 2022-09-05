@@ -15,7 +15,7 @@
                             Bootcamp
                         </a>
                     </div>
-                    <div class="my-3">
+                    {{-- <div class="my-3">
                         <a href="#" class="text-serv-text font-light">
                             Professional Development
                         </a>
@@ -24,7 +24,7 @@
                         <a href="#" class="text-serv-text font-light">
                             Corporate
                         </a>
-                    </div>
+                    </div> --}}
                     <div class="my-3">
                         <a href="#" class="text-serv-text font-light">
                             About
@@ -35,7 +35,7 @@
                     <h4 class="font-medium text-white text-lg mt-4 md:mt-0 mb-4">Featured Services</h4>
                     <div class="my-3">
                         <a href="#" class="text-serv-text font-light">
-                            Programming &amp; Tech
+                            Programming & Tech
                         </a>
                     </div>
                     <div class="my-3">

@@ -6,6 +6,9 @@ use App\Models\course;
 use App\Models\akses_course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CourseLesson;
+use App\Models\CourseMaterial;
+use App\Models\detailAksesCourse;
 use Illuminate\Support\Facades\Auth;
 
 class ProgressController extends Controller
@@ -19,17 +22,34 @@ class ProgressController extends Controller
     {
         $akses = Auth::user()->user_role_id;
         $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
-        // return $aksesCourse;
         $id_course = [];
         foreach ($aksesCourse as $key => $value) {
             $id_course[] = $value->course_id;
         }
         $course = course::whereIn('id', $id_course)->get();
-        // return $course;
         $active = 'progress';
         $courses = count($course);
-        // return $courses;
-        return view('pages.Dashboard.member.progress.index', compact('course', 'active', 'courses'));
+
+        // chapter in all
+        $chapter = CourseLesson::whereIn('course_id', $id_course)->get();
+        $id_chapter = [];
+        foreach ($chapter as $key => $value) {
+            $id_chapter[] = $value->id;
+        }
+        $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get();
+
+        $progress = detailAksesCourse::whereIn('akses_course_id', $id_course)->get();
+
+        $persentase = $progress->count() / $materi->count() * 100;
+        // $persentase = 7 / 18 * 100;
+        $persen = number_format($persentase, 0, '.', '');
+
+        // return number_format($persen, 0, '.', '');
+
+        // return $progress->count();
+        // return $materi->count();
+        // return detailAksesCourse::whereIn('akses_course_id', $id_course)->get();
+        return view('pages.Dashboard.member.progress.index', compact('aksesCourse', 'course', 'active', 'courses', 'progress', 'materi', 'persen'));
     }
 
     /**

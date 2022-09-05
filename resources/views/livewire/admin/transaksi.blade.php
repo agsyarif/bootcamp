@@ -102,7 +102,7 @@
                                         <td class="py-4 px-6">
                                             {{ $men->course->price ?? '-' }}
                                         </td>
-                                        <td class="py-4 px-6">
+                                        <td class="mb-2 px-6">
                                             <div class="flex items-center">
                                                 @if ($men->payment_status == 'pending')
                                                     <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
@@ -118,20 +118,23 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        <td class="py-4 px-6 flex gap-2">
-                                            <a href="{{ route('admin.transaction.edit', $men['id']) }}"
-                                                class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
-                                                <i class="fa-regular fa-pen-to-square"></i>
-                                            </a>
-                                            <form action="{{ route('admin.transaction.destroy', $men->id) }}"
-                                                method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    <i class="fa-regular fa-trash-can"></i>
-                                                </button>
-                                            </form>
+                                        <td class="pb-3 px-6">
+                                            <div class="flex items-center gap-2">
+
+                                                <a href="{{ route('admin.transaction.edit', $men['id']) }}"
+                                                    class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+                                                <form action="{{ route('admin.transaction.destroy', $men->id) }}"
+                                                    method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
+                                                        onclick="return confirm('Are you sure?')">
+                                                        <i class="fa-regular fa-trash-can"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

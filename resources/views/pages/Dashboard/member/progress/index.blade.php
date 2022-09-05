@@ -44,8 +44,55 @@
 
         <section class="container px-6 mx-auto mt-5">
 
-            @livewire('counter', ['id' => Auth::user()->id]);
+            <div class="grid gap-5 md:grid-cols-12">
+                <main class="p-4 lg:col-span-7 md:col-span-12 md:pt-0">
 
+                    <div class="p-6 mt-8 bg-white rounded-xl">
+
+                        <div>
+                            <h2 class="mb-1 text-xl font-semibold">
+                                Kelas Aktif
+                            </h2>
+
+                            <p class="text-sm text-gray-400">
+                                {{ $course->count() ?? '' }} View All
+                            </p>
+                        </div>
+
+                        <div class="">
+                            @forelse ($course as $key => $c)
+                                <div class="my-4">
+                                    <div class="img flex">
+                                        <img class="rounded-md" width="150px"
+                                            src="{{ asset('images/course/thumbnail/' . $c->image) }}" alt="">
+                                        <div class="mx-4">
+                                            <h4>{{ $c->name }}</h4>
+                                            <h4>Aktif
+                                                mulai :
+                                                {{ \Carbon\Carbon::parse($c->created_at)->isoFormat('dddd, D MMMM Y') }}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <div class="mt-5 w-full bg-gray-200 rounded-full">
+                                            <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-l-full"
+                                                style="width: {{ $persen }}%"> {{ $persen }}%</div>
+                                        </div>
+                                        <div class="pt-4">{{ $progress->count() }}/{{ $materi->count() }}</div>
+                                    </div>
+                                    <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)"
+                                        class="mt-3 rounded">
+
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
+                        </div>
+
+                    </div>
+
+                </main>
+            </div>
 
         </section>
     </main>
