@@ -20,12 +20,20 @@ class ProgressController extends Controller
      */
     public function index()
     {
+        // user yang sedang login
         $akses = Auth::user()->user_role_id;
+        // ambil data akses course yang diakses oleh user Auth
         $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
         $id_course = [];
         foreach ($aksesCourse as $key => $value) {
             $id_course[] = $value->course_id;
         }
+        $akses_id = [];
+        foreach ($aksesCourse as $key => $value) {
+            $akses_id[] = $value->id;
+        }
+
+        // ambl data course yang menjadi akses dari useer Auth
         $course = course::whereIn('id', $id_course)->get();
         $active = 'progress';
         $courses = count($course);
@@ -38,7 +46,7 @@ class ProgressController extends Controller
         }
         $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get();
 
-        $progress = detailAksesCourse::whereIn('akses_course_id', $id_course)->get();
+        $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
 
         $persentase = $progress->count() / $materi->count() * 100;
         // $persentase = 7 / 18 * 100;
