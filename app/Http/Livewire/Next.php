@@ -26,9 +26,9 @@ class Next extends Component
         $this->course_material_id = $id;
         $chapterID = CourseMaterial::findOrFail($this->course_material_id)->pluck('course_lesson_id');
 
-        $courseID = CourseLesson::findOrFail($chapterID);
+        $courseID = CourseLesson::findOrFail($chapterID[0]);
 
-        $akses_course = akses_course::where('course_id', '=', $courseID[0]->course_id)->where('user_id', Auth::user()->id)->get();
+        $akses_course = akses_course::where('course_id', '=', $courseID->course_id)->where('user_id', Auth::user()->id)->get();
 
         $this->akses_course = $akses_course;
 
