@@ -96,14 +96,14 @@ class CourseController extends Controller
         $active = 'course';
         $MateriActive = $material[0];
         $ChapterActive[] = $chapter[0];
-
+        $CourseActive = course::where('id', $ChapterActive[0]->course_id)->get();
         // checklist warna biru?
         $aksesCourse = akses_course::where('course_id', '=', $id)->where('user_id', '=', Auth::user()->id)->get();
         $detailAkses = detailAksesCourse::where('akses_course_id', '=', $aksesCourse[0]->id)->get();
         // return $detailAkses;
 
         // return redirect()->route('member.course.materi', [$id, $activeId]);
-        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses'));
+        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses', 'CourseActive'));
         // return redirect()->route('member.course.materi', [$MateriActive[0]->id]);
     }
 

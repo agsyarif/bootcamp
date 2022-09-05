@@ -10,8 +10,10 @@
                 <aside class="col-sm-3 p-3 nav-bg" style="border-radius: 20px;">
                     <div class="d-flex justify-content-between" style="align-items: center;">
                         <img src="https://class.buildwithangga.com/images/ic_burger-opened.svg" alt="">
+                        {{-- <img src="https://class.buildwithangga.com/images/ic_burger-opened.svg" alt=""> --}}
                         <a href="{{ route('member.dashboard.index') }}"
                             style="color: darkgray; text-decoration: none; margin-right:20px;">Dashboard</a>
+                        {{-- <p>{{ $CourseActive }}</p> --}}
                     </div>
                     <div class="flex mb-4">
                         {{-- <h5 class="mt-3 d-inline-block">Dark Mode</h5>
@@ -38,7 +40,7 @@
                                                                 <i class="bi bi-play-circle px-2"></i>
                                                                 {{ $m->title }}
                                                             </div>
-                                                            @livewire('checklist', [$m->id])
+                                                            @livewire('checklist', [$m->id, $CourseActive[0]->id])
                                                         </a>
 
                                                     </li>
@@ -50,7 +52,7 @@
                                                             <div>
                                                                 <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
                                                             </div>
-                                                            @livewire('checklist', [$m->id])
+                                                            @livewire('checklist', [$m->id, $CourseActive[0]->id])
                                                         </a>
 
                                                     </li>
