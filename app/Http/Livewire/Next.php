@@ -24,30 +24,30 @@ class Next extends Component
     {
         // materi active
         $this->course_material_id = $id;
-        $chapterID = CourseMaterial::findOrFail($this->course_material_id)->pluck('course_lesson_id');
+        // $chapterID = CourseMaterial::findOrFail($this->course_material_id)->pluck('course_lesson_id');
 
-        $courseID = CourseLesson::findOrFail($chapterID[0]);
+        // $courseID = CourseLesson::findOrFail($chapterID[0]);
 
-        $akses_course = akses_course::where('course_id', '=', $courseID->course_id)->where('user_id', Auth::user()->id)->get();
+        // $akses_course = akses_course::where('course_id', '=', $courseID->course_id)->where('user_id', Auth::user()->id)->get();
 
-        $this->akses_course = $akses_course;
+        // $this->akses_course = $akses_course;
 
-        $detail = detailAksesCourse::where('akses_course_id', $this->akses_course[0]->id)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
+        // $detail = detailAksesCourse::where('akses_course_id', $this->akses_course[0]->id)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
 
-        if (count($detail) > 0) {
-            $this->detailAkses = $detail;
-        } else {
-            $this->detailAkses = [0];
-        }
-
-        // $this->akses_course = akses_course::where('user_id', Auth::user()->id)->get();
-
-        // $detail_akses = detailAksesCourse::where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
-        // if (count($detail_akses) > 0) {
-        //     $this->detailAkses = $detail_akses;
+        // if (count($detail) > 0) {
+        //     $this->detailAkses = $detail;
         // } else {
         //     $this->detailAkses = [0];
         // }
+
+        $this->akses_course = akses_course::where('user_id', Auth::user()->id)->get();
+
+        $detail_akses = detailAksesCourse::where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
+        if (count($detail_akses) > 0) {
+            $this->detailAkses = $detail_akses;
+        } else {
+            $this->detailAkses = [0];
+        }
     }
 
     // next materi
