@@ -48,8 +48,9 @@ class MateriController extends Controller
         $exam = exam::whereIn('course_lesson_id', $chapterId)->get();
         $question = question::where('exam_id', '=', $exam[0]->id)->get();
 
+        $aksesCourse = akses_course::where('course_id', '=', $courses->id)->where('user_id', '=', Auth::user()->id)->get();
 
         // return dd($data);
-        return view('pages.Dashboard.member.course.show', compact('courses', 'MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question'));
+        return view('pages.Dashboard.member.course.show', compact('courses', 'MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question', 'aksesCourse'));
     }
 }

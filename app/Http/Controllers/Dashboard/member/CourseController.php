@@ -103,7 +103,7 @@ class CourseController extends Controller
         // return $detailAkses;
 
         // return redirect()->route('member.course.materi', [$id, $activeId]);
-        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses', 'CourseActive'));
+        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses', 'CourseActive', 'aksesCourse'));
         // return redirect()->route('member.course.materi', [$MateriActive[0]->id]);
     }
 

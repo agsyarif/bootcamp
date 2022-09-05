@@ -20,7 +20,7 @@ class Next extends Component
     public $akses_course;
     public $detailAkses;
 
-    public function mount($id)
+    public function mount($id, $aksesCourse)
     {
         // materi active
         $this->course_material_id = $id;
@@ -41,8 +41,11 @@ class Next extends Component
         // }
 
         $this->akses_course = akses_course::where('user_id', Auth::user()->id)->get();
+        // ada data
 
-        $detail_akses = detailAksesCourse::where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
+        // $detail = detailAksesCourse::where('akses_course_id', [])
+
+        $detail_akses = detailAksesCourse::where('akses_course_id', $aksesCourse)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
         if (count($detail_akses) > 0) {
             $this->detailAkses = $detail_akses;
         } else {
