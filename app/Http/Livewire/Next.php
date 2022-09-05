@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\akses_course;
 use Livewire\Component;
+use App\Models\akses_course;
+use App\Models\course;
+use App\Models\CourseLesson;
 use App\Models\CourseMaterial;
 use App\Models\detailAksesCourse;
+use Illuminate\Support\Facades\Auth;
 
 class Next extends Component
 {
@@ -19,15 +22,32 @@ class Next extends Component
 
     public function mount($id)
     {
+        // materi active
         $this->course_material_id = $id;
-        $this->akses_course = akses_course::where('user_id', auth()->user()->id)->get();
+        $chapterID = CourseMaterial::findOrFail($this->course_material_id)->pluck('course_lesson_id');
 
-        $detail_akses = detailAksesCourse::where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
-        if (count($detail_akses) > 0) {
-            $this->detailAkses = $detail_akses;
+        $courseID = CourseLesson::findOrFail($chapterID);
+
+        $akses_course = akses_course::where('course_id', '=', $courseID[0]->course_id)->where('user_id', Auth::user()->id)->get();
+
+        $this->akses_course = $akses_course;
+
+        $detail = detailAksesCourse::where('akses_course_id', $this->akses_course[0]->id)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
+
+        if (count($detail) > 0) {
+            $this->detailAkses = $detail;
         } else {
             $this->detailAkses = [0];
         }
+
+        // $this->akses_course = akses_course::where('user_id', Auth::user()->id)->get();
+
+        // $detail_akses = detailAksesCourse::where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
+        // if (count($detail_akses) > 0) {
+        //     $this->detailAkses = $detail_akses;
+        // } else {
+        //     $this->detailAkses = [0];
+        // }
     }
 
     // next materi
