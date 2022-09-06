@@ -12,6 +12,8 @@
             style="height: 40px">Selesai</button>
         <p class="white">{{ $materiTerakhir }}</p>
     @endif
+    <p class="white">{{ $materiTerakhir }}</p>
+
 
     {{-- @if ($disabled == true)
         <button wire:click="selesai()" class="text-white hover p-2 nav-bg rounded-pill"
