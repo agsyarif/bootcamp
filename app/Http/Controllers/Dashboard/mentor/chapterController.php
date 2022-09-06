@@ -58,7 +58,8 @@ class chapterController extends Controller
     {
 
         $exam = exam::all();
-        $courses = course::find($id);
+        $course = course::find($id);
+        $courses = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get()->count();
         $chapter = CourseLesson::where('course_id', '=', $id)->get();
         return view('pages.Dashboard.mentor.chapter.create', compact('courses', 'chapter', 'exam'));
     }

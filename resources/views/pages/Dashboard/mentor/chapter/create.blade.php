@@ -9,7 +9,7 @@
                         <div class="col-span-12">
 
                             <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                                Add a Chapter to {{ $courses->name ?? '' }}
+                                Add a Chapter to {{ $course->name ?? '' }}
                             </h2>
 
                             <p class="text-sm text-gray-400">
@@ -47,7 +47,7 @@
                                     @csrf
 
                                     <div class="">
-                                        <input type="number" name="course_id" id="course_id" value="{{ $courses->id ?? '' }}" hidden>
+                                        <input type="number" name="course_id" id="course_id" value="{{ $course->id ?? '' }}" hidden>
 
                                         <div class="px-4 py-5 sm:p-6">
 
@@ -79,7 +79,7 @@
 
                                         <div class="px-4 py-3 text-right sm:px-6">
 
-                                            <a href="{{ route('mentor.materi.show', $courses->id) }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
+                                            <a href="{{ route('mentor.materi.show', $course->id) }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
                                                 Cancel
                                             </a>
 

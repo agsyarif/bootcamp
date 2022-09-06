@@ -57,10 +57,11 @@ class courseController extends Controller
     {
         $exam = exam::all();
         $categories_id = course::all()->where('user_id', '=', Auth::user()->id)->pluck('category_id');
-        $courses = course::where('user_id', '=', Auth::user()->id)->get();
+        $course = course::where('user_id', '=', Auth::user()->id)->get();
+        $courses = $course->count();
         $categories = CourseCategory::all();
         $level = level::all();
-        return view('pages.Dashboard.mentor.course.create', compact('categories', 'courses', 'level', 'exam'));
+        return view('pages.Dashboard.mentor.course.create', compact('categories', 'courses', 'level', 'exam', 'course'));
     }
 
     /**
