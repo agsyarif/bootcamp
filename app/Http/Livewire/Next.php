@@ -44,7 +44,7 @@ class Next extends Component
 
         if ($exam != null) {
             foreach ($exam as $key => $value) {
-                $this->exam = $exam->id;
+                $this->exam = $value->id;
                 if ($value->course_lesson_id == $chapter) {
                     if ($id == $materiTerakhir[0]) {
                         if (request()->segment(3) == 'result') {
