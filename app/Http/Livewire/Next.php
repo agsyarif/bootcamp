@@ -37,12 +37,12 @@ class Next extends Component
         $exam = exam::where('course_lesson_id', $chapter)->get();
 
         // jika exam ada maka isi this->exam
-        if ($exam != 0) {
+        if ($exam != null) {
             $this->exam = $exam[0]->id;
         }
         $this->chapter;
 
-        if ($exam != 0) {
+        if ($exam != null) {
             foreach ($exam as $key => $value) {
                 if ($value->course_lesson_id == $chapter) {
                     if ($id == $materiTerakhir[0]) {
