@@ -84,7 +84,7 @@ class Quiz extends Component
         } elseif ($this->segment == 'result') {
 
             $courseLessonId = exam::where('course_lesson_id', $this->exam_id)->get();
-            $this->materiTerakhir = CourseMaterial::where('course_lesson_id', $courseLessonId[0]->id)->orderBy('id', 'desc')->limit(1)->pluck('id');
+            $this->materiTerakhir = CourseMaterial::where('course_lesson_id', $this->exam_id)->orderBy('id', 'desc')->limit(1)->pluck('id');
             return view('livewire.result');
         }
     }
