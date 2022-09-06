@@ -70,7 +70,7 @@ class Next extends Component
         //     } else {
         //         $this->tombol = 'next';
         //     }
-        //     $this->tombol = 'next';
+        $this->tombol = 'next';
         // }
 
 
