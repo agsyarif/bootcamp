@@ -23,11 +23,16 @@ class Quiz extends Component
     public $quessssss;
     public $exammm;
     public $materiTerakhir;
+    public $lesson_id;
 
     public function mount($id, $segment)
     {
         $this->segment = $segment;
-        $this->exam_id = $id;
+        if ($segment == "start") {
+            $this->exam_id = $id;
+        } else if ($segment == "result") {
+            $this->lesson_id == $id;
+        }
     }
 
     public function answers($questionId, $option)
@@ -83,8 +88,8 @@ class Quiz extends Component
             ]);
         } elseif ($this->segment == 'result') {
 
-            $courseLessonId = exam::where('course_lesson_id', $this->exam_id)->get();
-            $this->materiTerakhir = CourseMaterial::where('course_lesson_id', $this->exam_id)->orderBy('id', 'desc')->limit(1)->pluck('id');
+            // $courseLessonId = exam::where('course_lesson_id', $this->lesson_id)->get();
+            $this->materiTerakhir = CourseMaterial::where('course_lesson_id', $this->lesson_id)->orderBy('id', 'desc')->limit(1)->pluck('id');
             return view('livewire.result');
         }
     }
