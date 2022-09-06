@@ -64,7 +64,7 @@ class Next extends Component
                     }
                 }
             }
-        } else {
+        } elseif ($exam == null) {
             if ($id == $materiTerakhir[0]) {
                 $this->tombol = 'selesai';
             } else {
