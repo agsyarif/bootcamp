@@ -31,7 +31,8 @@ class courseController extends Controller
     {
         // $courses = course::where('user_id', '=', Auth::user()->id)->get();
         $course = course::all();
-        $courses = $course->count();
+        $courses = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get()->count();
+        // $courses = $course->count();
         $categories_id = course::all()->where('user_id', '=', Auth::user()->id)->pluck('category_id');
         $categories = CourseCategory::all()->whereIn('id', $categories_id);
         $exam = exam::all();
