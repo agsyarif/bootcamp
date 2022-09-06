@@ -12,7 +12,7 @@
             style="height: 40px">Selesai</button>
         <p class="white">{{ $materiTerakhir }}</p>
     @endif
-    <p class="white">{{ $materiTerakhir }}</p>
+    {{-- <p class="white">{{ $materiTerakhir }}</p> --}}
 
 
     {{-- @if ($disabled == true)
