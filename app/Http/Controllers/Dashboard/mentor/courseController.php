@@ -136,7 +136,7 @@ class courseController extends Controller
         $level = level::all();
         $exam = exam::all();
 
-        $courses = $course::all()->count();
+        $courses = course::all()->count();
         // $thumb = Storage::disk('hosting')->put('course/thumbnail', $course->image);
 
         // $path =
