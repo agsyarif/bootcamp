@@ -32,7 +32,7 @@
                                     <span class="text-center px-3 py-3">Soal Kosong</span>
                                 @else
                                     {{-- <span>{{ $question }}</span> --}}
-                                    @livewire('quiz', [$id])
+                                    @livewire('quiz', [$id, 'segment' => 'start'])
                                 @endif
                                 {{-- @livewire('counter', [$id]) --}}
                             </div>
@@ -48,10 +48,10 @@
                             {{-- <a class="white hover p-2 bg-secondary rounded-pill" href="#">
                                 Preview Video
                             </a> --}}
-                            <a class="white hover p-2 nav-bg rounded-pill" style="height: 40px"
+                            {{-- <a class="white hover p-2 nav-bg rounded-pill" style="height: 40px"
                                 href="{{ route('member.course.materi', [$MateriActive[0]->id + 1]) }}">
                                 Next Video
-                            </a>
+                            </a> --}}
                         </span>
                     </div>
                 </div>

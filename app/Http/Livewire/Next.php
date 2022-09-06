@@ -8,6 +8,7 @@ use App\Models\course;
 use App\Models\CourseLesson;
 use App\Models\CourseMaterial;
 use App\Models\detailAksesCourse;
+use App\Models\exam;
 use Illuminate\Support\Facades\Auth;
 
 class Next extends Component
@@ -19,31 +20,48 @@ class Next extends Component
 
     public $akses_course;
     public $detailAkses;
+    public $chapter;
 
-    public function mount($id, $aksesCourse)
+    public $tombol;
+    public $exam;
+
+    public function mount($chapter, $id, $aksesCourse)
     {
         // materi active
         $this->course_material_id = $id;
-        // $chapterID = CourseMaterial::findOrFail($this->course_material_id)->pluck('course_lesson_id');
 
-        // $courseID = CourseLesson::findOrFail($chapterID[0]);
+        $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapter)->orderBy('id', 'desc')->limit(1)->pluck('id');
+        $exam = exam::where('course_lesson_id', $chapter)->get();
 
-        // $akses_course = akses_course::where('course_id', '=', $courseID->course_id)->where('user_id', Auth::user()->id)->get();
+        $this->exam = $exam;
 
-        // $this->akses_course = $akses_course;
+        foreach ($exam as $key => $value) {
+            if ($value->course_lesson_id == $chapter) {
+                if ($id == $materiTerakhir[0]) {
+                    $this->tombol = 'uji';
+                } else {
+                    $this->tombol = 'next';
+                }
+            } else {
+                if ($id == $materiTerakhir[0]) {
+                    $this->tombol = 'selesai';
+                } else {
+                    $this->tombol = 'next';
+                }
+            }
+        }
 
-        // $detail = detailAksesCourse::where('akses_course_id', $this->akses_course[0]->id)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
 
-        // if (count($detail) > 0) {
-        //     $this->detailAkses = $detail;
+
+        // check jika chapter ini memiliki soal maka taruh link untuk menuju ke soal tersebut. jika tidak maka link berubah menjadi link selesai atau comment.
+        // tetapi jika tidak ada soal dan tidak pada chaper terakhir maka tombol tetap next.
+
+        // if ($id == $materiTerakhir[0]) {
+        //     $this->tombol = 'uji';
         // } else {
-        //     $this->detailAkses = [0];
+        //     $this->tombol = 'next';
         // }
-
-        $this->akses_course = akses_course::where('user_id', Auth::user()->id)->get();
-        // ada data
-
-        // $detail = detailAksesCourse::where('akses_course_id', [])
+        $this->chapter = $chapter;
 
         $detail_akses = detailAksesCourse::where('akses_course_id', $aksesCourse)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
         if (count($detail_akses) > 0) {
@@ -65,6 +83,17 @@ class Next extends Component
 
         $nextMateri = CourseMaterial::where('id', '>', $this->course_material_id)->first();
 
+        // cek chapter, jika materi pada chhpater ini sudah materi terakhir maka tombol next berubah menjadi tes / soal.
+
+        // current_materi $this->course_material_id
+        // current_chapter $this->chapter
+        // jumplah materi pada chapter sekarang / jika materi id == id materi terakhir poada current chapter
+
+        // if($this->course_material_id == )
+
+
+
+
         if ($nextMateri) {
             return redirect()->route('member.course.materi', [$nextMateri->id]);
             $this->disabled = false;
@@ -75,14 +104,20 @@ class Next extends Component
 
     public function selesai()
     {
-        if ($this->detailAkses[0] != $this->course_material_id) {
-            $checklist = new detailAksesCourse;
-            $checklist->akses_course_id = $this->akses_course[0]->id;
-            $checklist->course_material_id = $this->course_material_id;
-            $checklist->save();
-        }
+        // if ($this->detailAkses[0] != $this->course_material_id) {
+        //     $checklist = new detailAksesCourse;
+        //     $checklist->akses_course_id = $this->akses_course[0]->id;
+        //     $checklist->course_material_id = $this->course_material_id;
+        //     $checklist->save();
+        // }
 
         return redirect()->route('member.dashboard.index');
+    }
+
+    public function kuis()
+    {
+        return redirect()->route('member.course.quiz', [$this->exam[0]->id]);
+        // return redirect()->route('')
     }
 
     public function render()

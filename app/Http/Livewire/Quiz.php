@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\CourseLesson;
 use App\Models\exam;
-use App\Models\question;
 use Livewire\Component;
+use App\Models\question;
 use Livewire\WithPagination;
+use App\Models\CourseMaterial;
 
 class Quiz extends Component
 {
@@ -20,9 +22,11 @@ class Quiz extends Component
     public $score;
     public $quessssss;
     public $exammm;
+    public $materiTerakhir;
 
-    public function mount($id)
+    public function mount($id, $segment)
     {
+        $this->segment = $segment;
         $this->exam_id = $id;
     }
 
@@ -57,6 +61,8 @@ class Quiz extends Component
         $update->score = $this->score;
         $update->save();
 
+        // $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapterActive)->orderBy('id', 'desc')->limit(1)->pluck('id');
+
         return redirect()->route('member.quiz.result', [$this->score, $this->exam_id[0]]);
     }
 
@@ -69,13 +75,18 @@ class Quiz extends Component
 
     public function render()
     {
-        return view('livewire.quiz', [
-            // soal use pagination
-            'questions' => question::where('exam_id', $this->exam_id)->paginate(1),
-            // 'questions' => question::paginate(1),
-            'exam' => exam::findOrFail($this->exam_id)
-            // 'answers' => $this->answers,
-        ]);
+        if ($this->segment == 'start') {
+
+            return view('livewire.quiz', [
+                'questions' => question::where('exam_id', $this->exam_id)->paginate(1),
+                'exam' => exam::findOrFail($this->exam_id)
+            ]);
+        } elseif ($this->segment == 'result') {
+
+            $courseLessonId = exam::findOrFail($this->exam_id);
+            $this->materiTerakhir = CourseMaterial::where('course_lesson_id', $courseLessonId->id)->orderBy('id', 'desc')->limit(1)->pluck('id');
+            return view('livewire.result');
+        }
     }
 
     // public function paginationView()

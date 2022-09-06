@@ -113,7 +113,7 @@
                                 href="{{ route('member.course.materi', [$MateriActive->id + 1]) }}">
                                 Next Video
                             </a> --}}
-                            @livewire('next', [$MateriActive->id, $aksesCourse[0]->id])
+                            @livewire('next', [$ChapterActive[0]->id, $MateriActive->id, $aksesCourse[0]->id])
                         </span>
                     </div>
                 </div>

@@ -105,12 +105,11 @@
                         <div class="">
                             <p class="white" style="color: darkgrey">Ujian Bab : {{ $chapterActive->title }}
                             </p>
+                            {{-- <p class="white" style="color: darkgrey">Ujian Bab : {{ $babb }} --}}
+                            {{-- </p> --}}
                         </div>
                         <span class="d-flex">
-                            <a class="white hover p-2 nav-bg rounded-pill" style="height: 40px" href="#">
-                                {{-- {{ route('member.course.materi', [$MateriActive[0]->id + 1]) }} --}}
-                                Next Video
-                            </a>
+                            @livewire('quiz', [$chapterActive->id, 'segment' => 'result'])
                         </span>
                     </div>
                 </div>
