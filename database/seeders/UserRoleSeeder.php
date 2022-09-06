@@ -18,9 +18,8 @@ class UserRoleSeeder extends Seeder
         DB::table('user_roles')->insert([
             ['name' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Mentor', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'User', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Member', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Tutor', 'created_at' => now(), 'updated_at' => now()],
         ]);
-
     }
 }
