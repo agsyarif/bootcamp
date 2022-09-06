@@ -354,7 +354,7 @@
                         </div>
 
                         <div class="p-6 mt-6 bg-white rounded-xl">
-                            @if ($course[0] != 0)
+                            @if ($course != 0)
                                 @livewire('counter', [$course[0]->id])
                             @endif
                         </div>
