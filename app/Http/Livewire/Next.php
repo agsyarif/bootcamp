@@ -35,7 +35,7 @@ class Next extends Component
 
         // ambil exam dari chapter yang sedang dibuka
         $exam = exam::where('course_lesson_id', $chapter)->get();
-
+        return $exam;
         // jika exam ada maka isi this->exam
         if ($exam != null) {
             $this->exam = $exam[0]->id;
