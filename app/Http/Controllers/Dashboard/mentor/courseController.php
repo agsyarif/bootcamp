@@ -128,10 +128,10 @@ class courseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $course = course::where('slug', $slug)->first();
-        // return $courses->image;
+        $course = course::where('id', $id)->first();
+        // return $course;
         $course_category = CourseCategory::all();
         $level = level::all();
         $exam = exam::all();
@@ -157,17 +157,18 @@ class courseController extends Controller
     public function update(Request $request, $id)
     {
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug'  => 'required|string|max:255',
-            'category_id' => 'required',
-            'level_id' => 'required',
-            'description' => 'required|string|max:255',
-            'price' => 'required|numeric',
-        ]);
+        // $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'slug'  => 'required|string|max:255',
+        //     'category_id' => 'required',
+        //     'level_id' => 'required',
+        //     'description' => 'required|string|max:255',
+        //     'price' => 'required|numeric',
+        // ]);
 
         $image = $request->file('thumbnail');
         $firstImg = course::where('id', $id)->first()->image;
+        // return $firstImg;
 
         if ($image == "") {
             $dataImage = $firstImg;
@@ -184,23 +185,23 @@ class courseController extends Controller
         $data = [
             'title' => $request->title,
             'slug' => $request->slug,
-            'course_category_id' => $request->category_id,
+            'category_id' => $request->category_id,
             'image' => $dataImage,
             'description' => $request->description,
             'price' => $request->price,
-            'is_published' => $request->is_published,
-            'level_id' => $request->level_id,
+            'is_publish' => $request->is_publish,
+            'course_level' => $request->course_level,
         ];
-
+        // return $request->course_level;
         $course = course::where('id', $id)->first();
         $course->name = $data['title'];
         $course->slug = $data['slug'];
         $course->image = $data['image'];
         $course->description = $data['description'];
-        $course->course_category_id = $data['course_category_id'];
-        $course->level_id = $data['level_id'];
+        $course->course_category_id = $data['category_id'];
+        $course->level_id = $data['course_level'];
         $course->price = $data['price'];
-        $course->is_published = $data['is_published'];
+        $course->is_published = $data['is_publish'];
         $course->save();
 
         toast()->success('Update has been succes');
