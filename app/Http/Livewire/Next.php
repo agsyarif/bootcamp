@@ -43,35 +43,35 @@ class Next extends Component
         }
         $this->chapter;
 
-        // if ($exam != null) {
-        foreach ($exam as $key => $value) {
-            $this->exam = $value->id;
-            if ($value->course_lesson_id == $chapter) {
-                if ($id == $materiTerakhir[0]) {
-                    if (request()->segment(3) == 'result') {
-                        $this->tombol = 'next';
+        if ($exam != null) {
+            foreach ($exam as $key => $value) {
+                $this->exam = $value->id;
+                if ($value->course_lesson_id == $chapter) {
+                    if ($id == $materiTerakhir[0]) {
+                        if (request()->segment(3) == 'result') {
+                            $this->tombol = 'next';
+                        } else {
+                            $this->tombol = 'uji';
+                        }
                     } else {
-                        $this->tombol = 'uji';
+                        $this->tombol = 'next';
                     }
                 } else {
-                    $this->tombol = 'next';
-                }
-            } else {
-                if ($id == $materiTerakhir[0]) {
-                    $this->tombol = 'selesai';
-                } else {
-                    $this->tombol = 'next';
+                    if ($id == $materiTerakhir[0]) {
+                        $this->tombol = 'selesai';
+                    } else {
+                        $this->tombol = 'next';
+                    }
                 }
             }
+        } elseif ($exam == null) {
+            // if ($id == $materiTerakhir[0]) {
+            // $this->tombol = 'selesai';
+            // } else {
+            // $this->tombol = 'next';
+            // }
+            $this->tombol = 'next';
         }
-        // } elseif ($exam == null) {
-        //     if ($id == $materiTerakhir[0]) {
-        //         $this->tombol = 'selesai';
-        //     } else {
-        //         $this->tombol = 'next';
-        //     }
-        $this->tombol = 'next';
-        // }
 
 
 
