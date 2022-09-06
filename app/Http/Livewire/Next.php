@@ -30,6 +30,7 @@ class Next extends Component
         // materi active
         $this->course_material_id = $id;
 
+        // course materi terakhir => yang course lesson id nya 11 idnya 7
         $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapter)->orderBy('id', 'desc')->limit(1)->pluck('id');
         $exam = exam::where('course_lesson_id', $chapter)->get();
 
