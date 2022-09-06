@@ -19,10 +19,7 @@ class QuizController extends Controller
         $ChapterActive = CourseLesson::findOrFail($id);
         $MateriActive = CourseMaterial::where('course_lesson_id', '=', $ChapterActive->id)->get();
         $CourseActive = course::where('id', '=', $ChapterActive->course_id)->get();
-        $data = [
-            $ChapterActive, $MateriActive, $CourseActive
-        ];
-        return $data;
+
         $exam = exam::where('course_lesson_id', '=', $ChapterActive->id)->get();
         $examId = [];
         foreach ($exam as $key => $value) {

@@ -118,6 +118,13 @@ class Next extends Component
 
     public function kuis()
     {
+        if ($this->detailAkses[0] != $this->course_material_id) {
+            $checklist = new detailAksesCourse;
+            $checklist->akses_course_id = $this->akses_course[0]->id;
+            $checklist->course_material_id = $this->course_material_id;
+            $checklist->save();
+        }
+
         return redirect()->route('member.course.quiz', [$this->chapter]);
         // return redirect()->route('')
     }
