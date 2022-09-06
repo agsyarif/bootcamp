@@ -64,7 +64,7 @@ class Next extends Component
         //     $this->tombol = 'next';
         // }
         $this->chapter = $chapter;
-
+        $this->akses_course = $aksesCourse;
         $detail_akses = detailAksesCourse::where('akses_course_id', $aksesCourse)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
         if (count($detail_akses) > 0) {
             $this->detailAkses = $detail_akses;
@@ -78,7 +78,7 @@ class Next extends Component
     {
         if ($this->detailAkses[0] != $this->course_material_id) {
             $checklist = new detailAksesCourse;
-            $checklist->akses_course_id = $this->akses_course[0]->id;
+            $checklist->akses_course_id = $this->akses_course;
             $checklist->course_material_id = $this->course_material_id;
             $checklist->save();
         }
@@ -120,7 +120,7 @@ class Next extends Component
     {
         if ($this->detailAkses[0] != $this->course_material_id) {
             $checklist = new detailAksesCourse;
-            $checklist->akses_course_id = $this->akses_course[0]->id;
+            $checklist->akses_course_id = $this->akses_course;
             $checklist->course_material_id = $this->course_material_id;
             $checklist->save();
         }
