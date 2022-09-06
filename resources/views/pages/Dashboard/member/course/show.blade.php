@@ -100,7 +100,7 @@
                     </div>
                     <div class="d-flex justify-content-between p-4">
                         <div class="">
-                            <input type="text" id="MateriActive" value="{{ $ChapterActive[0]->id }}">
+                            <input type="text" id="MateriActive" value="{{ $ChapterActive[0]->id }}" hidden>
                             <h5 class="white" style="color: darkgrey">{{ $MateriActive->title }}</h5>
                             <p class="white" style="color: darkgrey">Materi Bab : {{ $ChapterActive[0]->title }}
                             </p>
