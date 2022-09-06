@@ -24,6 +24,7 @@ class Next extends Component
 
     public $tombol;
     public $exam;
+    public $materiTerakhir;
 
     public function mount($chapter, $id, $aksesCourse)
     {
@@ -32,7 +33,7 @@ class Next extends Component
 
         // course materi terakhir => yang course lesson id nya 11 idnya 7
         $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapter)->orderBy('id', 'desc')->limit(1)->pluck('id');
-
+        $this->materiTerakhir = $materiTerakhir[0];
         // ambil exam dari chapter yang sedang dibuka
         $exam = exam::where('course_lesson_id', $chapter)->get();
         // return $exam;
