@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Dashboard\member;
 use App\Models\exam;
 use App\Models\course;
 use App\Models\question;
+use App\Models\akses_course;
 use App\Models\CourseLesson;
 use Illuminate\Http\Request;
 use App\Models\CourseMaterial;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -52,6 +54,8 @@ class QuizController extends Controller
     {
         $examActive = exam::findOrFail($examId);
         $chapterActive = CourseLesson::findOrFail($examActive->course_lesson_id);
+        $MateriActive = CourseMaterial::where('course_lesson_id', $chapterActive->id)->orderBy('id', 'desc')->limit(1)->get();
+        $aksesCourse = akses_course::where('course_id', '=', $chapterActive->course_id)->where('user_id', '=', Auth::user()->id)->get();
         $chapter = CourseLesson::where('course_id', '=', $chapterActive->course_id)->get();
         $chapterId = [];
         foreach ($chapter as $key => $value) {
@@ -63,6 +67,7 @@ class QuizController extends Controller
         $active = 'course';
 
 
-        return view('pages.Dashboard.member.quiz.result', compact('examActive', 'score', 'chapterActive', 'chapter', 'material', 'exam'));
+
+        return view('pages.Dashboard.member.quiz.result', compact('examActive', 'score', 'chapterActive', 'chapter', 'material', 'exam', 'MateriActive', 'aksesCourse'));
     }
 }

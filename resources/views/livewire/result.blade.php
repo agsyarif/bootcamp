@@ -6,4 +6,5 @@
         {{-- {{ route('member.course.materi', [$MateriActive[0]->id + 1]) }} --}}
         Next Video
     </a>
+    {{-- @livewire('next', [$ChapterActive[0]->id, $MateriActive->id, $aksesCourse[0]->id]) --}}
 </div>

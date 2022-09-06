@@ -40,7 +40,11 @@ class Next extends Component
         foreach ($exam as $key => $value) {
             if ($value->course_lesson_id == $chapter) {
                 if ($id == $materiTerakhir[0]) {
-                    $this->tombol = 'uji';
+                    if (request()->segment(3) == 'result') {
+                        $this->tombol = 'next';
+                    } else {
+                        $this->tombol = 'uji';
+                    }
                 } else {
                     $this->tombol = 'next';
                 }

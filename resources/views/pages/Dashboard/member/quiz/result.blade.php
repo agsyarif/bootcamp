@@ -109,7 +109,8 @@
                             {{-- </p> --}}
                         </div>
                         <span class="d-flex">
-                            @livewire('quiz', [$chapterActive->id, 'segment' => 'result'])
+                            {{-- @livewire('quiz', [$chapterActive->id, 'segment' => 'result']) --}}
+                            @livewire('next', [$chapterActive->id, $MateriActive[0]->id, $aksesCourse[0]->id])
                         </span>
                     </div>
                 </div>
