@@ -37,10 +37,7 @@ class Next extends Component
         // ambil exam dari chapter yang sedang dibuka
         $exam = exam::where('course_lesson_id', $chapter)->get();
         // return $exam;
-        // jika exam ada maka isi this->exam
-        if ($exam != null) {
-            // $this->exam = $exam[0]->id;
-        }
+
         $this->chapter;
 
         if ($exam != null) {
@@ -65,24 +62,9 @@ class Next extends Component
                 }
             }
         } else {
-            // if ($id == $materiTerakhir[0]) {
-            // $this->tombol = 'selesai';
-            // } else {
-            // $this->tombol = 'next';
-            // }
             $this->tombol = 'next';
         }
 
-
-
-        // check jika chapter ini memiliki soal maka taruh link untuk menuju ke soal tersebut. jika tidak maka link berubah menjadi link selesai atau comment.
-        // tetapi jika tidak ada soal dan tidak pada chaper terakhir maka tombol tetap next.
-
-        // if ($id == $materiTerakhir[0]) {
-        //     $this->tombol = 'uji';
-        // } else {
-        //     $this->tombol = 'next';
-        // }
         $this->chapter = $chapter;
         $this->akses_course = $aksesCourse;
         $detail_akses = detailAksesCourse::where('akses_course_id', $aksesCourse)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
@@ -104,17 +86,6 @@ class Next extends Component
         }
 
         $nextMateri = CourseMaterial::where('id', '>', $this->course_material_id)->first();
-
-        // cek chapter, jika materi pada chhpater ini sudah materi terakhir maka tombol next berubah menjadi tes / soal.
-
-        // current_materi $this->course_material_id
-        // current_chapter $this->chapter
-        // jumplah materi pada chapter sekarang / jika materi id == id materi terakhir poada current chapter
-
-        // if($this->course_material_id == )
-
-
-
 
         if ($nextMateri) {
             return redirect()->route('member.course.materi', [$nextMateri->id]);

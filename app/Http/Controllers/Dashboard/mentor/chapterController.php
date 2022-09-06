@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard\mentor;
 
+use App\Models\exam;
 use App\Models\course;
 use App\Models\CourseLesson;
 use Illuminate\Http\Request;
 use App\Models\CourseMaterial;
 use App\Http\Controllers\Controller;
-use App\Models\exam;
+use Illuminate\Support\Facades\Auth;
 
 class chapterController extends Controller
 {
@@ -15,9 +16,10 @@ class chapterController extends Controller
     {
 
         // return $id;
+        $data = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
         $exam = exam::all();
         $chapter = CourseLesson::find($id);
-        $courses = course::all();
+        $courses = $data->count();
         return view('pages.Dashboard.mentor.chapter.edit', compact('id', 'chapter', 'courses', 'exam'));
     }
 
