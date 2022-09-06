@@ -32,28 +32,41 @@ class Next extends Component
 
         // course materi terakhir => yang course lesson id nya 11 idnya 7
         $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapter)->orderBy('id', 'desc')->limit(1)->pluck('id');
+
+        // ambil exam dari chapter yang sedang dibuka
         $exam = exam::where('course_lesson_id', $chapter)->get();
 
-        $this->exam = $exam[0]->id;
+        // jika exam ada maka isi this->exam
+        if ($exam != 0) {
+            $this->exam = $exam[0]->id;
+        }
         $this->chapter;
 
-        foreach ($exam as $key => $value) {
-            if ($value->course_lesson_id == $chapter) {
-                if ($id == $materiTerakhir[0]) {
-                    if (request()->segment(3) == 'result') {
-                        $this->tombol = 'next';
+        if ($exam != 0) {
+            foreach ($exam as $key => $value) {
+                if ($value->course_lesson_id == $chapter) {
+                    if ($id == $materiTerakhir[0]) {
+                        if (request()->segment(3) == 'result') {
+                            $this->tombol = 'next';
+                        } else {
+                            $this->tombol = 'uji';
+                        }
                     } else {
-                        $this->tombol = 'uji';
+                        $this->tombol = 'next';
                     }
                 } else {
-                    $this->tombol = 'next';
+                    if ($id == $materiTerakhir[0]) {
+                        $this->tombol = 'selesai';
+                    } else {
+                        $this->tombol = 'next';
+                    }
                 }
+            }
+        } else {
+            if ($id == $materiTerakhir[0]) {
+                $this->tombol = 'selesai';
             } else {
-                if ($id == $materiTerakhir[0]) {
-                    $this->tombol = 'selesai';
-                } else {
-                    $this->tombol = 'next';
-                }
+                $this->tombol = 'next';
             }
         }
 
