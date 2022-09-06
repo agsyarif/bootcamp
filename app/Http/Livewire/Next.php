@@ -34,7 +34,7 @@ class Next extends Component
         $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapter)->orderBy('id', 'desc')->limit(1)->pluck('id');
         $exam = exam::where('course_lesson_id', $chapter)->get();
 
-        $this->exam = $exam;
+        $this->exam = $exam[0]->id;
 
         foreach ($exam as $key => $value) {
             if ($value->course_lesson_id == $chapter) {
@@ -117,7 +117,7 @@ class Next extends Component
 
     public function kuis()
     {
-        return redirect()->route('member.course.quiz', [$this->exam[0]->id]);
+        return redirect()->route('member.course.quiz', [$this->exam]);
         // return redirect()->route('')
     }
 
