@@ -205,16 +205,12 @@
 
                                         <div class="col-span-6 sm:col-span-3 in-wrapper">
 
-                                            <p>images/course/thumbnail{{ $course->image }}</p>
+                                            <div class="wrapper @if ($course->image != null) active @endif">
 
-                                            <div class="wrapper">
-
-                                                <div class="image @if ($course->image == null) displayNone @endif">
-                                                    <img src="https://uwhcamp.com/images/course/thumbnail/1662530094.png"
-                                                        id="preview" alt="">
+                                                <div class="image @if ($course->image != null) displayBlock @endif">
                                                     {{-- images/course/thumbnail/ --}}
-                                                    {{-- <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
-                                                            id="preview" alt=""> --}}
+                                                    <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
+                                                        id="preview" alt="">
                                                 </div>
                                                 <div class="content @if ($course->image != null) displayNone @endif">
                                                     <div class="icon">

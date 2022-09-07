@@ -1,4 +1,5 @@
 const wrapper = document.querySelector(".wrapper");
+const divImg = document.querySelector(".image");
 const fileName = document.querySelector(".file-name");
 const defaultBtn = document.querySelector("#thumbnail");
 const customBtn = document.querySelector("#custom-btn");
@@ -17,10 +18,14 @@ defaultBtn.addEventListener("change", function () {
             const result = reader.result;
             img.src = result;
             wrapper.classList.add("active");
+            divImg.classList.remove("displayBlock");
+            divImg.classList.add("displayNone");
         }
         cancelBtn.addEventListener("click", function () {
             img.src = "";
             wrapper.classList.remove("active");
+            divImg.classList.add("displayBlock");
+            divImg.classList.remove("displayNone");
         })
         reader.readAsDataURL(file);
     }
