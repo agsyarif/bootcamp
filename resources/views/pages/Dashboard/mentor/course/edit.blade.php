@@ -205,7 +205,7 @@
 
                                         <div class="col-span-6 sm:col-span-3 in-wrapper">
 
-                                            <div class="wrapper">
+                                            <div class="wrapper @if ($course->image != null) active @endif">
                                                 <div class="image">
                                                     <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
                                                         id="preview" alt="">
