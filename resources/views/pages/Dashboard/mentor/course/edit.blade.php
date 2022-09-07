@@ -205,10 +205,29 @@
 
                                         <div class="col-span-6 sm:col-span-3 in-wrapper">
 
-                                            <div class="wrapper @if ($course->image != null) active @endif">
+                                            <div class="wrapper">
+                                                <div class="image">
+                                                    <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
+                                                        id="preview" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    <div class="icon">
+                                                        <i class="fas fa-cloud-upload-alt"></i>
+                                                    </div>
+                                                    <div class="text">
+                                                        No file chosen, yet!
+                                                    </div>
+                                                </div>
+                                                <div id="cancel-btn">
+                                                    <i class="fas fa-times"></i>
+                                                </div>
+                                                <div class="file-name">
+                                                    File name here
+                                                </div>
+                                            </div>
 
+                                            {{-- <div class="wrapper @if ($course->image != null) active @endif">
                                                 <div class="image @if ($course->image != null) displayBlock @endif">
-                                                    {{-- images/course/thumbnail/ --}}
                                                     <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
                                                         id="preview" alt="">
                                                 </div>
@@ -226,7 +245,7 @@
                                                 <div class="file-name">
                                                     File name here
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                         </div>
 
