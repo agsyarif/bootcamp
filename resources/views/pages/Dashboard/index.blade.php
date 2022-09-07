@@ -113,7 +113,7 @@
                                             class="w-8 h-8">
                                     </div>
 
-                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allCourse ?? '' }}</p>
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $cc->count() ?? '' }}</p>
 
                                     <p class="text-sm text-left text-gray-500">
                                         All <br class="hidden lg:block">

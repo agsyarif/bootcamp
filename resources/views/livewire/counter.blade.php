@@ -4,7 +4,7 @@
         <div>
 
             <h2 class="mb-1 text-xl font-semibold">
-                Top Reviews
+                New Reviews
             </h2>
             <p class="text-sm text-gray-400">
                 {{ $comments->count() }} Total Reviews
