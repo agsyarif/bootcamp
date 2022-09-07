@@ -163,14 +163,14 @@
                                         <td class="px-1 py-5 row text-center">
                                             <a href="{{ $item->midtrans_url ?? '' }}" target="_blank">
                                                 <button class="text-green-400 font-bold px-1 rounded">
-                                                    <i class="fas fa-light fa-money-check-dollar"></i>
+                                                    <i class="fa-reguler fa-money-check-dollar"></i>
                                                 </button>
                                             </a>
 
                                             <a href="#cancel" target="_blank">
                                                 <button class="text-gray-400 font-bold px-1 rounded">
                                                     {{-- <i class="fas fa-trash-check"></i> --}}
-                                                    <i class="fas fa-light fa-trash"></i>
+                                                    <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </a>
                                         </td>
@@ -198,7 +198,7 @@
 
                 <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
 
-                    <div
+                    {{-- <div
                         class="relative w-full h-56 m-auto text-white transition-transform transform bg-red-100 rounded-xl">
 
                         <img class="relative object-cover w-full h-full rounded-xl"
@@ -415,7 +415,7 @@
 
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
                 </aside>
 
             </div>
