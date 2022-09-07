@@ -158,6 +158,62 @@
                                 </div>
                             </div>
                         @endcan
+                        @can('isMember')
+                            <div
+                                class="hover:rotate-1 transition-all flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                                <div>
+                                    <div>
+                                        <img src="{{ asset('/assets/images/services-completed-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
+                                        {{ $aksesCourse->count() ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">
+                                        Access to Courses
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                                <div>
+                                    <div>
+                                        <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
+                                        {{ $progress->count() ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">
+                                        Videos Watched
+                                    </p>
+                                </div>
+                            </div>
+
+                            {{-- <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                                <div>
+
+                                    <div>
+                                        <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
+                                        {{ $comment->count() ?? '' }}
+                                    </p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">Member Comments
+                                    </p>
+
+                                </div>
+                            </div> --}}
+                        @endcan
 
                     </div>
 
@@ -268,8 +324,7 @@
                                     </p>
                                 </div>
                                 <div class="self-end hover:translate-x-2 transition transform">
-                                    <a href="{{ route('admin.transaction.index') }}"
-                                        class="text-sm text-gray-400 hover:text-gray-800">
+                                    <a href="#" class="text-sm text-gray-400 hover:text-gray-800">
                                         View All
                                         <i class="fas fa-arrow-right"></i>
                                     </a>
@@ -321,6 +376,57 @@
                                 </tbody>
                             </table>
 
+                        </div>
+                    @endcan
+
+                    @can('isMember')
+                        <div class="p-6 mt-8 bg-white rounded-xl">
+
+                            <div class="flex justify-between">
+                                <div>
+                                    <h2 class="mb-1 text-xl font-semibold">
+                                        My Learning Progress
+                                    </h2>
+
+                                    <p class="text-sm text-gray-400">
+                                        {{ $course->count() }} Course
+                                    </p>
+                                </div>
+                                <div class="self-end hover:translate-x-2 transition transform">
+                                    <a href="#" class="text-sm text-gray-400 hover:text-gray-800">
+                                        View All
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            @forelse ($course as $key => $c)
+                                <div class="my-4">
+                                    <div class="img flex">
+                                        <img class="rounded-md" width="150px"
+                                            src="{{ asset('images/course/thumbnail/' . $c->image) }}" alt="">
+                                        <div class="mx-4">
+                                            <h4>{{ $c->name }}</h4>
+                                            <h4>Aktif
+                                                mulai :
+                                                {{ \Carbon\Carbon::parse($c->created_at)->isoFormat('dddd, D MMMM Y') }}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <div class="mt-5 w-full bg-gray-200 rounded-full">
+                                            <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-l-full"
+                                                style="width: {{ $persen }}%"> {{ $persen }}%</div>
+                                        </div>
+                                        <div class="pt-4">{{ $progress->count() }}/{{ $materi->count() }}</div>
+                                    </div>
+                                    <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)"
+                                        class="mt-3 rounded">
+
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
                         </div>
                     @endcan
 

@@ -6,12 +6,15 @@ use App\Models\exam;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\course;
-use App\Models\akses_course;
-
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\checkout_course;
 use App\Models\comment;
+
+use App\Models\akses_course;
+use Illuminate\Http\Request;
+use App\Models\CourseMaterial;
+use App\Models\checkout_course;
+use App\Models\detailAksesCourse;
+use App\Http\Controllers\Controller;
+use App\Models\CourseLesson;
 use Illuminate\Support\Facades\Auth;
 // use Auth;
 
@@ -71,15 +74,30 @@ class DashboardController extends Controller
             // ambil data yang dimiliki user
             $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
             $id_course = [];
+            $akses_id = [];
             foreach ($aksesCourse as $key => $value) {
                 $id_course[] = $value->course_id;
+                $akses_id[] = $value->id;
             }
             $course = course::whereIn('id', $id_course)->get();
             $courses = $course->count();
 
             $transaksi = checkout_course::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
-            return view('pages.Dashboard.member.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'transaksi', 'active'));
+            $chapter = CourseLesson::whereIn('course_id', $id_course)->get();
+            $id_chapter = [];
+            foreach ($chapter as $key => $value) {
+                $id_chapter[] = $value->id;
+            }
+
+            $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get();
+            $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
+            $persentase = $progress->count() / $materi->count() * 100;
+
+            $persen = number_format($persentase, 0, '.', '');
+
+
+            return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'transaksi', 'active', 'aksesCourse', 'persen', 'progress', 'course', 'materi'));
         }
         // return view('pages.dashboard.admin.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'courses'));
     }
