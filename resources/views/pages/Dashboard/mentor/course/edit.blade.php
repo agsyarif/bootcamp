@@ -205,13 +205,15 @@
 
                                         <div class="col-span-6 sm:col-span-3 in-wrapper">
 
-                                            <p>images/course/thumbnail . {{ $course->image }}</p>
+                                            <p>images/course/thumbnail{{ $course->image }}</p>
 
                                             <div class="wrapper">
                                                 <div class="image">
-                                                    {{-- images/course/thumbnail/ --}}
-                                                    <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
+                                                    <img src="https://uwhcamp.com/images/course/thumbnail/1662530094.png"
                                                         id="preview" alt="">
+                                                    {{-- images/course/thumbnail/ --}}
+                                                    {{-- <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
+                                                        id="preview" alt=""> --}}
                                                 </div>
                                                 <div class="content">
                                                     <div class="icon">
