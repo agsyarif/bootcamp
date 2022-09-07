@@ -174,7 +174,7 @@
 
                 </p>
 
-                <a href="https://wa.me/081233285849?text=Hi, Saya ingin bertanya tentang Bootcamp di UWHcamp ini??"
+                <a href="https://wa.me/08885092116?text=Hi, Saya ingin bertanya tentang Bootcamp di UWHcamp ini??"
                     class="bg-serv-button px-10 py-4 text-base text-white font-semibold rounded cursor-pointer focus:outline-none tracking-wide">
                     Hubungi Kami
                 </a>
@@ -192,7 +192,7 @@
                 <div class="flex overflow-x-scroll pb-10 hide-scroll-bar dragscroll -mx-3">
                     <div class="flex flex-nowrap">
 
-                        <div class="inline-block px-5">
+                        {{-- <div class="inline-block px-5">
                             <div class="w-80 h-90 overflow-hidden md:p-5 p-4 bg-white rounded-md inline-block">
                                 <div class="flex items-center space-x-2 mb-6">
 
@@ -269,7 +269,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
