@@ -386,10 +386,18 @@
 
                                 <form action="{{ route('booking.landing', $courses->id) }}">
                                     @csrf
-                                    <button type="submit"
-                                        class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
-                                        Gabung Kelas
-                                    </button>
+                                    @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == $courses->user->user_role_id)
+                                        <button type="submit"
+                                            class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl"
+                                            disabled>
+                                            Gabung Kelas
+                                        </button>
+                                    @else
+                                        <button type="submit"
+                                            class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
+                                            Gabung Kelas
+                                        </button>
+                                    @endif
                                 </form>
 
                             @endauth
