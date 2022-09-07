@@ -205,8 +205,11 @@
 
                                         <div class="col-span-6 sm:col-span-3 in-wrapper">
 
+                                            <p>images/course/thumbnail . {{ $course->image }}</p>
+
                                             <div class="wrapper">
                                                 <div class="image">
+                                                    {{-- images/course/thumbnail/ --}}
                                                     <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
                                                         id="preview" alt="">
                                                 </div>
