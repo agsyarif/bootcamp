@@ -208,14 +208,15 @@
                                             <p>images/course/thumbnail{{ $course->image }}</p>
 
                                             <div class="wrapper">
-                                                <div class="image">
+
+                                                <div class="image @if ($course->image == null) displayNone @endif">
                                                     <img src="https://uwhcamp.com/images/course/thumbnail/1662530094.png"
                                                         id="preview" alt="">
                                                     {{-- images/course/thumbnail/ --}}
                                                     {{-- <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
-                                                        id="preview" alt=""> --}}
+                                                            id="preview" alt=""> --}}
                                                 </div>
-                                                <div class="content">
+                                                <div class="content @if ($course->image != null) displayNone @endif">
                                                     <div class="icon">
                                                         <i class="fas fa-cloud-upload-alt"></i>
                                                     </div>
