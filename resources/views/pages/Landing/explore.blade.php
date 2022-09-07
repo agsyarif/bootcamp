@@ -15,7 +15,7 @@
                         <h1 class="text-3xl font-semibold mb-1">Course Overviews</h1>
 
                         <p class="leading-8 text-serv-text mb-10">
-                            Follow Bootcamp to improve your skills, Right Now!
+                            Ikuti Kelas kami untuk meningkatkan Skills anda, Sekarang Juga!
                         </p>
                     </div>
 

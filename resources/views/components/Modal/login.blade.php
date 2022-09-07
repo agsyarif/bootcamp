@@ -64,9 +64,9 @@
                                     class="ml-2 text-gray-400">Remember me</span>
                             </label>
                         </div>
-                        <a class="inline-block align-baseline text-xs text-serv-button mt-2 font-medium" href="#">
+                        {{-- <a class="inline-block align-baseline text-xs text-serv-button mt-2 font-medium" href="#">
                             Forgot Password?
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
 

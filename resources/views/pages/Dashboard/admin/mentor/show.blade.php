@@ -9,7 +9,7 @@
                 <div class="col-span-8">
 
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        My Mentor {{ $mentor->name ?? '' }}
+                        {{ $mentor->name ?? '' }}
                     </h2>
 
                     <p class="text-sm text-gray-400">
@@ -43,7 +43,7 @@
 
                 <li class="flex items-center">
 
-                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">My Mentor</a>
+                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">Mentor Management</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -66,18 +66,9 @@
                         <section class="pt-6 pb-20 mx-8 w-auth">
                             <div class="grid gap-5 md:grid-cols-12">
 
-                                <main class="p-4 lg:col-span-7 md:col-span-12">
+                                <main class="p-4 lg:col-span-12 md:col-span-12">
 
-                                    <!-- details heading -->
-                                    <div class="details-heading">
-                                        <h1 class="text-2xl font-semibold">{{ $mentor->name ?? '' }}</h1>
-                                        <div class="my-3">
-                                            @include('components.Dashboard.rating')
-                                        </div>
-                                    </div>
-
-                                    <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">
-
+                                    <div class="details-heading flex gap-4">
                                         @if ($mentor->profile_photo_path != null)
                                             <img src="{{ url(Storage::url($mentor->profile_photo_path)) }}" alt=""
                                                 class="rounded-lg cursor-pointer w-100" data-lity>
@@ -87,6 +78,85 @@
                                                 alt="" loading="lazy" />
                                         @endif
 
+                                        <div class="p-4 bg-gray-100 rounded-lg w-full">
+
+                                            <h1 class="text-2xl font-semibold">{{ $mentor->name ?? '' }}</h1>
+                                            <p class="font-reguler">Email : {{ $mentor->email ?? '' }}</p>
+                                            <p class="font-reguler">Phone : {{ $mentor->contact_number ?? '' }}</p>
+                                            <p class="font-reguler">Mentor Sejak :
+                                                {{ \Carbon\Carbon::parse($mentor->created_at)->isoFormat('dddd, D MMMM Y') }}
+                                            </p>
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="p-4 mt-4 bg-gray-100 rounded-lg w-full flex gap-5">
+                                        <div class="w-1/2">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                                <thead
+                                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <tr>
+                                                        <th colspan="3" scope="col" class="text-center py-3 px-6">
+                                                            Pencapaian Mentor
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Kelas Yang Dibuat
+                                                        </th>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            :
+                                                        </th>
+                                                        <td scope="col" class="py-3 px-6">
+                                                            20
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Member Yang Bergabung
+                                                        </th>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            :
+                                                        </th>
+                                                        <td scope="col" class="py-3 px-6">
+                                                            120
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="w-full">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                                <thead
+                                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <tr>
+                                                        <th colspan="3" scope="col" class="text-center py-3 px-6">
+                                                            Rating Mentor
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Skills
+                                                        </th>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            :
+                                                        </th>
+                                                        <td scope="col" class="py-3 px-6">
+                                                            20
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
 
                                     {{-- <div class="content">

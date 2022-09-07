@@ -9,7 +9,7 @@
                 <div class="col-span-12">
 
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        Edit Mentor {{ $mentor->name }}
+                        Mentor {{ $mentor->name }}
                     </h2>
 
                     <p class="text-sm text-gray-400">
@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">My Mentor</a>
+                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">Mentor Management</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="flex items-center">
-                    <a href="#" class="font-medium">Edit Your Mentor</a>
+                    <a href="#" class="font-medium">Edit Data Mentor</a>
                 </li>
 
             </ol>
@@ -155,7 +155,7 @@
                                     </a>
 
                                     <button type="submit"
-                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green900 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-serv-email hover:bg-serv-email-text border border-transparent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                         onclick="return confirm('Are you sure want to submit this data ?')">
                                         Update Mentor
                                     </button>

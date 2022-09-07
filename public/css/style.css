@@ -2022,7 +2022,9 @@ select {
 
 .text-serv-button {
     --tw-text-opacity: 1;
-    color: rgba(34, 176, 125, var(--tw-text-opacity));
+    color: rgba(40, 75, 99, 100);
+    /* background-color: rgba(8, 36, 49, var(--tw-bg-opacity)); */
+
 }
 
 .text-gray-700 {
