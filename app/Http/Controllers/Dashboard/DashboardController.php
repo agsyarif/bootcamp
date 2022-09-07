@@ -11,6 +11,7 @@ use App\Models\akses_course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\checkout_course;
+use App\Models\comment;
 use Illuminate\Support\Facades\Auth;
 // use Auth;
 
@@ -63,7 +64,9 @@ class DashboardController extends Controller
             $aksesCourse = akses_course::whereIn('course_id', $id_cc)->get();
             $courses = course::where('user_id', '=', Auth::user()->id)->get()->count();
 
-            return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'exam', 'aksesCourse'));
+            $comment = comment::whereIn('course_id', $id_cc)->get();
+
+            return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'exam', 'aksesCourse', 'comment', 'cc'));
         } else if (Auth::user()->user_role_id == '3') {
             // ambil data yang dimiliki user
             $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();

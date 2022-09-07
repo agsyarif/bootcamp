@@ -53,55 +53,111 @@
                 <main class="p-4 lg:col-span-7 md:col-span-12 md:pt-0">
                     <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
 
-                        <div
-                            class="hover:rotate-1 transition-all flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
-                            <div>
+                        @can('isAdmin')
+                            <div
+                                class="hover:rotate-1 transition-all flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                                 <div>
-                                    <img src="{{ asset('/assets/images/services-completed-icon.svg') }}" alt=""
-                                        class="w-8 h-8">
+                                    <div>
+                                        <img src="{{ asset('/assets/images/services-completed-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allCourse ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">
+                                        Course
+                                    </p>
+
                                 </div>
-
-                                <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allCourse ?? '' }}</p>
-
-                                <p class="text-sm text-left text-gray-500">
-                                    All <br class="hidden lg:block">
-                                    Course
-                                </p>
-
                             </div>
-                        </div>
 
-                        <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
-                            <div>
+                            <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                                 <div>
-                                    <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
-                                        class="w-8 h-8">
+                                    <div>
+                                        <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allMentor ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">Mentor
+                                    </p>
                                 </div>
-
-                                <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allMentor ?? '' }}</p>
-
-                                <p class="text-sm text-left text-gray-500">
-                                    All <br class="hidden lg:block">Mentor
-                                </p>
                             </div>
-                        </div>
 
-                        <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
-                            <div>
-
+                            <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                                 <div>
-                                    <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
-                                        class="w-8 h-8">
+
+                                    <div>
+                                        <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allMember ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">Members
+                                    </p>
+
                                 </div>
-
-                                <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allMember ?? '' }}</p>
-
-                                <p class="text-sm text-left text-gray-500">
-                                    All <br class="hidden lg:block">Members
-                                </p>
-
                             </div>
-                        </div>
+                        @endcan
+                        @can('isMentor')
+                            <div
+                                class="hover:rotate-1 transition-all flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                                <div>
+                                    <div>
+                                        <img src="{{ asset('/assets/images/services-completed-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allCourse ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">
+                                        My Course
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                                <div>
+                                    <div>
+                                        <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
+                                        {{ $aksesCourse->count() ?? '' }}</p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">Joining Members
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="hover:rotate-1 flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
+                                <div>
+
+                                    <div>
+                                        <img src="{{ asset('/assets/images/new-freelancer-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
+                                        {{ $comment->count() ?? '' }}
+                                    </p>
+
+                                    <p class="text-sm text-left text-gray-500">
+                                        All <br class="hidden lg:block">Member Comments
+                                    </p>
+
+                                </div>
+                            </div>
+                        @endcan
 
                     </div>
 
@@ -356,6 +412,17 @@
                         <div class="p-6 mt-6 bg-white rounded-xl">
                             {{-- @if ($course[0] != 0) --}}
                             @livewire('counter', [$course[0]->id])
+                            {{-- @endif --}}
+                        </div>
+                    @endcan
+
+                    @can('isMentor')
+                        <div class="p-6 bg-white rounded-xl">
+                            {{-- @if ($course[0] != 0) --}}
+                            @forelse ($cc as $key => $value)
+                                @livewire('counter', [$value->id])
+                            @empty
+                            @endforelse
                             {{-- @endif --}}
                         </div>
                     @endcan

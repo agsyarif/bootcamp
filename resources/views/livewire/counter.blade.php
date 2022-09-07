@@ -1,7 +1,5 @@
 <div>
 
-    {{ $rating }}
-
     <div class="flex justify-between">
         <div>
 
