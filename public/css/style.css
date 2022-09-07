@@ -310,9 +310,15 @@ pre {
     margin: 0;
 }
 
+[type=button],
+[type=reset],
+[type=submit],
 button {
+    --tw-bg-opacity: 1;
+    background-color: rgba(40, 75, 99, var(--tw-bg-opacity));
+    /* -webkit-appearance: button; */
     /* background-color: transparent; */
-    background-image: none;
+    background-image: none
 }
 
 /**
