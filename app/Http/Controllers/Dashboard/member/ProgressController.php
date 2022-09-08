@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CourseLesson;
 use App\Models\CourseMaterial;
 use App\Models\detailAksesCourse;
+use App\Models\nilai;
 use Illuminate\Support\Facades\Auth;
 
 class ProgressController extends Controller
@@ -52,12 +53,22 @@ class ProgressController extends Controller
         // $persentase = 7 / 18 * 100;
         $persen = number_format($persentase, 0, '.', '');
 
-        // return number_format($persen, 0, '.', '');
+        // jumlah nilai member
+        $nilai = nilai::whereIn('akses_course_id', $akses_id)->get();
+        $jumlah = 0;
+        foreach ($nilai as $key => $value) {
+            $jumlah += $value->score;
+        }
 
-        // return $progress->count();
-        // return $materi->count();
-        // return detailAksesCourse::whereIn('akses_course_id', $id_course)->get();
-        return view('pages.Dashboard.member.progress.index', compact('aksesCourse', 'course', 'active', 'courses', 'progress', 'materi', 'persen'));
+        // jumlah exam yang telah dikerjakan => nilai maksimum yang bisa didapatkan (A)
+        // jumlah nilai keseluruhan => jumlah nilai yang anda dapatkan (B)
+        // rumus = B / A * 100
+        //       = .....%
+        // $persentase_nilai = 250 / (4 * 100) * 100;
+
+        $persentase_nilai = $jumlah / ($nilai->count() * 100) * 100;
+
+        return view('pages.Dashboard.member.progress.index', compact('aksesCourse', 'course', 'active', 'courses', 'progress', 'materi', 'persen', 'nilai', 'persentase_nilai'));
     }
 
     /**
