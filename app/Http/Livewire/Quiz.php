@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\akses_course;
 use App\Models\CourseLesson;
 use App\Models\exam;
 use Livewire\Component;
 use App\Models\question;
 use Livewire\WithPagination;
 use App\Models\CourseMaterial;
+use App\Models\nilai;
+use Illuminate\Support\Facades\Auth;
 
 class Quiz extends Component
 {
@@ -57,9 +60,25 @@ class Quiz extends Component
             $this->score = 0;
         }
 
-        $update = exam::findOrFail($this->exam_id[0]);
-        $update->score = $this->score;
-        $update->save();
+        $course = exam::findOrFail($this->exam_id[0]);
+        $aksesCourse = akses_course::where('course_id', $course->id)->where('user_id', Auth::user()->id)->get();
+        // buat data nilai baru di table nilai
+        $dataNilai = nilai::where('exam_id', $this->exam_id[0])->where('akses_course_id', $aksesCourse[0]->id)->get();
+        if ($dataNilai != null) {
+            $nilai = new nilai;
+            $nilai->exam_id = $this->exam_id[0];
+            $nilai->akses_course_id = $aksesCourse[0]->id;
+            $nilai->score = $this->score;
+            $nilai->save();
+        } else {
+            $nilai = $dataNilai;
+            $nilai->score = $this->score;
+            $nilai->save();
+        }
+
+        // $update = exam::findOrFail($this->exam_id[0]);
+        // $update->score = $this->score;
+        // $update->save();
 
         // $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapterActive)->orderBy('id', 'desc')->limit(1)->pluck('id');
 
