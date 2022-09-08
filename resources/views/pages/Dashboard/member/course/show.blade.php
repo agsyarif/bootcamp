@@ -40,7 +40,7 @@
                                                                 <i class="bi bi-play-circle px-2"></i>
                                                                 {{ $m->title }}
                                                             </div>
-                                                            @livewire('checklist', [$m->id, $CourseActive[0]->id])
+                                                            @livewire('checklist', [$m->id, $CourseActive[0]->id, 'm'])
                                                         </a>
 
                                                     </li>
@@ -52,7 +52,7 @@
                                                             <div>
                                                                 <i class="bi bi-play-circle px-2"></i> {{ $m->title }}
                                                             </div>
-                                                            @livewire('checklist', [$m->id, $CourseActive[0]->id])
+                                                            @livewire('checklist', [$m->id, $CourseActive[0]->id, 'm'])
                                                         </a>
 
                                                     </li>
@@ -65,9 +65,11 @@
                                                 <li>
                                                     <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
                                                         href="{{ route('member.course.quiz', [$e->course_lesson_id]) }}">
-                                                        <i class="fa-solid fa-clipboard-question mx-2 px-2"></i>
-                                                        {{ $e->title }}
-                                                        <i class="bi bi-check2-circle ml-auto"></i>
+                                                        <div>
+                                                            <i class="fa-solid fa-clipboard-question mx-2 px-2"></i>
+                                                            {{ $e->title }}
+                                                        </div>
+                                                        @livewire('checklist', [$e->id, $CourseActive[0]->id, 'q'])
                                                     </a>
                                                 </li>
                                             @endif

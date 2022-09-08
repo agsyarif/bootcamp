@@ -76,10 +76,6 @@ class Quiz extends Component
             $nilai->save();
         }
 
-        // $update = exam::findOrFail($this->exam_id[0]);
-        // $update->score = $this->score;
-        // $update->save();
-
         // $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapterActive)->orderBy('id', 'desc')->limit(1)->pluck('id');
 
         return redirect()->route('member.quiz.result', [$this->score, $this->exam_id[0]]);

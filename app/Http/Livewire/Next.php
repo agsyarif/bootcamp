@@ -9,6 +9,7 @@ use App\Models\CourseLesson;
 use App\Models\CourseMaterial;
 use App\Models\detailAksesCourse;
 use App\Models\exam;
+use App\Models\nilai;
 use Illuminate\Support\Facades\Auth;
 
 class Next extends Component
