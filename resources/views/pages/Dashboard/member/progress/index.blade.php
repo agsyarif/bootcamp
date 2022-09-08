@@ -104,6 +104,28 @@
                         </div>
 
                         <div class="">
+
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <tr>
+                                    <th colspan="3" scope="col" class="py-3 px-6">
+                                        Jumlah kuis :
+                                    </th>
+                                    <th colspan="2" scope="col" class="py-3 px-6">
+                                        {{ $nilai->count() }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" scope="col" class="py-3 px-6">
+                                        Rata - Rata Nilai :
+                                    </th>
+                                    <th colspan="2" scope="col" class="py-3 px-6">
+                                        {{ $persentase_nilai }}
+                                    </th>
+                                </tr>
+                            </table>
+                            <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)" class="mt-3 rounded">
+
+                            </div>
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
