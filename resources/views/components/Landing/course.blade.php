@@ -1,5 +1,5 @@
 <a href="{{ route('detail.landing', $course->slug) }}" class="inline-block px-3">
-    <div class="w-96 h-auto overflow-hidden md:p-5 p-4 bg-white hover:bg-gray-200 rounded-2xl inline-block">
+    <div class="w-96 h-auto overflow-hidden md:p-5 p-4 bg-white hover:bg-gray-200 rounded-2xl inline-block mob:w100">
         <div class="flex items-center space-x-2 mb-6">
 
             <!--Author's profile photo-->

@@ -2460,6 +2460,10 @@ body {
     .mob\:mb10 {
         padding: ;
     }
+
+    .mob\:w100 {
+        width: 100%;
+    }
 }
 
 @media (min-width: 480px) {
