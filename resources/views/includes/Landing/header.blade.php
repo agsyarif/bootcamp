@@ -1,6 +1,6 @@
 <section class="h-full w-full border-box transition-all duration-500 linear lg:px-16 md:px-20 px-8 py-4 bg-white">
     <div class="navbar-1-1" style="font-family: 'quicksand', sans-serif">
-        <div class=" mx-auto flex flex-wrap flex-row items-center justify-between">
+        <div class=" mx-auto flex flex-row items-center justify-between">
 
             <div class="flex w-2/4 justify-beetween">
                 <a href="{{ route('index') }}" class="flex items-center">
@@ -69,7 +69,7 @@
 
             @guest
 
-                <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+                <div class="lg:flex lg:items-center lg:w-auto md:w:auto w-full  mob:menu" id="menu">
                     <button onclick="toggleModal('loginModal')"
                         class="text-serv-login1-text hover:text-serv-login1-text hover:bg-gray600 mx-5 hover:text-gray-900 items-center border-0 block lg:inline-block lg:py-3 lg:px-10 focus:outline-none rounded font-medium text-base mt-6 lg:mt-0">
                         Log In

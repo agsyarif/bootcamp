@@ -12,8 +12,7 @@
 
         <!-- hero -->
         <div class="hero">
-            <div
-                class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-16 mx-auto">
+            <div class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
                 <!-- Left Column -->
                 <div
                     class="lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center">
@@ -37,10 +36,10 @@
                     </div>
                 </div>
                 <!-- Right Column -->
-                <div class="w-full lg:w-1/2 text-center lg:justify-start justify-center flex pr-0">
-                    <img src="{{ asset('images/her.png') }}" alt="">
+                <div class="w-full lg:w-1/2 text-center mob:hidden lg:justify-start justify-center pr-0">
+                    <img src="{{ asset('images/her.png') }}" style="display : ">
                     {{-- pada webhosting --}}
-                    <img src="{{ asset('images/assets/images/her.png') }}" alt="">
+                    {{-- <img src="{{ asset('images/assets/images/her.png') }}" alt=""> --}}
                 </div>
             </div>
 
@@ -52,7 +51,7 @@
 
         <!-- services -->
         <div class="bg-serv-services-bg">
-            <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-16 mx-auto">
+            <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto mob:p20">
 
                 <div class="flex flex-col w-full mb-5">
                     <h1 class="md:text-4xl text-3xl tracking-wider font-semibold mb-5 text-medium-black">
@@ -60,7 +59,7 @@
                 </div>
 
                 {{-- <div class="flex lg:flex-row flex-col items-center pb-1 "> --}}
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid sm:grid-cols-2 gap-4 mob:col-grid1">
 
                     {{-- <div class=""> --}}
                     <div class="p-6 max-w-lg bg-white rounded-lg border border-gray-200 shadow-md">
@@ -130,7 +129,7 @@
 
         <!-- services -->
         <div class="overflow-hidden">
-            <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-8 mx-auto">
+            <div class="pt-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-8 mx-auto">
                 <div class="flex flex-col w-full">
                     <h2 class="md:text-4xl text-3xl tracking-wider font-semibold mb-10 text-medium-black">
                         Pilih Jalur Belajar Kamu</h2>
@@ -160,7 +159,7 @@
                 </a>
             </div>
             <!-- Right Column -->
-            <div class="lg:w-1/2 w-full flex flex-col lg:items-start items-center lg:text-left text-center">
+            <div class="lg:w-1/2 w-full flex flex-col lg:items-start items-center lg:text-left text-center mob:p20">
                 <h2 class="md:text-4xl text-3xl font-semibold mb-10 lg:leading-normal text-medium-black">
                     Konsultasi dengan.
                     <br>
@@ -183,7 +182,7 @@
 
         <!-- services -->
         <div class="overflow-hidden">
-            <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-8 mx-auto">
+            <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
                 <div class="flex flex-col w-full text-center py-5">
                     <h2 class="md:text-4xl text-3xl tracking-wider font-semibold mb-10 text-medium-black">
                         Success Stories</h2>

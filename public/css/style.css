@@ -2424,7 +2424,49 @@ body {
     --tw-ring-offset-width: 2px;
 }
 
-@media (min-width: 640px) {
+/* @media(max-width: 375) {
+    .mob\:hidden {
+        display: none;
+    }
+} */
+@media (max-width: 375px) {
+    .mob\:hidden {
+        display: none;
+    }
+
+    .mob\:menu {
+
+        display: flex;
+        align-items: center;
+        padding: 0 10px 20px 45px;
+    }
+
+    .mob\:p2 {
+        padding: 0 2rem 0 2rem
+    }
+
+    .mob\:col-grid1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .mob\:p20 {
+        padding: 0 20px;
+    }
+
+    .mob\:t-3 {
+        margin-top: 30px;
+    }
+
+    .mob\:mb10 {
+        padding: ;
+    }
+}
+
+@media (min-width: 480px) {
+    /* .sm\:hidden {
+        display: none;
+    } */
+
     .sm\:right-8 {
         right: 2rem;
     }
@@ -2642,7 +2684,7 @@ body {
     }
 
     .md\:pl-16 {
-        padding-left: 4rem;
+        padding-left: 3rem;
     }
 
     .md\:text-right {
