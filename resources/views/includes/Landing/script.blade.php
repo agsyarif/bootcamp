@@ -19,4 +19,18 @@
             toggleModal('detailTransaksi');
         });
     });
+
+    const btn = document.querySelector("button.mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+    const backdrop = document.querySelector('.navbar-backdrop');
+    const close = document.querySelector('.navbar-close');
+
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        btn.classList.toggle("hidden");
+    });
+    close.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        btn.classList.toggle("hidden");
+    })
 </script>
