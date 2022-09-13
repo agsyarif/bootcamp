@@ -1,0 +1,40 @@
+/* animasi ke 2 */
+svg#svg text {
+    font-size: 100px;
+    letter-spacing: 5px;
+    font-family: Tekton Pro;
+    stroke: #1D4B69;
+    font-weight: 900;
+    stroke-width: 2;
+    animation: textAnimation 5s ease infinite alternate;
+}
+
+@media (max-width: 375px) {
+    svg#svg text {
+        font-size: 125px;
+    }
+
+    .desktop {
+        display: none;
+    }
+}
+
+@media (min-width: 376px) {
+
+    .mobile {
+        display: none;
+    }
+
+}
+
+@keyframes textAnimation {
+    0% {
+        fill: transparent;
+        stroke-dasharray: 0 50%;
+    }
+
+    100% {
+        fill: transparent;
+        stroke-dasharray: 50% 0;
+    }
+}

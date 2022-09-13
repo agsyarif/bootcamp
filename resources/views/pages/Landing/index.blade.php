@@ -12,7 +12,7 @@
 
         <!-- hero -->
         <div class="hero">
-            <div class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
+            <div class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
                 <!-- Left Column -->
                 <div
                     class="lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center">
@@ -37,9 +37,9 @@
                 </div>
                 <!-- Right Column -->
                 <div class="w-full lg:w-1/2 text-center mob:hidden lg:justify-start justify-center pr-0">
-                    {{-- <img src="{{ asset('images/her.png') }}" style="display : "> --}}
+                    <img src="{{ asset('images/hero1.png') }}" style="width: 32rem; height: 32rem;">
                     {{-- pada webhosting --}}
-                    <img src="{{ asset('images/assets/images/her.png') }}" alt="">
+                    {{-- <img src="{{ asset('images/assets/images/her.png') }}" alt=""> --}}
                 </div>
             </div>
 

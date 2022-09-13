@@ -32,5 +32,5 @@
     close.addEventListener("click", () => {
         menu.classList.toggle("hidden");
         btn.classList.toggle("hidden");
-    })
+    });
 </script>
