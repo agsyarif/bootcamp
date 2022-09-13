@@ -37,9 +37,9 @@
                 </div>
                 <!-- Right Column -->
                 <div class="w-full lg:w-1/2 text-center mob:hidden lg:justify-start justify-center pr-0">
-                    <img src="{{ asset('images/her.png') }}" style="display : ">
+                    {{-- <img src="{{ asset('images/her.png') }}" style="display : "> --}}
                     {{-- pada webhosting --}}
-                    {{-- <img src="{{ asset('images/assets/images/her.png') }}" alt=""> --}}
+                    <img src="{{ asset('images/assets/images/her.png') }}" alt="">
                 </div>
             </div>
 
