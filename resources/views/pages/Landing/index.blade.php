@@ -73,7 +73,7 @@
                     <div class="p-6 max-w-lg bg-white rounded-lg border border-gray-200 shadow-md">
                         <img src="{{ asset('/assets/images/ic_globe.png') }}" alt="" class="inline mr-3 h-14 w-14">
                         <a href="#">
-                            <h5 class="mob:font2 mb-2 text-2xl font-semibold tracking-tight text-gray-900 text-white">
+                            <h5 class="mob:font2 mb-2 text-2xl font-semibold tracking-tight text-gray-900">
                                 Relevan
                                 Skillset</h5>
                         </a>
@@ -86,7 +86,7 @@
                         <img src="{{ asset('/assets/images/ic_globe-1.png') }}" alt=""
                             class="inline mr-3 h-14 w-14">
                         <a href="#">
-                            <h5 class="mob:font2 mb-2 text-2xl font-semibold tracking-tight text-white text-gray-900">
+                            <h5 class="mob:font2 mb-2 text-2xl font-semibold tracking-tight text-gray-900">
                                 Growth
                                 Mindset
                             </h5>
