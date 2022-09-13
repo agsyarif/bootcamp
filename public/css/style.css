@@ -2487,6 +2487,18 @@ body {
     h5.mob\:font2 {
         font-size: 1.1rem;
     }
+
+    div.mob\:block {
+        display: block;
+    }
+
+    img.mob\:w-auto {
+        width: auto;
+    }
+
+    .mob\:m-10-0 {
+        margin: 10px 0;
+    }
 }
 
 @media (min-width: 480px) {

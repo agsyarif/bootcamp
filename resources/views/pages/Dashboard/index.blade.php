@@ -402,10 +402,10 @@
 
                             @forelse ($course as $key => $c)
                                 <div class="my-4">
-                                    <div class="img flex">
-                                        <img class="rounded-md" width="150px"
+                                    <div class="img flex mob:block">
+                                        <img class="rounded-md mob:w-auto" width="150px"
                                             src="{{ asset('images/course/thumbnail/' . $c->image) }}" alt="">
-                                        <div class="mx-4">
+                                        <div class="mob:m-10-0">
                                             <h4>{{ $c->name }}</h4>
                                             <h4>Aktif
                                                 mulai :
