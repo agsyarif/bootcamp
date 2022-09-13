@@ -37,9 +37,10 @@
                 </div>
                 <!-- Right Column -->
                 <div class="w-full lg:w-1/2 text-center mob:hidden lg:justify-start justify-center pr-0">
-                    <img src="{{ asset('images/hero1.png') }}" style="width: 32rem; height: 32rem;">
+                    {{-- <img src="{{ asset('images/hero1.png') }}" style="width: 32rem; height: 32rem;"> --}}
                     {{-- pada webhosting --}}
-                    {{-- <img src="{{ asset('images/assets/images/her.png') }}" alt=""> --}}
+                    <img src="{{ asset('images/assets/images/hero1.png') }}" alt=""
+                        style="width: 32rem; height: 32rem;">
                 </div>
             </div>
 
