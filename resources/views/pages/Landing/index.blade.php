@@ -15,13 +15,20 @@
             <div class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
                 <!-- Left Column -->
                 <div
-                    class="lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center">
-                    <h1 class="lg:leading-normal sm:text-4xl lg:text-5xl text-3xl mb-5 font-semibold lg:mt-20">
+                    class="mob:text-center lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center">
+                    <h1 class="mob:font1 lg:leading-normal sm:text-4xl lg:text-5xl text-3xl mb-5 font-semibold lg:mt-20">
                         Bangun Karir Impianmu <br class="lg:block hidden">
                         Bersama UWHcamp
                     </h1>
 
-                    <p class="text-lg leading-relaxed text-serv-text font-light tracking-wide mb-10 lg:mb-18 ">
+                    {{-- mobile --}}
+                    <div class="hero-mobile sm:hidden">
+                        <img src="{{ asset('images/assets/images/hero1.png') }}" class="mob:size">
+                    </div>
+                    {{-- mobile --}}
+
+                    <p
+                        class="mb-10 mob:text-center mob:p-style text-lg leading-relaxed text-serv-text font-light tracking-wide lg:mb-18 ">
                         UWHcamp mentransformasi para pemula <br class="lg:block hidden">
                         untuk menjadi digital talent terbaik di Indonesia <br class="lg:block hidden">
                         yang siap bekerja.

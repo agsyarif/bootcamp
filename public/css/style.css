@@ -2429,7 +2429,7 @@ body {
         display: none;
     }
 } */
-@media (max-width: 375px) {
+@media (max-width: 425px) {
     .mob\:hidden {
         display: none;
     }
@@ -2463,6 +2463,24 @@ body {
 
     .mob\:w100 {
         width: 100%;
+    }
+
+    .mob\:size {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .mob\:text-center {
+        text-align: center;
+    }
+
+    p.mob\:p-style {
+        font-size: 1.1rem;
+        margin: 1rem 0;
+    }
+
+    h1.mob\:font1 {
+        font-size: 1.4rem;
     }
 }
 
