@@ -61,8 +61,8 @@
         <div class="bg-serv-services-bg">
             <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto mob:p20">
 
-                <div class="flex flex-col w-full mb-5">
-                    <h1 class="md:text-4xl text-3xl tracking-wider font-semibold mb-5 text-medium-black">
+                <div class="mob:text-center flex flex-col w-full mb-5">
+                    <h1 class="mob:font1 md:text-4xl text-3xl tracking-wider font-semibold mb-5 text-medium-black">
                         Keunggulan Belajar Di UWHcamp</h1>
                 </div>
 
@@ -138,8 +138,8 @@
         <!-- services -->
         <div class="overflow-hidden">
             <div class="pt-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-8 mx-auto">
-                <div class="flex flex-col w-full">
-                    <h2 class="md:text-4xl text-3xl tracking-wider font-semibold mb-10 text-medium-black">
+                <div class="mob:text-center flex flex-col w-full">
+                    <h1 class="mob:font1 md:text-4xl text-3xl tracking-wider font-semibold mb-10 text-medium-black">
                         Pilih Jalur Belajar Kamu</h2>
                 </div>
 
@@ -168,11 +168,11 @@
             </div>
             <!-- Right Column -->
             <div class="lg:w-1/2 w-full flex flex-col lg:items-start items-center lg:text-left text-center mob:p20">
-                <h2 class="md:text-4xl text-3xl font-semibold mb-10 lg:leading-normal text-medium-black">
+                <h1 class="mob:font1 md:text-4xl text-3xl font-semibold mb-10 lg:leading-normal text-medium-black">
                     Konsultasi dengan.
                     <br>
                     Representatif UWHcamp.
-                </h2>
+                </h1>
 
                 <p class="text-lg leading-relaxed text-serv-text font-light mb-10 lg:mb-18">
                     Kami yang membantumu memilih,
@@ -192,8 +192,8 @@
         <div class="overflow-hidden">
             <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
                 <div class="flex flex-col w-full text-center py-5">
-                    <h2 class="md:text-4xl text-3xl tracking-wider font-semibold mb-10 text-medium-black">
-                        Success Stories</h2>
+                    <h1 class="mob:font1 md:text-4xl text-3xl tracking-wider font-semibold mb-10 text-medium-black">
+                        Success Stories</h1>
                 </div>
 
                 <div class="flex overflow-x-scroll pb-10 hide-scroll-bar dragscroll -mx-3">

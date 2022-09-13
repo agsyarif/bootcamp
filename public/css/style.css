@@ -2474,13 +2474,14 @@ body {
         text-align: center;
     }
 
-    p.mob\:p-style {
+    .mob\:p-style {
         font-size: 1.1rem;
-        margin: 1rem 0;
+        margin: 1.2rem 0;
     }
 
     h1.mob\:font1 {
         font-size: 1.4rem;
+        margin: 1.2rem 0;
     }
 }
 
