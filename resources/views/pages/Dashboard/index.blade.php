@@ -405,7 +405,7 @@
                                     <div class="img flex mob:block">
                                         <img class="rounded-md mob:w-auto" width="150px"
                                             src="{{ asset('images/course/thumbnail/' . $c->image) }}" alt="">
-                                        <div class="mob:m-10-0">
+                                        <div class="sm:m-1 mob:m-10-0">
                                             <h4>{{ $c->name }}</h4>
                                             <h4>Aktif
                                                 mulai :
