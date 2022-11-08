@@ -38,6 +38,7 @@ class QuizController extends Controller
 
 
         // untuk Semua
+        $courses = course::findOrFail($CourseActive[0]->id);
         $chapter = CourseLesson::where('course_id', '=', $CourseActive[0]->id)->get();
         $chapterId = [];
         foreach ($chapter as $key => $value) {
@@ -47,7 +48,7 @@ class QuizController extends Controller
         $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
         $active = 'course';
 
-        return view('pages.Dashboard.member.quiz.start', compact('MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question', 'examId', 'id'));
+        return view('pages.Dashboard.member.quiz.start', compact('MateriActive', 'ChapterActive', 'CourseActive', 'chapter', 'material', 'active', 'exam', 'question', 'examId', 'id', 'courses'));
     }
 
     public function result($score, $examId)
