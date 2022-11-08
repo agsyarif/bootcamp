@@ -26,16 +26,16 @@
                         </a>
                     </div> --}}
                     <div class="my-3">
-                        <a href="#" class="text-serv-text font-light">
+                        <a href="{{ route('about') }}" class="text-serv-text font-light">
                             About
                         </a>
                     </div>
                 </div>
                 <div class="flex-1 mt-2 flex-col">
-                    <h4 class="font-medium text-white text-lg mt-4 md:mt-0 mb-4">Featured Services</h4>
+                    <h4 class="font-medium text-white text-lg mt-4 md:mt-0 mb-4">Bootcamp Categories</h4>
                     <div class="my-3">
                         <a href="#" class="text-serv-text font-light">
-                            Programming & Tech
+                            Programming &amp; Tech
                         </a>
                     </div>
                     <div class="my-3">
@@ -87,7 +87,7 @@
                             khusus Anda. Di setiap hari Senin!
                         </p>
                         <div
-                            class="flex flex-wrap items-stretch w-full mt-4 relative h-15 hover:text-white bg-serv-email rounded items-center mb-2 pr-5">
+                            class="flex flex-wrap w-full mt-4 relative h-15 hover:text-white bg-serv-email rounded items-center mb-2 pr-5">
                             <div class="flex -mr-px justify-center w-15 p-4">
                                 <span
                                     class="flex items-center leading-normal bg-serv-email px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
@@ -101,7 +101,7 @@
                                 </span>
                             </div>
                             <input type="text"
-                                class="flex-shrink flex-grow flex-auto w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none pr-3 self-center relative outline-none bg-serv-email  "
+                                class="flex-shrink flex-grow w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none pr-3 self-center relative outline-none bg-serv-email  "
                                 placeholder="yourmail@domain.com" />
                         </div>
                         <button class="bg-serv-button text-white text-lg py-4 px-4 my-2 rounded w-full">

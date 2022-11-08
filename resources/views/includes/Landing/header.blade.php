@@ -33,8 +33,8 @@
                         <a href="{{ route('explore.landing') }}"
                             class="block hover:text-gray-900 {{ $active === 'explore' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Bootcamp</a>
 
-                        <a href="{{ route('create') }}"
-                            class="block hover:text-gray-900 {{ $active === 'profesional' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">About</a>
+                        <a href="{{ route('about') }}"
+                            class="block hover:text-gray-900 {{ $active === 'about' ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">About</a>
                         @auth
 
                             <hr class="block lg:hidden">

@@ -1,5 +1,4 @@
 <div class="grid grid-cols-6 gap-6">
-
     <div class="col-span-6 sm:col-span-3">
 
         <div class="flex space-x-2">

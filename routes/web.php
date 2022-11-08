@@ -54,6 +54,7 @@ Route::get('detail_booking/{slug:created_at}', [LandingController::class, 'detai
 Route::get('booking/{id}', [LandingController::class, 'booking'])->name('booking.landing');
 Route::get('detail/{slug:slug}', [LandingController::class, 'detail'])->name('detail.landing');
 Route::get('explore', [LandingController::class, 'explore'])->name('explore.landing');
+Route::get('About', [LandingController::class, 'about'])->name('about');
 // Route::get('midtrans/success', MidtransController::class, 'success');
 // Route::get('midtrans/unfinish', MidtransController::class, 'unfinish');
 // Route::get('midtrans/error', MidtransController::class, 'error');

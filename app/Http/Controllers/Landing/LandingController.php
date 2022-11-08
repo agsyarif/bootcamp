@@ -314,4 +314,10 @@ class LandingController extends Controller
         $akses->expired = date('Y-m-d', strtotime('+1 month'));
         $akses->save();
     }
+
+    public function about()
+    {
+        $active = 'about';
+        return view('pages.Landing.about', compact('active'));
+    }
 }
