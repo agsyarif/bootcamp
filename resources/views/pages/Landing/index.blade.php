@@ -12,7 +12,7 @@
 
         <!-- hero -->
         <div class="hero">
-            <div class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
+            <div class="flex lg:pb-20 lg:px-16 md:px-16 sm:px-8 px-8 pb-16 lg:pl-24 md:pl-16 sm:pl-8 mx-auto">
                 <!-- Left Column -->
                 <div
                     class="mob:text-center lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center">
@@ -46,7 +46,7 @@
                 <div class="w-full lg:w-1/2 text-center mob:hidden lg:justify-start justify-center pr-0">
                     {{-- <img src="{{ asset('images/hero1.png') }}" style="width: 32rem; height: 32rem;"> --}}
                     {{-- pada webhosting --}}
-                    <img src="{{ asset('images/assets/images/hero1.png') }}" alt=""
+                    <img src="{{ asset('images/hero1.png') }}" alt=""
                         style="width: 32rem; height: 32rem;">
                 </div>
             </div>
@@ -77,7 +77,7 @@
                                 Relevan
                                 Skillset</h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-500 text-gray-400"> Kurikulum kami dibuat dan
+                        <p class="mb-3 font-normal text-gray-400"> Kurikulum kami dibuat dan
                             selalu
                             disesuaikan dengan kebutuhan industri teknologi
                             masa kini. </p>
@@ -91,7 +91,7 @@
                                 Mindset
                             </h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-500 text-gray-400"> Siswa kami selalu
+                        <p class="mb-3 font-normal text-gray-400"> Siswa kami selalu
                             dibimbing dan
                             dituntut memiliki Growth Mindset yang berguna untuk
                             peningkatan karir di masa depan.</p>
@@ -107,7 +107,7 @@
                                 Coding
                                 Bootcamp</h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-500 text-gray-400">Siswa akan difokuskan untuk
+                        <p class="mb-3 font-normal text-gray-400">Siswa akan difokuskan untuk
                             belajar
                             menjadi Full Stack Developer atau Data Scientist
                             di program Full Time.
@@ -121,7 +121,7 @@
                                 Hiring
                                 Partner</h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-500 text-gray-400 ">Kami bekerjasama dengan lebih
+                        <p class="mb-3 font-normal text-gray-400 ">Kami bekerjasama dengan lebih
                             dari
                             350 Hiring Partner yang siap merekrut lulusan
                             Full Time Program kami.

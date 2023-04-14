@@ -131,8 +131,8 @@ class LandingController extends Controller
         foreach ($courses as $course) {
             $rating[$course->id] = comment::where('course_id', $course->id)->avg('rating');
             // ambil 2 angka dibelakang koma
-            $ratings[$course->id] = number_format($rating[$course->id], 2);
-            $bintang[$course->id] = number_format($rating[$course->id], 0);
+            $ratings[$course->id] = (int)number_format($rating[$course->id], 0);
+            $bintang[$course->id] = (int)number_format($rating[$course->id], 0);
         }
 
         return view('pages.Landing.explore', ["active" => "explore"], compact('courses', 'course_category', 'ratings', 'bintang'));
