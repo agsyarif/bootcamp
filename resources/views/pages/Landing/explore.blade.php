@@ -41,6 +41,7 @@
                         {{-- ~~~~~~~~~~~~~~ Course view ~~~~~~~~~~~~~~~~~~~~~~~~~~~ --}}
                         @forelse ($courses as $key => $course)
                             @include('components.Landing.course')
+                            {{-- @include('components.Landing.course', {{$ratings[$course->id]}}) --}}
 
                         @empty
                         @endforelse

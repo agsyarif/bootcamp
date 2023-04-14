@@ -67,8 +67,11 @@
                             <div class="flex mt-2 flex-nowrap">
 
                                 @if ($courses->image != null)
-                                    <img src="{{ asset('images/course/thumbnail/' . $courses->image) }}"
-                                        alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-2xl ">
+                                    {{-- <img src="{{ asset('images/course/thumbnail/' . $courses->image) }}"
+                                        alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-2xl "> --}}
+
+                                    {{-- local --}}
+                                    <img src="{{ asset('assets/images/courses/' . $courses->image) }}" alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-2xl ">
                                 @else
                                     <img src="{{ url('https://via.placeholder.com/640x360') }}" alt="Thumbnail Course"
                                         loading="lazy" class="w-full h-26 object-cover rounded-2xl ">
@@ -168,10 +171,12 @@
                                     {{ $courses->user->detail_user->biography ?? '' }}
                                 </p>
 
-                                <a href="https://wa.me/0885092116?text=Hi, Saya ingin bertanya tentang Bootcamp di UWHcamp ini??"
-                                    class="mb-4 font-medium">
+                                @if ($courses->user->detail_user->contact_number ?? null != null)
+                                    
+                                <a href="https://wa.me/0885092116?text=Hi, Saya ingin bertanya tentang Bootcamp di UWHcamp ini??" class="mb-4 font-medium">
                                     WA /{{ $courses->user->detail_user->contact_number ?? '' }}
                                 </a>
+                            @endif
                             </div>
 
                             <div x-show.transition.duration.500ms="tab === 'seller'" class="leading-8 text-md">
@@ -395,7 +400,7 @@
                                     @else
                                         <button type="submit"
                                             class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
-                                            Gabung Kelas
+                                            Gabung
                                         </button>
                                     @endif
                                 </form>

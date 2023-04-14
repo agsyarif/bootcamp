@@ -91,8 +91,10 @@ class DashboardController extends Controller
             }
 
             $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get();
-            $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
-            $persentase = $progress->count() / $materi->count() * 100;
+            // $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
+            $progress = 10;
+            // $persentase = $progress->count() / $materi->count() * 100;
+            $persentase = 10 / 5 * 100;
 
             $persen = number_format($persentase, 0, '.', '');
 

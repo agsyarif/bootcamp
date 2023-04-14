@@ -49,10 +49,10 @@ class ProgressController extends Controller
 
         $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
 
-        $persentase = $progress->count() / $materi->count() * 100;
-        // $persentase = 7 / 18 * 100;
-        $persen = number_format($persentase, 0, '.', '');
-
+        // $persentase = $progress->count() / $materi->count() * 100;
+        //     $persentase = 7 / 18 * 100;
+        // $persen = number_format($persentase, 0, '.', '');
+        $persen = 0;
         // jumlah nilai member
         $nilai = nilai::whereIn('akses_course_id', $akses_id)->get();
         $jumlah = 0;
@@ -66,7 +66,8 @@ class ProgressController extends Controller
         //       = .....%
         // $persentase_nilai = 250 / (4 * 100) * 100;
 
-        $persentase_nilai = $jumlah / ($nilai->count() * 100) * 100;
+        // $persentase_nilai = $jumlah / ($nilai->count() * 100) * 100;
+        $persentase_nilai = 0;
 
         return view('pages.Dashboard.member.progress.index', compact('aksesCourse', 'course', 'active', 'courses', 'progress', 'materi', 'persen', 'nilai', 'persentase_nilai'));
     }

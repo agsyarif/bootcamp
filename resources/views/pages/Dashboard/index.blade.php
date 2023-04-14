@@ -35,8 +35,7 @@
                                         alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
                                 @endif
                             @else
-                                <img src="https://source.unsplash.com/MP0IUfwrn0A"
-                                    class="inline ml-3 h-12 w-12 rounded-full" />
+                                <img src="{{asset('assets/images/user.png')}}" class="inline ml-2 h-10 w-10 rounded-full" />
                             @endif
 
                             Halo, {{ Auth::user()->name }}
@@ -186,7 +185,8 @@
                                     </div>
 
                                     <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
-                                        {{ $progress->count() ?? '' }}</p>
+                                        {{-- {{ $progress->count() ?? '' }}</p> --}}
+                                        {{ 1 ?? '' }}</p>
 
                                     <p class="text-sm text-left text-gray-500">
                                         All <br class="hidden lg:block">
