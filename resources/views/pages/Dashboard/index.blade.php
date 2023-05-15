@@ -418,7 +418,7 @@
                                             <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-l-full"
                                                 style="width: {{ $persen }}%"> {{ $persen }}%</div>
                                         </div>
-                                        <div class="pt-4">{{ $progress->count() }}/{{ $materi->count() }}</div>
+                                        <div class="pt-4">{{ $progress->count() ?? 0 }}/{{ $materi->count() }}</div>
                                     </div>
                                     <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)"
                                         class="mt-3 rounded">

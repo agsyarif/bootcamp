@@ -66,12 +66,10 @@ class lessonController extends Controller
         $dataVideo = [];
 
         foreach ($videos as $video) {
-            // $dataVideo[] = $video->store('public/video');
-            $namaVideo = time() . '.' . $video->extension();
-            $dataVideo[] = time() . '.' . $video->extension();
+            $namaVideo = time() . '.' . $video->getClientOriginalExtension();
+            $dataVideo[] = $namaVideo;
 
             $video->storeAs('course/video', $namaVideo);
-            // $video->move(public_path('assets/video/courses'), $namaVideo);
         }
 
         // return $dataVideo;

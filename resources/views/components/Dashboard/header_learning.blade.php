@@ -10,7 +10,7 @@
             </a> --}}
             {{-- <div style="background-color: brown"> --}}
 
-            <svg viewBox="0 0 700 120" class="desktop" id="svg">
+            {{-- <svg viewBox="0 0 700 120" class="desktop" id="svg">
                 <text x="40%" y="70%" fill="" text-anchor="middle">
                     UwhCamp
                 </text>
@@ -19,7 +19,7 @@
                 <text x="40%" y="70%" fill="" text-anchor="middle">
                     Uwhcamp
                 </text>
-            </svg>
+            </svg> --}}
             {{-- </div> --}}
 
             <div>
