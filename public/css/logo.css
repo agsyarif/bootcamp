@@ -9,6 +9,16 @@ svg#svg text {
     animation: textAnimation 5s ease infinite alternate;
 }
 
+svg#desktop text {
+    font-size: 100px;
+    letter-spacing: 4px;
+    font-family: Quicksand;
+    stroke: #ffffff;
+    font-weight: 900;
+    stroke-width: 2;
+    animation: textAnimation 5s ease infinite alternate;
+}
+
 @media (max-width: 375px) {
     svg#svg text {
         font-size: 125px;

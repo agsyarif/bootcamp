@@ -9,8 +9,11 @@
 
                 <aside class="col-sm-3 p-3 nav-bg" style="border-radius: 20px;">
                     <div class="d-flex justify-content-between" style="align-items: center;">
-                        <img src="https://class.buildwithangga.com/images/ic_burger-opened.svg" alt="">
-                        {{-- <img src="https://class.buildwithangga.com/images/ic_burger-opened.svg" alt=""> --}}
+                        <svg viewBox="0 0 700 120" class="desktop" id="desktop">
+                            <text x="40%" y="70%" fill="" text-anchor="middle">
+                                UwhCamp
+                            </text>
+                        </svg>
                         <a href="{{ route('member.dashboard.index') }}"
                             style="color: darkgray; text-decoration: none; margin-right:20px;">Dashboard</a>
                         {{-- <p>{{ $CourseActive }}</p> --}}
