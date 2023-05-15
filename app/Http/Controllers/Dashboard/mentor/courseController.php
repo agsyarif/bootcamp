@@ -180,7 +180,7 @@ class courseController extends Controller
             // Delete images from public/images/course/thumbnail
             Storage::disk('hosting')->delete('course/thumbnail/' . $firstImg);
             // Storage::delete('images/course/thumbnail/' . $firstImg);
-            $image->storeAs('course/thumbnail', $dataImage);
+            // $image->storeAs('course/thumbnail', $dataImage);
             // File::delete(public_path('images/course/thumbnail' . $firstImg));
         }
 
