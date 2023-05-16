@@ -207,7 +207,7 @@
 
                                             <div class="wrapper @if ($course->image != null) active @endif">
                                                 <div class="image">
-                                                    <img src="{{ asset('storage/course/thumbnail/' . $course->image) }}"
+                                                    <img src="{{ asset('course/thumbnail/' . $course->image) }}"
                                                         id="preview" alt="">
                                                 </div>
                                                 <div class="content">
