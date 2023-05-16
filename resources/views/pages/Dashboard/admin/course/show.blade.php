@@ -79,7 +79,7 @@
                                     <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">
 
                                         @if ($course->image != null)
-                                            <img src="{{ asset('images/course/thumbnail/' . $course->image) }}"
+                                            <img src="{{ asset('course/thumbnail/' . $course->image) }}"
                                                 alt="" class="rounded-lg cursor-pointer w-100" data-lity>
                                         @else
                                             <img class="rounded-lg cursor-pointer w-100"
