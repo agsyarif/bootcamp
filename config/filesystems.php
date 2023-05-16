@@ -38,8 +38,8 @@ return [
 
         'hosting' => [
             'driver' => 'local',
-            'root' => public_path() . '/../../public_html/images',
-            'url' => env('APP_URL') . '/images',
+            'root' => public_path() . '/',
+            'url' => env('APP_URL') . '/',
             'visibility' => 'public',
         ],
 
