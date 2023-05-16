@@ -67,11 +67,7 @@
                             <div class="flex mt-2 flex-nowrap">
 
                                 @if ($courses->image != null)
-                                    {{-- <img src="{{ asset('images/course/thumbnail/' . $courses->image) }}"
-                                        alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-2xl "> --}}
-
-                                    {{-- local --}}
-                                    <img src="{{ asset('assets/images/courses/' . $courses->image) }}" alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-2xl ">
+                                    <img src="{{ asset('course/thumbnail/' . $courses->image) }}" alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-xl">
                                 @else
                                     <img src="{{ url('https://via.placeholder.com/640x360') }}" alt="Thumbnail Course"
                                         loading="lazy" class="w-full h-26 object-cover rounded-2xl ">

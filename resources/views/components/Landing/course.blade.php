@@ -23,12 +23,12 @@
 
         @if ($course->image != null)
             {{-- online --}}
-            {{-- <img src="{{ asset('images/course/thumbnail/' . $course->image) }}" alt="Thumbnail Course" loading="lazy"
-                class="w-full h-26 object-cover rounded-2xl "> --}}
+            <img src="{{ asset('course/thumbnail/' . $course->image) }}" alt="Thumbnail Course" loading="lazy"
+                class="w-full h-26 object-cover rounded-2xl ">
 
             {{-- local --}}
-            <img src="{{ asset('assets/images/courses/' . $course->image) }}" alt="Thumbnail Course" loading="lazy"
-            class="w-full h-26 object-cover rounded-2xl ">
+            {{-- <img src="{{ asset('courses/' . $course->image) }}" alt="Thumbnail Course" loading="lazy" --}}
+            {{-- class="w-full h-26 object-cover rounded-2xl "> --}}
         @else
             <img src="{{ url('https://via.placeholder.com/640x360') }}" alt="Thumbnail Course" loading="lazy"
                 class="w-full h-26 object-cover rounded-2xl ">
