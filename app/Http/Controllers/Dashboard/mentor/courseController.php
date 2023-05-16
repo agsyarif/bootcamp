@@ -220,7 +220,7 @@ class courseController extends Controller
     {
         $course = course::find($id);
         $chapter = CourseLesson::where('course_id', $id)->get();
-        Storage::delete('images/course/thumbnail/' . $course->image);
+        Storage::disk('hosting')->delete('course/thumbnail/' . $course->image);
         foreach ($chapter as $ch) {
             $ch->delete();
         }

@@ -158,16 +158,13 @@ class lessonController extends Controller
         $video = $request->file('video');
         $video_url = "";
 
-        if ($video == "") {
+        if (!$video) {
             $video_url = $oldVideo;
-            // return $video_url;
         } else {
-            $video_url = time() . '.' . $video->extension();
+            $video_url = time() . '.' . $video->getClientOriginalExtension();
 
-            Storage::delete('course/video/' . $oldVideo);
+            Storage::disk('hosting')->delete('course/video/' . $oldVideo);
             $video->storeAs('course/video', $video_url);
-            // File::delete(public_path('assets/video/courses/' . $oldVideo));
-            // $video->move(public_path('assets/video/courses'), $video_url);
         }
 
         $materi = CourseMaterial::where('id', $id)->first();
@@ -194,8 +191,7 @@ class lessonController extends Controller
         $chapterId = $materi->course_lesson_id;
         $courseId = CourseLesson::where('id', $chapterId)->first()->course_id;
         $video = $materi->video_url;
-        Storage::delete('course/video/' . $video);
-        // File::delete(public_path('assets/video/courses/' . $video));
+        Storage::disk('hosting')->delete('course/video/' . $video);
         $materi->delete();
 
         toast('berhasil menghapus data', 'success');
