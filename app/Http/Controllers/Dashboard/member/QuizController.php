@@ -58,6 +58,8 @@ class QuizController extends Controller
         $MateriActive = CourseMaterial::where('course_lesson_id', $chapterActive->id)->orderBy('id', 'desc')->limit(1)->get();
         $aksesCourse = akses_course::where('course_id', '=', $chapterActive->course_id)->where('user_id', '=', Auth::user()->id)->get();
         $chapter = CourseLesson::where('course_id', '=', $chapterActive->course_id)->get();
+        $courses = course::findOrFail($chapterActive->course_id);
+        $CourseActive = course::where('id', '=', $chapterActive->course_id)->get();
         $chapterId = [];
         foreach ($chapter as $key => $value) {
             $chapterId[] = $value->id;
@@ -69,6 +71,6 @@ class QuizController extends Controller
 
 
 
-        return view('pages.Dashboard.member.quiz.result', compact('examActive', 'score', 'chapterActive', 'chapter', 'material', 'exam', 'MateriActive', 'aksesCourse'));
+        return view('pages.Dashboard.member.quiz.result', compact('examActive', 'score', 'chapterActive', 'chapter', 'material', 'exam', 'MateriActive', 'aksesCourse', 'courses', 'CourseActive'));
     }
 }
