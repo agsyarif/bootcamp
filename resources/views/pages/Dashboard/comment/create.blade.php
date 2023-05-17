@@ -4,7 +4,7 @@
 {{-- @extends('layouts.learning.app') --}}
 {{-- @endcan --}}
 
-@extends('layouts.learning.app')
+@extends('layouts.app')
 
 @section('title', 'Dashboard')
 

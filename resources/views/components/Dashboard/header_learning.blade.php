@@ -57,7 +57,7 @@
                                         <i class="bi bi-chevron-down"></i>
                                     </a>
                                     <ul class="submenu collapse" id="{{ $item->id }}">
-                                        @foreach ($material as $key => $m)
+                                        @foreach ($item->courseMaterials as $key => $m)
                                             @if ($m->course_lesson_id == $item->id)
                                                 @if ($m->id == 1)
                                                     <li>

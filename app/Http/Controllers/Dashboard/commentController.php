@@ -52,8 +52,9 @@ class commentController extends Controller
     public function show($id)
     {
         $course = course::findOrFail($id);
+        $courses = course::all()->count();
         // return $course;
-        return view('pages.Dashboard.comment.create', compact('course'));
+        return view('pages.Dashboard.comment.create', compact('courses', 'course'));
 
         if (Auth::user()->user_role->name == 'member') {
             $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
