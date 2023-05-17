@@ -60,11 +60,12 @@ class Quiz extends Component
             $this->score = 0;
         }
 
-        $course = exam::findOrFail($this->exam_id[0]);
+        $exam = exam::findOrFail($this->exam_id[0]);
+        $course = $exam->courseLesson->course;
         $aksesCourse = akses_course::where('course_id', $course->id)->where('user_id', Auth::user()->id)->get();
         // buat data nilai baru di table nilai
         // $dataNilai = nilai::where('exam_id', $this->exam_id[0])->where('akses_course_id', $aksesCourse[0]->id)->get();
-        $dataNilai = nilai::where('exam_id', $course->id)->where('akses_course_id', $aksesCourse[0]->id)->get();
+        $dataNilai = nilai::where('exam_id', $exam->id)->where('akses_course_id', $aksesCourse[0]->id)->get();
         $dtNilai = $dataNilai == null ? 0 : $dataNilai->count();
         if ($dtNilai <= 0) {
             $nilai = new nilai;

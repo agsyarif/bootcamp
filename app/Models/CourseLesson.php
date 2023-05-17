@@ -17,7 +17,7 @@ class CourseLesson extends Model
 
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(course::class);
     }
 
     public function courseMaterials()
