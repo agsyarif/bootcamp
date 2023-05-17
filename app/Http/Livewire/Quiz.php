@@ -65,7 +65,8 @@ class Quiz extends Component
         // buat data nilai baru di table nilai
         // $dataNilai = nilai::where('exam_id', $this->exam_id[0])->where('akses_course_id', $aksesCourse[0]->id)->get();
         $dataNilai = nilai::where('exam_id', $course->id)->where('akses_course_id', $aksesCourse[0]->id)->get();
-        if ($dataNilai->count() <= 0) {
+        $dtNilai = $dataNilai == null ? 0 : $dataNilai->count();
+        if ($dtNilai <= 0) {
             $nilai = new nilai;
             $nilai->exam_id = $this->exam_id[0];
             $nilai->akses_course_id = $aksesCourse[0]->id;
