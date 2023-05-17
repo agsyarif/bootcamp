@@ -23,7 +23,7 @@
 
                     {{-- mobile --}}
                     <div class="hero-mobile sm:hidden">
-                        <img src="{{ asset('images/assets/images/hero1.png') }}" class="mob:size">
+                        <img src="{{ asset('images/hero1.png') }}" class="mob:size">
                     </div>
                     {{-- mobile --}}
 
