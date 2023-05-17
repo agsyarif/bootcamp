@@ -74,7 +74,7 @@ class Quiz extends Component
             $nilai->score = $this->score;
             $nilai->save();
         } else {
-            $nilai = $dataNilai;
+            $nilai = $dataNilai[0];
             $nilai->score = $this->score;
             $nilai->save();
         }
