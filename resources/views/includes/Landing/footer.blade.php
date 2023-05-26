@@ -57,22 +57,22 @@
                 <div class="flex-1 mt-2 flex-col">
                     <h4 class="font-medium text-white text-lg mt-4 md:mt-0 mb-4">Our Community</h4>
                     <div class="my-3">
-                        <a href="#" class="text-serv-text font-light">
+                        <a href="https://instagram.com/agsyarif_?igshid=MzNlNGNkZWQ4Mg==" class="text-serv-text font-light">
                             Instagram
                         </a>
                     </div>
                     <div class="my-3">
-                        <a href="#" class="text-serv-text font-light">
+                        <a href="https://t.me/+628155173018" class="text-serv-text font-light">
                             Telegram
                         </a>
                     </div>
                     <div class="my-3">
-                        <a href="#" class="text-serv-text font-light">
-                            Facebook
+                        <a href="https://wa.me/+628155173018" class="text-serv-text font-light">
+                            WhatsApp
                         </a>
                     </div>
                     <div class="my-3">
-                        <a href="#" class="text-serv-text font-light">
+                        <a href="https://discord.gg/uhwhcue4" class="text-serv-text font-light">
                             Discord
                         </a>
                     </div>
@@ -104,7 +104,7 @@
                                 class="flex-shrink flex-grow w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none pr-3 self-center relative outline-none bg-serv-email  "
                                 placeholder="yourmail@domain.com" />
                         </div>
-                        <button class="bg-serv-button text-white text-lg py-4 px-4 my-2 rounded w-full">
+                        <button onclick="alert('Dalam mode pengembangan.')" class="bg-serv-button text-white text-lg py-4 px-4 my-2 rounded w-full">
                             Subscribe
                         </button>
                     </div>
@@ -123,16 +123,16 @@
                 <p class="text-serv-text">
                 <div class="sm:flex sm:space-x-6">
                     <span class="sm:flex block">
-                        <a href="#" class="text-serv-text">Terms</a>
+                        <span href="#" class="text-serv-text">Terms</span>
                     </span>
                     <span class="sm:flex block">
-                        <a href="#" class="text-serv-text">Privacy</a>
+                        <span href="#" class="text-serv-text">Privacy</span>
                     </span>
                     <span class="sm:flex block">
-                        <a href="#" class="text-serv-text">Updates</a>
+                        <span href="#" class="text-serv-text">Updates</span>
                     </span>
                     <span class="sm:flex block">
-                        <a href="#" class="text-serv-text">Contact us</a>
+                        <span href="#" class="text-serv-text">Contact us</span>
                     </span>
                 </div>
                 </p>
