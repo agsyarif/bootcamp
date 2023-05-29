@@ -138,10 +138,6 @@ Route::group(
 //     return view('welcome');
 // });
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-
 // route socialite
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
 Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
