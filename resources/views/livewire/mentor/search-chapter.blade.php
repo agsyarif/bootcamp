@@ -70,9 +70,15 @@
                                                 <td class="py-4 px-6">
                                                     {{ $materi->where('course_lesson_id', $item->id)->count() }}
                                                     <a href="{{ route('mentor.create-materi.show', [$item->id]) }}"
-                                                        class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                        class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-plus">
                                                         <i class="fa fa-plus"></i>
+                                                        <div id="tooltip-plus" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Tambah Materi
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
                                                     </a>
+                                            </a>
+
                                                 </td>
                                                 <td class="py-4 px-6">
                                                     <div class="text-sm">
@@ -85,8 +91,12 @@
                                                             <i class="fa fa-eye"></i>
                                                         </button>
                                                         <a href="{{ route('mentor.chapter.edit', $item->id) }}"
-                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-edit">
                                                             <i class="fas fa-edit fa-lg"></i>
+                                                            <div id="tooltip-edit" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                Edit Chapter
+                                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                                            </div>
                                                         </a>
 
                                                         <form class="inline"
@@ -95,9 +105,12 @@
                                                             @method('delete')
                                                             @csrf
                                                             <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                                onclick="return confirm('Are you sure?')">
+                                                                onclick="return confirm('Are you sure?')" data-tooltip-target="tooltip-trash">
                                                                 <i class="fas fa-trash-alt fa-lg"></i>
-
+                                                                <div id="tooltip-trash" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                    Hapus Chapter
+                                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                                </div>
                                                             </button>
                                                         </form>
                                                     </div>
@@ -143,8 +156,12 @@
                                                             <td class="py-4 px-6">
                                                                 <div class="text-sm">
                                                                     <a href="{{ route('mentor.materi.edit', $m->id) }}"
-                                                                        class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
-                                                                        <i class="fas fa-edit fa-lg"></i>
+                                                                        class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-edit-materi">
+                                                                        <i class="fas fa-edit"></i>
+                                                                        <div id="tooltip-edit-materi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                            Edit Materi
+                                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                                        </div>
                                                                     </a>
                                                                     <form class="inline"
                                                                         action="{{ route('mentor.materi.destroy', $m->id) }}"
@@ -153,8 +170,12 @@
                                                                         @csrf
                                                                         <button
                                                                             class="ml-4 py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                                            onclick="return confirm('Are you sure?')">
-                                                                            <i class="fas fa-trash-alt fa-lg"></i>
+                                                                            onclick="return confirm('Are you sure?')" data-tooltip-target="tooltip-trash-materi">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                            <div id="tooltip-trash-materi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                                Hapus Materi
+                                                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                                                            </div>
                                                                         </button>
                                                                     </form>
                                                                 </div>

@@ -95,20 +95,33 @@
                                         <td class="py-4 px-6 flex">
 
                                             <a href="{{ route('mentor.materi.show', $men['id']) }}"
-                                                class="py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
                                                 <i class="fa fa-eye"></i>
+                                                <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    lihat dan Tambah Materi
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                             </a>
                                             <a href="{{ route('mentor.course.edit', $men['id']) }}"
-                                                class="py-2 mx-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                class="py-2 mx-2 mt-2 text-serv-yellow hover:text-gray-800" data-tooltip-target="tooltip-pen">
                                                 <i class="fa-regular fa-pen-to-square"></i>
+                                                <div id="tooltip-pen" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Edit course
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                             </a>
                                             <form action="{{ route('mentor.course.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                    onclick="return confirm('Are you sure?')">
+                                                    onclick="return confirm('Are you sure?')"
+                                                    data-tooltip-target="tooltip-trash">
                                                     <i class="fa-regular fa-trash-can"></i>
+                                                    <div id="tooltip-trash" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                        Hapus course
+                                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                                    </div>
                                                 </button>
                                             </form>
                                         </td>
