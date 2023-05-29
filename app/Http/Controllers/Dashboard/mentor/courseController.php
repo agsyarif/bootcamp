@@ -29,15 +29,13 @@ class courseController extends Controller
      */
     public function index()
     {
-        // $courses = course::where('user_id', '=', Auth::user()->id)->get();
-        $course = course::all();
+        $course = course::where('user_id', '=', Auth::user()->id)->get();
+        // $course = course::all();
         $courses = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get()->count();
         // $courses = $course->count();
         $categories_id = course::all()->where('user_id', '=', Auth::user()->id)->pluck('category_id');
         $categories = CourseCategory::all()->whereIn('id', $categories_id);
         $exam = exam::all();
-        // return course::all();
-
         return view('pages.Dashboard.mentor.course.index', compact('courses', 'course', 'categories', 'exam'));
     }
 
