@@ -30,6 +30,7 @@ use App\Http\Controllers\Dashboard\mentor\courseCategoryController;
 use App\Http\Controllers\Dashboard\MentorController as DashboardMentorController;
 use App\Http\Controllers\Dashboard\member\CourseController as MemberCourseController;
 use App\Http\Controllers\Dashboard\member\MemberController as MemberMemberController;
+use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberController;
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Auth;
@@ -104,7 +105,7 @@ Route::group(
         Route::resource('exam', ExamController::class);
         Route::resource('type', TypeController::class);
         Route::resource('question', QuestionController::class);
-        // Route::resource('user', UserController::class);
+        Route::resource('course/member', MentorMemberController::class);
     }
 );
 
@@ -123,23 +124,6 @@ Route::group(
         // Route::resource('materi', MateriController::class);
     }
 );
-
-// Route::group(
-//     ['prefix' => 'mentor', 'as' => 'mentor.', 'middleware' => ['auth', 'verified', 'Member']],
-//     function () {
-//         Route::resource('dashboard', MemberMemberController::class);
-//     }
-// );
-
-
-// Dashboard
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
 
 // route socialite
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
