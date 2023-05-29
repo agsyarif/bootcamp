@@ -30,6 +30,7 @@ use App\Http\Controllers\Dashboard\mentor\courseCategoryController;
 use App\Http\Controllers\Dashboard\MentorController as DashboardMentorController;
 use App\Http\Controllers\Dashboard\member\CourseController as MemberCourseController;
 use App\Http\Controllers\Dashboard\member\MemberController as MemberMemberController;
+use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberController;
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Auth;
@@ -104,6 +105,11 @@ Route::group(
         Route::resource('exam', ExamController::class);
         Route::resource('type', TypeController::class);
         Route::resource('question', QuestionController::class);
+        // Route::group(['prefix' => 'course'], function () {
+        //     Route::get('member/{courseId}', [MentorMemberController::class, 'index']);
+        //     Route::resource('member', MentorMemberController::class)->except('index');
+        // });
+        Route::resource('course/member', MentorMemberController::class);
         // Route::resource('user', UserController::class);
     }
 );
