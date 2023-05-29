@@ -105,12 +105,7 @@ Route::group(
         Route::resource('exam', ExamController::class);
         Route::resource('type', TypeController::class);
         Route::resource('question', QuestionController::class);
-        // Route::group(['prefix' => 'course'], function () {
-        //     Route::get('member/{courseId}', [MentorMemberController::class, 'index']);
-        //     Route::resource('member', MentorMemberController::class)->except('index');
-        // });
         Route::resource('course/member', MentorMemberController::class);
-        // Route::resource('user', UserController::class);
     }
 );
 
