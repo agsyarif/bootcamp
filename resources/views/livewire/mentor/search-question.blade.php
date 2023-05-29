@@ -88,16 +88,25 @@
                                                 <i class="fa fa-eye"></i>
                                             </a> --}}
                                             <a href="{{ route('mentor.question.edit', [$men->id]) }}"
-                                                class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                class="py-2 mt-2 text-serv-yellow hover:text-gray-800"
+                                                data-tooltip-target="tooltip-edit-question">
                                                 <i class="fa-regular fa-pen-to-square"></i>
+                                                <div id="tooltip-edit-question" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Edit Soal
+                                                   <div class="tooltip-arrow" data-popper-arrow></div>
+                                               </div>
                                             </a>
                                             <form action="{{ route('mentor.question.destroy', [$men->id]) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                    onclick="return confirm('Are you sure?')">
+                                                    onclick="return confirm('Are you sure?')" data-tooltip-target="tooltip-trash-question">
                                                     <i class="fa-regular fa-trash-can"></i>
+                                                    <div id="tooltip-trash-question" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                        Hapus Soal
+                                                       <div class="tooltip-arrow" data-popper-arrow></div>
+                                                   </div>
                                                 </button>
                                             </form>
                                         </td>
