@@ -120,7 +120,6 @@ Route::group(
 
         Route::get('quiz/{id}/', [QuizController::class, 'start'])->name('course.quiz');
         Route::get('quiz/result/{score}/{id}', [QuizController::class, 'result'])->name('quiz.result');
-        // Route::resource('materi', MateriController::class);
     }
 );
 
