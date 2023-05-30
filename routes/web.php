@@ -104,7 +104,6 @@ Route::group(
         Route::resource('exam', ExamController::class);
         Route::resource('type', TypeController::class);
         Route::resource('question', QuestionController::class);
-        // Route::resource('user', UserController::class);
     }
 );
 
