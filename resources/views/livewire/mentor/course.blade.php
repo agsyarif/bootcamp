@@ -47,6 +47,9 @@
                                     Publish
                                 </th>
                                 <th scope="col" class="py-3 px-6">
+                                    Members
+                                </th>
+                                <th scope="col" class="py-3 px-6">
                                     Aksi
                                 </th>
                             </tr>
@@ -91,6 +94,18 @@
                                                     <i class="fas fa-xmark"></i>
                                                 <p>
                                             @endif
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            {{-- <a href="{{ route('mentor.materi.show', $men['id']) }}" --}}
+                                            <a href="{{ route('mentor.member.show', $men['id']) }}"
+                                                class="py-2 mt-2 text-gray-500 hover:text-gray-800" data-tooltip-target="tooltip-users">
+                                                {{ $men->akses_course->count() }}
+                                                <i class="fa fa-users"></i>
+                                                <div id="tooltip-users" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Lihat Member
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
+                                            </a>
                                         </td>
                                         <td class="py-4 px-6 flex">
 
