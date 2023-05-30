@@ -24,6 +24,11 @@ class akses_course extends Model
 
     public function detail_akses_course()
     {
-        return $this->hasMany(detail_akses_course::class);
+        return $this->hasMany(detailAksesCourse::class);
+    }
+
+    public function examScore()
+    {
+        return $this->hasMany(nilai::class);
     }
 }
