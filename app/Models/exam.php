@@ -16,4 +16,19 @@ class exam extends Model
     {
         return $this->belongsTo(CourseLesson::class);
     }
+
+    public function questions()
+    {
+        return $this->hasMany(question::class);
+    }
+
+    public function getExplanationByQuestionId($questionId)
+    {
+        return $this->questions()->where('id', $questionId)->value('explanations');
+    }
+
+    public function getQuestionByQuestionId($questionId)
+    {
+        return $this->questions()->where('id', $questionId)->value('title');
+    }
 }

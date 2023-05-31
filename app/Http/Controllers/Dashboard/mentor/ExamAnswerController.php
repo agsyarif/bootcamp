@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Dashboard\mentor;
 
 use App\Http\Controllers\Controller;
-use App\Models\akses_course;
 use App\Models\answerUser;
 use App\Models\course;
-use App\Models\nilai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExamScoreController extends Controller
+class ExamAnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +16,16 @@ class ExamScoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
@@ -41,7 +49,8 @@ class ExamScoreController extends Controller
      */
     public function show($id)
     {
-        $score = answerUser::where('akses_course_id', $id)->get();
+        $answerUser = answerUser::findOrFail($id);
+
         $courseUser = course::where('user_id', '=', Auth::user()->id);
         $course = $courseUser->get();
         $currentCourse = $courseUser->whereHas('akses_course', function ($q) use ($id) {
@@ -49,7 +58,18 @@ class ExamScoreController extends Controller
         })->get();
         $courses = $course->count();
 
-        return view('pages.Dashboard.mentor.examScore.show', compact('score', 'courses', 'currentCourse'));
+        return view('pages.Dashboard.mentor.examScore.answerUser.priview', compact(['answerUser', 'courses', 'currentCourse']));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**

@@ -11,7 +11,7 @@
                 <div class="col-span-8">
 
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        Nilai Kuis : <br>{{ optional(optional($score)[0])->aksesCourse->user->name ?? '' }}
+                        Nilai Kuis : <br>{{ optional(optional($score)[0])->akses_course->user->name ?? '' }}
                     </h2>
 
                     <p class="text-sm text-gray-400">
@@ -104,7 +104,7 @@
                                                     </td>
                                                     <td class="py-4 px-6 flex">
         
-                                                        <a href="{{ route('mentor.exam-answer.show', $item->id) }}" class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
+                                                        <a href="{{ route('mentor.exam-score.show', $item->id) }}" class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
                                                             <i class="fa fa-eye"></i>
                                                             <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                                 Lihat Jawaban

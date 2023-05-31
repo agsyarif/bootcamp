@@ -1610,6 +1610,11 @@ select {
     background-color: rgba(8, 36, 49, var(--tw-bg-opacity));
 }
 
+.ring-serv-bg {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgba(8, 36, 49/ var(--tw-ring-opacity));
+}
+
 .bg-serv-services-bg {
     --tw-bg-opacity: 1;
     background-color: rgba(244, 244, 250, var(--tw-bg-opacity));

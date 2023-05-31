@@ -83,6 +83,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div style="color: darkgrey">
+                                        {{-- {{ $answerUser }} --}}
                                         <p>Ujian dengan Judul {{ $examActive->title }} untuk menguji materi pada bab :
                                         </p>
                                         <p>{{ $chapterActive->title }}</p>

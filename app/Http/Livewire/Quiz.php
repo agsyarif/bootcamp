@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\akses_course;
+use App\Models\answerUser;
 use App\Models\CourseLesson;
 use App\Models\exam;
 use Livewire\Component;
@@ -40,11 +41,14 @@ class Quiz extends Component
 
     public function submitAnswer()
     {
+        $answer = [];
         if (count($this->jawaban) > 0) {
             foreach ($this->jawaban as $key => $value) {
                 $this->selectedAnswer[] = $value;
+                $is_true = 0;
                 // mencocokan jawaban dengan database
-                $questionanswer = question::findOrFail($key)->answer;
+                $question = question::findOrFail($key);
+                $questionanswer = $question->answer;
 
                 $userAnswer = substr($value, strpos($value, '-') + 1);
                 $total = question::where('id', $key)->get();
@@ -53,8 +57,20 @@ class Quiz extends Component
                 $bobot = 100 / $tt;
                 $score = $this->score;
                 if ($userAnswer == $questionanswer) {
+                    $is_true = 1;
                     $this->score = $score + $bobot;
                 }
+
+                $answer[] = [
+                    'questionId' => $question->id,
+                    'option1' => $question->option1,
+                    'option2' => $question->option2,
+                    'option3' => $question->option3,
+                    'option4' => $question->option4,
+                    'userAnswer' => $userAnswer,
+                    'questionAnswer' => $questionanswer,
+                    'is_true' => $is_true
+                ];
             }
         } else {
             $this->score = 0;
@@ -63,23 +79,23 @@ class Quiz extends Component
         $exam = exam::findOrFail($this->exam_id[0]);
         $course = $exam->courseLesson->course;
         $aksesCourse = akses_course::where('course_id', $course->id)->where('user_id', Auth::user()->id)->get();
-        // buat data nilai baru di table nilai
-        // $dataNilai = nilai::where('exam_id', $this->exam_id[0])->where('akses_course_id', $aksesCourse[0]->id)->get();
-        $dataNilai = nilai::where('exam_id', $exam->id)->where('akses_course_id', $aksesCourse[0]->id)->get();
-        $dtNilai = $dataNilai == null ? 0 : $dataNilai->count();
-        if ($dtNilai <= 0) {
-            $nilai = new nilai;
-            $nilai->exam_id = $this->exam_id[0];
-            $nilai->akses_course_id = $aksesCourse[0]->id;
-            $nilai->score = $this->score;
-            $nilai->save();
-        } else {
-            $nilai = $dataNilai[0];
-            $nilai->score = $this->score;
-            $nilai->save();
-        }
 
-        // $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapterActive)->orderBy('id', 'desc')->limit(1)->pluck('id');
+        // buat data nilai baru di table answer_user
+        $dataNilai = answerUser::where('exam_id', $exam->id)->where('akses_course_id', $aksesCourse[0]->id)->first();
+
+        if ($dataNilai == null) {
+            $answerUser = answerUser::create([
+                'exam_id' => $this->exam_id[0],
+                'akses_course_id' => $aksesCourse[0]->id,
+                'answers' => json_encode($answer),
+                'score' => $this->score,
+            ]);
+        } else {
+            $dataNilai->update([
+                'answers' => json_encode($answer),
+                'score' => $this->score,
+            ]);
+        }
 
         return redirect()->route('member.quiz.result', [$this->score, $this->exam_id[0]]);
     }
