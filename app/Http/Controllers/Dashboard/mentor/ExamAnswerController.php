@@ -54,7 +54,7 @@ class ExamAnswerController extends Controller
         $courseUser = course::where('user_id', '=', Auth::user()->id);
         $course = $courseUser->get();
         $currentCourse = $courseUser->whereHas('akses_course', function ($q) use ($id) {
-            $q->where('id', $id);
+            $q->where('course_id', $id);
         })->get();
         $courses = $course->count();
 
