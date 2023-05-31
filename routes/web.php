@@ -30,6 +30,7 @@ use App\Http\Controllers\Dashboard\mentor\courseCategoryController;
 use App\Http\Controllers\Dashboard\MentorController as DashboardMentorController;
 use App\Http\Controllers\Dashboard\member\CourseController as MemberCourseController;
 use App\Http\Controllers\Dashboard\member\MemberController as MemberMemberController;
+use App\Http\Controllers\Dashboard\mentor\ExamScoreController;
 use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberController;
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
@@ -106,6 +107,7 @@ Route::group(
         Route::resource('type', TypeController::class);
         Route::resource('question', QuestionController::class);
         Route::resource('course/member', MentorMemberController::class);
+        Route::resource('course/member/exam-score', ExamScoreController::class);
     }
 );
 

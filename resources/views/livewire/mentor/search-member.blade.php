@@ -110,7 +110,7 @@
                                                 </td>
                                                 <td class="py-4 px-6 flex">
 
-                                                    <a href="{{ route('mentor.materi.show', $item->id) }}"
+                                                    <a href="{{ route('mentor.exam-score.show', $item->id) }}"
                                                         class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
                                                         <i class="fa fa-clipboard-question"></i>
                                                         <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
