@@ -78,16 +78,16 @@
             </div>
             <div class="grid grid-cols-6">
                 <div class="col-span-3 pl-5">
-                    <div class="ml-5 p-1 pl-4 border-cyan-900 border-2 rounded-md mb-2 @if ($item['option1'] == $item['userAnswer']) @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
+                    <div class="ml-5 p-1 pl-4 @if ($item['option1'] == $item['questionAnswer']) border-green-300 @else  border-cyan-300 @endif border-2 rounded-md mb-2 @if ($item['option1'] == $item['userAnswer']) @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
                         <span class="mr-3">A</span> {{ $item['option1']}}
                     </div>
-                    <div class="ml-5 p-1 pl-4 border-cyan-900 border-2 rounded-md mb-2 @if ($item['option2'] == $item['userAnswer']) @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
+                    <div class="ml-5 p-1 pl-4 @if ($item['option2'] == $item['questionAnswer']) border-green-300 @else  border-cyan-300 @endif border-2 rounded-md mb-2 @if ($item['option2'] == $item['userAnswer']) @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
                         <span class="mr-3">B</span> {{ $item['option2']}}
                     </div>
-                    <div class="ml-5 p-1 pl-4 border-cyan-900 border-2 rounded-md mb-2 @if ($item['option3'] == $item['userAnswer'])  @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
+                    <div class="ml-5 p-1 pl-4 @if ($item['option3'] == $item['questionAnswer']) border-green-300 @else  border-cyan-300 @endif border-2 rounded-md mb-2 @if ($item['option3'] == $item['userAnswer'])  @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
                         <span class="mr-3">C</span> {{ $item['option3']}}
                     </div>
-                    <div class="ml-5 p-1 pl-4 border-cyan-900 border-2 rounded-md mb-2 @if ($item['option4'] == $item['userAnswer']) @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
+                    <div class="ml-5 p-1 pl-4 @if ($item['option4'] == $item['questionAnswer']) border-green-300 @else  border-cyan-300 @endif border-2 rounded-md mb-2 @if ($item['option4'] == $item['userAnswer']) @if ($item['is_true'] == 1) bg-green-500 @elseif ($item['is_true'] == 0) bg-red-500 @endif @endif">
                         <span class="mr-3">D</span> {{ $item['option4']}}
                     </div>
                 </div>
