@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\mentor;
 
 use App\Http\Controllers\Controller;
+use App\Models\akses_course;
 use App\Models\course;
 use App\Models\nilai;
 use Illuminate\Http\Request;
@@ -40,10 +41,14 @@ class ExamScoreController extends Controller
     public function show($id)
     {
         $score = nilai::where('akses_course_id', $id)->get();
-        $course = course::where('user_id', '=', Auth::user()->id)->get();
+        $courseUser = course::where('user_id', '=', Auth::user()->id);
+        $course = $courseUser->get();
+        $currentCourse = $courseUser->whereHas('akses_course', function ($q) use ($id) {
+            $q->where('id', $id);
+        })->get();
         $courses = $course->count();
 
-        return view('pages.Dashboard.mentor.examScore.show', compact('score', 'courses'));
+        return view('pages.Dashboard.mentor.examScore.show', compact('score', 'courses', 'currentCourse'));
     }
 
     /**
