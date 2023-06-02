@@ -18,6 +18,7 @@ use Hamcrest\Core\HasToString;
 use App\Models\checkout_course;
 use App\Http\Controllers\Controller;
 use App\Models\comment;
+use App\Models\DetailCheckoutCourse;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use phpDocumentor\Reflection\Types\This;
@@ -248,12 +249,19 @@ class LandingController extends Controller
             $checkout->gross_amount = $transction_details['gross_amount'];
             $checkout->save();
 
-            $checkout->detailCheckoutCourse->create([
+            DetailCheckoutCourse::create([
                 'checkout_course_id' => $checkout->id,
                 'int' => $price,
                 'quantity' => $item_details['quantity'],
                 'note' => 'Payment for course ' . $checkout->course->title,
             ]);
+
+            // $checkout->detailCheckoutCourse->create([
+            //     'checkout_course_id' => $checkout->id,
+            //     'int' => $price,
+            //     'quantity' => $item_details['quantity'],
+            //     'note' => 'Payment for course ' . $checkout->course->title,
+            // ]);
 
             return $payment_url;
         } catch (Exception $e) {
