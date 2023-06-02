@@ -21,6 +21,7 @@ use App\Models\comment;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use phpDocumentor\Reflection\Types\This;
+use SebastianBergmann\Environment\Console;
 
 class LandingController extends Controller
 {
@@ -275,7 +276,6 @@ class LandingController extends Controller
 
         $checkout_id = explode('-', $notif['order_id'])[0];
         $checkout = checkout_course::where('id', $checkout_id)->first();
-        log($notif['order_id']);
         if ($transaction == 'capture') {
             if ($fraud == 'challenge') {
                 $checkout->payment_status = 'pending';
