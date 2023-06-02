@@ -175,6 +175,7 @@ class LandingController extends Controller
 
         $checkout = new checkout_course;
         $checkout->user_id = $user_buyer;
+        $checkout->gross_amount = 0;
         $checkout->course_id = $courses->id;
         $checkout->save();
         // return $checkout;
@@ -243,7 +244,15 @@ class LandingController extends Controller
             $payment_url = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
 
             $checkout->midtrans_url = $payment_url;
+            $checkout->gross_amount = $transction_details['gross_amount'];
             $checkout->save();
+
+            $checkout->detailCheckoutCourse->create([
+                'checkout_course_id' => $checkout->id,
+                'int' => $price,
+                'quantity' => $item_details['quantity'],
+                'note' => 'Payment for course ' . $checkout->course->title,
+            ]);
 
             return $payment_url;
         } catch (Exception $e) {
@@ -262,12 +271,11 @@ class LandingController extends Controller
         $fraud = $notif['status_code'];
         // $transaction = $notif->transaction_status;
         // $fraud = $notif->fraud_status;
-
         // return $notif;
 
         $checkout_id = explode('-', $notif['order_id'])[0];
         $checkout = checkout_course::where('id', $checkout_id)->first();
-
+        log($notif['order_id']);
         if ($transaction == 'capture') {
             if ($fraud == 'challenge') {
                 $checkout->payment_status = 'pending';
