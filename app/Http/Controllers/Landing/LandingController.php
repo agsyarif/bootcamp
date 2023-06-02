@@ -19,6 +19,7 @@ use App\Models\checkout_course;
 use App\Http\Controllers\Controller;
 use App\Models\comment;
 use App\Models\DetailCheckoutCourse;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use phpDocumentor\Reflection\Types\This;
@@ -292,6 +293,7 @@ class LandingController extends Controller
             }
         } else if ($transaction == 'settlement') {
             $checkout->payment_status = 'paid';
+            $checkout->paid_at = Carbon::today()->format('Y-m-d H:i:s');
         } else if ($transaction == 'pending') {
             $checkout->payment_status = 'pending';
         } else if ($transaction == 'deny') {
