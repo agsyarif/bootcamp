@@ -34,7 +34,7 @@
 
         <div class="flex flex-col flex-1 w-full">
 
-            @include('components.Dashboard.header_learning')
+            {{-- @include('components.Dashboard.header_learning') --}}
 
             @include('sweetalert::alert')
 

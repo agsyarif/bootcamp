@@ -25,6 +25,11 @@ class CourseLesson extends Model
         return $this->hasMany(CourseMaterial::class);
     }
 
+    public function firstMaterial()
+    {
+        return $this->courseMaterials()->first();
+    }
+
     public function exams()
     {
         return $this->hasMany(exam::class);

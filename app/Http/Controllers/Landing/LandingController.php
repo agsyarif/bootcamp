@@ -293,7 +293,7 @@ class LandingController extends Controller
             }
         } else if ($transaction == 'settlement') {
             $checkout->payment_status = 'paid';
-            $checkout->paid_at = Carbon::today()->format('Y-m-d H:i:s');
+            $checkout->paid_at = Carbon::now()->format('Y-m-d H:i:s');
         } else if ($transaction == 'pending') {
             $checkout->payment_status = 'pending';
         } else if ($transaction == 'deny') {

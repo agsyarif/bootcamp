@@ -109,7 +109,7 @@
                             @endforeach
 
                             <li class="nav-item has-submenu mb-2">
-                                <a href="{{ route('member.comment.show', [$courses->id]) }}"
+                                <a href="{{ route('member.comment.show', [$course->id]) }}"
                                     class="nav-link text-white hover d-flex justify-content-between">
                                     Comment
                                     <i class="fas fa-arrow-right"></i>

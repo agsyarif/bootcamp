@@ -58,8 +58,19 @@ class course extends Model
         return $this->hasMany(akses_course::class);
     }
 
+    public function getAccessCourse()
+    {
+        // $user
+        return $this->akses_course()->where('user_id', auth()->user()->id)->first();
+    }
+
     public function comment()
     {
         return $this->hasMany(comment::class);
+    }
+
+    public function firstLesson()
+    {
+        return $this->course_lessons()->first();
     }
 }

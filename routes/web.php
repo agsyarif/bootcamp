@@ -36,6 +36,7 @@ use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberContro
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 // frontend
 
@@ -50,6 +51,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/cekredis', function () {
+    $p = Redis::incr('p');
+    return $p;
+});
+
 
 Route::get('corporate', [LandingController::class, 'corporate'])->name('corporate.landing');
 Route::get('profesional', [LandingController::class, 'profesional'])->name('profesional.landing');
@@ -118,6 +125,7 @@ Route::group(
     function () {
         Route::resource('dashboard', DashboardController::class);
         Route::resource('course', MemberCourseController::class);
+        Route::get('course-redis', [MemberCourseController::class, 'indexRedis']);
         Route::get('materi/{id}/', [MateriController::class, 'tampil'])->name(name: 'course.materi');
         Route::resource('progress', ProgressController::class);
         Route::resource('comment', commentController::class);
