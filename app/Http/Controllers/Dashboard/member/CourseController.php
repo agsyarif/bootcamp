@@ -54,8 +54,8 @@ class CourseController extends Controller
         //     $redis = Cache::store('redis')->put('course/' . $akses, $course, 10 * 60);
         // }
 
-        $course = Cache::remember('course/' . $akses, 10 * 60 * 60, function () {
-            // return akses_course::where('user_id', $akses)->get();
+        $course = Cache::remember('course/' . $akses, 10 * 60 * 60, function () use ($akses) {
+            return akses_course::where('user_id', $akses)->get();
         });
         $active = 'course';
         $courses = count($course);
