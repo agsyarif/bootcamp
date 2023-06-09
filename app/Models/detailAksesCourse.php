@@ -23,4 +23,10 @@ class detailAksesCourse extends Model
     {
         return $this->belongsTo(courseMaterial::class);
     }
+
+    public function detailAksesByMaterialId($id)
+    {
+        return $this->attributes('course_material_id', $id);
+        // return $this->where('course_material_id', $id);
+    }
 }

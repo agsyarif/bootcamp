@@ -120,9 +120,12 @@
                         </div>
                         <span class="d-flex">
                             {{-- @livewire('next', [$ChapterActive[0]->id, $MateriActive->id, $aksesCourse[0]->id]) --}}
-                            {{-- @livewire('next', [$activeMaterial->courseLesson->id, $activeMaterial->id, $activeMaterial->courseLesson->course->accessCourseFirst()->id]) --}}
+                            {{-- <p class="white text-white">{{$activeMaterial->courseLesson->id}}</p>
+                            <p class="white text-white">{{$activeMaterial->id}}</p>
+                            <p class="white text-white">{{$activeMaterial->courseLesson->course->getAccessCourse()->id}}</p> --}}
+                            @livewire('next', [$activeMaterial->courseLesson, $activeMaterial, $activeMaterial->courseLesson->course->getAccessCourse()])
 
-                            <p class="color-white">{{$activeMaterial->courseLesson->course->getAccessCourse()->id}}</p>
+                            {{-- <p class="color-white">{{$activeMaterial->courseLesson->course->getAccessCourse()->id}}</p> --}}
 
                         </span>
                     </div>

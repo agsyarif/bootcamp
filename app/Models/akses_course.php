@@ -31,4 +31,9 @@ class akses_course extends Model
     {
         return $this->hasMany(nilai::class);
     }
+
+    public function getDetailByMaterial($id)
+    {
+        return $this->detail_akses_course()->where('course_material_id', $id)->first();
+    }
 }

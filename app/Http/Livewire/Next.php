@@ -25,96 +25,76 @@ class Next extends Component
 
     public $tombol;
     public $exam;
-    public $materiTerakhir;
+    public $course;
+    public $latestChapter;
 
-    public function mount($chapter, $id, $aksesCourse)
+    public function mount($chapter, $material, $aksesCourse)
     {
-        // materi active
-        $this->course_material_id = $id;
-
-        // course materi terakhir => yang course lesson id nya 11 idnya 7
-        $materiTerakhir = CourseMaterial::where('course_lesson_id', $chapter)->orderBy('id', 'desc')->limit(1)->pluck('id');
-        $this->materiTerakhir = $materiTerakhir[0];
-        // ambil exam dari chapter yang sedang dibuka
-        $exam = exam::where('course_lesson_id', $chapter)->get();
-        // return $exam;
-
-        $this->chapter;
-
-        if ($exam != null) {
-            foreach ($exam as $key => $value) {
-                $this->exam = $value->id;
-                if ($value->course_lesson_id == $chapter) {
-                    if ($id == $materiTerakhir[0]) {
-                        if (request()->segment(3) == 'result') {
-                            $this->tombol = 'next';
-                        } else {
-                            $this->tombol = 'uji';
-                        }
-                    } else {
-                        $this->tombol = 'next';
-                    }
-                } else {
-                    if ($id == $materiTerakhir[0]) {
-                        $this->tombol = 'selesai';
-                    } else {
-                        $this->tombol = 'next';
-                    }
-                }
+        $materialId = $material->id;
+        $latestMaterial = $chapter->latestMaterial();
+        $course = $chapter->course;
+        $latestChapter = $course->latestLesson();
+        $exam = count($chapter->exams) != 0 ? $chapter->exams : null;
+        if ($materialId == $latestMaterial->id) {
+            if ($chapter->id == $latestChapter->id) {
+                $this->tombol = 'selesai';
+            }
+            if ($exam == null || request()->segment(3) == 'result') {
+                $this->tombol = 'next';
+            } else {
+                $this->tombol = 'quiz';
             }
         } else {
             $this->tombol = 'next';
         }
 
+        $this->course_material_id = $materialId;
         $this->chapter = $chapter;
         $this->akses_course = $aksesCourse;
-        $detail_akses = detailAksesCourse::where('akses_course_id', $aksesCourse)->where('course_material_id', $this->course_material_id)->get()->pluck('course_material_id');
-        if (count($detail_akses) > 0) {
-            $this->detailAkses = $detail_akses;
-        } else {
-            $this->detailAkses = [0];
-        }
+        $this->course = $course;
+        $this->detailAkses = $aksesCourse->getDetailByMaterial($materialId);
     }
 
     // next materi
     public function nextMateri()
     {
-        if ($this->detailAkses[0] != $this->course_material_id) {
-            $checklist = new detailAksesCourse;
-            $checklist->akses_course_id = $this->akses_course;
-            $checklist->course_material_id = $this->course_material_id;
-            $checklist->save();
+        if ($this->detailAkses == null) {
+            detailAksesCourse::create([
+                'akses_course_id' => $this->akses_course->id,
+                'course_material_id' => $this->course_material_id
+            ]);
         }
 
-        $nextMateri = CourseMaterial::where('id', '>', $this->course_material_id)->first();
-
+        $nextMateri = $this->chapter->getMatetialAfterThisId($this->course_material_id);
+        $this->nextMateri = $nextMateri;
         if ($nextMateri) {
             return redirect()->route('member.course.materi', [$nextMateri->id]);
             $this->disabled = false;
         } else {
-            $this->disabled = true;
+            $nextMateri = optional(optional($this->course)->getChapterAfterThisId($this->chapter->id))->getMatetialAfterThisId($this->course_material_id);
+
+            if ($nextMateri == null) {
+                $this->tombol = 'selesai';
+                $this->disabled = true;
+            } else {
+                return redirect()->route('member.course.materi', [$nextMateri->id]);
+                $this->disabled = false;
+            }
         }
     }
 
     public function selesai()
     {
-        // if ($this->detailAkses[0] != $this->course_material_id) {
-        //     $checklist = new detailAksesCourse;
-        //     $checklist->akses_course_id = $this->akses_course[0]->id;
-        //     $checklist->course_material_id = $this->course_material_id;
-        //     $checklist->save();
-        // }
-
         return redirect()->route('member.dashboard.index');
     }
 
     public function kuis()
     {
-        if ($this->detailAkses[0] != $this->course_material_id) {
-            $checklist = new detailAksesCourse;
-            $checklist->akses_course_id = $this->akses_course;
-            $checklist->course_material_id = $this->course_material_id;
-            $checklist->save();
+        if ($this->detailAkses == null) {
+            detailAksesCourse::create([
+                'akses_course_id' => $this->akses_course->id,
+                'course_material_id' => $this->course_material_id
+            ]);
         }
 
         return redirect()->route('member.course.quiz', [$this->chapter]);

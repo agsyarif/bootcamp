@@ -26,40 +26,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $akses = Auth::user()->user_role_id;
-        $course = akses_course::where('user_id', '=', Auth::user()->id)->get();
-        // $id_course = [];
-        // foreach ($aksesCourse as $key => $value) {
-        //     $id_course[] = $value->course_id;
-        // }
-        // $course = course::whereIn('id', $id_course)->get();
-        // return $course;
-        $active = 'course';
-        $courses = count($course);
-
-        return view('pages.Dashboard.member.course.index', compact('course', 'active', 'courses'));
-
-        // $courses = Course::where('user_id', '=', Auth::user()->id)->get();
-        // $courses = course::where('id', '=', [$aksesCourse->course_id])->get();
-        // return $course;
-    }
-
-    public function indexRedis()
-    {
-        $akses = auth()->user()->user_role_id;
-
-        // $course = Cache::get('course/' . $akses);
-        // if ($course == null) {
-        //     $course = akses_course::where('user_id', '=', Auth::user()->id)->get();
-        //     $redis = Cache::store('redis')->put('course/' . $akses, $course, 10 * 60);
-        // }
-
-        $course = Cache::remember('course/' . $akses, 10 * 60 * 60, function () use ($akses) {
-            return akses_course::where('user_id', $akses)->get();
+        $userId = auth()->user()->id;
+        $course = Cache::remember('course/' . $userId, 10 * 60 * 60, function () use ($userId) {
+            return akses_course::where('user_id', '=', $userId)->get();
         });
         $active = 'course';
         $courses = count($course);
-
         return view('pages.Dashboard.member.course.index', compact('course', 'active', 'courses'));
     }
 
@@ -92,47 +64,19 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        // umum -> untuk menu sidebar
-        $course = course::find($id);
-        // $chapter = $course->course_lessons;
-        $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
+        // $course = course::find($id);
+        // $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
+
+        $userId = auth()->user()->id;
+        $course = Cache::remember('course/show/' . $userId, 10 * 60 * 60, function () use ($id) {
+            $course = course::find($id);
+            $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
+            return $course;
+        });
+
         $activeMaterial = $course->firstLesson()->firstMaterial();
 
-        // dd($course);
-        // $chapterId = [];
-        // foreach ($chapter as $key => $value) {
-        //     $chapterId[] = $value->id;
-        // }
-        // $exam = exam::whereIn('course_lesson_id', $chapterId)->get();
-
-        // $examId = [];
-        // foreach ($exam as $key => $value) {
-        //     $examId[] = $value->id;
-        // }
-        // if ($examId != null) {
-        //     $question = question::whereIn('exam_id', $examId)->get();
-        // } else {
-        //     $question = null;
-        // }
-
-        // // $question = question::whereIn('exam_id', $examId)->get();
-        // $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
-        // $active = 'course';
-        // $MateriActive = $material[0];
-        // $ChapterActive[] = $chapter[0];
-        // $CourseActive = course::where('id', $ChapterActive[0]->course_id)->get();
-        // checklist warna biru?
-        // $aksesCourse = akses_course::where('course_id', '=', $id)->where('user_id', '=', Auth::user()->id)->get();
-        // $detailAkses = detailAksesCourse::where('akses_course_id', '=', $aksesCourse[0]->id)->get();
-        // return $detailAkses;
-
-        // return redirect()->route('member.course.materi', [$id, $activeId]);
-
-        // return view('pages.Dashboard.member.course.show', compact('course', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses', 'CourseActive', 'aksesCourse'));
-
         return view('pages.Dashboard.member.course.show', compact('course', 'activeMaterial'));
-
-        // return redirect()->route('member.course.materi', [$MateriActive[0]->id]);
     }
 
     /**

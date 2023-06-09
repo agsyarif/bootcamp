@@ -73,4 +73,20 @@ class course extends Model
     {
         return $this->course_lessons()->first();
     }
+
+    public function latestLesson()
+    {
+        return $this->course_lessons()->orderBy('id', 'desc')->first();
+    }
+
+    public function getChapterAfterThisId($id)
+    {
+        return $this->course_lessons()->where('id', '>', $id)->first();
+    }
+
+    public function getMaterialById($id)
+    {
+        return CourseMaterial::find($id);
+        // return $this->course_lessons()->courseMaterials();
+    }
 }
