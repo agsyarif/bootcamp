@@ -23,7 +23,7 @@ class Quiz extends Component
     protected $paginationTheme = 'bootstrap';
     public $selectedAnswer = [];
     public $jawaban = [];
-    public $score;
+    public $score = 0;
     public $quessssss;
     public $exammm;
     public $materiTerakhir;
