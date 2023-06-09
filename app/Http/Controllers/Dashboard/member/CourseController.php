@@ -68,7 +68,7 @@ class CourseController extends Controller
         // $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
 
         $userId = auth()->user()->id;
-        $course = Cache::remember('course/show/' . $userId, 10 * 60 * 60, function () use ($id) {
+        $course = Cache::remember('course/show/' . $id . '/' . $userId, 10 * 60 * 60, function () use ($id) {
             $course = course::find($id);
             $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
             return $course;

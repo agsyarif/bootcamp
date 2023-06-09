@@ -34,7 +34,7 @@ class MateriController extends Controller
         $activeMaterial = optional($course)->getMaterialById($id);
         if (!$activeMaterial) {
             $activeMaterial = CourseMaterial::findOrFail($id);
-            $course = Cache::remember('course/show/' . $userId, 10 * 60 * 60, function () use ($activeMaterial) {
+            $course = Cache::remember('course/show/'  . $id . '/' . $userId, 10 * 60 * 60, function () use ($activeMaterial) {
                 $course = $activeMaterial->courseLesson->course;
                 $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
                 return $course;
