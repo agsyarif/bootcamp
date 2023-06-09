@@ -30,12 +30,12 @@ class MateriController extends Controller
     public function tampil($id)
     {
         $userId = auth()->user()->id;
-        $course = Cache::get('course/show/' . $userId);
+        $course = Cache::get('course/show/' . $id . '/' . $userId);
         $activeMaterial = optional($course)->getMaterialById($id);
         if (!$activeMaterial) {
             $activeMaterial = CourseMaterial::findOrFail($id);
-            $course = Cache::remember('course/show/'  . $id . '/' . $userId, 10 * 60 * 60, function () use ($activeMaterial) {
-                $course = $activeMaterial->courseLesson->course;
+            $course = $activeMaterial->courseLesson->course;
+            $course = Cache::remember('course/show/'  . $course->id . '/' . $userId, 10 * 60 * 60, function () use ($course) {
                 $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
                 return $course;
             });
