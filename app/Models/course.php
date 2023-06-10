@@ -48,9 +48,18 @@ class course extends Model
         return $this->hasMany(checkout_course::class);
     }
 
-    public function exams()
+    public function getCountExams()
     {
-        return $this->hasMany(exam::class);
+        return $this->course_lessons()
+            ->withCount('exams')
+            ->get()
+            ->sum('exams_sum');
+    }
+
+    public function searchByColumnName($request)
+    {
+        return $this->where('name', 'LIKE', '%' . $request . '%')
+            ->orWhere('price', 'like', '%' . $request . '%')->get();
     }
 
     public function akses_course()

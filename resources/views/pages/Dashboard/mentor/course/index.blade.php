@@ -5,7 +5,7 @@
 @section('content')
 
 
-    @if ($courses > 0)
+    @if ($countCourse > 0)
         <main class="h-full overflow-y-auto">
 
             <div class="container mx-auto">
@@ -17,7 +17,7 @@
                         </h2>
 
                         <p class="text-sm text-gray-400">
-                            {{ $courses }} Total course
+                            {{ $countCourse }} Total course
                         </p>
                     </div>
 

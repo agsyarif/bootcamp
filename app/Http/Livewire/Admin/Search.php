@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 use App\Models\checkout_course;
 use App\Models\question;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class Search extends Component
 {
@@ -60,9 +61,14 @@ class Search extends Component
         } else if ($this->segment == 'course') {
             if ($this->search !== null) {
                 $mentor = Auth::user()->id;
-                $data = course::where('user_id', $mentor)->where('name', 'like', '%' . $this->search . '%')->orWhere('user_id', $mentor)->where('price', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
+                $data = Cache::get('mentor/course/' . $mentor);
+                $data = $data->map(function ($course) {
+                    return $course->searchByColumnName($this->search);
+                });
+                $data = $data[0];
             } else {
-                $data = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+                $userId = auth()->user()->id;
+                $data = Cache::get('mentor/course/' . $userId);
             }
 
             return view('livewire.mentor.course', compact('data'));

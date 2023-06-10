@@ -90,11 +90,16 @@ class DashboardController extends Controller
                 $id_chapter[] = $value->id;
             }
 
-            $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get();
-            $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
-            $persentase = $progress->count() / $materi->count() * 100;
-
-            $persen = number_format($persentase, 0, '.', '');
+            $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get() ?? [];
+            $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get() ?? [];
+            $progress = $progress->count();
+            $materi = $materi->count();
+            $persen = 0;
+            if ($progress && $materi != 0) {
+                $persentase = $progress->count() / $materi->count() * 100;
+                $persentase = $progress->count() / $materi->count() * 100;
+                $persen = number_format($persentase, 0, '.', '');
+            }
 
 
             return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'transaksi', 'active', 'aksesCourse', 'persen', 'progress', 'course', 'materi'));

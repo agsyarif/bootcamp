@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Validator;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class courseController extends Controller
@@ -29,6 +30,18 @@ class courseController extends Controller
      */
     public function index()
     {
+
+        $userId = auth()->user()->id;
+        $courses = Cache::remember('mentor/course/' . $userId, 10 * 60 * 60, function () use ($userId) {
+            $course = course::where('user_id', '=', $userId)->get();
+            $course->load(['course_category']);
+            return $course;
+        });
+
+        // dd($courses);
+        $countCourse = $courses->count();
+
+        return view('pages.Dashboard.mentor.course.index', compact('courses', 'countCourse'));
         $course = course::where('user_id', '=', Auth::user()->id)->get();
         // $course = course::all();
         $courses = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get()->count();
