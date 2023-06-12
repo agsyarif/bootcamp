@@ -96,8 +96,7 @@ class DashboardController extends Controller
             $materi = $materi->count();
             $persen = 0;
             if ($progress && $materi != 0) {
-                $persentase = $progress->count() / $materi->count() * 100;
-                $persentase = $progress->count() / $materi->count() * 100;
+                $persentase = $progress / $materi * 100;
                 $persen = number_format($persentase, 0, '.', '');
             }
 
