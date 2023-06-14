@@ -43,6 +43,17 @@ class course extends Model
         return $this->hasMany(CourseLesson::class);
     }
 
+    public function getAllMaterial()
+    {
+        return $this->course_lessons()
+            ->withCount('courseMaterials')
+            ->get()
+            // ->sum(function ($chapter) {
+            //     return $chapter->course_materials_count;
+            // });
+            ->sum('course_materials_count');
+    }
+
     public function checkout_course()
     {
         return $this->hasMany(checkout_course::class);

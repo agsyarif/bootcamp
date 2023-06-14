@@ -224,8 +224,8 @@
                         href="{{ route('mentor.course.index') }}">
                         <i class="fa fa-book fa-lg"></i>
                         <span class="ml-4">My Course</span>
-                        <span
-                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $courses }}</span>
+                        {{-- <span
+                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $courses }}</span> --}}
 
                     </a>
                 </li>
@@ -343,8 +343,8 @@
                         <i class="fa fa-book fa-lg"></i>
 
                         <span class="ml-4">My Course</span>
-                        <span
-                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $courses }}</span>
+                        {{-- <span
+                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $courses }}</span> --}}
                     </a>
                 </li>
 
