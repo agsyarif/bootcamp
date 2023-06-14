@@ -27,6 +27,21 @@ class akses_course extends Model
         return $this->hasMany(detailAksesCourse::class);
     }
 
+    public function score()
+    {
+        return $this->hasMany(answerUser::class);
+    }
+
+    public function getSumScore()
+    {
+        return $this->score()
+            ->get()
+            ->sum(function ($score) {
+                return $score->score;
+            });
+        // ->sum('score');
+    }
+
     public function examScore()
     {
         return $this->hasMany(nilai::class);

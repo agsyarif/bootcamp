@@ -376,7 +376,7 @@
                 {{-- Progress Belajar --}}
                 <li class="relative px-6 py-3">
                     @if (request()->is('member/progress') ||
-                        request()->is('member/Progress/*') ||
+                        request()->is('member/progress/*') ||
                         request()->is('member/*/progress') ||
                         request()->is('member/*/progress/*'))
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
@@ -394,7 +394,6 @@
                 {{-- My Course --}}
                 <li class="relative px-6 py-3">
                     @if (request()->is('member/course') ||
-                        request()->is('member/*/*') ||
                         request()->is('member/course/*') ||
                         request()->is('member/*/course') ||
                         request()->is('member/*/course/*'))
@@ -411,7 +410,7 @@
                         <span class="ml-4">My Course</span>
                         <span
                             class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
-                            {{ $courses }}
+                            {{-- {{ $courses }} --}}
                         </span>
                     </a>
 
