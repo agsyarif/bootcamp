@@ -98,7 +98,7 @@
                                             </a>
                                         </dd>
                                         <dd class="text-slate-400">
-                                            <a href="#">
+                                            <a href="{{ route('member.course.show', [$aksesCourse->course->id]) }}">
                                                 <i class="fa-solid fa-arrow-right"></i>
                                                 lanjut belajar
                                             </a>

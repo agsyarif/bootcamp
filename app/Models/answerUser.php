@@ -21,4 +21,16 @@ class answerUser extends Model
     {
         return $this->belongsTo(exam::class);
     }
+
+    public function getAnswerTrue()
+    {
+        return $this->whereRaw('JSON_CONTAINS(answers, \'{"is_true": 1}\')')->count();
+    }
+
+    public function getAnswerFalse()
+    {
+        return $this->whereRaw('JSON_CONTAINS(answers, \'{"is_true": 0}\')')->count();
+    }
 }
+
+// [{"questionId":1,"option1":"git","option2":"php","option3":"pemrograman","option4":"robotic","userAnswer":"php","questionAnswer":"git","is_true":0},{"questionId":2,"option1":"sjbnm","option2":"git","option3":"githuub","option4":"gitlab","userAnswer":"git","questionAnswer":"git","is_true":1}]
