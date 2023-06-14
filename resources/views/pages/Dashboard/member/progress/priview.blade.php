@@ -81,8 +81,8 @@
                                 <p class="text-md font-medium">Nilai <span class="ml-5"> :</span> {{$score->score}}</p>
                             </div>
                             <div>
-                                <p class="text-md font-medium">Jawaban Benar <span class="ml-4">:</span> {{$score->getAnswerTrue()}}</p>
-                                <p class="text-md font-medium">Jawaban Salah <span class="ml-5">:</span> {{$score->getAnswerFalse()}}</p>
+                                {{-- <p class="text-md font-medium">Jawaban Benar <span class="ml-4">:</span> {{$score->getAnswerTrue()}}</p>
+                                <p class="text-md font-medium">Jawaban Salah <span class="ml-5">:</span> {{$score->getAnswerFalse()}}</p> --}}
                             </div>
                         </div>
                     </div>

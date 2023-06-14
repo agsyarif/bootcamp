@@ -36,6 +36,6 @@ class exam extends Model
     public function getTitleLimit()
     {
         $title = $this->attributes['title'];
-        return Str::limit($title, 15);
+        return Str::limit($title, 12);
     }
 }
