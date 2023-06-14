@@ -32,6 +32,13 @@ class akses_course extends Model
         return $this->hasMany(answerUser::class);
     }
 
+    public function getCountExam()
+    {
+        return $this->score()
+            ->get()
+            ->count();
+    }
+
     public function getSumScore()
     {
         return $this->score()

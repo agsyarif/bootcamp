@@ -89,7 +89,7 @@
                                     @endforeach
                                     <div class="flex-none w-full font-normal">
                                       <dt class="sr-only">Total Score</dt>
-                                      <dd class="text-slate-400">Total Nilai : {{ $aksesCourse->getSumScore() }}</dd>
+                                      <dd class="text-slate-400">Total Nilai : {{ $aksesCourse->getSumScore() / $aksesCourse->getCountExam() }}</dd>
                                     </div>
                                     <div class="flex gap-2 w-full font-normal">
                                         <dd class="text-slate-400">

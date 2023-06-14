@@ -13,7 +13,7 @@
                 </h2>
 
                 <p class="text-sm text-gray-400">
-                    {{ optional($aksesCourse)->score != null ? optional($aksesCourse)->course->getCountExams() : 0}} Kuis
+                    {{ optional($aksesCourse)->score != null ? optional($aksesCourse)->getCountExam() : 0}} Kuis
                 </p>
             </div>
         </div>
