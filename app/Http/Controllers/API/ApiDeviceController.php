@@ -25,7 +25,7 @@ class ApiDeviceController extends Controller
         $token = $request->token;
         $uuid = $request->uuid;
         $dataDevice = data_device::where('token', $token)->get()->first();
-        return $dataDevice;
+        return $dataDevice->uuid;
         if ($dataDevice == null) {
             return response()->json([
                 'error' => 'token tidak valid'
