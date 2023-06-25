@@ -33,6 +33,12 @@ class ApiDeviceController extends Controller
                 'error' => 'token tidak valid'
             ], 400);
         } elseif ($dataDevice->uuid != null) {
+            if ($dataDevice->uuid != $uuid) {
+                return response()->json()([
+                    'error' => 'token sudah digunakan'
+                ]);
+            }
+
             return response()->json([
                 'error' => 'token sudah digunkan'
             ], 400);
