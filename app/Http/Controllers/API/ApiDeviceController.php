@@ -35,7 +35,7 @@ class ApiDeviceController extends Controller
         } elseif ($dataDevice->uuid != null) {
             if ($dataDevice->uuid != $uuid) {
                 return response()->json([
-                    'error' => 'token sudah digunakan'
+                    'error' => 'uuid tidak sama'
                 ], 400);
             }
 
