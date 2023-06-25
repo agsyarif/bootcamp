@@ -26,3 +26,4 @@ Route::middleware('auth:sactum')->group(function () {
 });
 
 Route::post('create-token', [ApiDeviceController::class, 'index']);
+Route::post('activate', [ApiDeviceController::class, 'activate']);

@@ -19,4 +19,26 @@ class ApiDeviceController extends Controller
 
         return $dataDevice;
     }
+
+    public function activate(Request $request)
+    {
+        $token = $request->token;
+        $uuid = $request->uuid;
+        $token = data_device::where('token', $token)->exists();
+
+        if (!$token) {
+            return response()->json([
+                'error' => 'token tidak valid'
+            ], 400);
+        }
+
+        data_device::where('token', $token)->update([
+            'uuid' => $uuid,
+            'active' => 1
+        ]);
+
+        return response()->json([
+            'success' => 'aktifasi berhasil'
+        ], 200);
+    }
 }
