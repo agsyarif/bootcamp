@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ApiDeviceController;
 use App\Http\Controllers\API\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sactum')->group(function () {
     Route::post('checkout', TransactionController::class . '@checkout');
 });
+
+Route::get('create-token', [ApiDeviceController::class, 'index']);

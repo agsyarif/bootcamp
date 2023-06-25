@@ -57,12 +57,12 @@
 
     <div class="mt-5 mx-10 p-2 pl-5 bg-white sm:rounded-lg grid grid-cols-6">
         <div class="col-span-3">
-            <p>{{ $answerUser->aksesCourse->user->name }}</p>
-            <p>Dikerjakan Pada : {{ \Carbon\Carbon::parse($answerUser->updated_at)->isoFormat('dddd, D MMMM Y') }}</p>
+            <p class="text-md font-medium">Nama Member <span class="ml-4">:</span> {{$answerUser->aksesCourse->user->name}}</p>
+            <p class="text-md font-medium">Dikerjakan Pada <span class="ml-1">:</span> {{ \Carbon\Carbon::parse($answerUser->updated_at)->isoFormat('dddd, D MMMM Y') }}</p>
         </div>
         <div class="col-span-3">
-            <p>{{ $answerUser->aksesCourse->course->name }} > {{ $answerUser->exam->courseLesson->title }}</p>
-            <p>{{ $answerUser->score }}</p>
+            <p class="text-md font-medium">Judul Kuis <span class="ml-1">:</span> {{$answerUser->exam->title}}</p>
+            <p class="text-md font-medium">Total Nilai <span class="ml-2">:</span> {{$answerUser->score}}</p>
         </div>
     </div>
 
