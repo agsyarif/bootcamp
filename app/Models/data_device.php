@@ -9,5 +9,9 @@ class data_device extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'token',
+        'uuid',
+        'active'
+    ];
 }
