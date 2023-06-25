@@ -25,4 +25,4 @@ Route::middleware('auth:sactum')->group(function () {
     Route::post('checkout', TransactionController::class . '@checkout');
 });
 
-Route::get('create-token', [ApiDeviceController::class, 'index']);
+Route::post('create-token', [ApiDeviceController::class, 'index']);
