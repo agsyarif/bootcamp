@@ -13,7 +13,6 @@ class ApiDeviceController extends Controller
     {
         $uuid = $request->uuid;
         $email = $request->email;
-        return $email;
         $token = Str::random(6);
 
         $device = data_device::where('email', $email)->first();
