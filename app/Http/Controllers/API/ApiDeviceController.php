@@ -9,12 +9,16 @@ use Illuminate\Http\Request;
 
 class ApiDeviceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $uuid = $request->uuid;
+        $email = $request->email;
         $token = Str::random(6);
 
         $dataDevice = data_device::create([
             "token" => $token,
+            "uuid" => $uuid,
+            "email" => $email
         ]);
 
         return $dataDevice;
@@ -25,9 +29,7 @@ class ApiDeviceController extends Controller
         $token = $request->token;
         $uuid = $request->uuid;
         $dataDevice = data_device::where('token', $token)->get()->first();
-        // if ($dataDevice->uuid != null) {
-        // }
-        // return $dataDevice->uuid;
+
         if ($dataDevice == null) {
             return response()->json([
                 'error' => 'token tidak valid'
