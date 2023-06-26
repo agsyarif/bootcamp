@@ -21,7 +21,10 @@ class ApiDeviceController extends Controller
             "email" => $email
         ]);
 
-        return $dataDevice;
+        return response()->json([
+            "success" => "ok"
+        ], 200);
+        // return $dataDevice;
     }
 
     public function activate(Request $request)
