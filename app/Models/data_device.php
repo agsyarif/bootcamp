@@ -12,6 +12,7 @@ class data_device extends Model
     protected $fillable = [
         'token',
         'uuid',
-        'active'
+        'active',
+        'email'
     ];
 }
