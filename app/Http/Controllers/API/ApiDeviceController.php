@@ -13,13 +13,23 @@ class ApiDeviceController extends Controller
     {
         $uuid = $request->uuid;
         $email = $request->email;
+        return $email;
         $token = Str::random(6);
+
+        $device = data_device::where('email', $email)->first();
+        if ($device != null) {
+            return response()->json([
+                "error" => "email sudah digunakan"
+            ], 400);
+        }
 
         $dataDevice = data_device::create([
             "token" => $token,
             "uuid" => $uuid,
             "email" => $email
         ]);
+
+
 
         return response()->json([
             "success" => "ok"
