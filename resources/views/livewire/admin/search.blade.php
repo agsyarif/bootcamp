@@ -82,6 +82,9 @@
                                     Status
                                 </th>
                                 <th scope="col" class="py-3 px-6">
+                                    Wallet
+                                </th>
+                                <th scope="col" class="py-3 px-6">
                                     Aksi
                                 </th>
                             </tr>
@@ -139,6 +142,19 @@
                                                     </span>
                                                 @endif
                                             </div>
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            @if(empty(optional($men->wallet())->wallet_id))
+                                                <form action="{{ route('admin.create-wallet', [$men->id]) }}" method="post">
+                                                    @method('post')
+                                                    @csrf
+                                                    <button class="py-2 mt-2 text-red-500 hover:text-gray-800">
+                                                        + Create
+                                                    </button>
+                                                </form>
+                                            @else
+                                                {{ optional($men->wallet())->wallet_id }}
+                                            @endif
                                         </td>
                                         <td class="py-4 px-6 flex">
                                             <a href="{{ route('admin.mentor-management.show', $men['id']) }}"

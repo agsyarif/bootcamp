@@ -35,6 +35,7 @@ use App\Http\Controllers\Dashboard\mentor\ExamScoreController;
 use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberController;
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 
@@ -57,6 +58,7 @@ Route::get('/cekredis', function () {
     return $p;
 });
 
+Route::get('wallet', [WalletController::class, 'index']);
 
 Route::get('corporate', [LandingController::class, 'corporate'])->name('corporate.landing');
 Route::get('profesional', [LandingController::class, 'profesional'])->name('profesional.landing');
@@ -96,6 +98,8 @@ Route::group(
         Route::resource('webinar', WebinarController::class);
         Route::resource('profile', ProfileController::class);
         // Route::resource('user', UserController::class);
+        Route::post('wallet/{user}', [WalletController::class, 'create'])->name('create-wallet');
+        // Route::resource('wallet', WalletController::class);
     }
 );
 

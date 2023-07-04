@@ -87,4 +87,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(comment::class);
     }
+
+    public function wallet()
+    {
+        return wallet::where('wallet_id', 'like', 'ME' . $this->attributes['id'] . '-%')->first();
+    }
 }
