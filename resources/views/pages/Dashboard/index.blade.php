@@ -540,45 +540,45 @@
                                         <p class="font-light">
                                             Name
                                         </h1>
-                                        <p class="font-medium tracking-widest">
-                                            Karthik P
+                                        <p class="font-bold tracking-widest">
+                                            {{Auth::user()->wallet()->name}}
                                         </p>
                                     </div>
                                     <img class="w-14 h-14" src="{{ asset('assets/images/master-card-icon.png') }}"/>
                                 </div>
                                 <div class="pt-1">
                                     <p class="font-light">
-                                        Card Number
+                                        Saldo
                                     </h1>
                                     <p class="font-medium tracking-more-wider">
-                                        4642  3489  9867  7632
+                                        <span>
+                                            <button id="toggleVisibility" onclick="toggleTextVisibility()">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </span>
+                                          Rp. 
+                                        <span id="saldo" class="font-bold" data-saldo="{{auth()->user()->wallet()->saldo}}">
+                                            *******
+                                        </span>
                                     </p>
+
                                 </div>
                                 <div class="pt-6 pr-6">
                                     <div class="flex justify-between">
                                         <div class="">
                                             <p class="font-light text-xs">
-                                                Valid
+                                                Wallet Id
                                             </h1>
-                                            <p class="font-medium tracking-wider text-sm">
-                                                11/15
+                                            <p class="font-bold tracking-wider text-sm">
+                                                {{auth()->user()->wallet()->wallet_id}}
                                             </p>
                                         </div>
                                         <div class="">
                                             <p class="font-light text-xs text-xs">
-                                                Expiry
+                                                last balance entered
                                             </h1>
-                                            <p class="font-medium tracking-wider text-sm">
-                                                03/25
-                                            </p>
-                                        </div>
-                
-                                        <div class="">
-                                            <p class="font-light text-xs">
-                                                CVV
-                                            </h1>
-                                            <p class="font-bold tracking-more-wider text-sm">
-                                                ···
+                                            <p class="font-bold tracking-wider text-sm">
+                                                {{auth()->user()->wallet()->created_at}}
                                             </p>
                                         </div>
                                     </div>
@@ -596,3 +596,21 @@
 
 
 @endsection
+
+@push('after-script')
+    <script>
+    function toggleTextVisibility() {
+        var hiddenText = document.getElementById("saldo");
+        var toggleButton = document.getElementById("toggleVisibility");
+        var saldo = hiddenText.getAttribute("data-saldo");
+
+        if (hiddenText.innerHTML === "*******") {
+            hiddenText.innerHTML = saldo;
+            toggleButton.innerHTML = "<i class='fa-regular fa-eye-slash'></i>";
+        } else {
+            hiddenText.innerHTML = "*******";
+            toggleButton.innerHTML = "<i class='fa-regular fa-eye'></i>";
+        }
+    }
+    </script>
+@endpush
