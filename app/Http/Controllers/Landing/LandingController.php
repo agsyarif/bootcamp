@@ -358,12 +358,12 @@ class LandingController extends Controller
         ]);
         // update di wallet, uwhcamp masuk & keluar, towallet masuk
         $saldoWallet = $myWallet->saldo + $myProfit;
-        $myWallet->update([
+        $myWallet = wallet::where('wallet_id', 'uwhcamp')->update([
             'saldo' => $saldoWallet
         ]);
 
         $saldoWallet = $toWallet->saldo + $shareProfit;
-        $toWallet->update([
+        $toWallet = wallet::where('wallet_id', $toWallet->wallet_id)->update([
             'saldo' => $saldoWallet
         ]);
     }
