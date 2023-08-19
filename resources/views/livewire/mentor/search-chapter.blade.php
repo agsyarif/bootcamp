@@ -93,6 +93,15 @@
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
                                                         </a>
+                                                    @else
+                                                        <a href="{{ route('mentor.exam.create') }}"
+                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-kuis">
+                                                            <i class="fa fa-plus"></i>
+                                                            <div id="tooltip-kuis" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                Tambah Kuis
+                                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                                            </div>
+                                                        </a>
                                                     @endif
 
                                                 </td>
