@@ -59,16 +59,26 @@ class Search extends Component
             }
             return view('livewire.admin.transaksi', compact('data'));
         } else if ($this->segment == 'course') {
+            $mentor = Auth::user()->id;
+            $data = course::where('user_id', $mentor);
+
             if ($this->search !== null) {
-                $mentor = Auth::user()->id;
-                $data = Cache::get('mentor/course/' . $mentor);
-                $data = $data->map(function ($course) {
-                    return $course->searchByColumnName($this->search);
-                });
-                $data = $data[0];
+                // $data = Cache::get('mentor/course/' . $mentor);
+                // $data = course::where('user_id', $mentor)->get();
+
+                $data = $data->where('name', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere('price', 'like', '%' . $this->search . '%')->get();
+
+                // $data = $data->map(function ($course) {
+                //     return $course->searchByColumnName($this->search);
+                // });
+                // $data = $data[0];
             } else {
-                $userId = auth()->user()->id;
-                $data = Cache::get('mentor/course/' . $userId);
+                // $data = course::where('user_id', $mentor)->get();
+                $data = $data->get();
+                // menggunakan cache
+                // $userId = auth()->user()->id;
+                // $data = Cache::get('mentor/course/' . $userId);
             }
 
             return view('livewire.mentor.course', compact('data'));
