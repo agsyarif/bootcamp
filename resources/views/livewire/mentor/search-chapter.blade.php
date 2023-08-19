@@ -31,10 +31,10 @@
                             <div class="accordion-item">
                                 <thead>
                                     <tr>
-                                        <th class="py-4 px-6">No
-                                        </th>
-                                        <th class="py-4 px-6">Judul Bab</th>
+                                        <th class="py-4 px-6">No</th>
+                                        <th class="py-4 px-8">Judul Bab</th>
                                         <th class="py-4 px-6">Materi</th>
+                                        <th class="py-4 px-6">Kuis</th>
                                         <th class="py-4 px-6">Aksi</th>
                                     </tr>
                                 </thead>
@@ -67,8 +67,9 @@
 
                                                     </div>
                                                 </td>
+
                                                 <td class="py-4 px-6">
-                                                    {{ $materi->where('course_lesson_id', $item->id)->count() }}
+                                                    {{ $item->courseMaterials->count() }}
                                                     <a href="{{ route('mentor.create-materi.show', [$item->id]) }}"
                                                         class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-plus">
                                                         <i class="fa fa-plus"></i>
@@ -77,9 +78,24 @@
                                                             <div class="tooltip-arrow" data-popper-arrow></div>
                                                         </div>
                                                     </a>
-                                            </a>
 
                                                 </td>
+
+                                                <td class="py-4 px-6">
+                                                    {{ $item->exams->count() }}
+                                                    <a href="{{ route('mentor.exam.show', $item->exams->first()->id) }}"
+                                                        class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-kuis">
+                                                        <i class="fa fa-plus"></i>
+                                                        <div id="tooltip-kuis" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Tambah Kuis
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+                                                    </a>
+
+                                                </td>
+
+                                                </td>
+
                                                 <td class="py-4 px-6">
                                                     <div class="text-sm">
 
@@ -117,7 +133,7 @@
                                                 </td>
                                             </tr>
 
-                                            @if ($materi->where('course_lesson_id', $item->id)->count() > 0)
+                                            @if ($item->courseMaterials->count() > 0)
                                                 <thead>
                                                     <tr id="collapse{{ $item->id }}"
                                                         aria-labelledby="heading{{ $item->id }}"
@@ -125,15 +141,15 @@
                                                         class="bg-gray-200 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 accordion-collapse collapse">
                                                         <div class="accordion-body">
                                                             <th class="py-4 px-6">No</th>
-                                                            <th class="py-4 px-6">Title</th>
-                                                            <th class="py-4 px-6">Video Url</th>
-                                                            <th class="py-4 px-6">Action</th>
+                                                            <th class="py-4 px-8">Judul Materi</th>
+                                                            <th class="py-4 px-8">Video Url</th>
+                                                            <th class="py-4 px-8">Action</th>
                                                         </div>
                                                     </tr>
                                                 </thead>
 
 
-                                                @foreach ($materi->where('course_lesson_id', $item->id) as $m)
+                                                @foreach ($item->courseMaterials as $materi)
                                                     <tr id="collapse{{ $item->id }}"
                                                         aria-labelledby="heading{{ $item->id }}"
                                                         data-bs-parent="#accordionExample"
@@ -143,19 +159,19 @@
                                                             <td class="py-4 px-6">
                                                                 {{ $loop->iteration }}
                                                             </td>
-                                                            <td class="py-4 px-6">
-                                                                <a href="{{ route('mentor.priview.show', $m->id) }}">
-                                                                    {{ $m->title }}
+                                                            <td class="py-4 px-8">
+                                                                <a href="{{ route('mentor.priview.show', $materi->id) }}">
+                                                                    {{ $materi->title }}
                                                                 </a>
                                                             </td>
-                                                            <td class="py-4 px-6">
-                                                                <a href="{{ route('mentor.priview.show', $m->id) }}">
-                                                                    {{ $m->video_url }}
+                                                            <td class="py-4 px-8">
+                                                                <a href="{{ route('mentor.priview.show', $materi->id) }}">
+                                                                    {{ $materi->video_url }}
                                                                 </a>
                                                             </td>
-                                                            <td class="py-4 px-6">
+                                                            <td class="py-4 px-8">
                                                                 <div class="text-sm">
-                                                                    <a href="{{ route('mentor.materi.edit', $m->id) }}"
+                                                                    <a href="{{ route('mentor.materi.edit', $materi->id) }}"
                                                                         class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-edit-materi">
                                                                         <i class="fas fa-edit"></i>
                                                                         <div id="tooltip-edit-materi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -164,7 +180,7 @@
                                                                         </div>
                                                                     </a>
                                                                     <form class="inline"
-                                                                        action="{{ route('mentor.materi.destroy', $m->id) }}"
+                                                                        action="{{ route('mentor.materi.destroy', $materi->id) }}"
                                                                         method="post">
                                                                         @method('delete')
                                                                         @csrf

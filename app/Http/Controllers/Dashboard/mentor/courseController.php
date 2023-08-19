@@ -32,11 +32,11 @@ class courseController extends Controller
     {
 
         $userId = auth()->user()->id;
-        $courses = Cache::remember('mentor/course/' . $userId, 10 * 60 * 60, function () use ($userId) {
-            $course = course::where('user_id', '=', $userId)->get();
-            $course->load(['course_category']);
-            return $course;
-        });
+        // $courses = Cache::remember('mentor/course/' . $userId, 10 * 60 * 60, function () use ($userId) {
+        $courses = course::where('user_id', '=', $userId)->get();
+        $courses->load(['course_category']);
+        // return $course;
+        // });
 
         // dd($courses);
         $countCourse = $courses->count();

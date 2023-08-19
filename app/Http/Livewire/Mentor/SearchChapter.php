@@ -30,19 +30,33 @@ class SearchChapter extends Component
 
     public function render()
     {
-        $data = CourseLesson::where('course_id', '=', $this->course->id)->get();
 
+        $data = CourseLesson::where('course_id', '=', $this->course->id)->orderBy('created_at', 'desc');
         if ($this->segment == 'chapter') {
             if ($this->search !== null) {
-
-                $data = CourseLesson::where('course_id', $this->course->id)->where('title', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->get();
-                $materi = CourseMaterial::all();
-            } else {
-                CourseLesson::where('course_id', '=', $this->course->id)->orderBy('created_at', 'desc')->get();
-                $materi = CourseMaterial::all();
+                $data = $data->where('title', 'like', '%' . $this->search . '%');
             }
-            return view('livewire.mentor.search-chapter', compact('data', 'materi'));
         }
+
+        $data = $data->with('courseMaterials')->get();
+        // dd($data);
         return view('livewire.mentor.search-chapter', compact('data'));
+
+        //
+
+        // $data = CourseLesson::where('course_id', '=', $this->course->id)->get();
+
+        // if ($this->segment == 'chapter') {
+        //     if ($this->search !== null) {
+
+        //         $data = CourseLesson::where('course_id', $this->course->id)->where('title', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->get();
+        //         $materi = CourseMaterial::all();
+        //     } else {
+        //         CourseLesson::where('course_id', '=', $this->course->id)->orderBy('created_at', 'desc')->get();
+        //         $materi = CourseMaterial::all();
+        //     }
+        //     return view('livewire.mentor.search-chapter', compact('data', 'materi'));
+        // }
+        // return view('livewire.mentor.search-chapter', compact('data'));
     }
 }

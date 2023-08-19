@@ -14,8 +14,11 @@ class QuestionController extends Controller
 {
     public function show($id)
     {
+        // punya exam
+        // $exam = exam::findOrFail($id);
+        // $exam = $exam->load('courseLesson.')
 
-
+        // CourseLesson::where('course_id')
 
         // $exam = exam::where('id', $id)->get();
         $exam = exam::findOrFail($id);
