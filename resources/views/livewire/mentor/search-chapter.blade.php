@@ -69,7 +69,6 @@
                                                 </td>
 
                                                 <td class="py-4 px-6">
-                                                    {{ $item->courseMaterials->count() }}
                                                     <a href="{{ route('mentor.create-materi.show', [$item->id]) }}"
                                                         class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-plus">
                                                         <i class="fa fa-plus"></i>
@@ -78,18 +77,19 @@
                                                             <div class="tooltip-arrow" data-popper-arrow></div>
                                                         </div>
                                                     </a>
+                                                    {{ $item->courseMaterials->count() }}
 
                                                 </td>
 
                                                 <td class="py-4 px-6">
-                                                    {{ $item->exams->count() }}
-                                                    
+                                                    {{-- {{ $item->exams->count() }} --}}
                                                     @if ($item->exams->count() > 0)
-                                                        <a href="{{ route('mentor.exam.show', $item->exams->first()->id) }}"
-                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-kuis">
-                                                            <i class="fa fa-plus"></i>
-                                                            <div id="tooltip-kuis" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                                                Tambah Kuis
+                                                        <a href="{{ route('mentor.exam.show', $item->exams->first()->id, ) }}"
+                                                        {{-- <a href="{{ route('mentor.question-create.create', $item->exams->first()->id, ) }}" --}}
+                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-kuis-lihat">
+                                                            <i class="fa fa-eye"></i>
+                                                            <div id="tooltip-kuis-lihat" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                Lihat Kuis
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
                                                         </a>
@@ -111,15 +111,15 @@
                                                 <td class="py-4 px-6">
                                                     <div class="text-sm">
 
-                                                        <button class="accordion-button" type="button"
+                                                        {{-- <button class="accordion-button" type="button"
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#collapse{{ $item->id }}"
                                                             aria-expanded="false"
                                                             aria-controls="collapse{{ $item->id }}">
                                                             <i class="fa fa-eye"></i>
-                                                        </button>
+                                                        </button> --}}
                                                         <a href="{{ route('mentor.chapter.edit', $item->id) }}"
-                                                            class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-edit">
+                                                            class="py-2 mt-2 text-yellow-300 hover:text-gray-800" data-tooltip-target="tooltip-edit">
                                                             <i class="fas fa-edit fa-lg"></i>
                                                             <div id="tooltip-edit" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                                 Edit Chapter
@@ -184,7 +184,7 @@
                                                             <td class="py-4 px-8">
                                                                 <div class="text-sm">
                                                                     <a href="{{ route('mentor.materi.edit', $materi->id) }}"
-                                                                        class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-edit-materi">
+                                                                        class="px-3 py-2 mt-2 text-yellow-300 hover:text-gray-800" data-tooltip-target="tooltip-edit-materi">
                                                                         <i class="fas fa-edit"></i>
                                                                         <div id="tooltip-edit-materi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                                             Edit Materi

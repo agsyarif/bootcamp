@@ -117,7 +117,8 @@ Route::group(
         Route::resource('priview', priviewController::class);
         Route::resource('exam', ExamController::class);
         Route::resource('type', TypeController::class);
-        Route::resource('question', QuestionController::class);
+        Route::resource('question', QuestionController::class)->except('create');
+        // Route::get('question-create/{courseId}/{examId}', [QuestionController::class, 'create']);
         Route::resource('course/member', MentorMemberController::class);
         Route::resource('course/member/exam-score', ExamScoreController::class)->only('show');
         Route::resource('course/member/exam-score/exam-answer', ExamAnswerController::class)->only('show');

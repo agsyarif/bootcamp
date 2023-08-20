@@ -31,7 +31,7 @@ class SearchChapter extends Component
     public function render()
     {
 
-        $data = CourseLesson::where('course_id', '=', $this->course->id)->orderBy('created_at', 'desc');
+        $data = CourseLesson::where('course_id', '=', $this->course->id)->orderBy('id', 'asc');
         if ($this->segment == 'chapter') {
             if ($this->search !== null) {
                 $data = $data->where('title', 'like', '%' . $this->search . '%');

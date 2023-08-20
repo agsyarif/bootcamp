@@ -86,19 +86,11 @@
 
                                             <div class="flex space-x-2">
                                                 <select id="type" name="type_id" autocomplete="type"
-                                                    class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    required>
+                                                    class="block w-full px-3 py-3 pr-10 mt-1 bg-gray-300 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    required disabled="true">
 
-                                                    <option selected disabled value="">Type Exam</option>
-
-                                                    @foreach ($type as $type)
-                                                        @if ($question->type_id == $type->id)
-                                                            <option value={{ $type->id }} selected>{{ $type->name }}
-                                                            </option>
-                                                        @else
-                                                            <option value={{ $type->id }}>{{ $type->name }}</option>
-                                                        @endif
-                                                    @endforeach
+                                                    <option disabled value="">Type Exam</option>
+                                                    <option selected value="{{$type->first()->id}}"> {{$type->first()->name}}</option>
 
                                                 </select>
 
@@ -107,14 +99,14 @@
                                                         {{ $errors->first('type_id') }}</p>
                                                 @endif
 
-                                                <a href="{{ route('mentor.type.create') }}"
+                                                {{-- <a href="{{ route('mentor.type.create') }}"
                                                     class="rounded-lg mt-1 p-2 flex items-center"
                                                     style="background-color: rgb(185, 185, 185)">
                                                     <svg width="20" height="20" fill="currentColor" aria-hidden="true">
                                                         <path
                                                             d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
                                                     </svg>
-                                                </a>
+                                                </a> --}}
                                             </div>
 
                                         </div>

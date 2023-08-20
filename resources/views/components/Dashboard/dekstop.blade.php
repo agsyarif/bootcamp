@@ -273,9 +273,9 @@
                         <!-- Active Icons -->
 
                         <span class="ml-5">My Course</span>
-                        <span
+                        {{-- <span --}}
                             {{-- class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green900 rounded-full bg-serv-green-badge">{{ $courses }}</span> --}}
-                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green900 rounded-full bg-serv-green-badge">{{ $countCourse ?? $courses }}</span>
+                            {{-- class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green900 rounded-full bg-serv-green-badge">{{ $countCourse ?? $courses }}</span> --}}
                     </a>
 
                 </li>

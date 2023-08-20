@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class course extends Model
@@ -108,5 +109,10 @@ class course extends Model
     {
         return CourseMaterial::find($id);
         // return $this->course_lessons()->courseMaterials();
+    }
+
+    public function exams()
+    {
+        return $this->HasManyThrough(exam::class, CourseLesson::class, 'id', 'course_lesson_id', 'course_id', 'id');
     }
 }

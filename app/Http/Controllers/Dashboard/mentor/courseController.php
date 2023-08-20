@@ -42,14 +42,14 @@ class courseController extends Controller
         $countCourse = $courses->count();
 
         return view('pages.Dashboard.mentor.course.index', compact('courses', 'countCourse'));
-        $course = course::where('user_id', '=', Auth::user()->id)->get();
-        // $course = course::all();
-        $courses = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get()->count();
-        // $courses = $course->count();
-        $categories_id = course::all()->where('user_id', '=', Auth::user()->id)->pluck('category_id');
-        $categories = CourseCategory::all()->whereIn('id', $categories_id);
-        $exam = exam::all();
-        return view('pages.Dashboard.mentor.course.index', compact('courses', 'course', 'categories', 'exam'));
+        // $course = course::where('user_id', '=', Auth::user()->id)->get();
+        // // $course = course::all();
+        // $courses = course::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get()->count();
+        // // $courses = $course->count();
+        // $categories_id = course::all()->where('user_id', '=', Auth::user()->id)->pluck('category_id');
+        // $categories = CourseCategory::all()->whereIn('id', $categories_id);
+        // $exam = exam::all();
+        // return view('pages.Dashboard.mentor.course.index', compact('courses', 'course', 'categories', 'exam'));
     }
 
     // public function data(){
@@ -84,41 +84,61 @@ class courseController extends Controller
      */
     public function store(Request $request)
     {
-        // return "store";
-        // debug, die & dump
 
-        $image = $request->file('thumbnail');
-        // return $image->extension();
-        $dataImage = time() . '.' . $image->extension();
-        // store image to storage/app/public/course/thumbnail
-        $image->storeAs('course/thumbnail', $dataImage);
-        // $image->move(public_path('thumnails'), $dataImage);
-        // $image->move(public_path('assets/images/courses'), $dataImage);
+        $this->validate($request, [
+            'category_id' => 'required',
+            'course_level' => 'required'
+        ]);
+
+        $dataImage = null;
+        if ($request->hasFile('thumbnail')) {
+            $image = $request->file('thumbnail');
+            $dataImage = time() . '.' . $image->extension();
+            $image->storeAs('course/thumbnail', $dataImage);
+
+            // return $image->extension();
+            // store image to storage/app/public/course/thumbnail
+            // $image->move(public_path('thumnails'), $dataImage);
+            // $image->move(public_path('assets/images/courses'), $dataImage);
+
+        }
 
         $user = Auth()->user()->id;
-        $data = [
+        $course = course::create([
             'user_id' => $user,
-            'courses_category_id' => $request->category_id,
-            'title' => $request->title,
+            'name' => $request->title,
             'slug' => $request->slug,
-            'price' => $request->price,
             'image' => $dataImage,
             'description' => $request->description,
-            'course_level' => $request->course_level,
-            'material' => $request->materi,
-            'level' => $request->course_level,
-        ];
+            'course_category_id' => $request->category_id,
+            'level_id' => $request->course_level,
+            'price' => $request->price,
+        ]);
 
-        $course = new course();
-        $course->user_id = $user;
-        $course->name = $data['title'];
-        $course->slug = $data['slug'];
-        $course->image = $data['image'];
-        $course->description = $data['description'];
-        $course->course_category_id = $data['courses_category_id'];
-        $course->level_id = $data['level'];
-        $course->price = $data['price'];
-        $course->save();
+        // $user = Auth()->user()->id;
+        // $data = [
+        //     'user_id' => $user,
+        //     'courses_category_id' => $request->category_id,
+        //     'title' => $request->title,
+        //     'slug' => $request->slug,
+        //     'price' => $request->price,
+        //     'image' => $dataImage,
+        //     'description' => $request->description,
+        //     'course_level' => $request->course_level,
+        //     'material' => $request->materi,
+        //     'level' => $request->course_level,
+        // ];
+
+        // $course = new course();
+        // $course->user_id = $user;
+        // $course->name = $data['title'];
+        // $course->slug = $data['slug'];
+        // $course->image = $data['image'];
+        // $course->description = $data['description'];
+        // $course->course_category_id = $data['courses_category_id'];
+        // $course->level_id = $data['level'];
+        // $course->price = $data['price'];
+        // $course->save();
 
         toast('berhasil manambahkan data', 'success');
         return redirect()->route('mentor.course.index');

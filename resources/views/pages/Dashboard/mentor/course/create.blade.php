@@ -79,7 +79,7 @@
                                                     class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                     required>
 
-                                                    <option>Category Bootcamp</option>
+                                                    <option selected disabled>Category Bootcamp</option>
 
                                                     @foreach ($categories as $ctg)
                                                         @if (old('category_id') == $ctg->id)
@@ -140,7 +140,7 @@
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
 
-                                                <option>Tingkat Kesullitan Materi Kursus</option>
+                                                <option disabled selected>Tingkat Kesullitan Materi Kursus</option>
                                                 @foreach ($level as $lvl)
                                                     @if (old('category_id') == $lvl->id)
                                                         <option value={{ $lvl->id }} selected>{{ $lvl->name }}
