@@ -36,6 +36,7 @@ use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberContro
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use App\Http\Controllers\WalletController;
+use Chatify\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 
@@ -77,6 +78,9 @@ Route::resource('/', LandingController::class);
 Route::post('payment/success', [LandingController::class, 'midtransCallback']);
 Route::get('payment/success', [LandingController::class, 'midtransCallback']);
 
+
+// Route::get('chatify', [MessagesController::class, 'index']);
+Route::get('chatify', [MessagesController::class, 'index'])->name(config('chatify.path'));
 // Route::post('checkout', [CheckoutController::class, 'proccess'])->name('checkout');
 // Route::post('success', [CheckoutController::class, 'callback'])->name('midtrans.callback');
 // Dashboard

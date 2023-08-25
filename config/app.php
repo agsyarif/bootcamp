@@ -169,6 +169,7 @@ return [
          * Package Service Providers...
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        \Chatify\ChatifyServiceProvider::class,
 
 
         /*
@@ -197,6 +198,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
     ])->toArray(),
 
 ];
