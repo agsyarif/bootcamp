@@ -64,47 +64,47 @@
                             {{-- {{$aksesCourse}} --}}
                             @foreach ($aksesCourse as $aksesCourse)
                             {{-- =================== --}}
-                            <article class="flex items-start space-x-6 pt-4">
-                                <img src="{{ asset('course/thumbnail/' . $aksesCourse->course->image) }}" alt="" width="150" height="150" class="flex-none rounded-md" />
-                                <div class="min-w-0 relative flex-auto">
-                                  <h2 class="font-semibold text-slate-900 truncate pr-20">{{ $aksesCourse->course->name }}</h2>
-                                  <h2 class="font-normal text-slate-900 truncate pr-20">Aktif mulai : {{ \Carbon\Carbon::parse($aksesCourse->created_at)->isoFormat('dddd, D MMMM Y') }}</h2>
-                                  <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-                                      
-                                    @foreach ($progress as $item)
-                                        @foreach ($item as $key => $value)
-                                            @if ($key == $aksesCourse->id)
-                                                <div class="absolute top-5 right-0 flex items-center space-x-1">
-                                                    <dt class="text-gray-700">
-                                                        <i class="fa-solid fa-film"></i>
-                                                    </dt>
-                                                    <dd>{{ $value['aksesMaterial'] }}/{{ $value['totalMaterial'] }}</dd>
-                                                </div>
-                                                <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                                                    <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {{ $value['progress'] }}%"> {{ $value['progress'] }} %</div>
-                                                </div>
-                                                {{-- <div class="pt-4">{{ $value['aksesMaterial'] }}/{{ $value['totalMaterial'] }}</div> --}}
-                                            @endif
+                                <article class="flex items-start space-x-6 pt-4">
+                                    <img src="{{ asset('course/thumbnail/' . $aksesCourse->course->image) }}" alt="" width="150" height="150" class="flex-none rounded-md" />
+                                    <div class="min-w-0 relative flex-auto">
+                                    <h2 class="font-semibold text-slate-900 truncate pr-20">{{ $aksesCourse->course->name }}</h2>
+                                    <h2 class="font-normal text-slate-900 truncate pr-20">Aktif mulai : {{ \Carbon\Carbon::parse($aksesCourse->created_at)->isoFormat('dddd, D MMMM Y') }}</h2>
+                                    <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
+                                        
+                                        @foreach ($progress as $item)
+                                            @foreach ($item as $key => $value)
+                                                @if ($key == $aksesCourse->id)
+                                                    <div class="absolute top-5 right-0 flex items-center space-x-1">
+                                                        <dt class="text-gray-700">
+                                                            <i class="fa-solid fa-film"></i>
+                                                        </dt>
+                                                        <dd>{{ $value['aksesMaterial'] }}/{{ $value['totalMaterial'] }}</dd>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                                        <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {{ $value['progress'] }}%"> {{ $value['progress'] }} %</div>
+                                                    </div>
+                                                    {{-- <div class="pt-4">{{ $value['aksesMaterial'] }}/{{ $value['totalMaterial'] }}</div> --}}
+                                                @endif
+                                            @endforeach
                                         @endforeach
-                                    @endforeach
-                                    <div class="flex-none w-full font-normal">
-                                      <dt class="sr-only">Total Score</dt>
-                                      <dd class="text-slate-400">Total Nilai : {{ $aksesCourse->getSumScore() / $aksesCourse->getCountExam() }}</dd>
-                                    </div>
-                                    <div class="flex gap-2 w-full font-normal">
-                                        <dd class="text-slate-400">
-                                            <a href="{{route('member.progress.show', $aksesCourse->id)}}">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                        </dd>
-                                        <dd class="text-slate-400">
-                                            <a href="{{ route('member.course.show', [$aksesCourse->course->id]) }}">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                lanjut belajar
-                                            </a>
-                                        </dd>
-                                    </div>
-                                  </dl>
+                                        <div class="flex-none w-full font-normal">
+                                        <dt class="sr-only">Total Score</dt>
+                                        <dd class="text-slate-400">Total Nilai : {{ $aksesCourse->getSumScore() / $aksesCourse->getCountExam() }}</dd>
+                                        </div>
+                                        <div class="flex gap-2 w-full font-normal">
+                                            <dd class="text-slate-400">
+                                                <a href="{{route('member.progress.show', $aksesCourse->id)}}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                            </dd>
+                                            <dd class="text-slate-400">
+                                                <a href="{{ route('member.course.show', [$aksesCourse->course->id]) }}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                    lanjut belajar
+                                                </a>
+                                            </dd>
+                                        </div>
+                                    </dl>
                                 </div>
                               </article>
                               

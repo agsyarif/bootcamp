@@ -20,20 +20,25 @@ class ProgressService
 
     public function progress()
     {
-        foreach ($this->aksesCourse as $aksesCourse) {
+        $progress[] = [];
+        if ($this->aksesCourse->count() > 0) {
 
-            $aksesMaterial = $this->countAksesCourses($aksesCourse->detail_akses_course);
-            $totalMaterial = $aksesCourse->course->getAllMaterial();
-            $persentase = $aksesMaterial / $totalMaterial * 100;
+            foreach ($this->aksesCourse as $aksesCourse) {
 
-            $progress[] = [$aksesCourse->id => [
-                'progress' => number_format($persentase, 0, '.', ''),
-                'aksesMaterial' => $aksesMaterial,
-                'totalMaterial' => $totalMaterial,
-                'sumScore' => $this->sumExamScore($aksesCourse),
-                'examScore' => $this->examScore($aksesCourse)
-            ]];
+                $aksesMaterial = $this->countAksesCourses($aksesCourse->detail_akses_course);
+                $totalMaterial = $aksesCourse->course->getAllMaterial();
+                $persentase = $aksesMaterial / $totalMaterial * 100;
+
+                $progress[] = [$aksesCourse->id => [
+                    'progress' => number_format($persentase, 0, '.', ''),
+                    'aksesMaterial' => $aksesMaterial,
+                    'totalMaterial' => $totalMaterial,
+                    'sumScore' => $this->sumExamScore($aksesCourse),
+                    'examScore' => $this->examScore($aksesCourse)
+                ]];
+            }
         }
+
         return $progress;
     }
 
