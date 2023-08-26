@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DetailUser;
 use App\Models\UserRole;
+use App\Models\wallet;
+use Illuminate\Support\Str;
 
 class MentorController extends Controller
 {
@@ -62,6 +64,17 @@ class MentorController extends Controller
         $user->user_role_id = $request->user_role_id;
         $user->save();
 
+        $pass = bcrypt("uwhcamp2022");
+        $randomString = Str::random(3);
+        $wallet = wallet::firstOrCreate(
+            ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
+            [
+                'name' => $user->name,
+                'password' => $pass,
+                'saldo' => 0
+            ]
+        );
+
         toast()->success('Berhasil menambahkan mentor', 'success');
         return redirect()->route('admin.mentor-management.index');
     }
@@ -116,6 +129,17 @@ class MentorController extends Controller
         $user->user_role_id = $request->user_role_id;
         $user->is_active = $request->is_active;
         $user->save();
+
+        $pass = bcrypt("uwhcamp2022");
+        $randomString = Str::random(3);
+        $wallet = wallet::firstOrCreate(
+            ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
+            [
+                'name' => $user->name,
+                'password' => $pass,
+                'saldo' => 0
+            ]
+        );
 
         toast()->success('Berhasil mengubah mentor', 'success');
         return redirect()->route('admin.mentor-management.index');

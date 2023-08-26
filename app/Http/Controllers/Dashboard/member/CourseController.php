@@ -27,9 +27,10 @@ class CourseController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-        $course = Cache::remember('course/' . $userId, 10 * 60 * 60, function () use ($userId) {
-            return akses_course::where('user_id', '=', $userId)->get();
-        });
+        $course = akses_course::where('user_id', '=', $userId)->get();
+        // $course = Cache::remember('course/' . $userId, 10 * 60 * 60, function () use ($userId) {
+        //     return akses_course::where('user_id', '=', $userId)->get();
+        // });
         $active = 'course';
         $courses = count($course);
         return view('pages.Dashboard.member.course.index', compact('course', 'active', 'courses'));

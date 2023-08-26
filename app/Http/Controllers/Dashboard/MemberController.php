@@ -9,6 +9,8 @@ use App\Models\course;
 use App\Models\OrderCourse;
 use App\Models\OrderWebinar;
 use App\Models\UserRole;
+use App\Models\wallet;
+use Illuminate\Support\Str;
 
 class MemberController extends Controller
 {
@@ -115,6 +117,19 @@ class MemberController extends Controller
         $user->user_role_id = $request->user_role_id;
         $user->is_active = $request->is_active;
         $user->save();
+
+        if ($request->user_role_id == 2) {
+            $pass = bcrypt("uwhcamp2022");
+            $randomString = Str::random(3);
+            $wallet = wallet::firstOrCreate(
+                ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
+                [
+                    'name' => $user->name,
+                    'password' => $pass,
+                    'saldo' => 0
+                ]
+            );
+        }
 
         toast()->success('Berhasil mengubah member', 'Berhasil');
         return redirect()->route('admin.member-management.index');
