@@ -395,7 +395,7 @@
                                         </button>
                                     @else
                                         <button type="submit"
-                                            class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
+                                            class="block px-12 py-4 my-2 text-lg font-semibold text-center bg-serv-button rounded-xl">
                                             Gabung
                                         </button>
                                     @endif
@@ -406,7 +406,7 @@
                             @guest
 
                                 <a onclick="toggleModal('loginModal')"
-                                    class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
+                                    class="block px-12 py-4 my-2 text-lg font-semibold text-center bg-serv-button rounded-xl">
                                     Gabung Kelas
                                 </a>
 
