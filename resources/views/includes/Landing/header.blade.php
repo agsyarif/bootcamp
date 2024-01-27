@@ -8,19 +8,19 @@
                     {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="" class="ml-3"> --}}
                     <svg viewBox="0 0 700 120" class="desktop" id="svg">
                         <text x="40%" y="70%" fill="" text-anchor="middle">
-                            UwhCamp
+                            On.Code
                         </text>
                     </svg>
                     <svg viewBox="0 0 700 120" class="mobile" id="svg">
                         <text x="40%" y="70%" fill="" text-anchor="middle">
-                            Uwhcamp
+                            On.Code
                         </text>
                     </svg>
                     {{-- </a> --}}
 
                 {{-- <svg viewBox="0 0 1350 600" id="svg">
                     <text x="50%" y="50%" fill="" text-anchor="middle">
-                        UwhCamp
+                        On.Code
                     </text>
                 </svg> --}}
                 <div class="hidden lg:flex lg:items-center lg:w-auto w-full lg:ml-auto lg:mr-auto flex-wrap items-center text-base justify-center"

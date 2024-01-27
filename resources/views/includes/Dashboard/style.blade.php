@@ -1,6 +1,6 @@
 {{-- <script src="https://kit.fontawesome.com/281f1a6779.js" crossorigin="anonymous"></script> --}}
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> --}}
-<link rel="stylesheet" href="{{assets('css/datatables_jquery.css')}}">
+<link rel="stylesheet" href="{{asset('css/datatables_jquery.css')}}">
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" /> --}}
 {{-- <link rel="stylesheet" href="{{ asset('css/twElement.css') }}"> --}}
 
