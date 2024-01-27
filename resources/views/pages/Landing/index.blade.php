@@ -6,6 +6,7 @@
 
 @section('content')
 
+
     <!-- top -->
     <div class="hero-bg">
         <!-- header -->
@@ -70,7 +71,7 @@
                 <div class="grid sm:grid-cols-2 gap-4 mob:col-grid1">
 
                     {{-- <div class=""> --}}
-                    <div class="p-6 max-w-lg bg-white rounded-lg border border-gray-200 shadow-md">
+                    <div class="p-6 max-w-lg rounded-lg border border-gray-200 shadow-md">
                         <img src="{{ asset('/assets/images/ic_globe.png') }}" alt="" class="inline mr-3 h-14 w-14">
                         <a href="#">
                             <h5 class="mob:font2 mb-2 text-2xl font-semibold tracking-tight text-gray-900">
@@ -82,7 +83,7 @@
                             disesuaikan dengan kebutuhan industri teknologi
                             masa kini. </p>
                     </div>
-                    <div class="p-6 max-w-lg bg-white rounded-lg border border-gray-200 shadow-md">
+                    <div class="p-6 max-w-lg rounded-lg border border-gray-200 shadow-md">
                         <img src="{{ asset('/assets/images/ic_globe-1.png') }}" alt=""
                             class="inline mr-3 h-14 w-14">
                         <a href="#">
@@ -99,7 +100,7 @@
                     {{-- </div> --}}
 
                     {{-- <div class=""> --}}
-                    <div class="p-6 max-w-lg bg-white rounded-lg border border-gray-200 shadow-md">
+                    <div class="p-6 max-w-lg rounded-lg border border-gray-200 shadow-md">
                         <img src="{{ asset('/assets/images/ic_globe-3.png') }}" alt=""
                             class="inline mr-3 h-14 w-14">
                         <a href="#">
@@ -113,7 +114,7 @@
                             di program Full Time.
                         </p>
                     </div>
-                    <div class="p-6 max-w-lg bg-white rounded-lg border border-gray-200 shadow-md">
+                    <div class="p-6 max-w-lg rounded-lg border border-gray-200 shadow-md">
                         <img src="{{ asset('/assets/images/ic_globe-2.png') }}" alt=""
                             class="inline mr-3 h-14 w-14">
                         <a href="#">
@@ -285,6 +286,6 @@
         </div>
     </div>
 
-    </div>
+
 
 @endsection
