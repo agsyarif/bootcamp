@@ -6,12 +6,12 @@
             </a> --}}
             <svg viewBox="0 0 700 120" class="desktop" id="svg">
                 <text x="40%" y="70%" fill="" text-anchor="middle">
-                    UwhCamp
+                    DevCodeCampID
                 </text>
             </svg>
             {{-- <svg viewBox="0 0 700 120" class="mobile" id="svg">
                 <text x="40%" y="70%" fill="" text-anchor="middle">
-                    Uwhcamp
+                    DevCodeCampID
                 </text>
             </svg> --}}
             {{--
