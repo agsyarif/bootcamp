@@ -170,6 +170,7 @@ return [
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         \Chatify\ChatifyServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
 
         /*

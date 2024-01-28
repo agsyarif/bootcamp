@@ -78,22 +78,25 @@
 
                                         <div class="col-span-6 sm:col-span-3">
 
-                                            <select id="user_role_id" name="user_role_id" autocomplete="user_role_id"
+                                            <select id="role" name="role" autocomplete="role"
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
 
-                                                <option value="1" {{ $member->user_role_id == '1' ? 'selected' : '' }}>
-                                                    Administrator</option>
-                                                <option value="2" {{ $member->user_role_id == '2' ? 'selected' : '' }}>
-                                                    Mentor</option>
-                                                <option value="3" {{ $member->user_role_id == '3' ? 'selected' : '' }}>
-                                                    Member</option>
+                                                <option>User Role</option>
 
+                                                @foreach ($roles as $role)
+                                                    @if ($member->hasRole($role->name))
+                                                        <option value={{ $role->name }} selected>{{ $role->name }}
+                                                        </option>
+                                                    @else
+                                                        <option value={{ $role->name }}>{{ $role->name }}</option>
+                                                    @endif
+                                                @endforeach
 
                                             </select>
 
-                                            @if ($errors->has('user_role_id'))
-                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('user_role_id') }}
+                                            @if ($errors->has('role'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('role') }}
                                                 </p>
                                             @endif
 

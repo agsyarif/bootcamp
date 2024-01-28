@@ -38,18 +38,25 @@ class Search extends Component
 
         if ($this->segment == 'mentor-management') {
 
+            $data = User::role('Mentor');
+
             if ($this->search !== null) {
-                $data = User::where('user_role_id', 2)->where('name', 'like', '%' . $this->search . '%')->orWhere('user_role_id', 2)->Where('email', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
+                $data = $data->where('name', 'like', '%' . $this->search . '%')->Where('email', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
             } else {
-                $data = User::where('user_role_id', 2)->orderBy('updated_at', 'desc')->get();
+                $data = $data->orderBy('updated_at', 'desc')->get();
             }
+
             return view('livewire.admin.search', compact('data'));
         } else if ($this->segment == 'member-management') {
+
+            $data = User::role('Member');
+
             if ($this->search !== null) {
-                $data = User::where('user_role_id', 3)->where('name', 'like', '%' . $this->search . '%')->orWhere('user_role_id', 3)->Where('email', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
+                $data = $data->where('name', 'like', '%' . $this->search . '%')->Where('email', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
             } else {
-                $data = User::where('user_role_id', 3)->orderBy('updated_at', 'desc')->get();
+                $data = $data->orderBy('updated_at', 'desc')->get();
             }
+
             return view('livewire.admin.member', compact('data'));
         } else if ($this->segment == 'transaksi') {
             if ($this->search !== null) {

@@ -59,6 +59,10 @@ Route::get('/cekredis', function () {
     return $p;
 });
 
+Route::get('test-roles', function () {
+    return Auth::user()->roles;
+});
+
 Route::get('wallet', [WalletController::class, 'index']);
 
 Route::get('corporate', [LandingController::class, 'corporate'])->name('corporate.landing');
@@ -90,7 +94,7 @@ Route::get('chatify', [MessagesController::class, 'index'])->name(config('chatif
 // })
 
 Route::group(
-    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'Admin']],
+    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'role:Admin']],
     function () {
 
         Route::resource('dashboard', DashboardController::class);
