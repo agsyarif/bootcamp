@@ -522,18 +522,12 @@
                         </div>
                     @endcan
 
-                    @can('isMentor')
-                        {{-- <div class="p-6 bg-white rounded-xl">
-                            @forelse ($cc as $key => $value)
-                                @livewire('counter', [$value->id])
-                            @empty
-                            @endforelse
-                        </div> --}}
+                    @role('Mentor')
 
                         <div class="w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-            
+
                             <img class="relative object-cover w-full h-full rounded-xl" src="{{ asset('assets/images/bg-master-card.png') }}">
-                            
+
                             <div class="w-full px-8 absolute top-8">
                                 <div class="flex justify-between">
                                     <div class="">
@@ -556,7 +550,7 @@
                                                 <i class="fa-regular fa-eye"></i>
                                             </button>
                                         </span>
-                                          Rp. 
+                                        Rp.
                                         <span id="saldo" class="font-bold" data-saldo="{{auth()->user()->wallet()->saldo}}">
                                             *******
                                         </span>
@@ -574,19 +568,20 @@
                                             </p>
                                         </div>
                                         <div class="">
-                                            <p class="font-light text-xs text-xs">
+                                            <p class="font-light text-xs">
                                                 last balance entered
                                             </h1>
                                             <p class="font-bold tracking-wider text-sm">
-                                                {{auth()->user()->wallet()->created_at}}
+                                                {{auth()->user()->wallet()->updated_at}}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                
+
                             </div>
                         </div>
-                    @endcan
+
+                    @endrole
 
                 </aside>
 

@@ -35,6 +35,8 @@ use App\Http\Controllers\Dashboard\mentor\ExamScoreController;
 use App\Http\Controllers\Dashboard\mentor\MemberController as MentorMemberController;
 use App\Http\Controllers\Dashboard\mentor\profileController as mentorProfileController;
 use App\Http\Controllers\Dashboard\TransactionController;
+use App\Http\Controllers\Permission\AssignPermissionController;
+use App\Http\Controllers\Permission\permissionController;
 use App\Http\Controllers\WalletController;
 use Chatify\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +59,10 @@ use Illuminate\Support\Facades\Redis;
 Route::get('/cekredis', function () {
     $p = Redis::incr('p');
     return $p;
+});
+
+Route::get('test-roles', function () {
+    return Auth::user()->roles;
 });
 
 Route::get('wallet', [WalletController::class, 'index']);
@@ -90,7 +96,7 @@ Route::get('chatify', [MessagesController::class, 'index'])->name(config('chatif
 // })
 
 Route::group(
-    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'Admin']],
+    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'role:Admin']],
     function () {
 
         Route::resource('dashboard', DashboardController::class);
@@ -104,11 +110,14 @@ Route::group(
         // Route::resource('user', UserController::class);
         Route::post('wallet/{user}', [WalletController::class, 'create'])->name('create-wallet');
         // Route::resource('wallet', WalletController::class);
+
+        Route::resource('permission', permissionController::class)->except('show');
+        Route::resource('permission/assign', AssignPermissionController::class);
     }
 );
 
 Route::group(
-    ['prefix' => 'mentor', 'as' => 'mentor.', 'middleware' => ['auth', 'verified', 'Mentor']],
+    ['prefix' => 'mentor', 'as' => 'mentor.', 'middleware' => ['auth', 'verified', 'role:Mentor']],
     function () {
 
         Route::resource('dashboard', DashboardController::class);
@@ -145,6 +154,8 @@ Route::group(
         // Route::resource('materi', MateriController::class);
     }
 );
+
+Route::resource('permission/assign', AssignPermissionController::class);
 
 // route socialite
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');

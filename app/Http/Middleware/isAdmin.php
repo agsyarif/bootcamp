@@ -23,7 +23,8 @@ class isAdmin
         // } else {
         //     return redirect('/');
         // }
-        if (!auth()->check() || auth()->user()->user_roles->name == 'Admin') {
+
+        if (!auth()->check() || auth()->user()->role->name == 'Admin') {
             return $next($request);
         } else {
             return redirect('/');

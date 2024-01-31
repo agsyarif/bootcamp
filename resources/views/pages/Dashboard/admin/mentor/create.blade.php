@@ -75,18 +75,28 @@
 
                                         <div class="col-span-6 sm:col-span-3">
 
-                                            <select id="user_role_id" name="user_role_id" autocomplete="user_role_id"
+                                            <select id="role" name="role" autocomplete="role"
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
 
                                                 <option>User Role</option>
 
-                                                @foreach ($user_role as $role)
+                                                {{-- @foreach ($user_role as $role)
                                                     @if (old('user_role_id') == $role->id)
                                                         <option value={{ $role->id }} selected>{{ $role->name }}
                                                         </option>
                                                     @else
                                                         <option value={{ $role->id }}>{{ $role->name }}</option>
+                                                    @endif
+                                                @endforeach --}}
+
+                                                {{-- SPATIE --}}
+                                                @foreach ($roles as $role)
+                                                    @if (old('role') == $role->name)
+                                                        <option value={{ $role->name }} selected>{{ $role->name }}
+                                                        </option>
+                                                    @else
+                                                        <option value={{ $role->name }}>{{ $role->name }}</option>
                                                     @endif
                                                 @endforeach
 
@@ -97,8 +107,8 @@
 
                                             </select>
 
-                                            @if ($errors->has('user_role_id'))
-                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('user_role_id') }}
+                                            @if ($errors->has('role'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('role') }}
                                                 </p>
                                             @endif
 
@@ -126,14 +136,14 @@
                                             <label for="password"
                                                 class="block mb-3 font-medium text-gray-700 text-md">Password</label>
 
-                                            <input placeholder="Your Password" type="password" name="password" id="password"
-                                                autocomplete="password"
-                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                                                required>
+                                            <input placeholder="Your Password" type="text" name="password" id="password"
+                                                autocomplete="password" value="oncode2023"
+                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md bg-gray-200 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                                readonly>
 
-                                            @if ($errors->has('password'))
+                                            {{-- @if ($errors->has('password'))
                                                 <p class="text-red-500 mb-3 text-sm">{{ $errors->first('password') }}</p>
-                                            @endif
+                                            @endif --}}
 
                                         </div>
                                     </div>

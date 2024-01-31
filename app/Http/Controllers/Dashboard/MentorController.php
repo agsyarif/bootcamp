@@ -8,7 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailUser;
 use App\Models\UserRole;
 use App\Models\wallet;
+use App\Services\UserService;
+use App\Services\WalletService;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class MentorController extends Controller
 {
@@ -19,14 +22,7 @@ class MentorController extends Controller
      */
     public function index()
     {
-        $mentor = User::where('user_role_id', '=', 2)->get();
-        // $detail = DetailUser::where('user_id', '=', 2)->get();
-        // $data = [
-        //     $mentor,
-        //     $detail
-        // ];
-        // return $detail;
-        // return $detail;
+        $mentor = User::role('Mentor')->count();
         return view('pages.Dashboard.admin.mentor.index', compact('mentor'));
     }
 
@@ -38,7 +34,7 @@ class MentorController extends Controller
     public function create()
     {
         return view('pages.Dashboard.admin.mentor.create', [
-            'user_role' => UserRole::all(),
+            'roles' => Role::all(),
         ]);
     }
 
@@ -53,27 +49,20 @@ class MentorController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'user_role_id' => 'required',
+            'password' => 'nullable|min:6',
+            'role' => 'required'
         ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->user_role_id = $request->user_role_id;
-        $user->save();
+        $password = bcrypt($request->password ?? "oncode2023");
+        $request['password_hash'] = $password;
 
-        $pass = bcrypt("uwhcamp2022");
-        $randomString = Str::random(3);
-        $wallet = wallet::firstOrCreate(
-            ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
-            [
-                'name' => $user->name,
-                'password' => $pass,
-                'saldo' => 0
-            ]
-        );
+        $userService = new UserService();
+        $walletService = new WalletService();
+
+        $newUser = $userService->createUser($request);
+
+        $newUser['password_hash'] = $password;
+        $walletService->fisrtOrUpdateWallet($newUser);
 
         toast()->success('Berhasil menambahkan mentor', 'success');
         return redirect()->route('admin.mentor-management.index');
@@ -103,7 +92,7 @@ class MentorController extends Controller
     {
         return view('pages.Dashboard.admin.mentor.edit', [
             'mentor' => User::findOrFail($id),
-            'user_role' => UserRole::all(),
+            'roles' => Role::all(),
         ]);
     }
 
@@ -119,27 +108,20 @@ class MentorController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
-            'user_role_id' => 'required',
+            'role' => 'required',
             'is_active' => 'required',
         ]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->user_role_id = $request->user_role_id;
-        $user->is_active = $request->is_active;
-        $user->save();
 
-        $pass = bcrypt("uwhcamp2022");
-        $randomString = Str::random(3);
-        $wallet = wallet::firstOrCreate(
-            ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
-            [
-                'name' => $user->name,
-                'password' => $pass,
-                'saldo' => 0
-            ]
-        );
+        $updateUser = $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'is_active' => $request->is_active
+        ]);
+
+        $user->syncRoles([$request->role]);
+        // $user->assignRole();
 
         toast()->success('Berhasil mengubah mentor', 'success');
         return redirect()->route('admin.mentor-management.index');

@@ -40,25 +40,19 @@
 
                         <hr class="block lg:hidden">
 
-                        @can('admin')
-                        <a href="{{ route('admin.dashboard.index') }}"
-                            class="block lg:hidden nav-link text-serv-text">My
-                            Dashboard</a>
-                        @endcan
-
-                        @can('mentor')
-                        <a href="{{ route('mentor.dashboard.index') }}"
-                            class="block lg:hidden nav-link text-serv-text">My
-                            Dashboard</a>
-                        @endcan
-
-                        @can('member')
-                        <a href="{{ route('member.dashboard.index') }}"
-                            class="block lg:hidden nav-link text-serv-text">My
-                            Dashboard</a>
-                        @endcan
-
-
+                        @role('Admin')
+                            <a href="{{ route('admin.dashboard.index') }}"
+                                class="block lg:hidden nav-link text-serv-text">My
+                                Dashboard</a>
+                        @elserole('Mentor')
+                            <a href="{{ route('mentor.dashboard.index') }}"
+                                class="block lg:hidden nav-link text-serv-text">My
+                                Dashboard</a>
+                        @elserole('Member')
+                            <a href="{{ route('member.dashboard.index') }}"
+                                class="block lg:hidden nav-link text-serv-text">My
+                                Dashboard</a>
+                        @endrole
 
                         <a href="{{ route('logout') }}" class="block lg:hidden nav-link text-serv-text"
                             onclick="evnt.preventDefault(); document.getElementById('logout-form').submit();">Logout
@@ -245,37 +239,22 @@
 
                     <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
 
-                        {{-- jika user id = 1 => admin, user id = 2 => mentor, user id = 4 => member --}}
-                        @if (Auth::user()->user_role_id == 1)
-                        {{-- Admin --}}
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('admin.dashboard.index') }}">Dashboard</a>
-                        @elseif (Auth::user()->user_role_id == 2)
-                        {{-- Mentor --}}
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('mentor.dashboard.index') }}">Dashboard</a>
-                        @elseif (Auth::user()->user_role_id == 3)
-                        {{-- User --}}
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        @role('Admin')
+
+                            <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+
+                        @elserole('Mentor')
+
+                            <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="{{ route('mentor.dashboard.index') }}">Dashboard</a>
+
+                        @elserole('Member')
+
+                            <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ route('member.dashboard.index') }}">Dashboard</a>
-                        @elseif (Auth::user()->user_role_id == 4)
-                        {{-- Tutor --}}
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="tutor.dashboard.index">Dashboard</a>
-                        @endif
-                        {{-- ~~~~~~~~~~~~~~~belum disettings ~~~~~~~~~~~~~~~~ --}}
-                        {{-- @if (Auth::user()->user_role_id == 1)
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('admin.dashboard.index') }}">Dashboard</a>
-                        @elseif (Auth::user()->user_role_id == 2)
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('mentor.dashboard.index') }}">Dashboard</a>
-                        @elseif (Auth::user()->user_role_id == 4)
-                        <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('member.dashboard.index') }}">Dashboard</a>
-                        @endif --}}
-                        {{-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --}}
-                        {{-- jika user id = 1 => admin, user id = 2 => mentor, user id = 4 => member --}}
+
+                        @endrole
 
                         <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ url('logout') }}"

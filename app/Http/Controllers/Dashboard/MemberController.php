@@ -10,7 +10,10 @@ use App\Models\OrderCourse;
 use App\Models\OrderWebinar;
 use App\Models\UserRole;
 use App\Models\wallet;
+use App\Services\UserService;
+use App\Services\WalletService;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class MemberController extends Controller
 {
@@ -21,7 +24,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $member = User::where('user_role_id', '=', 3)->get();
+        $member = User::role('Member')->get();
         $orderC = OrderCourse::all();
         $orderW = OrderWebinar::all();
         return view('pages.Dashboard.admin.member.index', compact('member'));
@@ -35,7 +38,7 @@ class MemberController extends Controller
     public function create()
     {
         return view('pages.Dashboard.admin.member.create', [
-            'user_role' => UserRole::all(),
+            'roles' => Role::all(),
         ]);
     }
 
@@ -50,16 +53,15 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'user_role_id' => 'required',
+            'password' => 'nullable|min:6',
+            'role' => 'required'
         ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->user_role_id = $request->user_role_id;
-        $user->save();
+        $password = bcrypt($request->password ?? "oncode2023");
+        $request['password_hash'] = $password;
+
+        $userService = new UserService();
+        $newUser = $userService->createUser($request);
 
         toast()->success('Berhasil menambahkan member baru', 'Berhasil');
         return redirect()->route('admin.member-management.index');
@@ -90,7 +92,7 @@ class MemberController extends Controller
     {
         return view('pages.Dashboard.admin.member.edit', [
             'member' => User::findOrFail($id),
-            'user_role' => UserRole::all(),
+            'roles' => Role::all(),
         ]);
     }
 
@@ -107,29 +109,46 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
-            'user_role_id' => 'required',
+            'role' => 'required',
             'is_active' => 'required',
         ]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->user_role_id = $request->user_role_id;
-        $user->is_active = $request->is_active;
-        $user->save();
 
-        if ($request->user_role_id == 2) {
-            $pass = bcrypt("uwhcamp2022");
-            $randomString = Str::random(3);
-            $wallet = wallet::firstOrCreate(
-                ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
-                [
-                    'name' => $user->name,
-                    'password' => $pass,
-                    'saldo' => 0
-                ]
-            );
-        }
+        $updateUser = $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'is_active' => $request->is_active
+        ]);
+
+        $user->syncRoles([$request->role]);
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique:users,email,' . $id,
+        //     'user_role_id' => 'required',
+        //     'is_active' => 'required',
+        // ]);
+
+        // $user = User::findOrFail($id);
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->user_role_id = $request->user_role_id;
+        // $user->is_active = $request->is_active;
+        // $user->save();
+
+        // if ($request->user_role_id == 2) {
+        //     $pass = bcrypt("uwhcamp2022");
+        //     $randomString = Str::random(3);
+        //     $wallet = wallet::firstOrCreate(
+        //         ['wallet_id' => 'ME' . $user->id . "-" . $randomString],
+        //         [
+        //             'name' => $user->name,
+        //             'password' => $pass,
+        //             'saldo' => 0
+        //         ]
+        //     );
+        // }
 
         toast()->success('Berhasil mengubah member', 'Berhasil');
         return redirect()->route('admin.member-management.index');
