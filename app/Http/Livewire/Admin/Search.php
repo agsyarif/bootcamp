@@ -41,12 +41,19 @@ class Search extends Component
             $data = User::role('Mentor');
 
             if ($this->search !== null) {
-                $data = $data->where('name', 'like', '%' . $this->search . '%')->Where('email', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->get();
+                $data = $data->where('name', 'like', '%' . $this->search . '%')
+                    ->Where('email', 'like', '%' . $this->search . '%')
+                    ->orderBy('updated_at', 'desc');
+
             } else {
-                $data = $data->orderBy('updated_at', 'desc')->get();
+                $data = $data->orderBy('updated_at', 'desc');
             }
 
+            $data = $data->get();
+            // $data = $data->paginate(5)->withQueryString();
+
             return view('livewire.admin.search', compact('data'));
+
         } else if ($this->segment == 'member-management') {
 
             $data = User::role('Member');
@@ -70,22 +77,11 @@ class Search extends Component
             $data = course::where('user_id', $mentor);
 
             if ($this->search !== null) {
-                // $data = Cache::get('mentor/course/' . $mentor);
-                // $data = course::where('user_id', $mentor)->get();
 
                 $data = $data->where('name', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('price', 'like', '%' . $this->search . '%')->get();
-
-                // $data = $data->map(function ($course) {
-                //     return $course->searchByColumnName($this->search);
-                // });
-                // $data = $data[0];
             } else {
-                // $data = course::where('user_id', $mentor)->get();
                 $data = $data->get();
-                // menggunakan cache
-                // $userId = auth()->user()->id;
-                // $data = Cache::get('mentor/course/' . $userId);
             }
 
             return view('livewire.mentor.course', compact('data'));

@@ -22,7 +22,7 @@ class MentorController extends Controller
      */
     public function index()
     {
-        $mentor = User::role('Mentor')->get();
+        $mentor = User::role('Mentor')->count();
         return view('pages.Dashboard.admin.mentor.index', compact('mentor'));
     }
 

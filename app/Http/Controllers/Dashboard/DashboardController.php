@@ -34,9 +34,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
-        // return $user->user_role_id;
-        // return "dashboard";
+
         $orders = Order::all();
         // $users = User::all();
         $allMentor = User::role('Mentor')->count();
