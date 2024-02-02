@@ -39,6 +39,11 @@ class course extends Model
         return $this->belongsTo(CourseCategory::class);
     }
 
+    public function chapters()
+    {
+        return $this->hasMany(CourseLesson::class);
+    }
+
     public function course_lessons()
     {
         return $this->hasMany(CourseLesson::class);
@@ -74,7 +79,7 @@ class course extends Model
             ->orWhere('price', 'like', '%' . $request . '%')->get();
     }
 
-    public function akses_course()
+    public function aksesCourse()
     {
         return $this->hasMany(akses_course::class);
     }
@@ -82,7 +87,7 @@ class course extends Model
     public function getAccessCourse()
     {
         // $user
-        return $this->akses_course()->where('user_id', auth()->user()->id)->first();
+        return $this->aksesCourse()->where('user_id', auth()->user()->id)->first();
     }
 
     public function comment()

@@ -65,7 +65,7 @@ class MentorController extends Controller
         $walletService->fisrtOrUpdateWallet($newUser);
 
         toast()->success('Berhasil menambahkan mentor', 'success');
-        return redirect()->route('admin.mentor-management.index');
+        return redirect()->route('mentor-management.index');
     }
 
     /**
@@ -76,9 +76,9 @@ class MentorController extends Controller
      */
     public function show($id)
     {
+        $mentor = User::with(['courses.aksesCourse'])->findOrFail($id);
         return view('pages.Dashboard.admin.mentor.show', [
-            'mentor' => User::findOrFail($id),
-            // 'detail' => DetailUser::where('user_id', '=', $id)->first(),
+            'mentor' => $mentor,
         ]);
     }
 
@@ -124,7 +124,7 @@ class MentorController extends Controller
         // $user->assignRole();
 
         toast()->success('Berhasil mengubah mentor', 'success');
-        return redirect()->route('admin.mentor-management.index');
+        return redirect()->route('mentor-management.index');
     }
 
     /**
@@ -140,6 +140,6 @@ class MentorController extends Controller
         $user->delete();
 
         toast()->success('Berhasil menghapus mentor', 'success');
-        return redirect()->route('admin.mentor-management.index');
+        return redirect()->route('mentor-management.index');
     }
 }

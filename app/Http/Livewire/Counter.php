@@ -100,6 +100,6 @@ class Counter extends Component
             }
             $this->hideForm = true;
         }
-        return redirect()->route('admin.dashboard.index');
+        return redirect()->route('dashboardindex');
     }
 }

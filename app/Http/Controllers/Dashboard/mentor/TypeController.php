@@ -34,7 +34,7 @@ class TypeController extends Controller
         // return $namem;
 
         toast()->success("Add Type Has Been Success");
-        return redirect()->route('mentor.question.show', $id_exam);
+        return redirect()->route('question.show', $id_exam);
         // return redirect()->route('mentor.type.index')->with('success', 'Type berhasil ditambahkan');
     }
 }

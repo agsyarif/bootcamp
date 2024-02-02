@@ -41,44 +41,44 @@
 
         <ul class="mt-6">
             @can('dashboard')
-                <x-menu.menu route='{{$role}}.dashboard.index' role='{{$role}}' path='dashboard' icon='fa-house' name='Dashboard' />
+                <x-menu.menu route='dashboard.index' role='{{$role}}' path='dashboard' icon='fa-house' name='Dashboard' />
             @endcan
 
                 @can('mentor-management')
-                    <x-menu.menu route='admin.mentor-management.index' role='admin' path='mentor-management' icon='fa-user-tie' name='Mentor Management' />
+                    <x-menu.menu route='mentor-management.index' role='admin' path='mentor-management' icon='fa-user-tie' name='Mentor Management' />
                 @endcan
 
                 @can('member-management')
-                    <x-menu.menu route='admin.member-management.index' role='admin' path='member-management' icon='fa-user-graduate' name='Member Management' />
+                    <x-menu.menu route='member-management.index' role='admin' path='member-management' icon='fa-user-graduate' name='Member Management' />
                 @endcan
 
                 @can('transaction')
-                    <x-menu.menu route='admin.transaction.index' role='admin' path='transaction' icon='fa-wallet' name='Transaction' />
+                    <x-menu.menu route='transaction.index' role='admin' path='transaction' icon='fa-wallet' name='Transaction' />
                 @endcan
 
                 @can('course')
-                    <x-menu.menu route='{{$role}}.course.index' role='{{$role}}' path='course' icon='fa-book' name='Course' />
+                    <x-menu.menu route='courses.index' role='{{$role}}' path='courses' icon='fa-book' name='Course' />
                 @endcan
 
                 @can('exam')
-                    <x-menu.menu route='mentor.exam.index' role='mentor' path='exam' icon='fa-clipboard-question' name='Exam Course' />
+                    <x-menu.menu route='exam.index' role='mentor' path='exam' icon='fa-clipboard-question' name='Exam Course' />
                 @endcan
 
                 @can('role-management')
                     {{-- role route perlu diganti --}}
-                    <x-menu.menu route='admin.assign.index' role='admin' path='role' icon='fa-bars' name='Role Management' />
+                    <x-menu.menu route='role.index' role='admin' path='role' icon='fa-bars' name='Role Management' />
                 @endcan
 
                 @can('permission')
-                    <x-menu.menu route='admin.permission.index' role='admin' path='permission' icon='fa-ellipsis' name='Menu Management' />
+                    <x-menu.menu route='permission.index' role='admin' path='permission' icon='fa-ellipsis' name='Menu Management' />
                 @endcan
 
                 @can('log-activity')
-                    <x-menu.menu route='{{$role}}.permission.index' role='{{$role}}' path='log-actifity' icon='fa-chalkboard-teacher' name='Log Activity' />
+                    <x-menu.menu route='permission.index' role='{{$role}}' path='log-actifity' icon='fa-chalkboard-teacher' name='Log Activity' />
                 @endcan
 
                 @can('progress')
-                    <x-menu.menu route='member.dashboard.index' role='member' path='progress' icon='fa-bars-progress' name='Progress Belajar' />
+                    <x-menu.menu route='dashboard.index' role='member' path='progress' icon='fa-bars-progress' name='Progress Belajar' />
                 @endcan
 
             <li class="relative px-6 py-3 flex">

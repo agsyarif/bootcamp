@@ -16,7 +16,7 @@
         <option>{{$nameView}}</option>
 
         @foreach (json_decode($collection) as $col)
-                <option value={{ $col->name }}>{{ $col->name }}</option>
+                <option value={{ $col->id }}>{{ $col->name }}</option>
         @endforeach
 
     </select>

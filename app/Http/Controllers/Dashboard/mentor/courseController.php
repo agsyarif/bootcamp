@@ -141,7 +141,7 @@ class courseController extends Controller
         // $course->save();
 
         toast('berhasil manambahkan data', 'success');
-        return redirect()->route('mentor.course.index');
+        return redirect()->route('courses.index');
     }
 
     /**
@@ -238,7 +238,7 @@ class courseController extends Controller
         $course->save();
 
         toast()->success('Update has been succes');
-        return redirect()->route('mentor.course.index');
+        return redirect()->route('courses.index');
     }
 
     /**
@@ -257,6 +257,6 @@ class courseController extends Controller
         }
         $course->delete();
         toast()->success('Delete has been succes');
-        return redirect()->route('mentor.course.index');
+        return redirect()->route('courses.index');
     }
 }

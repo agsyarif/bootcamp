@@ -26,7 +26,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.course.index') }}" class="text-gray-400">My Course</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">My Course</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -53,10 +53,10 @@
             <div class="grid gap-5 md:grid-cols-12">
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-6 py-2 mt-2 bg-white rounded-lg">
-        
-        
+
+
                         <div class="overflow-x-auto pt-6 pb-6 relative shadow-md sm:rounded-lg">
-        
+
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
@@ -72,7 +72,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-        
+
                                             <tr>
                                                 <td colspan="6" class="text-center">
                                                     <div wire:loading.block wire:target="search" class="alert alert-warning" role="alert">
@@ -80,11 +80,11 @@
                                                     </div>
                                                 </td>
                                             </tr>
-        
+
                                             <div wire:loading.remove wire:target="search">
                                                 @forelse ($score as $key => $item)
                                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-        
+
                                                     <td class="py-4 px-6">
                                                         {{ $loop->iteration }}
                                                     </td>
@@ -103,15 +103,15 @@
                                                         {{ $item->score }}
                                                     </td>
                                                     <td class="py-4 px-6 flex">
-        
-                                                        <a href="{{ route('mentor.exam-answer.show', $item->id) }}" class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
+
+                                                        <a href="{{ route('exam-answer.show', $item->id) }}" class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
                                                             <i class="fa fa-eye"></i>
                                                             <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                                 Lihat Jawaban
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
                                                         </a>
-                                                        {{-- <form action="{{ route('mentor.course.destroy', $item->id) }}" method="post">
+                                                        {{-- <form action="{{ route('course.destroy', $item->id) }}" method="post">
                                                             @method('delete')
                                                             @csrf
                                                             <button class="py-2 mr-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')" data-tooltip-target="tooltip-trash">
@@ -134,16 +134,16 @@
                                                 </tr>
                                                 @endforelse
                                             </div>
-        
+
                                         </tbody>
-        
+
                                     </div>
-        
+
                                 </div>
                             </table>
-        
+
                         </div>
-        
+
                     </div>
                 </main>
             </div>

@@ -1,8 +1,10 @@
-@props(['route', 'role', 'path', 'icon', 'name', 'isActive' => Auth::user()->active_status])
+@props(['route', 'role', 'path', 'icon', 'name', 'isActive' => Auth::user()->is_active])
 
 <li class="relative px-6 py-3">
 
-    @if (request()->is("$role/$path") ||
+    @if (
+        request()->is("$path") ||
+        request()->is("$role/$path") ||
         request()->is("$role/$path/*") ||
         request()->is("$role/*/$path") ||
         request()->is("$role/*/$path/*"))

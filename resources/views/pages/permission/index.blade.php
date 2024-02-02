@@ -22,8 +22,8 @@
                 <div class="col-span-4 lg:text-right">
                     <div class="relative mt-0 md:mt-6">
 
-                        <x-button.button route='admin.permission.create' viewName='+ Tambah Hak Akses' />
-                        <x-button.button route='admin.assign.create' viewName='+ assign to role' />
+                        <x-button.button route='permission.create' viewName='+ Tambah Hak Akses' />
+                        <x-button.button route='role.create' viewName='+ assign to role' />
 
                     </div>
                 </div>
@@ -56,17 +56,17 @@
                                     isAction=true
                                     actions="{!! json_encode([
                                         [
-                                            'route' => 'admin.permission.edit',
+                                            'route' => 'permission.edit',
                                             'icon' => 'fa fa-plus',
                                             'color' => 'text-serv-yellow'
                                         ],
                                         [
-                                            'route' => 'admin.permission.edit',
+                                            'route' => 'permission.edit',
                                             'icon' => 'fa-pen-to-square',
                                             'color' => 'text-green-500'
                                         ],
                                         [
-                                            'route' => 'admin.permission.destroy',
+                                            'route' => 'permission.destroy',
                                             'icon' => 'fa-trash-can',
                                             'color' => 'text-red-500'
                                         ]

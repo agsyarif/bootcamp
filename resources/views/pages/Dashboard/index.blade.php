@@ -231,7 +231,7 @@
                                     </p>
                                 </div>
                                 <div class="self-end hover:translate-x-2 transition transform">
-                                    <a href="{{ route('admin.transaction.index') }}"
+                                    <a href="{{ route('transaction.index') }}"
                                         class="text-sm text-gray-400 hover:text-gray-800">
                                         View All
                                         <i class="fas fa-arrow-right"></i>
@@ -283,11 +283,11 @@
                                                     @endif
                                                 </td>
                                                 <td class="py-4 flex">
-                                                    <a href="{{ route('admin.transaction.show', $item->id) }}"
+                                                    <a href="{{ route('transaction.show', $item->id) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.transaction.destroy', $item->id) }}"
+                                                    <form action="{{ route('transaction.destroy', $item->id) }}"
                                                         method="post">
                                                         @method('delete')
                                                         @csrf
@@ -363,7 +363,7 @@
                                                 {{-- <td class="py-4">{{ $item->course->price ?? '' }}</td> --}}
                                                 {{-- <td class="py-4">{{ $item->payment_status ?? '' }}</td> --}}
                                                 <td class="py-4">
-                                                    <a href="{{ route('admin.transaction.show', $item->id) }}"
+                                                    <a href="{{ route('transaction.show', $item->id) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
@@ -497,7 +497,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="py-4 flex">
-                                                    <a href="{{ route('admin.course.show', [$item->id]) }}"
+                                                    <a href="{{ route('courses.show', [$item->id]) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>

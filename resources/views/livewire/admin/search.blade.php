@@ -109,15 +109,15 @@
                                             @endif
                                         </td>
                                         <td class="py-4 px-6 flex">
-                                            <a href="{{ route('admin.mentor-management.show', $men['id']) }}"
+                                            <a href="{{ route('mentor-management.show', $men['id']) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.mentor-management.edit', $men['id']) }}"
+                                            <a href="{{ route('mentor-management.edit', $men['id']) }}"
                                                 class="px-2 py-2 mt-2 text-green-500 hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
-                                            <form action="{{ route('admin.mentor-management.destroy', $men->id) }}"
+                                            <form action="{{ route('mentor-management.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf
@@ -133,11 +133,6 @@
                             </div>
                         </tbody>
                     </table>
-
-                    <div>
-                        {{$data->onEachSide(5)->links()}}
-                        {{ $data->links() }}
-                    </div>
 
                 </div>
 

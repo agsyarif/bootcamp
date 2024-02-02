@@ -18,13 +18,13 @@
             </div>
         </div>
     </div>
-    
+
     <!-- breadcrumb -->
     <nav class="mx-10 mt-8 text-sm" aria-label="Breadcrumb">
         <ol class="inline-flex p-0 list-none">
 
             <li class="flex items-center">
-                <a href="{{ route('mentor.course.index') }}" class="text-gray-400">My Course</a>
+                <a href="{{ route('courses.index') }}" class="text-gray-400">My Course</a>
                 <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 320 512">
                     <path
@@ -40,7 +40,7 @@
                 </svg>
             </li>
             <li class="flex items-center">
-                <a href="{{ route('mentor.exam-score.show', optional($answerUser)->id) }}" class="text-gray-400">Nilai Kuis</a>
+                <a href="{{ route('exam-score.show', optional($answerUser)->id) }}" class="text-gray-400">Nilai Kuis</a>
                 <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 320 512">
                     <path
@@ -104,7 +104,7 @@
     </div>
 
     <div class="grid grid-cols-6 gap-6">
-        
+
     </div>
 
 @endsection

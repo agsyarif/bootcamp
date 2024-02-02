@@ -28,7 +28,7 @@
         <ol class="inline-flex p-0 list-none">
 
             <li class="flex items-center">
-                <a href="{{ route('admin.assign.index') }}" class="text-gray-400">Assign Permission</a>
+                <a href="{{ route('role.index') }}" class="text-gray-400">Assign Permission</a>
                 <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 320 512">
                     <path
@@ -48,7 +48,7 @@
             <main class="col-span-12 p-4 md:pt-0">
                 <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                    <form action="{{ route('admin.assign.store') }}" method="POST" id="assignForm">
+                    <form action="{{ route('role.store') }}" method="POST" id="assignForm">
                         @csrf
 
                         <div class="py-5 px-5">
@@ -77,7 +77,7 @@
                         <input type="hidden" name="permissions" id="permissions" value="">
 
                         <div class="px-4 py-3 text-right sm:px-6">
-                            <x-form.button-cancel route='admin.assign.index' />
+                            <x-form.button-cancel route='role.index' />
                             <button class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="saveSelectedBadges()">Simpan</button>
                         </div>
 
