@@ -11,18 +11,18 @@
                 <div class="col-span-8">
 
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        My material from <br>{{ $course->name ?? '' }}
+                        Materi Dari <br>{{ $course->name ?? '' }}
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        {{ $chapter->count() }} Total Chapter
+                        {{ $chapter->count() }} Total Materi
                     </p>
                 </div>
 
                 <div class="col-span-4 lg:text-right">
                     <div class="relative mt-0 md:mt-6">
 
-                        <a href="{{ route('mentor.chapter.show', $course->id) }}"
+                        <a href="{{ route('chapter.show', $course->id) }}"
                             class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
                             + Add Chapter
                         </a>
@@ -37,7 +37,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.course.index') }}" class="text-gray-400">My Course</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">My Course</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path

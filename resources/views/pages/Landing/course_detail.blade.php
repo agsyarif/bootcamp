@@ -168,7 +168,7 @@
                                 </p>
 
                                 @if ($courses->user->detail_user->contact_number ?? null != null)
-                                    
+
                                 <a href="https://wa.me/0885092116?text=Hi, Saya ingin bertanya tentang Bootcamp di UWHcamp ini??" class="mb-4 font-medium">
                                     WA /{{ $courses->user->detail_user->contact_number ?? '' }}
                                 </a>

@@ -101,14 +101,14 @@
                                             </td>
                                             <td class="py-4 px-6 flex">
 
-                                                <a href="{{ route('mentor.exam-score.show', $item->id) }}" class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
+                                                <a href="{{ route('exam-score.show', $item->id) }}" class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
                                                     <i class="fa fa-clipboard-question"></i>
                                                     <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                         Detail Nilai
                                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                                     </div>
                                                 </a>
-                                                <form action="{{ route('mentor.course.destroy', $item->id) }}" method="post">
+                                                <form action="{{ route('course.destroy', $item->id) }}" method="post">
                                                     @method('delete')
                                                     @csrf
                                                     <button class="py-2 mr-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')" data-tooltip-target="tooltip-trash">

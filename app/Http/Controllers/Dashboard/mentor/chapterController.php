@@ -32,7 +32,7 @@ class chapterController extends Controller
         $chapter->title = $newChapter->title;
         $chapter->save();
         toast('Chapter Updated Successfully', 'success');
-        return redirect()->route('mentor.materi.show', $course_id);
+        return redirect()->route('materi.show', $course_id);
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class chapterController extends Controller
         }
 
         toast()->success("Add Chapter Has Been Success");
-        return redirect()->route('mentor.materi.show', $courseId);
+        return redirect()->route('materi.show', $courseId);
     }
 
     // fungtion untuk mnambahkan data materi => karena harsu pake id si chapter.
@@ -77,7 +77,12 @@ class chapterController extends Controller
         }
         $chapter->delete();
         toast('Chapter Deleted Successfully', 'success');
-        return redirect()->route('mentor.materi.show', $course_id);
+        return redirect()->route('materi.show', $course_id);
         // return "hapus chapter";
+    }
+
+    public function addQuiz($chapterId) {
+        $chapter = CourseLesson::findOrFail($chapterId)->load(['course', 'exams']);
+        return view('pages.Dashboard.mentor.exam.add', compact('chapter'));
     }
 }

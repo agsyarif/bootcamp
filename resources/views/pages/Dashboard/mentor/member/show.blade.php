@@ -15,7 +15,7 @@
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        {{ $courseMember->akses_course->count() }} Total Peserta
+                        {{ $courseMember->aksesCourse->count() }} Total Peserta
                     </p>
                 </div>
 
@@ -37,7 +37,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.course.index') }}" class="text-gray-400">My Course</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">My Course</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path

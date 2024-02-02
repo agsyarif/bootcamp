@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create My Transaksi')
+@section('title', 'Create My Course')
 @section('content')
 
     <main class="h-full overflow-y-auto">
@@ -9,11 +9,11 @@
                 <div class="col-span-12">
 
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        Edit Transakasi {{ $transaction->name }}
+                        Add Your Exam
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        Update the Transaksi you provide
+                        Upload the Exam you provide
                     </p>
 
                 </div>
@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor-management.index') }}" class="text-gray-400">My Transaksi</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">Exam</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="flex items-center">
-                    <a href="#" class="font-medium">Edit Your Transaksi</a>
+                    <a href="#" class="font-medium">Add Your Exam</a>
                 </li>
 
             </ol>
@@ -45,66 +45,55 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                        <form action="{{ route('admin.transaction.update', [$transaction->id]) }}" method="POST">
+                        <form action="{{ route('exam.store') }}" method="POST">
                             @csrf
-                            {{-- @csrf_field --}}
-
-                            {{-- @method('PUT') --}}
-                            {{ method_field('PUT') }}
 
                             <div class="">
                                 <div class="px-4 py-5 sm:p-6">
 
                                     <div class="grid grid-cols-6 gap-6">
 
-                                        <div class="col-span-6 -mb-6">
+                                        <x-form for='course_id' forView='Kursus' placeholder='Judul kursus' type='text' name='title' id='title' isRequired='true' value='{{$chapter->course->name}}' readonly=true/>
 
-                                            <label for="code" class="block mb-3 font-medium text-gray-700 text-md">Kode
-                                                Transaksi</label>
+                                        <div class="col-span-6 sm:col-span-3">
 
-                                        </div>
+                                            <div class="flex justify-between items-center">
+                                                <label for="chapter_id" class="block mb-2 font-medium text-gray-700 text-md">
+                                                    Chapter
+                                                </label>
+                                            </div>
 
-                                        <div class="col-span-6">
-                                            <input placeholder="Mentor name ??" type="text" name="code" id="code"
-                                                autocomplete="code"
-                                                class="bg-gray-300 block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                                                value="{{ $transaction->midtrans_booking_code ?? '' }}" required readonly>
+                                            <select id="chapter_id" name="chapter_id" autocomplete="chapter"
+                                                class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
 
-                                            @if ($errors->has('code'))
-                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('code') }}</p>
-                                            @endif
+                                                <option>-- Pilih Chapter --</option>
 
-                                        </div>
-
-                                        <div class="col-span-6">
-                                            <label for="status"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Status</label>
-
-                                            <select id="status" name="status" autocomplete="status"
-                                                class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                required>
-                                                @foreach ($option as $item)
-                                                    <option value="{{ $item }}"
-                                                        {{ $item == $transaction->midtrans_booking_code ? 'selected' : '' }}>
-                                                        {{ $item }}
-                                                    </option>
+                                                @foreach (json_decode($chapter->course->chapters) as $col)
+                                                        <option value={{ $col->id }} {{$col->id == $chapter->id ? 'selected' : ''}}>{{ $col->title }}</option>
                                                 @endforeach
 
                                             </select>
 
-                                            @if ($errors->has('status'))
-                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('status') }}
+                                            @if ($errors->has('chapter_id'))
+                                                <p class="text-red-500 mb-3 text-sm">
+                                                    {{ $errors->first('chapter_id') }}
                                                 </p>
                                             @endif
 
                                         </div>
 
+                                        <x-form for='title' forView='title' placeholder='Judul Ujian' type='text' name='title' id='title' isRequired='true'/>
+
+                                        <x-form for='duration' forView='duration' placeholder='Durasi Ujian' type='number' name='duration' id='duration' isRequired='true'/>
+
+
                                     </div>
+
                                 </div>
 
                                 <div class="px-4 py-3 text-right sm:px-6">
 
-                                    <a href="{{ route('admin.transaction.index') }}" type="button"
+                                    <a href="{{ route('materi.show', $chapter->id) }}" type="button"
                                         class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
                                         onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
                                         Cancel
@@ -113,10 +102,11 @@
                                     <button type="submit"
                                         class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                         onclick="return confirm('Are you sure want to submit this data ?')">
-                                        Update Transaksi
+                                            Submit Ujian
                                     </button>
 
                                 </div>
+
                             </div>
                         </form>
 
@@ -127,3 +117,7 @@
     </main>
 
 @endsection
+
+@push('after-script')
+    <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
+@endpush

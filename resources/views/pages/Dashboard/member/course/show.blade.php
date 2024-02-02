@@ -49,7 +49,7 @@
                                                             {{-- @livewire('checklist', [$m->id, $CourseActive[0]->id, 'm']) --}}
                                                             @livewire('checklist', [$m->id, $course->id, 'm'])
                                                         </a>
-                                                        
+
                                                     </li>
                                                 @else
                                                     <li>

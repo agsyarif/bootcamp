@@ -27,7 +27,7 @@ class AssignPermissionController extends Controller
         $role->syncPermissions(json_decode($request->permissions));
 
         toast()->success('Berhasil menambahkan hak akses ke role', 'Berhasil');
-        return redirect()->route('admin.assign.index');
+        return redirect()->route('role.index');
     }
 
     public function show($role) {

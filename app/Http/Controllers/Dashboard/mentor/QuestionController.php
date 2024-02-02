@@ -12,6 +12,10 @@ use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
 {
+    public function index(Request $request){
+        //
+    }
+
     public function create($courseId, $examId)
     {
         return $courseId;
@@ -71,7 +75,7 @@ class QuestionController extends Controller
         $question->save();
 
         toast()->success("Add Question Has Been Success");
-        return redirect()->route('mentor.exam.show', $currentExam);
+        return redirect()->route('exam.show', $currentExam);
     }
 
     public function edit($id)
@@ -147,11 +151,11 @@ class QuestionController extends Controller
 
         if (!$update) {
             toast()->error("Data gagal di update.");
-            return redirect()->route('mentor.exam.show', $question->Exam_id);
+            return redirect()->route('exam.show', $question->Exam_id);
         }
 
         toast()->success("Data berhasil di update.");
-        return redirect()->route('mentor.exam.show', $question->exam_id);
+        return redirect()->route('exam.show', $question->exam_id);
     }
 
     public function destroy($id)
@@ -159,6 +163,6 @@ class QuestionController extends Controller
         $question = question::findOrFail($id);
         $question->delete();
         toast()->success("Delete Question Has Been Success");
-        return redirect()->route('mentor.exam.show', $question->exam_id);
+        return redirect()->route('exam.show', $question->exam_id);
     }
 }

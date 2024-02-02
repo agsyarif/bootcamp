@@ -25,6 +25,6 @@ class permissionController extends Controller
         ]);
 
         toast()->success('Berhasil menambahkan hak akses', 'Berhasil');
-        return redirect()->route('admin.permission.index');
+        return redirect()->route('permission.index');
     }
 }

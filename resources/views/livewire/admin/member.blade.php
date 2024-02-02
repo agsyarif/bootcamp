@@ -104,15 +104,15 @@
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 flex">
-                                            <a href="{{ route('admin.member-management.show', $men['id']) }}"
+                                            <a href="{{ route('member-management.show', $men['id']) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.member-management.edit', $men['id']) }}"
+                                            <a href="{{ route('member-management.edit', $men['id']) }}"
                                                 class="px-2 py-2 mt-2 text-green-500 hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
-                                            <form action="{{ route('admin.member-management.destroy', $men->id) }}"
+                                            <form action="{{ route('member-management.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf

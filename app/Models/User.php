@@ -94,4 +94,9 @@ class User extends Authenticatable
     {
         return wallet::where('wallet_id', 'like', 'ME' . $this->attributes['id'] . '-%')->first();
     }
+
+    public function courses()
+    {
+        return $this->hasMany(course::class);
+    }
 }

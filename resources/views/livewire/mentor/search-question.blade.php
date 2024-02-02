@@ -83,11 +83,11 @@
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 flex gap-2">
-                                            {{-- <a href="{{ route('mentor.question.edit', [$men->id]) }}"
+                                            {{-- <a href="{{ route('question.edit', [$men->id]) }}"
                                                 class="py-2 mt-2 text-green-500 hover:text-gray-800">
                                                 <i class="fa fa-eye"></i>
                                             </a> --}}
-                                            <a href="{{ route('mentor.question.edit', [$men->id]) }}"
+                                            <a href="{{ route('question.edit', [$men->id]) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800"
                                                 data-tooltip-target="tooltip-edit-question">
                                                 <i class="fa-regular fa-pen-to-square"></i>
@@ -96,7 +96,7 @@
                                                    <div class="tooltip-arrow" data-popper-arrow></div>
                                                </div>
                                             </a>
-                                            <form action="{{ route('mentor.question.destroy', [$men->id]) }}"
+                                            <form action="{{ route('question.destroy', [$men->id]) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf

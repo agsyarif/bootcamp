@@ -64,7 +64,7 @@ class MemberController extends Controller
         $newUser = $userService->createUser($request);
 
         toast()->success('Berhasil menambahkan member baru', 'Berhasil');
-        return redirect()->route('admin.member-management.index');
+        return redirect()->route('member-management.index');
     }
 
     /**
@@ -151,7 +151,7 @@ class MemberController extends Controller
         // }
 
         toast()->success('Berhasil mengubah member', 'Berhasil');
-        return redirect()->route('admin.member-management.index');
+        return redirect()->route('member-management.index');
     }
 
     /**
@@ -166,6 +166,6 @@ class MemberController extends Controller
         $user->delete();
 
         toast()->success('Berhasil menghapus member', 'Berhasil');
-        return redirect()->route('admin.member-management.index');
+        return redirect()->route('member-management.index');
     }
 }

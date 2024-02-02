@@ -70,7 +70,7 @@
                                     <h2 class="font-semibold text-slate-900 truncate pr-20">{{ $aksesCourse->course->name }}</h2>
                                     <h2 class="font-normal text-slate-900 truncate pr-20">Aktif mulai : {{ \Carbon\Carbon::parse($aksesCourse->created_at)->isoFormat('dddd, D MMMM Y') }}</h2>
                                     <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-                                        
+
                                         @foreach ($progress as $item)
                                             @foreach ($item as $key => $value)
                                                 @if ($key == $aksesCourse->id)
@@ -107,13 +107,13 @@
                                     </dl>
                                 </div>
                               </article>
-                              
+
                             {{-- =================== --}}
-                            
+
                                 <div style="height: 1px; width: 100%; background-color: rgb(27, 58, 78)"
                                     class="mt-3 rounded-full">
                                 </div>
-                            
+
                             @endforeach
 
                         </div>

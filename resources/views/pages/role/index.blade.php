@@ -21,7 +21,7 @@
 
                 <div class="col-span-4 lg:text-right">
                     <div class="relative mt-0 md:mt-6">
-                        <x-button.button route='admin.permission.create' viewName='+ Tambah Role' />
+                        <x-button.button route='permission.create' viewName='+ Tambah Role' />
                     </div>
                 </div>
             </div>
@@ -53,17 +53,17 @@
                                 isAction=true
                                 actions="{!! json_encode([
                                     [
-                                        'route' => 'admin.assign.show',
+                                        'route' => 'role.show',
                                         'icon' => 'fa fa-eye',
                                         'color' => 'text-serv-yellow'
                                     ],
                                     [
-                                        'route' => 'admin.assign.edit',
+                                        'route' => 'role.edit',
                                         'icon' => 'fa-pen-to-square',
                                         'color' => 'text-green-500'
                                     ],
                                     [
-                                        'route' => 'admin.assign.destroy',
+                                        'route' => 'role.destroy',
                                         'icon' => 'fa-trash-can',
                                         'color' => 'text-red-500'
                                     ]

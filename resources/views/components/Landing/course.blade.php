@@ -42,12 +42,12 @@
         </p>
         <!--Description-->
         <div class="max-w-full flex">
-            
+
 
             {{-- ///////////////////////////////// coba code yang ini \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
-            
+
             @for ($i = 0; $i < 5; $i++)
-                    <svg class="cursor-pointer block w-6 h-6 
+                    <svg class="cursor-pointer block w-6 h-6
                     @php
                         if ($i < $bintang[$course->id]) {
                             echo "text-yellow-400";
@@ -63,7 +63,7 @@
 
             <span class="ml-4">{{ $ratings[$course->id] }}</span>
             {{-- ///////////////////////////////// coba code yang ini \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
-            
+
         </div>
 
         <div class="text-center mt-5 flex justify-between w-full">

@@ -55,7 +55,7 @@ class courseCategoryController extends Controller
         $category->save();
 
         toast('Category Added Successfully', 'success');
-        return redirect()->route('mentor.course.create');
+        return redirect()->route('courses.create');
     }
 
     /**

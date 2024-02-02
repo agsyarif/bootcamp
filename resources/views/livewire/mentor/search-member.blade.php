@@ -52,90 +52,94 @@
                                     </tr>
 
                                     <div wire:loading.remove wire:target="search">
-                                        @forelse ($data as $key => $item)
-                                            <tr
-                                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        @if ($data)
 
-                                                <td class="py-4 px-6">
-                                                    {{ $loop->iteration }}
-                                                </td>
-                                                <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
-                                                    @if ($item->user->profile_photo_path != null)
-                                                    @if ($item->user->profile_photo_path[0] == 'h')
-                                                        <img src="{{ $item->user->profile_photo_path }}" alt="Photo Profile"
-                                                            class="inline ml-3 h-12 w-12 rounded-full">
-                                                    @else
-                                                        <img src="{{ asset('images/profile/' . $item->user->profile_photo_path) }}"
-                                                            alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
-                                                    @endif
-                                                    @else
-                                                        <img src="{{asset('assets/images/user.png')}}" class="inline ml-2 h-10 w-10 rounded-full" />
-                                                    @endif
-        
-                                                    <div class="ml-3 pl-3">
-                                                        <div class="text-base font-semibold">{{ $item->user->name ?? '-' }}</div>
-                                                        <div class="font-normal text-gray-500">{{ $item->user->email ?? '-' }}</div>
-                                                    </div>
-                                                </th>
-                                                <td class="py-4 px-6">
-                                                    <div class="text-sm">
-                                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y') }}
-                                                    </div>
-                                                </td>
-                                                <td class="py-4 px-6">
-                                                    <div class="text-sm">
-                                                        @php
-                                                            $material = 0;
-                                                        @endphp
-                                                        @foreach ($item->course->course_lessons as $chapter)
-                                                            @php $material += $chapter->courseMaterials->count() @endphp
-                                                        @endforeach
-                                                        {{ number_format($item->detail_akses_course->count() / $material * 100, 2) }}%
-                                                    </div>
-                                                </td>
-                                                <td class="py-4 px-6">
-                                                    <div class="text-sm">
-                                                        @php
-                                                            $examScore = 0;
-                                                        @endphp
-                                                        @foreach ($item->examScore as $score)
-                                                            @php $examScore += $score->score @endphp
-                                                        @endforeach
-                                                        @if ($examScore > 0)
-                                                            {{$examScore / $item->examScore->count() }}
+                                            @forelse ($data as $key => $item)
+                                                <tr
+                                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                                                    <td class="py-4 px-6">
+                                                        {{ $loop->iteration }}
+                                                    </td>
+                                                    <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+                                                        @if ($item->user->profile_photo_path != null)
+                                                        @if ($item->user->profile_photo_path[0] == 'h')
+                                                            <img src="{{ $item->user->profile_photo_path }}" alt="Photo Profile"
+                                                                class="inline ml-3 h-12 w-12 rounded-full">
                                                         @else
-                                                            {{ $examScore }}
+                                                            <img src="{{ asset('images/profile/' . $item->user->profile_photo_path) }}"
+                                                                alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
                                                         @endif
-                                                    </div>
-                                                </td>
-                                                <td class="py-4 px-6 flex">
+                                                        @else
+                                                            <img src="{{asset('assets/images/user.png')}}" class="inline ml-2 h-10 w-10 rounded-full" />
+                                                        @endif
 
-                                                    <a href="{{ route('mentor.exam-score.show', $item->id) }}"
-                                                        class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
-                                                        <i class="fa fa-clipboard-question"></i>
-                                                        <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                                            Detail Nilai
-                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        <div class="ml-3 pl-3">
+                                                            <div class="text-base font-semibold">{{ $item->user->name ?? '-' }}</div>
+                                                            <div class="font-normal text-gray-500">{{ $item->user->email ?? '-' }}</div>
                                                         </div>
-                                                    </a>
-                                                    <form action="{{ route('mentor.course.destroy', $item->id) }}"
-                                                        method="post">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button class="py-2 mr-2 mt-2 text-red-500 hover:text-gray-800"
-                                                            onclick="return confirm('Are you sure?')"
-                                                            data-tooltip-target="tooltip-trash">
-                                                            <i class="fa-regular fa-comments"></i>
-                                                            <div id="tooltip-trash" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                                                Kirim Masukkan
+                                                    </th>
+                                                    <td class="py-4 px-6">
+                                                        <div class="text-sm">
+                                                            {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y') }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-4 px-6">
+                                                        <div class="text-sm">
+                                                            @php
+                                                                $material = 0;
+                                                            @endphp
+                                                            @foreach ($item->course->course_lessons as $chapter)
+                                                                @php $material += $chapter->courseMaterials->count() @endphp
+                                                            @endforeach
+                                                            {{ number_format($item->detail_akses_course->count() / $material * 100, 2) }}%
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-4 px-6">
+                                                        <div class="text-sm">
+                                                            @php
+                                                                $examScore = 0;
+                                                            @endphp
+                                                            @foreach ($item->examScore as $score)
+                                                                @php $examScore += $score->score @endphp
+                                                            @endforeach
+                                                            @if ($examScore > 0)
+                                                                {{$examScore / $item->examScore->count() }}
+                                                            @else
+                                                                {{ $examScore }}
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-4 px-6 flex">
+
+                                                        <a href="{{ route('exam-score.show', $item->id) }}"
+                                                            class="py-2 mr-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
+                                                            <i class="fa fa-clipboard-question"></i>
+                                                            <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                Detail Nilai
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                        @endforelse
+                                                        </a>
+                                                        <form action="{{ route('course.destroy', $item->id) }}"
+                                                            method="post">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button class="py-2 mr-2 mt-2 text-red-500 hover:text-gray-800"
+                                                                onclick="return confirm('Are you sure?')"
+                                                                data-tooltip-target="tooltip-trash">
+                                                                <i class="fa-regular fa-comments"></i>
+                                                                <div id="tooltip-trash" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                                    Kirim Masukkan
+                                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                                </div>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                            @endforelse
+
+                                        @endif
                                     </div>
 
                                 </tbody>

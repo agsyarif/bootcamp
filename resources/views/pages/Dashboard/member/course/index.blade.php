@@ -3,7 +3,7 @@
 @section('title', 'Class')
 @section('content')
 
-    @if ($course != null)
+    @if ($courses->count() !== 0)
 
         <main class="h-full overflow-y-auto">
             <div class="container mx-auto">
@@ -20,7 +20,6 @@
                     </div>
 
                     <div class="col-span-4 lg:text-right"></div>
-
                 </div>
             </div>
 
@@ -32,40 +31,8 @@
 
                             <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
                                 {{-- {{ route('member.course.show', [$course->id]) }} --}}
-                                @forelse ($course as $course)
-                                    {{-- <a href="{{ route('member.course.show', [$course->id]) }}" class="">
-                                        <div
-                                            class="flex flex-col justify-center px-4 py-4 mb-4 bg-white hover:bg-gray-300 rounded-xl">
-                                            <div>
-                                                <div>
+                                @forelse ($courses as $course)
 
-                                                    @if ($course->image != null)
-                                                        <img class="object-cover w-50 h-30 rounded"
-                                                            src="{{ asset('/assets/images/courses/' . $course->image) }}"
-                                                            alt="" loading="lazy" />
-                                                    @else
-                                                        <img class="object-cover w-50 h-30 rounded"
-                                                            src="{{ asset('/assets/images/online-learning.png') }}"
-                                                            alt="" loading="lazy" />
-                                                    @endif
-                                                </div>
-
-                                                <p class="mt-5 text-xl font-semibold text-left text-gray-800">
-                                                    {{ $course->name ?? '' }}</p>
-
-                                                <p class="text-base font-reguler text-left text-gray-400">
-                                                    {{ $course->level->name ?? '' }}</p>
-
-
-                                                <p class="text-md text-left font-normal py-5 text-gray-800">
-                                                    {{ $course->user->name ?? '' }}<br class="hidden lg:block">
-                                                    <span
-                                                        class="text-sm text-gray-500">{{ $course->user->user_roles->name ?? '' }}</span>
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    </a> --}}
                                     <a href="{{ route('member.course.show', [$course->course->id]) }}" class="">
                                         <div
                                             class="flex flex-col justify-center px-4 py-4 mb-4 bg-white hover:bg-gray-300 rounded-xl">

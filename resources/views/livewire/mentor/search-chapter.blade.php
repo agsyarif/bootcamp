@@ -60,7 +60,7 @@
                                                 <td class="py-4 px-6">
                                                     <div class="text-sm">
 
-                                                        <a href="{{ route('mentor.materi.edit', $item->id) }}"
+                                                        <a href="{{ route('materi.edit', $item->id) }}"
                                                             class="font-medium text-black">
                                                             {{ $item->title ?? '' }}
                                                         </a>
@@ -69,7 +69,7 @@
                                                 </td>
 
                                                 <td class="py-4 px-6">
-                                                    <a href="{{ route('mentor.create-materi.show', [$item->id]) }}"
+                                                    <a href="{{ route('create-materi.show', [$item->id]) }}"
                                                         class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-plus">
                                                         <i class="fa fa-plus"></i>
                                                         <div id="tooltip-plus" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -84,7 +84,7 @@
                                                 <td class="py-4 px-6">
                                                     {{-- {{ $item->exams->count() }} --}}
                                                     @if ($item->exams->count() > 0)
-                                                        <a href="{{ route('mentor.exam.show', $item->exams->first()->id, ) }}"
+                                                        <a href="{{ route('exam.show', $item->exams->first()->id, ) }}"
                                                         {{-- <a href="{{ route('mentor.question-create.create', $item->exams->first()->id, ) }}" --}}
                                                             class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-kuis-lihat">
                                                             <i class="fa fa-eye"></i>
@@ -94,7 +94,7 @@
                                                             </div>
                                                         </a>
                                                     @else
-                                                        <a href="{{ route('mentor.exam.create') }}"
+                                                        <a href="{{ route('chapter-quiz', $item->id) }}"
                                                             class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-kuis">
                                                             <i class="fa fa-plus"></i>
                                                             <div id="tooltip-kuis" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -118,7 +118,7 @@
                                                             aria-controls="collapse{{ $item->id }}">
                                                             <i class="fa fa-eye"></i>
                                                         </button> --}}
-                                                        <a href="{{ route('mentor.chapter.edit', $item->id) }}"
+                                                        <a href="{{ route('chapter.edit', $item->id) }}"
                                                             class="py-2 mt-2 text-yellow-300 hover:text-gray-800" data-tooltip-target="tooltip-edit">
                                                             <i class="fas fa-edit fa-lg"></i>
                                                             <div id="tooltip-edit" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -128,7 +128,7 @@
                                                         </a>
 
                                                         <form class="inline"
-                                                            action="{{ route('mentor.chapter.destroy', $item->id) }}"
+                                                            action="{{ route('chapter.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete')
                                                             @csrf
@@ -172,18 +172,18 @@
                                                                 {{ $loop->iteration }}
                                                             </td>
                                                             <td class="py-4 px-8">
-                                                                <a href="{{ route('mentor.priview.show', $materi->id) }}">
+                                                                <a href="{{ route('priview.show', $materi->id) }}">
                                                                     {{ $materi->title }}
                                                                 </a>
                                                             </td>
                                                             <td class="py-4 px-8">
-                                                                <a href="{{ route('mentor.priview.show', $materi->id) }}">
+                                                                <a href="{{ route('priview.show', $materi->id) }}">
                                                                     {{ $materi->video_url }}
                                                                 </a>
                                                             </td>
                                                             <td class="py-4 px-8">
                                                                 <div class="text-sm">
-                                                                    <a href="{{ route('mentor.materi.edit', $materi->id) }}"
+                                                                    <a href="{{ route('materi.edit', $materi->id) }}"
                                                                         class="px-3 py-2 mt-2 text-yellow-300 hover:text-gray-800" data-tooltip-target="tooltip-edit-materi">
                                                                         <i class="fas fa-edit"></i>
                                                                         <div id="tooltip-edit-materi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -192,7 +192,7 @@
                                                                         </div>
                                                                     </a>
                                                                     <form class="inline"
-                                                                        action="{{ route('mentor.materi.destroy', $materi->id) }}"
+                                                                        action="{{ route('materi.destroy', $materi->id) }}"
                                                                         method="post">
                                                                         @method('delete')
                                                                         @csrf

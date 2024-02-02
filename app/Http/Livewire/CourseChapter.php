@@ -40,7 +40,7 @@ class CourseChapter extends Component
         $submit->score = 0;
         $submit->save();
 
-        return redirect()->route('mentor.exam.index');
+        return redirect()->route('exam.index');
     }
 
     public function render()
