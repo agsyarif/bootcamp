@@ -29,13 +29,6 @@ class CourseController extends Controller
             ->with('aksesCourse')
             ->get();
         return view('pages.Dashboard.mentor.course.index', compact('courses'));
-
-        // ////
-        // return view('pages.Dashboard.member.course.index', compact('courses', 'active', 'courses'));
-
-        // // mengambil semua data course dari course model
-        // $course = course::all();
-        // return view('pages.Dashboard.admin.course.index', compact('course'));
     }
 
     /**
@@ -73,13 +66,7 @@ class CourseController extends Controller
         if ($request->hasFile('thumbnail')) {
             $image = $request->file('thumbnail');
             $dataImage = time() . '.' . $image->extension();
-            $image->storeAs('course/thumbnail', $dataImage);
-
-            // return $image->extension();
-            // store image to storage/app/public/course/thumbnail
-            // $image->move(public_path('thumnails'), $dataImage);
-            // $image->move(public_path('assets/images/courses'), $dataImage);
-
+            $image->storeAs('course/thumbnail', $dataImage, 'public');
         }
 
         $user = Auth()->user()->id;
@@ -93,31 +80,6 @@ class CourseController extends Controller
             'level_id' => $request->course_level,
             'price' => $request->price,
         ]);
-
-        // $user = Auth()->user()->id;
-        // $data = [
-        //     'user_id' => $user,
-        //     'courses_category_id' => $request->category_id,
-        //     'title' => $request->title,
-        //     'slug' => $request->slug,
-        //     'price' => $request->price,
-        //     'image' => $dataImage,
-        //     'description' => $request->description,
-        //     'course_level' => $request->course_level,
-        //     'material' => $request->materi,
-        //     'level' => $request->course_level,
-        // ];
-
-        // $course = new course();
-        // $course->user_id = $user;
-        // $course->name = $data['title'];
-        // $course->slug = $data['slug'];
-        // $course->image = $data['image'];
-        // $course->description = $data['description'];
-        // $course->course_category_id = $data['courses_category_id'];
-        // $course->level_id = $data['level'];
-        // $course->price = $data['price'];
-        // $course->save();
 
         toast('berhasil manambahkan data', 'success');
         return redirect()->route('courses.index');
@@ -150,9 +112,6 @@ class CourseController extends Controller
 
         $courses = course::all()->count();
         return view('pages.Dashboard.mentor.course.edit', compact('course', 'course_category', 'level', 'exam', 'courses'));
-
-        // $data = course::where('id', $id)->get();
-        // return view('pages.Dashboard.admin.course.edit', compact(['data']));
     }
 
     /**
@@ -172,7 +131,8 @@ class CourseController extends Controller
             $dataImage = $firstImg;
         } else {
             $dataImage = time() . '.' . $image->extension();
-            $image->storeAs('course/thumbnail', $dataImage);
+            // $image->storeAs('storage/course/thumbnail', $dataImage);
+            $path = $image->storeAs('course/thumbnail', $dataImage, 'public');
             // Delete images from public/images/course/thumbnail
             Storage::disk('hosting')->delete('course/thumbnail/' . $firstImg);
             // Storage::delete('images/course/thumbnail/' . $firstImg);

@@ -19,7 +19,7 @@
                     class="mob:text-center lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center">
                     <h1 class="mob:font1 lg:leading-normal sm:text-4xl lg:text-5xl text-3xl mb-5 font-semibold lg:mt-20">
                         Bangun Karir Impianmu <br class="lg:block hidden">
-                        Bersama UWHcamp
+                        Bersama OnCodeID
                     </h1>
 
                     {{-- mobile --}}
@@ -30,7 +30,7 @@
 
                     <p
                         class="mb-10 mob:text-center mob:p-style text-lg leading-relaxed text-serv-text font-light tracking-wide lg:mb-18 ">
-                        UWHcamp mentransformasi para pemula <br class="lg:block hidden">
+                        OnCodeID mentransformasi para pemula <br class="lg:block hidden">
                         untuk menjadi digital talent terbaik di Indonesia <br class="lg:block hidden">
                         yang siap bekerja.
                     </p>
@@ -64,7 +64,7 @@
 
                 <div class="mob:text-center flex flex-col w-full mb-5">
                     <h1 class="mob:font1 md:text-4xl text-3xl tracking-wider font-semibold mb-5 text-medium-black">
-                        Keunggulan Belajar Di UWHcamp</h1>
+                        Keunggulan Belajar Di OnCode</h1>
                 </div>
 
                 {{-- <div class="flex lg:flex-row flex-col items-center pb-1 "> --}}

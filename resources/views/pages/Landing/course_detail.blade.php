@@ -39,25 +39,7 @@
 
                     {{-- detail Heading --}}
                     <div class="details-heading">
-                        {{-- <div class="flex justify-center mb-5">
-                            <span
-                                class="bg-serv-explore-button text-serv-bg block sm:inline-block my-2 py-2 px-8 mx-4 font-medium rounded-xl text-center">
-                                Member <br><br>
-                                200 enrolled
-                            </span>
-                            <span
-                                class="bg-serv-explore-button text-serv-bg block sm:inline-block my-2 py-2 px-8 mx-4 font-medium rounded-xl">
-                                Tingkatan <br><br>
-                                @include('components.Landing.level')
-                                {{ $courses->level }}
-                            </span>
-                        </div> --}}
-
                         <h1 class="text-2xl font-semibold">{{ $courses->name ?? '' }}</h1>
-
-                        {{-- <div class="my-3">
-                            @include('components.Landing.rating')
-                        </div> --}}
                     </div>
 
                     <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">
@@ -67,22 +49,11 @@
                             <div class="flex mt-2 flex-nowrap">
 
                                 @if ($courses->image != null)
-                                    <img src="{{ asset('course/thumbnail/' . $courses->image) }}" alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-xl">
+                                    <img src="{{ asset('storage/course/thumbnail/' . $courses->image) }}" alt="Thumbnail Course" loading="lazy" class="w-full h-26 object-cover rounded-xl">
                                 @else
                                     <img src="{{ url('https://via.placeholder.com/640x360') }}" alt="Thumbnail Course"
                                         loading="lazy" class="w-full h-26 object-cover rounded-2xl ">
                                 @endif
-
-
-
-                                {{-- @forelse ($thumbnail as $item)
-                                    <img :class="{ 'border-4 border-serv-button': active === {{ $item->id }} }"
-                                        @click="changeThumbnail('{{ url(Storage::url($item->thumbnail)) }}', {{ $item->id }})"
-                                        src="{{ url(Storage::url($item->thumbnail)) }}" alt="Thumbnail service"
-                                        class="inline-block mr-2 rounded-lg cursor-pointer h-20 w-36 object-cover">
-                                @empty
-                                    empty
-                                @endforelse --}}
 
                             </div>
                         </div>
