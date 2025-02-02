@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      main
+
+jobs:
+  run_pull:
+    name: run pull
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: install ssh keys
+      #
+      #
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh_keyscan -H "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
+    - name: connect and pull
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && git checkout ${{ secrets.SSH_BRANCH }} && git pull"
+    - name: cleanup
+      run: rm -rf ~/.ssh
