@@ -34,13 +34,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
-        // return $user->user_role_id;
-        // return "dashboard";
+
         $orders = Order::all();
         // $users = User::all();
-        $allMentor = User::where('user_role_id', '=', 2)->count();
-        $allMember = User::all()->where('user_role_id', '=', '3')->count();
+        $allMentor = User::role('Mentor')->count();
+        $allMember = User::role('Member')->count();
         // $allUser = User::all()->count();
         $allCourse = course::all()->count();
         $allOrder = Order::all()->count();
@@ -49,7 +47,8 @@ class DashboardController extends Controller
         $exam = exam::all();
         // $courses = $course;
 
-        if (Auth::user()->user_roles->name == 'Admin') {
+        $authRoles = auth()->user()->roles->pluck('name')->first();
+        if ($authRoles == 'Admin') {
 
             $courses = course::all()->count();
             $transaksi = checkout_course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
@@ -57,7 +56,7 @@ class DashboardController extends Controller
             $course = course::where('created_at', '>=', date('Y-m-d', strtotime('-1 month')))->orderBy('created_at', 'desc')->get();
 
             return view('pages.Dashboard.index', compact('transaksi', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'course'));
-        } else if (Auth::user()->user_roles->name == 'Mentor') {
+        } else if ('Mentor' == $authRoles) {
 
             $cc = course::where('user_id', '=', Auth::user()->id)->get();
             $id_cc = [];
@@ -70,7 +69,7 @@ class DashboardController extends Controller
             $comment = comment::whereIn('course_id', $id_cc)->get();
 
             return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'active', 'exam', 'aksesCourse', 'comment', 'cc'));
-        } else if (Auth::user()->user_role_id == '3') {
+        } else if ('Member' == $authRoles) {
             // ambil data yang dimiliki user
             $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
             $id_course = [];
@@ -90,11 +89,15 @@ class DashboardController extends Controller
                 $id_chapter[] = $value->id;
             }
 
-            $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get();
-            $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get();
-            $persentase = $progress->count() / $materi->count() * 100;
-
-            $persen = number_format($persentase, 0, '.', '');
+            $materi = CourseMaterial::whereIn('course_lesson_id', $id_chapter)->get() ?? [];
+            $progress = detailAksesCourse::whereIn('akses_course_id', $akses_id)->get() ?? [];
+            $progress = $progress->count();
+            $materi = $materi->count();
+            $persen = 0;
+            if ($progress && $materi != 0) {
+                $persentase = $progress / $materi * 100;
+                $persen = number_format($persentase, 0, '.', '');
+            }
 
 
             return view('pages.Dashboard.index', compact('orders', 'courses', 'allMentor', 'allMember', 'allCourse', 'allOrder', 'transaksi', 'active', 'aksesCourse', 'persen', 'progress', 'course', 'materi'));

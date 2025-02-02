@@ -8,7 +8,7 @@
                 <div class="overflow-x-auto pt-6 pb-6 relative shadow-md sm:rounded-lg">
                     <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
                         <div>
-                            {{-- <a href="{{ route('admin.mentor-management.create') }}"
+                            {{-- <a href="{{ route('mentor-management.create') }}"
                                 class="inline-block px-4 py-2 mt-2 text-left text-white rounded-lg bg-serv-button">
                                 + Tambah Mentor
                             </a> --}}
@@ -141,15 +141,15 @@
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 flex">
-                                            <a href="{{ route('admin.member-management.show', $men['id']) }}"
+                                            <a href="{{ route('member-management.show', $men['id']) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.member-management.edit', $men['id']) }}"
+                                            <a href="{{ route('member-management.edit', $men['id']) }}"
                                                 class="px-2 py-2 mt-2 text-green-500 hover:text-gray-800">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
-                                            <form action="{{ route('admin.member-management.destroy', $men->id) }}"
+                                            <form action="{{ route('member-management.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf

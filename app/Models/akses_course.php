@@ -19,7 +19,7 @@ class akses_course extends Model
 
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(course::class);
     }
 
     public function detail_akses_course()
@@ -27,8 +27,35 @@ class akses_course extends Model
         return $this->hasMany(detailAksesCourse::class);
     }
 
+    public function score()
+    {
+        return $this->hasMany(answerUser::class);
+    }
+
+    public function getCountExam()
+    {
+        return $this->score()
+            ->get()
+            ->count();
+    }
+
+    public function getSumScore()
+    {
+        return $this->score()
+            ->get()
+            ->sum(function ($score) {
+                return $score->score;
+            });
+        // ->sum('score');
+    }
+
     public function examScore()
     {
         return $this->hasMany(nilai::class);
+    }
+
+    public function getDetailByMaterial($id)
+    {
+        return $this->detail_akses_course()->where('course_material_id', $id)->first();
     }
 }

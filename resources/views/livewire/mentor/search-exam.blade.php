@@ -91,7 +91,7 @@
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 flex gap-2">
-                                            <a href="{{ route('mentor.exam.show', $men->id) }}"
+                                            <a href="{{ route('exam.show', $men->id) }}"
                                                 class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye-exam">
                                                 <i class="fa fa-eye"></i>
                                                 <div id="tooltip-eye-exam" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -99,7 +99,7 @@
                                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                                 </div>
                                             </a>
-                                            <a href="{{ route('mentor.exam.edit', $men->id) }}"
+                                            <a href="{{ route('exam.edit', $men->id) }}"
                                                 class="py-2 mt-2 text-serv-yellow hover:text-gray-800" data-tooltip-target="tooltip-edit-exam">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                                 <div id="tooltip-edit-exam" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -107,7 +107,7 @@
                                                    <div class="tooltip-arrow" data-popper-arrow></div>
                                                 </div>
                                             </a>
-                                            <form action="{{ route('mentor.exam.destroy', $men->id) }}" method="post">
+                                            <form action="{{ route('exam.destroy', $men->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="py-2 mt-2 text-red-500 hover:text-gray-800"

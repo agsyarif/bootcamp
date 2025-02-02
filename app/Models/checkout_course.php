@@ -21,4 +21,10 @@ class checkout_course extends Model
     {
         return $this->belongsTo(course::class);
     }
+
+    public function detailCheckoutCourse()
+    {
+        // return $this->hasMany(detailCheckoutCourse::class);
+        return $this->hasMany(DetailCheckoutCourse::class);
+    }
 }

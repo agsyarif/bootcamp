@@ -17,10 +17,16 @@ use App\Models\CourseMaterial;
 use Hamcrest\Core\HasToString;
 use App\Models\checkout_course;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WalletController;
 use App\Models\comment;
+use App\Models\DetailCheckoutCourse;
+use App\Models\mutation;
+use App\Models\wallet;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use phpDocumentor\Reflection\Types\This;
+use SebastianBergmann\Environment\Console;
 
 class LandingController extends Controller
 {
@@ -175,6 +181,7 @@ class LandingController extends Controller
 
         $checkout = new checkout_course;
         $checkout->user_id = $user_buyer;
+        $checkout->gross_amount = 0;
         $checkout->course_id = $courses->id;
         $checkout->save();
         // return $checkout;
@@ -243,7 +250,22 @@ class LandingController extends Controller
             $payment_url = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
 
             $checkout->midtrans_url = $payment_url;
+            $checkout->gross_amount = $transction_details['gross_amount'];
             $checkout->save();
+
+            DetailCheckoutCourse::create([
+                'checkout_course_id' => $checkout->id,
+                'int' => $price,
+                'quantity' => $item_details['quantity'],
+                'note' => 'Payment for course ' . $checkout->course->title,
+            ]);
+
+            // $checkout->detailCheckoutCourse->create([
+            //     'checkout_course_id' => $checkout->id,
+            //     'int' => $price,
+            //     'quantity' => $item_details['quantity'],
+            //     'note' => 'Payment for course ' . $checkout->course->title,
+            // ]);
 
             return $payment_url;
         } catch (Exception $e) {
@@ -262,12 +284,10 @@ class LandingController extends Controller
         $fraud = $notif['status_code'];
         // $transaction = $notif->transaction_status;
         // $fraud = $notif->fraud_status;
-
         // return $notif;
 
         $checkout_id = explode('-', $notif['order_id'])[0];
         $checkout = checkout_course::where('id', $checkout_id)->first();
-
         if ($transaction == 'capture') {
             if ($fraud == 'challenge') {
                 $checkout->payment_status = 'pending';
@@ -276,6 +296,7 @@ class LandingController extends Controller
             }
         } else if ($transaction == 'settlement') {
             $checkout->payment_status = 'paid';
+            $checkout->paid_at = Carbon::now()->format('Y-m-d H:i:s');
         } else if ($transaction == 'pending') {
             $checkout->payment_status = 'pending';
         } else if ($transaction == 'deny') {
@@ -293,6 +314,7 @@ class LandingController extends Controller
         $checkout->save();
         if ($checkout->payment_status == 'paid') {
             $this->addToAksesCourse($checkout->id);
+            $this->shareProfit($checkout);
         }
 
         $active = 'home';
@@ -300,6 +322,50 @@ class LandingController extends Controller
 
         // $courses = course::where('id', $checkout->course_id)->first();
         // return view('midtrans.success', compact('courses', 'exam', 'checkout', 'active'));
+    }
+
+    public function shareProfit($checkout)
+    {
+        $myWallet = wallet::where('wallet_id', 'uwhcamp')->first();
+        $toWallet = $checkout->course->user->wallet();
+        $shareTo = 70 / 100;
+
+        if (empty($toWallet)) {
+            $walletController = new WalletController();
+            $toWallet = $walletController->index($checkout->course->user->id);
+        }
+
+        // ambil gross-amount dari checkout course
+        $grossAmount = $checkout->gross_amount;
+        $shareProfit = $grossAmount * $shareTo;
+        $myProfit = $grossAmount - $shareProfit;
+
+        // mencatat di mutation 2 transaksi, masuk uwhcamp, keluar uwhcamp
+        mutation::create([
+            'from_wallet' => 'MEMBER',
+            'debet' => $grossAmount,
+            'kredit' => 0,
+            'to_wallet' => $myWallet->wallet_id,
+            'note' => 'CHECKOUT-COURSE-' . $checkout->user_id
+        ]);
+
+        mutation::create([
+            'from_wallet' => $myWallet->wallet_id,
+            'debet' => 0,
+            'kredit' => $shareProfit,
+            'to_wallet' => $toWallet->wallet_id,
+            'note' => 'SHARE-PROFIT-TO' . $toWallet->wallet_id
+        ]);
+        // update di wallet, uwhcamp masuk & keluar, towallet masuk
+        $saldoWallet = $myWallet->saldo + $myProfit;
+        $myWallet = wallet::where('wallet_id', 'uwhcamp')->update([
+            'saldo' => $saldoWallet
+        ]);
+
+        $saldoWallet = $toWallet->saldo + $shareProfit;
+        $toWallet = wallet::where('wallet_id', $toWallet->wallet_id)->update([
+            'saldo' => $saldoWallet
+        ]);
     }
 
     // tambah data ke akses courses jika pyment status paid

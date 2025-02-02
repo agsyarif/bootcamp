@@ -47,7 +47,7 @@
                                     Publish
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Members
+                                    Peserta
                                 </th>
                                 <th scope="col" class="py-3 px-6">
                                     Aksi
@@ -64,7 +64,6 @@
                                 </td>
                             </tr>
                             <div wire:loading.remove wire:target="search">
-
                                 @forelse ($data as $key => $men)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -97,9 +96,9 @@
                                         </td>
                                         <td class="py-4 px-6">
                                             {{-- <a href="{{ route('mentor.materi.show', $men['id']) }}" --}}
-                                            <a href="{{ route('mentor.member.show', $men['id']) }}"
+                                            <a href="{{ route('member.show', $men['id']) }}"
                                                 class="py-2 mt-2 text-gray-500 hover:text-gray-800" data-tooltip-target="tooltip-users">
-                                                {{ $men->akses_course->count() }}
+                                                {{ $men->aksesCourse->count() }}
                                                 <i class="fa fa-users"></i>
                                                 <div id="tooltip-users" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                     Lihat Member
@@ -109,7 +108,7 @@
                                         </td>
                                         <td class="py-4 px-6 flex">
 
-                                            <a href="{{ route('mentor.materi.show', $men['id']) }}"
+                                            <a href="{{ route('materi.show', $men['id']) }}"
                                                 class="py-2 mt-2 text-green-500 hover:text-gray-800" data-tooltip-target="tooltip-eye">
                                                 <i class="fa fa-eye"></i>
                                                 <div id="tooltip-eye" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -117,7 +116,7 @@
                                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                                 </div>
                                             </a>
-                                            <a href="{{ route('mentor.course.edit', $men['id']) }}"
+                                            <a href="{{ route('courses.edit', $men['id']) }}"
                                                 class="py-2 mx-2 mt-2 text-serv-yellow hover:text-gray-800" data-tooltip-target="tooltip-pen">
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                                 <div id="tooltip-pen" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-light text-white bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -125,7 +124,7 @@
                                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                                 </div>
                                             </a>
-                                            <form action="{{ route('mentor.course.destroy', $men->id) }}"
+                                            <form action="{{ route('courses.destroy', $men->id) }}"
                                                 method="post">
                                                 @method('delete')
                                                 @csrf

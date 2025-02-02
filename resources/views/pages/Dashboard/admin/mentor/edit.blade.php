@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">Mentor Management</a>
+                    <a href="{{ route('mentor-management.index') }}" class="text-gray-400">Mentor Management</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -45,7 +45,7 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                        <form action="{{ route('admin.mentor-management.update', [$mentor->id]) }}" method="POST">
+                        <form action="{{ route('mentor-management.update', [$mentor->id]) }}" method="POST">
                             @csrf
                             {{-- @csrf_field --}}
 
@@ -79,23 +79,25 @@
 
                                         <div class="col-span-6 sm:col-span-3">
 
-                                            <select id="user_role" name="user_role_id" autocomplete="user_role"
+                                            <select id="role" name="role" autocomplete="role"
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
 
-                                                <option>User Role ?</option>
-                                                <option value="1" {{ $mentor->user_role_id == '1' ? 'selected' : '' }}>
-                                                    Administrator</option>
-                                                <option value="2" {{ $mentor->user_role_id == '2' ? 'selected' : '' }}>
-                                                    Mentor</option>
-                                                <option value="4" {{ $mentor->user_role_id == '4' ? 'selected' : '' }}>
-                                                    Member</option>
+                                                <option>User Role</option>
 
+                                                @foreach ($roles as $role)
+                                                    @if ($mentor->hasRole($role->name))
+                                                        <option value={{ $role->name }} selected>{{ $role->name }}
+                                                        </option>
+                                                    @else
+                                                        <option value={{ $role->name }}>{{ $role->name }}</option>
+                                                    @endif
+                                                @endforeach
 
                                             </select>
 
-                                            @if ($errors->has('user_role_id'))
-                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('user_role_id') }}
+                                            @if ($errors->has('role'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('role') }}
                                                 </p>
                                             @endif
 
@@ -148,7 +150,7 @@
 
                                 <div class="px-4 py-3 text-right sm:px-6">
 
-                                    <a href="{{ route('admin.mentor-management.index') }}" type="button"
+                                    <a href="{{ route('mentor-management.index') }}" type="button"
                                         class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
                                         onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
                                         Cancel

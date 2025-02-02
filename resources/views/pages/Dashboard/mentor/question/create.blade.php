@@ -13,7 +13,7 @@
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        Upload the question you provide
+                        Upload pertanyaan yang anda buat
                     </p>
 
                 </div>
@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.course.index') }}" class="text-gray-400">Exam</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">Exam</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -45,7 +45,7 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                        <form action="{{ route('mentor.question.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('question.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="">
@@ -86,19 +86,21 @@
 
                                             <div class="flex space-x-2">
                                                 <select id="type" name="type_id" autocomplete="type"
-                                                    class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    required>
+                                                    class="block w-full px-3 py-3 pr-10 mt-1 bg-gray-300 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    required disabled="true">
 
-                                                    <option selected disabled value="">Type Exam</option>
+                                                    <option disabled value=1>Type Exam</option>
+                                                    {{-- <option selected value="{{$type->first()->id}}"> {{$type->first()->name}}</option> --}}
 
-                                                    @foreach ($type as $type)
+                                                    {{-- // jika terdapat update (type quiz lebih dari 1) --}}
+                                                    {{-- @foreach ($type as $type)
                                                         @if (old('type_id') == $type->id)
-                                                            <option value={{ $type->id }} selected>{{ $type->name }}
+                                                            <option selected value={{ $type->id }} selected>{{ $type->name }}
                                                             </option>
                                                         @else
                                                             <option value={{ $type->id }}>{{ $type->name }}</option>
                                                         @endif
-                                                    @endforeach
+                                                    @endforeach --}}
 
                                                 </select>
 
@@ -107,7 +109,7 @@
                                                         {{ $errors->first('type_id') }}</p>
                                                 @endif
 
-                                                <a href="{{ route('mentor.type.show', $exam->id) }}"
+                                                {{-- <a href="{{ route('mentor.type.show', $exam->id) }}"
                                                     class="rounded-lg mt-1 p-2 flex items-center"
                                                     style="background-color: rgb(185, 185, 185)">
                                                     <svg width="20" height="20" fill="currentColor"
@@ -115,7 +117,7 @@
                                                         <path
                                                             d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
                                                     </svg>
-                                                </a>
+                                                </a> --}}
                                             </div>
 
                                         </div>
@@ -264,7 +266,7 @@
 
                                             <div class="py-6 text-right">
 
-                                                <a href="{{ route('mentor.exam.index') }}" type="button"
+                                                <a href="{{ route('exam.index') }}" type="button"
                                                     class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
                                                     onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
                                                     Cancel

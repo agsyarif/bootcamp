@@ -19,6 +19,8 @@ class ExamController extends Controller
      */
     public function index()
     {
+
+        return exam::all();
         $course = course::all();
         $courses = $course->count();
         $exam = exam::all();
@@ -64,32 +66,25 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $request->validate([
             'title' => 'required',
-            'type_id' => 'required',
-            'course_id' => 'required',
+            'chapter_id' => 'required',
             'duration' => 'required',
         ]);
 
-        // return $request->all();
-        $courses = course::all();
-        $currentCourse = $request->course_id;
-        $title = $request->title;
-        $duration = $request->duration;
-        // $tQuestion = $request->total;
-        $score = $request->score;
-
-        $exam = new exam;
-        $exam->course_lesson_id = $currentCourse;
-        $exam->title = $title;
-        $exam->duration = $duration;
-        // $exam->total_question = $tQuestion;
-        $exam->score = $score;
-        $exam->save();
+        exam::create([
+            'title' => $request->title,
+            'duration' => $request->duration,
+            'course_lesson_id' => $request->chapter_id,
+            'score' => 0
+        ]);
 
         toast()->success("Add Exam Has Been Success");
-        return redirect()->route('mentor.exam.index');
+
+        if($request->path()){
+            return redirect()->route('materi.show', $request->chapter_id);
+        }
+        return redirect()->route('exam.index');
     }
 
     /**
@@ -100,19 +95,19 @@ class ExamController extends Controller
      */
     public function show($id)
     {
-        $exam = exam::find($id);
-        $examAll = exam::all();
-        $question = question::where('exam_id', $id)->get();
-        $courses = course::all()->count();
-        $type = type::all();
-        $chapter = CourseLesson::where('course_id', '=', $exam->course_id)->get();
+        $exam = exam::find($id)->load('questions');
+        // $examAll = exam::all();
+        // $question = question::where('exam_id', $id)->get();
+        // $courses = course::all()->count();
+        // $type = type::all();
+        // $chapter = CourseLesson::where('course_id', '=', $exam->course_id)->get();
         // $chapterTitle = $chapter->pluck('title');
         // foreach ($chapter as $ch) {
         //     $chapterTitle .= $ch->title;
         // }
         // return $chapterTitle;
         // return $chapter;
-        return view('pages.Dashboard.mentor.question.index', compact('exam', 'examAll', 'question', 'courses', 'type', 'chapter', 'id'));
+        return view('pages.Dashboard.mentor.question.index', compact('exam'));
     }
 
     /**
@@ -157,7 +152,7 @@ class ExamController extends Controller
         $exam->save();
 
         toast()->success("Update Exam Has Been Success");
-        return redirect()->route('mentor.exam.index');
+        return redirect()->route('exam.index');
     }
 
     /**
@@ -176,6 +171,6 @@ class ExamController extends Controller
             $key->delete();
         }
         toast()->success("Delete Exam Has Been Success");
-        return redirect()->route('mentor.exam.index');
+        return redirect()->route('exam.index');
     }
 }

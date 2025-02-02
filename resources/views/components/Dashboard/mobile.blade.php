@@ -38,11 +38,56 @@
 
         </div>
 
-        @can('isAdmin')
+        <p class="hidden">
+            {{ $role = Str::lower(Auth::user()->roles()->pluck('name')->first()) }}
+        </p>
+
+        <ul class="mt-6">
+            @can('dashboard')
+                <x-menu.menu-mobile route='dashboard.index' role='{{$role}}' path='dashboard' icon='fa-house' name='Dashboard' />
+            @endcan
+
+            @can('mentor-management')
+                <x-menu.menu-mobile route='mentor-management.index' role='admin' path='mentor-management' icon='fa-user-tie' name='Mentor Management' />
+            @endcan
+
+            @can('member-management')
+                <x-menu.menu-mobile route='member-management.index' role='admin' path='member-management' icon='fa-user-graduate' name='Member Management' />
+            @endcan
+
+            @can('transaction')
+                <x-menu.menu-mobile route='transaction.index' role='admin' path='transaction' icon='fa-wallet' name='Transaction' />
+            @endcan
+
+            @can('course')
+                <x-menu.menu-mobile route='courses.index' role='{{$role}}' path='courses' icon='fa-book' name='Course' />
+            @endcan
+
+            @can('exam')
+                <x-menu.menu-mobile route='exam.index' role='mentor' path='exam' icon='fa-clipboard-question' name='Exam Course' />
+            @endcan
+
+            @can('role-management')
+                {{-- role route perlu diganti --}}
+                <x-menu.menu-mobile route='role.index' role='admin' path='role' icon='fa-bars' name='Role Management' />
+            @endcan
+
+            @can('permission')
+                <x-menu.menu-mobile route='permission.index' role='admin' path='permission' icon='fa-ellipsis' name='Menu Management' />
+            @endcan
+
+            @can('log-activity')
+                <x-menu.menu-mobile route='permission.index' role='{{$role}}' path='log-actifity' icon='fa-chalkboard-teacher' name='Log Activity' />
+            @endcan
+
+            @can('progress')
+                <x-menu.menu-mobile route='dashboard.index' role='member' path='progress' icon='fa-bars-progress' name='Progress Belajar' />
+            @endcan
+        </ul>
+
             <ul class="mt-6">
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('admin/dashboard') ||
                         request()->is('admin/dashboard/*') ||
                         request()->is('admin/*/dashboard') ||
@@ -52,7 +97,7 @@
                     @endif
 
                     <a class="inline-flex items-center w-full text-sm font-medium text-gray-800 transition-colors duration-150 hover:text-gray-800"
-                        href="{{ route('admin.dashboard.index') }}">
+                        href="{{ route('dashboard.index') }}">
                         <i class="fa-solid fa-house fa-lg"></i>
                         <span class="ml-4">Dashboard</span>
                     </a>
@@ -60,10 +105,9 @@
                 </li>
             </ul>
 
-            <ul>
+            {{-- <ul>
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('admin/mentor-management') ||
                         request()->is('admin/mentor-management/*') ||
                         request()->is('admin/*/mentor-management') ||
@@ -73,7 +117,7 @@
                     @endif
 
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                        href="{{ route('admin.mentor-management.index') }}">
+                        href="{{ route('mentor-management.index') }}">
                         <i class="fa fa-user-tie fa-lg"></i>
                         <span class="ml-4">Mentor Management</span>
                     </a>
@@ -90,7 +134,7 @@
                     @endif
 
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                        href="{{ route('admin.member-management.index') }}">
+                        href="{{ route('member-management.index') }}">
                         <i class="fa fa-user-graduate fa-lg"></i>
                         <span class="ml-4">Member Managament</span>
                     </a>
@@ -98,7 +142,6 @@
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('admin/transaction') ||
                         request()->is('admin/transaction/*') ||
                         request()->is('admin/*/transaction') ||
@@ -116,7 +159,6 @@
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('admin/course') ||
                         request()->is('admin/course/*') ||
                         request()->is('admin/*/course') ||
@@ -133,10 +175,8 @@
                     </a>
                 </li>
 
-
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('admin/profil') ||
                         request()->is('admin/profil/*') ||
                         request()->is('admin/*/profil') ||
@@ -154,7 +194,6 @@
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('admin/activity') ||
                         request()->is('admin/activity/*') ||
                         request()->is('admin/*/activity') ||
@@ -183,14 +222,12 @@
                             @csrf</form>
                     </a>
                 </li>
-            </ul>
-        @endcan
+            </ul> --}}
 
-        @can('isMentor')
+        {{-- @can('isMentor')
             <ul class="mt-6">
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('member/dashboard') ||
                         request()->is('member/dashboard/*') ||
                         request()->is('member/*/dashboard') ||
@@ -211,7 +248,6 @@
             <ul>
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('mentor/course') ||
                         request()->is('mentor/course/*') ||
                         request()->is('mentor/*/course') ||
@@ -221,18 +257,15 @@
                     @endif
 
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                        href="{{ route('mentor.course.index') }}">
+                        href="{{ route('courses.index') }}">
                         <i class="fa fa-book fa-lg"></i>
                         <span class="ml-4">My Course</span>
-                        <span
-                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $courses }}</span>
 
                     </a>
                 </li>
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('mentor/exam') ||
                         request()->is('mentor/exam/*') ||
                         request()->is('mentor/*/exam') ||
@@ -242,17 +275,13 @@
                     @endif
 
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                        href="{{ route('mentor.exam.index') }}">
+                        href="{{ route('exam.index') }}">
                         <i class="fa fa-clipboard-question fa-lg"></i>
                         <span class="ml-4">My Exam</span>
-                        {{-- <span
-                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $exam->count() }}</span> --}}
-                    </a>
                 </li>
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('mentor/profil') ||
                         request()->is('mentor/profil/*') ||
                         request()->is('mentor/*/profil') ||
@@ -281,13 +310,12 @@
                     </a>
                 </li>
             </ul>
-        @endcan
-
+        @endcan --}}
+{{--
         @can('isMember')
             <ul class="mt-6">
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('member/dashboard') ||
                         request()->is('member/dashboard/*') ||
                         request()->is('member/*/dashboard') ||
@@ -310,7 +338,6 @@
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('member/progress') ||
                         request()->is('member/Progress/*') ||
                         request()->is('member/*/progress') ||
@@ -328,7 +355,6 @@
 
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('member/course') ||
                         request()->is('member/*/*') ||
                         request()->is('member/course/*') ||
@@ -343,14 +369,12 @@
                         <i class="fa fa-book fa-lg"></i>
 
                         <span class="ml-4">My Course</span>
-                        <span
-                            class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ $courses }}</span>
                     </a>
                 </li>
 
+
                 <li class="relative px-6 py-3">
 
-                    {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (request()->is('member/profile') ||
                         request()->is('member/profile/*') ||
                         request()->is('member/*/profile') ||
@@ -380,7 +404,6 @@
                     </a>
                 </li>
             </ul>
-        @endcan
-
+        @endcan --}}
     </div>
 </aside>

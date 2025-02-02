@@ -15,7 +15,7 @@
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        {{ $courseMember->akses_course->count() }} Total Peserta
+                        {{ $courseMember->aksesCourse->count() }} Total Peserta
                     </p>
                 </div>
 
@@ -37,7 +37,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.course.index') }}" class="text-gray-400">My Course</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">My Course</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -59,29 +59,6 @@
         </section>
 
     </main>
-
-    {{-- @else
-
-        <div class="flex h-screen">
-            <div class="m-auto text-center">
-                <img src="{{ asset('/assets/images/empty-illustration.svg') }}" alt="" class="w-48 mx-auto">
-                <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                    There is No Requests Yet
-                </h2>
-                <p class="text-sm text-gray-400">
-                    It seems that you haven’t provided any Materi. <br>
-                    Let’s create your first service!
-                </p>
-
-                <div class="relative mt-0 md:mt-6">
-                    <a href="#" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                        + Add Materi
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    @endif --}}
 
 @endsection
 

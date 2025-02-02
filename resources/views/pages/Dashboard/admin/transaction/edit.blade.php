@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">My Transaksi</a>
+                    <a href="{{ route('mentor-management.index') }}" class="text-gray-400">My Transaksi</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path

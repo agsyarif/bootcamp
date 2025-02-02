@@ -83,6 +83,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div style="color: darkgrey">
+                                        {{-- {{ $answerUser }} --}}
                                         <p>Ujian dengan Judul {{ $examActive->title }} untuk menguji materi pada bab :
                                         </p>
                                         <p>{{ $chapterActive->title }}</p>
@@ -110,7 +111,8 @@
                         </div>
                         <span class="d-flex">
                             {{-- @livewire('quiz', [$chapterActive->id, 'segment' => 'result']) --}}
-                            @livewire('next', [$chapterActive->id, $MateriActive[0]->id, $aksesCourse[0]->id])
+                            {{-- @livewire('next', [$activeMaterial->courseLesson, $activeMaterial, $activeMaterial->courseLesson->course->getAccessCourse()]) --}}
+                            @livewire('next', [$chapterActive, $MateriActive[0], $aksesCourse[0]])
                         </span>
                     </div>
                 </div>

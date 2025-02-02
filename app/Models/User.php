@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     protected static $recordEvents = ['updated', 'deleted'];
 
@@ -86,5 +88,15 @@ class User extends Authenticatable
     public function comment()
     {
         return $this->hasMany(comment::class);
+    }
+
+    public function wallet()
+    {
+        return wallet::where('wallet_id', 'like', 'ME' . $this->attributes['id'] . '-%')->first();
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(course::class);
     }
 }

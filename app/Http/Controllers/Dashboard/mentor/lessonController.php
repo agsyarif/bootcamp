@@ -90,7 +90,7 @@ class lessonController extends Controller
         }
         // return "berhasil";
         toast('berhasil manambahkan data', 'success');
-        return redirect()->route('mentor.materi.show', $courseId);
+        return redirect()->route('materi.show', $courseId);
         // return $dataVideo;
         // return "lesson";
     }
@@ -112,9 +112,6 @@ class lessonController extends Controller
         } else {
             $materi = CourseMaterial::all();
         }
-        // return $materi;
-        // $chapterId = CourseLesson::where('course_id', '=', $id)->pluck('id');
-        // $meteri = CourseMaterial::where('course_lesson_id', '=', $chapterId)->get();
 
         return view('pages.Dashboard.mentor.materi.show', compact('course', 'courses', 'chapter', 'materi', 'exam'));
     }
@@ -176,7 +173,7 @@ class lessonController extends Controller
         $courseId = CourseLesson::where('id', $chapterId)->first()->course_id;
 
         toast('berhasil mengubah data', 'success');
-        return redirect()->route('mentor.materi.show', $courseId);
+        return redirect()->route('materi.show', $courseId);
     }
 
     /**
@@ -195,7 +192,7 @@ class lessonController extends Controller
         $materi->delete();
 
         toast('berhasil menghapus data', 'success');
-        return redirect()->route('mentor.materi.show', $courseId);
+        return redirect()->route('materi.show', $courseId);
 
         // return $id;
     }

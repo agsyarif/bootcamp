@@ -55,237 +55,67 @@
                             </h2>
 
                             <p class="text-sm text-gray-400">
-                                {{ $course->count() ?? '' }} View All
+                                {{ $aksesCourse->count() ?? '' }} View All
                             </p>
                         </div>
 
                         <div class="">
 
-                            @forelse ($course as $key => $c)
-                                <div class="my-4">
-                                    <div c lass="img flex  mob:block">
-                                        <img class="rounded-md mob:w-auto" width="150px"
-                                            src="{{ asset('course/thumbnail/' . $c->image) }}" alt="">
-                                        <div class="sm:m-1 mob:m-10-0">
-                                            <h4>{{ $c->name }}</h4>
-                                            <h4>Aktif
-                                                mulai :
-                                                {{ \Carbon\Carbon::parse($c->created_at)->isoFormat('dddd, D MMMM Y') }}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-4">
-                                        <div class="mt-5 w-full bg-gray-200 rounded-full">
-                                            <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-l-full"
-                                                style="width: {{ $persen }}%"> {{ $persen }}%</div>
-                                        </div>
-                                        <div class="pt-4">{{ $progress->count() }}/{{ $materi->count() }}</div>
-                                    </div>
-                                    <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)"
-                                        class="mt-3 rounded">
+                            {{-- {{$aksesCourse}} --}}
+                            @foreach ($aksesCourse as $aksesCourse)
+                            {{-- =================== --}}
+                                <article class="flex items-start space-x-6 pt-4">
+                                    <img src="{{ asset('course/thumbnail/' . $aksesCourse->course->image) }}" alt="" width="150" height="150" class="flex-none rounded-md" />
+                                    <div class="min-w-0 relative flex-auto">
+                                    <h2 class="font-semibold text-slate-900 truncate pr-20">{{ $aksesCourse->course->name }}</h2>
+                                    <h2 class="font-normal text-slate-900 truncate pr-20">Aktif mulai : {{ \Carbon\Carbon::parse($aksesCourse->created_at)->isoFormat('dddd, D MMMM Y') }}</h2>
+                                    <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
 
-                                    </div>
+                                        @foreach ($progress as $item)
+                                            @foreach ($item as $key => $value)
+                                                @if ($key == $aksesCourse->id)
+                                                    <div class="absolute top-5 right-0 flex items-center space-x-1">
+                                                        <dt class="text-gray-700">
+                                                            <i class="fa-solid fa-film"></i>
+                                                        </dt>
+                                                        <dd>{{ $value['aksesMaterial'] }}/{{ $value['totalMaterial'] }}</dd>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                                        <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {{ $value['progress'] }}%"> {{ $value['progress'] }} %</div>
+                                                    </div>
+                                                    {{-- <div class="pt-4">{{ $value['aksesMaterial'] }}/{{ $value['totalMaterial'] }}</div> --}}
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                        <div class="flex-none w-full font-normal">
+                                        <dt class="sr-only">Total Score</dt>
+                                        <dd class="text-slate-400">Total Nilai : {{ $aksesCourse->getSumScore() / $aksesCourse->getCountExam() }}</dd>
+                                        </div>
+                                        <div class="flex gap-2 w-full font-normal">
+                                            <dd class="text-slate-400">
+                                                <a href="{{route('member.progress.show', $aksesCourse->id)}}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                            </dd>
+                                            <dd class="text-slate-400">
+                                                <a href="{{ route('member.course.show', [$aksesCourse->course->id]) }}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                    lanjut belajar
+                                                </a>
+                                            </dd>
+                                        </div>
+                                    </dl>
                                 </div>
-                            @empty
-                            @endforelse
-                        </div>
+                              </article>
 
-                    </div>
+                            {{-- =================== --}}
 
-                    <div class="p-6 mt-8 bg-white rounded-xl w-full">
-
-                        <div>
-                            <h2 class="mb-1 text-xl font-semibold">
-                                Rekapitulasi Nilai
-                            </h2>
-
-                            <p class="text-sm text-gray-400">
-                                {{ $nilai->count() ?? '' }} kuis
-                            </p>
-                        </div>
-
-                        <div>
-
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <tr>
-                                    <th colspan="3" scope="col" class="py-3 px-6">
-                                        Jumlah kuis :
-                                    </th>
-                                    <th colspan="2" scope="col" class="py-3 px-6">
-                                        {{ $nilai->count() }}
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="3" scope="col" class="py-3 px-6">
-                                        Rata - Rata Nilai :
-                                    </th>
-                                    <th colspan="2" scope="col" class="py-3 px-6">
-                                        {{ $persentase_nilai }}
-                                    </th>
-                                </tr>
-                            </table>
-                            <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)" class="mt-3 rounded">
-
-                            </div>
-                            <div class="mob:overflow-x-auto">
-                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                        <tr>
-                                            <th scope="col" class="py-3 px-6">
-                                                No
-                                            </th>
-                                            <th scope="col" class="py-3 px-6">
-                                                Judul Kuis
-                                            </th>
-                                            <th scope="col" class="py-3 px-6">
-                                                Kelas
-                                            </th>
-                                            <th scope="col" class="py-3 px-6">
-                                                Nilai
-                                            </th>
-                                            <th scope="col" class="py-3 px-6">
-                                                Dikerjakan
-                                            </th>
-                                        </tr>
-                                    </thead>
-
-
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="6" class="text-center">
-                                                <div wire:loading.block wire:target="search" class="alert alert-warning"
-                                                    role="alert">
-                                                    Sedang mencari data...
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <div wire:loading.remove wire:target="search">
-                                            @forelse ($nilai as $key => $value)
-                                                <tr
-                                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                                                    <td class="py-4 px-6">
-                                                        {{ $loop->iteration }}
-                                                    </td>
-                                                    <td class="py-4 px-6">
-                                                        {{ $value->exam->title ?? '-' }}
-                                                    </td>
-                                                    <td class="py-4 px-6">
-                                                        {{ $value->akses_course->course->name ?? '-' }}
-                                                    </td>
-                                                    <td
-                                                        class="py-4 px-6 @if ($value->score <= 50) text-red-400 @elseif($value->score >= 50) text-green-400 @endif">
-                                                        {{ $value->score ?? '-' }}
-                                                    </td>
-                                                    <td class="py-4 px-6">
-                                                        {{ \Carbon\Carbon::parse($value->created_at)->diffForHumans() }}
-                                                    </td>
-                                                    {{-- <th scope="row"
-                                                            class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
-
-                                                            @if ($men->user->profile_photo_path != null)
-                                                                <img class="w-10 h-10 rounded-full"
-                                                                    src="{{ url($men->user->profile_photo_path) }}"
-                                                                    alt="thumbnail" loading="lazy" />
-                                                            @else
-                                                                <img class="w-10 h-10 rounded-full"
-                                                                    src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}"
-                                                                    alt="" loading="lazy" />
-                                                            @endif
-
-                                                            <div class="ml-2">
-                                                                <div class="text-base font-semibold">
-                                                                    {{ $men->user->name ?? '-' }}</div>
-                                                                <div class="font-normal text-gray-500">
-                                                                    {{ $men->user->email ?? '-' }}
-                                                                </div>
-                                                            </div>
-                                                        </th> --}}
-                                                    {{-- <td class="py-4 px-6">
-                                                            {{ $men->course_caregory->name ?? '-' }}
-                                                        </td>
-                                                        <td class="py-4 px-6">
-                                                            {{ $men->price ?? '-' }}
-                                                        </td>
-                                                        <td class="py-4 px-6">
-                                                            <div class="flex items-center">
-                                                                @if ($men->is_published == 0)
-                                                                    <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
-                                                                    <span class="text-red-400">
-                                                                        Non Active
-                                                                    </span>
-                                                                @elseif ($men->is_published == 1)
-                                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2">
-                                                                    </div>
-
-                                                                    <span class="text-green-400">
-                                                                        Active
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                        <td class="py-4 px-6">
-                                                            {{ \Carbon\Carbon::parse($men->created_at)->diffForHumans() }}
-                                                        </td>
-                                                        <td class="pb-3 px-6">
-                                                            <div class="flex items-center gap-2">
-                                                                <a href="{{ route('admin.course.edit', $men['id']) }}"
-                                                                    class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
-                                                                    <i class="fa-regular fa-pen-to-square"></i>
-                                                                </a>
-                                                                <form action="{{ route('admin.course.destroy', $men->id) }}"
-                                                                    method="post">
-                                                                    @method('delete')
-                                                                    @csrf
-                                                                    <button class="py-2 mt-2 text-red-500 hover:text-gray-800"
-                                                                        onclick="return confirm('Are you sure?')">
-                                                                        <i class="fa-regular fa-trash-can"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </td> --}}
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="8" class="text-center pt-4">
-                                                        <p class="text-gray-500">
-                                                            Data Tidak Ditemukan
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            @endforelse
-                                        </div>
-                                    </tbody>
-                                </table>
-                            </div>
-                            {{-- @forelse ($course as $key => $c)
-                                <div class="my-4">
-                                    <div class="img flex">
-                                        <img class="rounded-md" width="150px"
-                                            src="{{ asset('images/course/thumbnail/' . $c->image) }}" alt="">
-                                        <div class="mx-4">
-                                            <h4>{{ $c->name }}</h4>
-                                            <h4>Aktif
-                                                mulai :
-                                                {{ \Carbon\Carbon::parse($c->created_at)->isoFormat('dddd, D MMMM Y') }}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-4">
-                                        <div class="mt-5 w-full bg-gray-200 rounded-full">
-                                            <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-l-full"
-                                                style="width: {{ $persen }}%"> {{ $persen }}%</div>
-                                        </div>
-                                        <div class="pt-4">{{ $progress->count() }}/{{ $materi->count() }}</div>
-                                    </div>
-                                    <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)"
-                                        class="mt-3 rounded">
-
-                                    </div>
+                                <div style="height: 1px; width: 100%; background-color: rgb(27, 58, 78)"
+                                    class="mt-3 rounded-full">
                                 </div>
-                            @empty
-                            @endforelse --}}
+
+                            @endforeach
+
                         </div>
 
                     </div>

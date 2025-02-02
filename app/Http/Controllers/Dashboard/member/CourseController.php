@@ -13,7 +13,9 @@ use App\Models\exam;
 use App\Models\question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 
 class CourseController extends Controller
 {
@@ -24,22 +26,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $akses = Auth::user()->user_role_id;
-        $aksesCourse = akses_course::where('user_id', '=', Auth::user()->id)->get();
-        $id_course = [];
-        foreach ($aksesCourse as $key => $value) {
-            $id_course[] = $value->course_id;
-        }
-        $course = course::whereIn('id', $id_course)->get();
-        // return $course;
+        $userId = auth()->user()->id;
+        $course = akses_course::where('user_id', '=', $userId)->get();
+        // $course = Cache::remember('course/' . $userId, 10 * 60 * 60, function () use ($userId) {
+        //     return akses_course::where('user_id', '=', $userId)->get();
+        // });
         $active = 'course';
         $courses = count($course);
-
         return view('pages.Dashboard.member.course.index', compact('course', 'active', 'courses'));
-
-        // $courses = Course::where('user_id', '=', Auth::user()->id)->get();
-        // $courses = course::where('id', '=', [$aksesCourse->course_id])->get();
-        // return $course;
     }
 
     /**
@@ -71,40 +65,19 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        // umum -> untuk menu sidebar
-        $courses = course::find($id);
-        $chapter = CourseLesson::where('course_id', '=', $id)->get();
+        // $course = course::find($id);
+        // $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
 
-        $chapterId = [];
-        foreach ($chapter as $key => $value) {
-            $chapterId[] = $value->id;
-        }
-        $exam = exam::whereIn('course_lesson_id', $chapterId)->get();
+        $userId = auth()->user()->id;
+        $course = Cache::remember('course/show/' . $id . '/' . $userId, 10 * 60 * 60, function () use ($id) {
+            $course = course::find($id);
+            $course = $course->load(['course_lessons.exams', 'course_lessons.courseMaterials']);
+            return $course;
+        });
 
-        $examId = [];
-        foreach ($exam as $key => $value) {
-            $examId[] = $value->id;
-        }
-        if ($examId != null) {
-            $question = question::whereIn('exam_id', $examId)->get();
-        } else {
-            $question = null;
-        }
+        $activeMaterial = $course->firstLesson()->firstMaterial();
 
-        // $question = question::whereIn('exam_id', $examId)->get();
-        $material = CourseMaterial::whereIn('course_lesson_id', $chapterId)->get();
-        $active = 'course';
-        $MateriActive = $material[0];
-        $ChapterActive[] = $chapter[0];
-        $CourseActive = course::where('id', $ChapterActive[0]->course_id)->get();
-        // checklist warna biru?
-        $aksesCourse = akses_course::where('course_id', '=', $id)->where('user_id', '=', Auth::user()->id)->get();
-        $detailAkses = detailAksesCourse::where('akses_course_id', '=', $aksesCourse[0]->id)->get();
-        // return $detailAkses;
-
-        // return redirect()->route('member.course.materi', [$id, $activeId]);
-        return view('pages.Dashboard.member.course.show', compact('courses', 'chapter', 'material', 'active', 'MateriActive', 'ChapterActive', 'exam', 'question', 'detailAkses', 'CourseActive', 'aksesCourse'));
-        // return redirect()->route('member.course.materi', [$MateriActive[0]->id]);
+        return view('pages.Dashboard.member.course.show', compact('course', 'activeMaterial'));
     }
 
     /**

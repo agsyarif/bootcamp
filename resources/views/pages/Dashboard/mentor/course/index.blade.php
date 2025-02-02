@@ -5,7 +5,7 @@
 @section('content')
 
 
-    @if ($courses > 0)
+    @if ($courses->count() > 0)
         <main class="h-full overflow-y-auto">
 
             <div class="container mx-auto">
@@ -13,21 +13,17 @@
                     <div class="col-span-8">
 
                         <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                            My course
+                            Kursus Saya
                         </h2>
 
                         <p class="text-sm text-gray-400">
-                            {{ $courses }} Total course
+                            {{ $courses->count() }} Total Kursus
                         </p>
                     </div>
 
                     <div class="col-span-4 lg:text-right">
                         <div class="relative mt-0 md:mt-6">
-                            <a href="{{ route('mentor.course.create') }}"
-                                class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-
-                                + Add Course
-                            </a>
+                            <x-button.button route='courses.create' viewName='+ Tambah Kursus' />
                         </div>
                     </div>
                 </div>
@@ -35,7 +31,6 @@
 
             <section class="container px-6 mx-auto mt-5">
                 @livewire('admin.search', ['segment' => 'course'])
-
             </section>
 
         </main>
@@ -44,18 +39,15 @@
             <div class="m-auto text-center">
                 <img src="{{ asset('/assets/images/empty-illustration.svg') }}" alt="" class="w-48 mx-auto">
                 <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                    There is No Requests Yet
+                    Anda belum memiliki kursus
                 </h2>
                 <p class="text-sm text-gray-400">
-                    It seems that you haven’t provided any Course. <br>
-                    Let’s create your first Course!
+                    Tampaknya Anda belum menyediakan kursus apa pun. <br>
+                    Mari kita buat kursus pertama Anda!
                 </p>
 
                 <div class="relative mt-0 md:mt-6">
-                    <a href="{{ route('mentor.course.create') }}"
-                        class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                        + Add course
-                    </a>
+                    <x-button.button route='courses.create' viewName='+ Tambah Kursus' />
                 </div>
             </div>
         </div>

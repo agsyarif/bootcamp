@@ -231,7 +231,7 @@
                                     </p>
                                 </div>
                                 <div class="self-end hover:translate-x-2 transition transform">
-                                    <a href="{{ route('admin.transaction.index') }}"
+                                    <a href="{{ route('transaction.index') }}"
                                         class="text-sm text-gray-400 hover:text-gray-800">
                                         View All
                                         <i class="fas fa-arrow-right"></i>
@@ -283,11 +283,11 @@
                                                     @endif
                                                 </td>
                                                 <td class="py-4 flex">
-                                                    <a href="{{ route('admin.transaction.show', $item->id) }}"
+                                                    <a href="{{ route('transaction.show', $item->id) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.transaction.destroy', $item->id) }}"
+                                                    <form action="{{ route('transaction.destroy', $item->id) }}"
                                                         method="post">
                                                         @method('delete')
                                                         @csrf
@@ -363,7 +363,7 @@
                                                 {{-- <td class="py-4">{{ $item->course->price ?? '' }}</td> --}}
                                                 {{-- <td class="py-4">{{ $item->payment_status ?? '' }}</td> --}}
                                                 <td class="py-4">
-                                                    <a href="{{ route('admin.transaction.show', $item->id) }}"
+                                                    <a href="{{ route('transaction.show', $item->id) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
@@ -418,7 +418,7 @@
                                             <div class="bg-green900 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-l-full"
                                                 style="width: {{ $persen }}%"> {{ $persen }}%</div>
                                         </div>
-                                        <div class="pt-4">{{ $progress->count() ?? 0 }}/{{ $materi->count() }}</div>
+                                        <div class="pt-4">{{ $progress ?? 0 }}/{{ $materi }}</div>
                                     </div>
                                     <div style="height: 2px; width: 100%; background-color: rgb(27, 58, 78)"
                                         class="mt-3 rounded">
@@ -497,7 +497,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="py-4 flex">
-                                                    <a href="{{ route('admin.course.show', [$item->id]) }}"
+                                                    <a href="{{ route('courses.show', [$item->id]) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
@@ -522,16 +522,66 @@
                         </div>
                     @endcan
 
-                    @can('isMentor')
-                        <div class="p-6 bg-white rounded-xl">
-                            {{-- @if ($course[0] != 0) --}}
-                            @forelse ($cc as $key => $value)
-                                @livewire('counter', [$value->id])
-                            @empty
-                            @endforelse
-                            {{-- @endif --}}
+                    @role('Mentor')
+
+                        <div class="w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
+
+                            <img class="relative object-cover w-full h-full rounded-xl" src="{{ asset('assets/images/bg-master-card.png') }}">
+
+                            <div class="w-full px-8 absolute top-8">
+                                <div class="flex justify-between">
+                                    <div class="">
+                                        <p class="font-light">
+                                            Name
+                                        </h1>
+                                        <p class="font-bold tracking-widest">
+                                            {{Auth::user()->wallet()->name}}
+                                        </p>
+                                    </div>
+                                    <img class="w-14 h-14" src="{{ asset('assets/images/master-card-icon.png') }}"/>
+                                </div>
+                                <div class="pt-1">
+                                    <p class="font-light">
+                                        Saldo
+                                    </h1>
+                                    <p class="font-medium tracking-more-wider">
+                                        <span>
+                                            <button id="toggleVisibility" onclick="toggleTextVisibility()">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </span>
+                                        Rp.
+                                        <span id="saldo" class="font-bold" data-saldo="{{auth()->user()->wallet()->saldo}}">
+                                            *******
+                                        </span>
+                                    </p>
+
+                                </div>
+                                <div class="pt-6 pr-6">
+                                    <div class="flex justify-between">
+                                        <div class="">
+                                            <p class="font-light text-xs">
+                                                Wallet Id
+                                            </h1>
+                                            <p class="font-bold tracking-wider text-sm">
+                                                {{auth()->user()->wallet()->wallet_id}}
+                                            </p>
+                                        </div>
+                                        <div class="">
+                                            <p class="font-light text-xs">
+                                                last balance entered
+                                            </h1>
+                                            <p class="font-bold tracking-wider text-sm">
+                                                {{auth()->user()->wallet()->updated_at}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                    @endcan
+
+                    @endrole
 
                 </aside>
 
@@ -541,3 +591,21 @@
 
 
 @endsection
+
+@push('after-script')
+    <script>
+    function toggleTextVisibility() {
+        var hiddenText = document.getElementById("saldo");
+        var toggleButton = document.getElementById("toggleVisibility");
+        var saldo = hiddenText.getAttribute("data-saldo");
+
+        if (hiddenText.innerHTML === "*******") {
+            hiddenText.innerHTML = saldo;
+            toggleButton.innerHTML = "<i class='fa-regular fa-eye-slash'></i>";
+        } else {
+            hiddenText.innerHTML = "*******";
+            toggleButton.innerHTML = "<i class='fa-regular fa-eye'></i>";
+        }
+    }
+    </script>
+@endpush

@@ -25,7 +25,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('admin.member-management.index') }}" class="text-gray-400">My Chart</a>
+                    <a href="{{ route('member-management.index') }}" class="text-gray-400">My Chart</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -45,7 +45,7 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                        {{-- <form action="{{ route('admin.member-management.update', [$data->id]) }}" method="POST">
+                        {{-- <form action="{{ route('member-management.update', [$data->id]) }}" method="POST">
                                 @csrf --}}
                         {{-- @csrf_field --}}
 
@@ -145,7 +145,7 @@
 
                             <div class="px-4 py-3 text-right sm:px-6">
 
-                                <a href="{{ route('admin.member-management.index') }}" type="button"
+                                <a href="{{ route('member-management.index') }}" type="button"
                                     class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
                                     onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
                                     Cancel

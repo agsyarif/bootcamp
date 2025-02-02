@@ -1,6 +1,6 @@
 <div>
 
-    @if ($tombol == 'uji')
+    @if ($tombol == 'quiz')
         <button wire:click="kuis()" class="text-white hover p-2 nav-bg rounded-pill" style="height: 40px">Kuis</button>
         {{-- <p class="white">{{ $materiTerakhir }}</p> --}}
     @elseif ($tombol == 'next')

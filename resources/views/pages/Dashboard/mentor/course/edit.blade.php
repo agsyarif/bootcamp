@@ -27,7 +27,7 @@
             <ol class="inline-flex p-0 list-none">
 
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.course.index') }}" class="text-gray-400">My Course</a>
+                    <a href="{{ route('courses.index') }}" class="text-gray-400">My Course</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -47,7 +47,7 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                        <form action="{{ route('mentor.course.update', [$course->id]) }}" method="POST"
+                        <form action="{{ route('courses.update', [$course->id]) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
@@ -100,7 +100,7 @@
                                                         {{ $errors->first('category_id') }}</p>
                                                 @endif
 
-                                                <a href="{{ route('mentor.categories.create') }}"
+                                                <a href="{{ route('categories.create') }}"
                                                     class="rounded-lg mt-1 p-2 flex items-center"
                                                     style="background-color: rgb(185, 185, 185)">
                                                     <svg width="20" height="20" fill="currentColor"
@@ -279,7 +279,7 @@
 
                                             <div class="py-6 text-right">
 
-                                                <a href="{{ route('mentor.course.index') }}" type="button"
+                                                <a href="{{ route('courses.index') }}" type="button"
                                                     style="width: 45%"
                                                     class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
                                                     onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">

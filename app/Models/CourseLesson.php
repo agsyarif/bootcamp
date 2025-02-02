@@ -25,6 +25,21 @@ class CourseLesson extends Model
         return $this->hasMany(CourseMaterial::class);
     }
 
+    public function firstMaterial()
+    {
+        return $this->courseMaterials()->first();
+    }
+
+    public function latestMaterial()
+    {
+        return $this->courseMaterials()->orderBy('id', 'desc')->first();
+    }
+
+    public function getMatetialAfterThisId($id)
+    {
+        return $this->courseMaterials()->where('id', '>', $id)->first();
+    }
+
     public function exams()
     {
         return $this->hasMany(exam::class);

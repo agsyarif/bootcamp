@@ -116,7 +116,7 @@
         <div class="mt-16 border-t border-serv-border sm:flex justify-between w-100 ">
             <div class="flex items-left mt-8">
                 <h1 class="text-white text-3xl font-bold">
-                    UWHcamp
+                    On.Code
                 </h1>
             </div>
             <div class="sm:flex items-center justify-center mt-8 lg:ml-24">
@@ -139,7 +139,7 @@
             </div>
             <div class="flex items-right flex-end mt-8">
                 <p class="text-serv-text">
-                    &copy; 2022 UWHcamp All rights reserved.
+                    &copy; 2022 OnCode All rights reserved.
                 </p>
             </div>
         </div>

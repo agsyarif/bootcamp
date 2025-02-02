@@ -13,7 +13,7 @@
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        {{ $mentor->user_roles->name }}
+                        {{ $mentor->roles()->first()->name }}
                     </p>
 
                 </div>
@@ -23,7 +23,7 @@
                         <button class="">
 
                         </button>
-                        <form action="{{ route('admin.mentor-management.destroy', $mentor->id) }}" method="post">
+                        <form action="{{ route('mentor-management.destroy', $mentor->id) }}" method="post">
                             @method('delete')
                             @csrf
                             <button class="px-4 py-2 mt-2 text-left text-white bg-red-400 rounded-xl"
@@ -43,7 +43,7 @@
 
                 <li class="flex items-center">
 
-                    <a href="{{ route('admin.mentor-management.index') }}" class="text-gray-400">Mentor Management</a>
+                    <a href="{{ route('mentor-management.index') }}" class="text-gray-400">Mentor Management</a>
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
@@ -111,7 +111,7 @@
                                                             :
                                                         </th>
                                                         <td scope="col" class="py-3 px-6">
-                                                            20
+                                                            {{ $mentor->courses->count() }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -122,7 +122,7 @@
                                                             :
                                                         </th>
                                                         <td scope="col" class="py-3 px-6">
-                                                            120
+                                                            {{ $mentor->courses->count() != 0 ? $mentor->courses->aksesCourse->count() : 0 }}
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -262,7 +262,7 @@
                                         See Reviews
                                     </a>
 
-                                    <a href="{{ route('admin.mentor-management.edit', $mentor->id) }}"
+                                    <a href="{{ route('mentor-management.edit', $mentor->id) }}"
                                         class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
                                         Edit Mentor
                                     </a>
