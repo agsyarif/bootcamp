@@ -16,19 +16,6 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_roles')->insert([
-            ['name' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Mentor', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Member', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Tutor', 'created_at' => now(), 'updated_at' => now()],
-        ]);
-
-        // DB::table('roles')->insert([
-        //     ['name' => 'Admin', 'created_at' => now(), 'guard_name' => 'web', 'updated_at' => now()],
-        //     ['name' => 'Mentor', 'created_at' => now(), 'guard_name' => 'web', 'updated_at' => now()],
-        //     ['name' => 'Member', 'created_at' => now(), 'guard_name' => 'web', 'updated_at' => now()],
-        // ]);
-
         $roles = [
             ['name' => 'Admin', 'guard_name' => 'web'],
             ['name' => 'Mentor', 'guard_name' => 'web'],
@@ -38,5 +25,34 @@ class UserRoleSeeder extends Seeder
         foreach ($roles as $role) {
             Role::firstOrCreate($role);
         }
+
+        $admin = Role::where('name', 'Admin')->first();
+        $admin->syncPermissions([
+            'dashboard',
+            'mentor-management',
+            'member-management',
+            'transaction',
+            'course',
+            'permission',
+            'role-management',
+            'log-activity',
+            'progress'
+        ]);
+
+        $mentor = Role::where('name', 'Mentor')->first();
+        $mentor->syncPermissions([
+            'dashboard',
+            'member-management',
+            'transaction',
+            'course',
+            'progress'
+        ]);
+
+        $member = Role::where('name', 'Member')->first();
+        $member->syncPermissions([
+            'dashboard',
+            'course',
+            'progress'
+        ]);
     }
 }
