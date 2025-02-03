@@ -22,6 +22,7 @@ use App\Models\comment;
 use App\Models\DetailCheckoutCourse;
 use App\Models\mutation;
 use App\Models\wallet;
+use App\Traits\addToCourseAccess;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
@@ -30,6 +31,7 @@ use SebastianBergmann\Environment\Console;
 
 class LandingController extends Controller
 {
+    use addToCourseAccess;
 
     public function __construct()
     {
@@ -170,12 +172,16 @@ class LandingController extends Controller
 
     public function booking($id)
     {
-        $courses = course::where('id', $id)->first();
+        $courses = course::findOrFail($id);
+        $exists = akses_course::where('user_id', auth()->user()->id)->where('course_id', $courses->id)->exists();
         $user_buyer = auth()->user()->id;
 
         // validation booking course
-        if ($courses->users_id == $user_buyer) {
-            toast()->warning('Sorry, members cannot book their on service!');
+        if ($courses->user_id === $user_buyer) {
+            toast()->warning('Sorry, Anda tidak bisa membeli kursus anda sendiri!');
+            return back();
+        }elseif($exists) {
+            toast()->warning('Sorry, Anda sudah membeli kursus ini sebelumnya!');
             return back();
         }
 
@@ -313,7 +319,7 @@ class LandingController extends Controller
 
         $checkout->save();
         if ($checkout->payment_status == 'paid') {
-            $this->addToAksesCourse($checkout->id);
+            $this->addToCourseAccess($checkout->id);
             $this->shareProfit($checkout);
         }
 
@@ -366,19 +372,6 @@ class LandingController extends Controller
         $toWallet = wallet::where('wallet_id', $toWallet->wallet_id)->update([
             'saldo' => $saldoWallet
         ]);
-    }
-
-    // tambah data ke akses courses jika pyment status paid
-    public function addToAksesCourse($id)
-    {
-        $checkout = checkout_course::find($id);
-        $user = $checkout->user_id;
-        $course = $checkout->course_id;
-        $akses = new akses_course;
-        $akses->user_id = $user;
-        $akses->course_id = $course;
-        $akses->expired = date('Y-m-d', strtotime('+1 month'));
-        $akses->save();
     }
 
     public function about()

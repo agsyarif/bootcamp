@@ -65,7 +65,7 @@
 
                                     <p class="text-sm text-left text-gray-500">
                                         All <br class="hidden lg:block">
-                                        Course
+                                        Courses
                                     </p>
 
                                 </div>
@@ -81,7 +81,7 @@
                                     <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $allMentor ?? '' }}</p>
 
                                     <p class="text-sm text-left text-gray-500">
-                                        All <br class="hidden lg:block">Mentor
+                                        All <br class="hidden lg:block">Mentors
                                     </p>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                             <div class="flex justify-between">
                                 <div>
                                     <h2 class="mb-1 text-xl font-semibold">
-                                        Checkout Log
+                                        Checkout Logs
                                     </h2>
 
                                     <p class="text-sm text-gray-400">
@@ -433,7 +433,7 @@
 
                 </main>
 
-                <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
+                <aside class="p-1 pt-4 lg:col-span-5 md:col-span-12 md:pt-0">
 
                     @can('isAdmin')
                         <div class="p-4 bg-white rounded-xl">
@@ -441,7 +441,7 @@
                             <div class="flex justify-between">
                                 <div>
                                     <h2 class="mb-1 text-xl font-semibold">
-                                        New Course
+                                        New Courses
                                     </h2>
                                     <p class="text-sm text-gray-400">
                                         {{ $course->count() }} total new courses / month
@@ -460,11 +460,10 @@
 
                                 <thead>
                                     <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                        <th class="py-4" scope="">No</th>
-                                        <th class="py-4" scope="">Mentor</th>
-                                        <th class="py-4" scope="">Course</th>
-                                        <th class="py-4 text-center" scope="">Publish</th>
-                                        <th class="py-4" scope="">Aksi</th>
+                                        <th class="py-2" scope="">No</th>
+                                        <th class="py-2 px-2" scope="">Course</th>
+                                        <th class="py-2 text-center" scope="">Publish</th>
+                                        <th class="py-2 px-2" scope="">Aksi</th>
                                     </tr>
                                 </thead>
 
@@ -480,11 +479,15 @@
                                     @else
                                         @foreach ($course as $item)
                                             <tr>
-                                                <td class="py-4">{{ $loop->iteration }}</td>
-                                                <td class="py-4">{{ $item->user->name ?? '' }}</td>
-                                                <td class="py-4">{{ $item->name ?? '' }}</td>
-                                                {{-- <td class="py-4">{{ $item->is_published ?? '' }}</td> --}}
-                                                <td class="py-4 text-center">
+                                                <td class="py-2">{{ $loop->iteration }}</td>
+                                                {{-- <td class="py-4">{{ $item->user->name ?? '' }}</td> --}}
+                                                <td class="py-2">
+                                                    {{ $item->name ?? '' }}  <br>
+                                                    <span class="text-sm text-gray-400">
+                                                        {{ $item->user->name ?? '' }}
+                                                    </span>
+                                                </td>
+                                                <td class="py-2  px-2 text-center">
                                                     @if ($item->is_published == 1)
                                                         {{-- {{ $men->status ?? '' }} --}}
                                                         <p class="text-green-500">
@@ -496,16 +499,11 @@
                                                         <p>
                                                     @endif
                                                 </td>
-                                                <td class="py-4 flex">
+                                                <td class="py-2 px-2">
                                                     <a href="{{ route('courses.show', [$item->id]) }}"
                                                         class="pr-2 py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
-                                                    {{-- <a href="{{ route('admin.comment.show', [$item->id]) }}"
-                                                        class="text-sm text-gray-400 hover:text-gray-800">
-                                                        Comment
-                                                        <i class="fas fa-arrow-right"></i>
-                                                    </a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

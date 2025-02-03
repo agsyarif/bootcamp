@@ -22,7 +22,7 @@
                     <div class="mt-0 md:mt-6">
                         <a href="{{ route('exam.create') }}"
                             class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                            + Tambah Kuis
+                            + Kuis
                         </a>
                     </div>
                 </div>

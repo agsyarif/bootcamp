@@ -13,7 +13,11 @@
                     <div class="col-span-8">
 
                         <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                            Kursus Saya
+                            @can('isAdmin')
+                                Semua Kursus
+                            @else
+                                Kursus saya
+                            @endif
                         </h2>
 
                         <p class="text-sm text-gray-400">
@@ -23,7 +27,7 @@
 
                     <div class="col-span-4 lg:text-right">
                         <div class="relative mt-0 md:mt-6">
-                            <x-button.button route='courses.create' viewName='+ Tambah Kursus' />
+                            <x-button.button route='courses.create' viewName='+ Kursus' />
                         </div>
                     </div>
                 </div>
@@ -47,7 +51,7 @@
                 </p>
 
                 <div class="relative mt-0 md:mt-6">
-                    <x-button.button route='courses.create' viewName='+ Tambah Kursus' />
+                    <x-button.button route='courses.create' viewName='+ Kursus' />
                 </div>
             </div>
         </div>

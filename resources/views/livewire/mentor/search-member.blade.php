@@ -4,7 +4,6 @@
         <main class="col-span-12 p-4 md:pt-0">
             <div class="px-6 py-2 mt-2 bg-white rounded-lg">
 
-
                 <div class="overflow-x-auto pt-6 pb-6 relative shadow-md sm:rounded-lg">
                     <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
                         <div>
@@ -120,7 +119,7 @@
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
                                                         </a>
-                                                        <form action="{{ route('course.destroy', $item->id) }}"
+                                                        {{-- <form action="{{ route('course.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete')
                                                             @csrf
@@ -133,7 +132,7 @@
                                                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                                                 </div>
                                                             </button>
-                                                        </form>
+                                                        </form> --}}
                                                     </td>
                                                 </tr>
                                             @empty

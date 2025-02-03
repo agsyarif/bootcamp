@@ -53,9 +53,7 @@
         </nav>
 
         <section class="container px-6 mx-auto mt-5">
-
             @livewire('mentor.search-member', ['course' => $courseMember, 'segment' => 'member'])
-
         </section>
 
     </main>

@@ -21,7 +21,7 @@
 
                 <div class="col-span-4 lg:text-right">
                     <div class="relative mt-0 md:mt-6">
-                        <x-button.button route='permission.create' viewName='+ Tambah Role' />
+                        <x-button.button route='permission.create' viewName='+ Role' />
                     </div>
                 </div>
             </div>

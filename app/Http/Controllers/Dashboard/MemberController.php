@@ -24,7 +24,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $member = User::role('Member')->get();
+        // $member = User::role('Member')->get();
+        $member = User::with('roles')->get();
         $orderC = OrderCourse::all();
         $orderW = OrderWebinar::all();
         return view('pages.Dashboard.admin.member.index', compact('member'));

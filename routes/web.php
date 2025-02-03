@@ -164,22 +164,22 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 //     }
 // );
 
-// Route::group(
-//     ['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 'verified', 'Member']],
-//     function () {
-//         Route::resource('dashboard', DashboardController::class);
-//         Route::resource('course', MemberCourseController::class);
-//         Route::get('course-redis', [MemberCourseController::class, 'indexRedis']);
-//         Route::get('materi/{id}/', [MateriController::class, 'tampil'])->name(name: 'course.materi');
-//         Route::resource('progress', ProgressController::class);
-//         Route::resource('comment', commentController::class);
-//         // quiz
+Route::group(
+    ['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 'verified']],
+    function () {
+        Route::resource('dashboard', DashboardController::class);
+        Route::resource('course', MemberCourseController::class);
+        Route::get('course-redis', [MemberCourseController::class, 'indexRedis']);
+        Route::get('materi/{id}', [MateriController::class, 'tampil'])->name(name: 'course.materi');
+        Route::resource('progress', ProgressController::class);
+        Route::resource('comment', commentController::class);
+        // quiz
 
-//         Route::get('quiz/{id}/', [QuizController::class, 'start'])->name('course.quiz');
-//         Route::get('quiz/result/{score}/{id}', [QuizController::class, 'result'])->name('quiz.result');
-//         // Route::resource('materi', MateriController::class);
-//     }
-// );
+        Route::get('quiz/{id}/', [QuizController::class, 'start'])->name('course.quiz');
+        Route::get('quiz/result/{score}/{id}', [QuizController::class, 'result'])->name('quiz.result');
+        // Route::resource('materi', MateriController::class);
+    }
+);
 
 Route::resource('permission/assign', AssignPermissionController::class);
 

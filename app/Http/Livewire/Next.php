@@ -59,7 +59,7 @@ class Next extends Component
     public function nextMateri()
     {
         if ($this->detailAkses == null) {
-            detailAksesCourse::create([
+            detailAksesCourse::updateOrCreate([
                 'akses_course_id' => $this->akses_course->id,
                 'course_material_id' => $this->course_material_id
             ]);
@@ -68,17 +68,16 @@ class Next extends Component
         $nextMateri = $this->chapter->getMatetialAfterThisId($this->course_material_id);
         $this->nextMateri = $nextMateri;
         if ($nextMateri) {
-            return redirect()->route('member.course.materi', [$nextMateri->id]);
             $this->disabled = false;
+            return redirect()->route('member.course.materi', [$nextMateri->id]);
         } else {
             $nextMateri = optional(optional($this->course)->getChapterAfterThisId($this->chapter->id))->getMatetialAfterThisId($this->course_material_id);
-
             if ($nextMateri == null) {
                 $this->tombol = 'selesai';
                 $this->disabled = true;
             } else {
-                return redirect()->route('member.course.materi', [$nextMateri->id]);
                 $this->disabled = false;
+                return redirect()->route('member.course.materi', [$nextMateri->id]);
             }
         }
     }
@@ -98,7 +97,6 @@ class Next extends Component
         }
 
         return redirect()->route('member.course.quiz', [$this->chapter]);
-        // return redirect()->route('')
     }
 
     public function render()

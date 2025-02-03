@@ -31,18 +31,14 @@ class SearchMember extends Component
 
     public function render()
     {
-        $data = $this->course->akses_course;
-
-        if ($this->segment == 'member') {
-            if ($this->search !== null) {
-                $search = $this->search;
-                $data = akses_course::where('course_id', $this->course->id)
-                    ->whereHas('user', function ($q) use ($search) {
-                        $q->where('name', 'like', '%' . $search . '%');
-                    })
-                    ->get();
-            }
+        $data = $this->course->aksesCourse;
+        if ($this->segment == 'member' && $this->search !== null) {
+            $search = $this->search;
+            $data = $data->filter(function ($item) use ($search) {
+                return stripos($item->user->name, $search) !== false;
+            });
         }
+
         return view('livewire.mentor.search-member', compact('data'));
     }
 }

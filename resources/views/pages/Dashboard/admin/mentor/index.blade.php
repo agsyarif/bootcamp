@@ -21,7 +21,7 @@
 
                 <div class="col-span-4 lg:text-right">
                     <div class="relative mt-0 md:mt-6">
-                        <x-button.button route='mentor-management.create' viewName='+ Tambah Mentor' />
+                        <x-button.button route='mentor-management.create' viewName='+ Mentor' />
                     </div>
                 </div>
             </div>

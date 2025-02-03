@@ -37,6 +37,7 @@ class CourseLesson extends Model
 
     public function getMatetialAfterThisId($id)
     {
+        info($this->courseMaterials);
         return $this->courseMaterials()->where('id', '>', $id)->first();
     }
 

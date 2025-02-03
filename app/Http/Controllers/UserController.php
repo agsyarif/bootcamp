@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -77,6 +78,7 @@ class UserController extends Controller
 
             // setelah simpan ke database kita kirim email
             // Mail::to($user->email)->send(new AfterRegister($user));
+            $user->assignRole('Member');
         }
 
         Auth::login($user, true);
