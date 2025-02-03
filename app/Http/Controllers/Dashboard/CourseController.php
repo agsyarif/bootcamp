@@ -22,13 +22,26 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $auth = auth()->user();
-
         $userId = auth()->user()->id;
-        $courses = course::where('user_id', '=', $userId)
-            ->with('aksesCourse')
-            ->get();
-        return view('pages.Dashboard.mentor.course.index', compact('courses'));
+
+        $authRoles = auth()->user()->roles->pluck('name')->first();
+        if ($authRoles == 'Mentor' || $authRoles == 'Admin') {
+            $courses = course::with('aksesCourse');
+            if($authRoles == 'Mentor') {
+                $courses->where('user_id', '=', $userId);
+            }
+            $courses = $courses->get();
+            return view('pages.Dashboard.mentor.course.index', compact('courses'));
+        } else if ('Member' == $authRoles) {
+
+            $active = 'course';
+            $courses = akses_course::where('user_id', $userId)
+                ->with(['course.user.user_roles', 'course.level', 'user'])
+                ->get();
+
+            return view('pages.Dashboard.member.course.index', compact('courses', 'active'));
+        }
+
     }
 
     /**
@@ -94,7 +107,14 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = course::findOrFail($id);
-        return view('pages.Dashboard.admin.course.show', compact('course'));
+        $authRoles = auth()->user()->roles->pluck('name')->first();
+
+        if ($authRoles == 'Mentor' || $authRoles == 'Admin') {
+            return view('pages.Dashboard.admin.course.show', compact('course'));
+        }elseif ($authRoles == 'Member') {
+            $activeMaterial = $course->firstLesson()->firstMaterial();
+            return view('pages.Dashboard.member.course.show', compact('course', 'activeMaterial'));
+        }
     }
 
     /**

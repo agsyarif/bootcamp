@@ -3,7 +3,7 @@
     <div class="text-serv-bg">
 
         <a class="" href="{{ route('index') }}">
-            <img src="{{ asset('/assets/images/logo.png') }}" alt="" class="object-center mx-auto my-4 ">
+            <img src="{{ asset('/assets/images/oncoding.png') }}" alt="" class="object-center mx-auto my-4 ">
         </a>
 
         <div class="flex items-center pt-8 pl-5 space-x-2 border-t border-gray-100">
@@ -78,7 +78,7 @@
                 @endcan
 
                 @can('progress')
-                    <x-menu.menu route='dashboard.index' role='member' path='progress' icon='fa-bars-progress' name='Progress Belajar' />
+                    <x-menu.menu route='member.progress.index' role='member' path='progress' icon='fa-bars-progress' name='Progress Belajar' />
                 @endcan
 
             <li class="relative px-6 py-3 flex">

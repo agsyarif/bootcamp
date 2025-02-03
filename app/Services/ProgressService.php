@@ -28,7 +28,6 @@ class ProgressService
                 $aksesMaterial = $this->countAksesCourses($aksesCourse->detail_akses_course);
                 $totalMaterial = $aksesCourse->course->getAllMaterial();
                 $persentase = $aksesMaterial / $totalMaterial * 100;
-
                 $progress[] = [$aksesCourse->id => [
                     'progress' => number_format($persentase, 0, '.', ''),
                     'aksesMaterial' => $aksesMaterial,

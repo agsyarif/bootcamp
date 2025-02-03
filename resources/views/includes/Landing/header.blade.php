@@ -8,12 +8,12 @@
                     {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="" class="ml-3"> --}}
                     <svg viewBox="0 0 700 120" class="desktop" id="svg">
                         <text x="40%" y="70%" fill="" text-anchor="middle">
-                            On.Code
+                            On.coding
                         </text>
                     </svg>
                     <svg viewBox="0 0 700 120" class="mobile" id="svg">
                         <text x="40%" y="70%" fill="" text-anchor="middle">
-                            On.Code
+                            On.coding
                         </text>
                     </svg>
                     {{-- </a> --}}

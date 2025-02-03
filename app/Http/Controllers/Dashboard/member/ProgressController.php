@@ -25,27 +25,13 @@ class ProgressController extends Controller
     {
 
         $userId = auth()->user()->id;
-        $aksesCourse = akses_course::where('user_id', '=', $userId)
+        $aksesCourse = akses_course::where('user_id', $userId)
             ->with(['course.course_lessons.courseMaterials', 'detail_akses_course'])
             ->get();
 
         $serviceProgress = new ProgressService($aksesCourse);
         $progress = $serviceProgress->progress();
 
-
-        // dd($progress);
-        // foreach ($aksesCourse as $aksesCourse) {
-
-        //     $courses[] = $aksesCourse->course->id;
-        // $countAksesMaterial = count($aksesCourse->detail_akses_course);
-        // $detailAksesCourse[] = $aksesCourse->detail_akses_course;
-
-        // $persentase = $countAksesMaterial / $aksesCourse->course->getAllMaterial() * 100;
-        // $progress[$aksesCourse->course->id] = number_format($persentase, 0, '.', '');
-
-        //     $examScore[$aksesCourse->course->id] = $aksesCourse->score;
-        //     $sumScore[$aksesCourse->course->id] = $aksesCourse->getSumScore();
-        // }
         $active = 'progress';
         // $persentase_nilai = 0;
         // $courses = count($courses);

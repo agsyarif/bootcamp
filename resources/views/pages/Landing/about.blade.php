@@ -26,19 +26,19 @@
                             <h1 class="mob:font1 lg:leading-normal sm:text-4xl lg:text-5xl text-3xl mb-5 font-semibold ">
                                 .._
                             </h1>
-        
+
                         </div>
                         <!-- Right Column -->
                         <div class="w-full lg:w-1/1 text-left mob:hidden lg:justify-start justify-center pr-0">
                             <p
                                 class="mb-10 mob:text-left mob:p-style text-lg leading-relaxed tracking-wide lg:mb-18">
-                                Visi <span class="font-bold">UWHcamp</span> adalah menjadi penyedia kursus online terkemuka yang menginspirasi pembelajaran dan membantu individu mencapai kesuksesan dalam bidang digital.
+                                Visi <span class="font-bold">On.coding</span> adalah menjadi penyedia kursus online terkemuka yang menginspirasi pembelajaran dan membantu individu mencapai kesuksesan dalam bidang digital.
                                 <br class="lg:block hidden">
                                 <br class="lg:block hidden">
-                                UWHcamp memiliki misi untuk memastikan aksesibilitas dan fleksibilitas dalam kursus online. Memperbarui kurikulum sesuai perkembangan terkini, menyediakan pembelajaran yang dapat disesuaikan dengan kebutuhan peserta didik. Memastikan akses yang lebih luas terhadap pendidikan teknologi agar individu dari berbagai latar belakang dapat memperoleh pengetahuan dan keterampilan yang diperlukan untuk menghadapi era digital.
+                                On.coding memiliki misi untuk memastikan aksesibilitas dan fleksibilitas dalam kursus online. Memperbarui kurikulum sesuai perkembangan terkini, menyediakan pembelajaran yang dapat disesuaikan dengan kebutuhan peserta didik. Memastikan akses yang lebih luas terhadap pendidikan teknologi agar individu dari berbagai latar belakang dapat memperoleh pengetahuan dan keterampilan yang diperlukan untuk menghadapi era digital.
                                 <br class="lg:block hidden">
                                 <br class="lg:block hidden">
-                                UWHcamp juga membantu peserta didik mengembangkan keterampilan relevan melalui kursus online berkualitas tinggi dengan instruktur ahli.
+                                On.coding juga membantu peserta didik mengembangkan keterampilan relevan melalui kursus online berkualitas tinggi dengan instruktur ahli.
                             </p>
                         </div>
                     </div>

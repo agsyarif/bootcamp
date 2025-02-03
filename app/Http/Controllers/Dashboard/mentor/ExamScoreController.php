@@ -41,13 +41,13 @@ class ExamScoreController extends Controller
      */
     public function show($id)
     {
+
         $score = answerUser::where('akses_course_id', $id)->get();
-        $courseUser = course::where('user_id', '=', Auth::user()->id);
-        $course = $courseUser->get();
-        $currentCourse = $courseUser->whereHas('akses_course', function ($q) use ($id) {
-            $q->where('id', $id);
-        })->get();
-        $courses = $course->count();
+        $courses = course::where('user_id', Auth::user()->id)->count();
+        $currentCourse = course::where('user_id', Auth::user()->id)
+            ->whereHas('aksesCourse', function ($q) use ($id) {
+                $q->where('id', $id);
+            })->get();
 
         return view('pages.Dashboard.mentor.examScore.show', compact('score', 'courses', 'currentCourse'));
     }

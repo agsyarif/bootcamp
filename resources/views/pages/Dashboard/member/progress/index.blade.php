@@ -14,7 +14,7 @@
                     </h2>
 
                     <p class="text-sm text-gray-400">
-                        Monthly Reports
+                        learning Reports
                     </p>
 
                 </div>
@@ -65,7 +65,7 @@
                             @foreach ($aksesCourse as $aksesCourse)
                             {{-- =================== --}}
                                 <article class="flex items-start space-x-6 pt-4">
-                                    <img src="{{ asset('course/thumbnail/' . $aksesCourse->course->image) }}" alt="" width="150" height="150" class="flex-none rounded-md" />
+                                    <img src="{{ asset('storage/course/thumbnail/' . $aksesCourse->course->image) }}" alt="" width="150" height="150" class="flex-none rounded-md" />
                                     <div class="min-w-0 relative flex-auto">
                                     <h2 class="font-semibold text-slate-900 truncate pr-20">{{ $aksesCourse->course->name }}</h2>
                                     <h2 class="font-normal text-slate-900 truncate pr-20">Aktif mulai : {{ \Carbon\Carbon::parse($aksesCourse->created_at)->isoFormat('dddd, D MMMM Y') }}</h2>

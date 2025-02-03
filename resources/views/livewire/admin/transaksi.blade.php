@@ -104,12 +104,12 @@
                                         </td>
                                         <td class="mb-2 px-6">
                                             <div class="flex items-center">
-                                                @if ($men->payment_status == 'pending')
+                                                @if ($men->payment_status == 'pending' || $men->payment_status == 'cancel' || $men->payment_status == 'failed')
                                                     <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
                                                     <span class="text-red-400">
                                                         {{ $men->payment_status ?? '-' }}
                                                     </span>
-                                                @elseif($men->payment_status == 'paid')
+                                                @elseif($men->payment_status == 'paid' || $men->payment_status == 'success')
                                                     <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
 
                                                     <span class="text-green-400">
@@ -121,11 +121,11 @@
                                         <td class="pb-3 px-6">
                                             <div class="flex items-center gap-2">
 
-                                                <a href="{{ route('admin.transaction.edit', $men['id']) }}"
+                                                <a href="{{ route('transaction.edit', $men['id']) }}"
                                                     class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </a>
-                                                <form action="{{ route('admin.transaction.destroy', $men->id) }}"
+                                                <form action="{{ route('transaction.destroy', $men->id) }}"
                                                     method="post">
                                                     @method('delete')
                                                     @csrf

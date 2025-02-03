@@ -14,7 +14,7 @@
                                 UwhCamp
                             </text>
                         </svg>
-                        <a href="{{ route('member.dashboard.index') }}"
+                        <a href="{{ route('dashboard.index') }}"
                             style="color: darkgray; text-decoration: none; margin-right:20px;">Dashboard</a>
                         {{-- <p>{{ $CourseActive }}</p> --}}
                     </div>
@@ -41,7 +41,7 @@
                                                     <li>
 
                                                         <a class="nav-link white hover rounded-pill mb-1 mt-2 d-flex justify-content-between"
-                                                            href="{{ route('member.course.show', [$m->id]) }}">
+                                                            href="{{ route('courses.show', [$m->id]) }}">
                                                             <div>
                                                                 <i class="bi bi-play-circle px-2"></i>
                                                                 {{ $m->title }}
@@ -103,10 +103,11 @@
                 <div class="col-sm-9">
                     <div class="mb-4">
 
+                        <p>{{$activeMaterial->video_url}}</p>
+                        {{-- <source id="video" src="{{ asset('course/video/' . $MateriActive->video_url) }}" --}}
+                        {{-- <source id="video" src="{{ asset('course/video/' . $activeMaterial->video_url) }}" type="video/mp4"> --}}
                         <video id="preview" style="border-radius: 20px" class="w-full ml-3 h-auto rounded-fill" controls>
-                            {{-- <source id="video" src="{{ asset('course/video/' . $MateriActive->video_url) }}" --}}
-                            <source id="video" src="{{ asset('course/video/' . $activeMaterial->video_url) }}"
-                                type="video/mp4">
+                            <source id="video" src="{{ asset('course/video/1713311112.mov') }}" type="video/mp4">
                         </video>
                     </div>
                     <div class="d-flex justify-content-between p-4">

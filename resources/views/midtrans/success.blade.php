@@ -25,7 +25,7 @@
 
                         <div class="row text-center">
                             <div class="col-lg-12 col-12">
-                                <img src="{{ asset('assets/images/ill_register.png') }}" height="400" class="mb-5"
+                                <img src="{{ asset('assets/images/payment.png') }}" height="400" class="mb-5"
                                     alt=" ">
                             </div>
                             <div class=" col-lg-12 col-12 header-wrap mt-4">
@@ -36,7 +36,7 @@
                                     Berhasil Checkout
                                 </h2>
                                 <div class="row  mt-4">
-                                    <a href="{{ route('member.dashboard.index') }}"
+                                    <a href="{{ route('dashboard.index') }}"
                                         class="px-4 text-green-500 hover:text-gray-800 bg-green-100 border border-transparent rounded-lg shadow-sm">
                                         My Dashboard
                                     </a>

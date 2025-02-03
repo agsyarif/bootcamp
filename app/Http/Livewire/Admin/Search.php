@@ -73,11 +73,15 @@ class Search extends Component
             }
             return view('livewire.admin.transaksi', compact('data'));
         } else if ($this->segment == 'course') {
-            $mentor = Auth::user()->id;
-            $data = course::where('user_id', $mentor);
+            $userId = Auth::id();
+            $authRoles = auth()->user()->roles->pluck('name')->first();
 
-            if ($this->search !== null) {
+            $data = course::with('aksesCourse');
+            if($authRoles === 'Mentor') {
+                $data->where('user_id', $userId);
+            }
 
+            if ($this->search) {
                 $data = $data->where('name', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('price', 'like', '%' . $this->search . '%')->get();
             } else {

@@ -34,7 +34,7 @@
                     </svg>
                 </li>
                 <li class="flex items-center">
-                    <a href="{{ route('mentor.member.show', optional(optional($currentCourse)[0])->id) }}" class="text-gray-400">Member Course</a>
+                    {{-- <a href="{{ route('mentor.member.show', optional(optional($currentCourse)[0])->id) }}" class="text-gray-400">Member Course</a> --}}
                     <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path
